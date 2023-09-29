@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.*;
 
 // line 44 "model.ump"
-// line 132 "model.ump"
+// line 130 "model.ump"
 public class Asset
 {
 
@@ -22,7 +22,7 @@ public class Asset
 
   //Asset Attributes
   private Date purchaseDate;
-  private int expectedLifespan;
+  private String expectedLifespan;
 
   //Autounique Attributes
   private int id;
@@ -38,7 +38,7 @@ public class Asset
   // CONSTRUCTOR
   //------------------------
 
-  public Asset(Date aPurchaseDate, int aExpectedLifespan, AssetType aAssetType, Location aLocation, AssetPlus aAssetPlus, Manager aManager)
+  public Asset(Date aPurchaseDate, String aExpectedLifespan, AssetType aAssetType, Location aLocation, AssetPlus aAssetPlus, Manager aManager)
   {
     purchaseDate = aPurchaseDate;
     expectedLifespan = aExpectedLifespan;
@@ -78,7 +78,7 @@ public class Asset
     return wasSet;
   }
 
-  public boolean setExpectedLifespan(int aExpectedLifespan)
+  public boolean setExpectedLifespan(String aExpectedLifespan)
   {
     boolean wasSet = false;
     expectedLifespan = aExpectedLifespan;
@@ -91,7 +91,7 @@ public class Asset
     return purchaseDate;
   }
 
-  public int getExpectedLifespan()
+  public String getExpectedLifespan()
   {
     return expectedLifespan;
   }

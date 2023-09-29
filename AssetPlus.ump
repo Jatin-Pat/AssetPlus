@@ -44,7 +44,7 @@ class Asset
 {
   autounique id;
   Date purchaseDate;
-  Integer expectedLifespan;
+  expectedLifespan;
 
   * assets -- 1 AssetType assetType;
   0..1 assets -- * Ticket tickets;
@@ -53,8 +53,8 @@ class Asset
 
 class Location
 {
-  Integer floor;
-  lazy room;
+  floor;
+  lazy Integer room;
 }
 
 class Ticket

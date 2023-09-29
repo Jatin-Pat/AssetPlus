@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 20 "model.ump"
-// line 111 "model.ump"
+// line 109 "model.ump"
 public class Manager extends User
 {
 
@@ -69,7 +69,7 @@ public class Manager extends User
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Asset addAsset(Date aPurchaseDate, int aExpectedLifespan, AssetType aAssetType, Location aLocation, AssetPlus aAssetPlus)
+  public Asset addAsset(Date aPurchaseDate, String aExpectedLifespan, AssetType aAssetType, Location aLocation, AssetPlus aAssetPlus)
   {
     return new Asset(aPurchaseDate, aExpectedLifespan, aAssetType, aLocation, aAssetPlus, this);
   }

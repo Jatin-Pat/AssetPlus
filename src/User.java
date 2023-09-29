@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 10 "model.ump"
-// line 105 "model.ump"
+// line 103 "model.ump"
 public abstract class User
 {
 

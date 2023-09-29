@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 2 "model.ump"
-// line 94 "model.ump"
+// line 95 "model.ump"
 public class AssetPlus
 {
 
@@ -302,7 +302,7 @@ public class AssetPlus
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Asset addAsset(Date aPurchaseDate, int aExpectedLifespan, AssetType aAssetType, Location aLocation, Manager aManager)
+  public Asset addAsset(Date aPurchaseDate, String aExpectedLifespan, AssetType aAssetType, Location aLocation, Manager aManager)
   {
     return new Asset(aPurchaseDate, aExpectedLifespan, aAssetType, aLocation, this, aManager);
   }
@@ -374,7 +374,7 @@ public class AssetPlus
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Location addLocation(int aFloor)
+  public Location addLocation(String aFloor)
   {
     return new Location(aFloor, this);
   }

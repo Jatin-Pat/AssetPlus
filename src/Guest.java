@@ -5,7 +5,7 @@
 import java.util.*;
 
 // line 33 "model.ump"
-// line 122 "model.ump"
+// line 120 "model.ump"
 public class Guest extends User
 {
 

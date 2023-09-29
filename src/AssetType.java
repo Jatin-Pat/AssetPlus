@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 38 "model.ump"
-// line 127 "model.ump"
+// line 125 "model.ump"
 public class AssetType
 {
 
@@ -157,7 +157,7 @@ public class AssetType
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Asset addAsset(Date aPurchaseDate, int aExpectedLifespan, Location aLocation, AssetPlus aAssetPlus, Manager aManager)
+  public Asset addAsset(Date aPurchaseDate, String aExpectedLifespan, Location aLocation, AssetPlus aAssetPlus, Manager aManager)
   {
     return new Asset(aPurchaseDate, aExpectedLifespan, this, aLocation, aAssetPlus, aManager);
   }

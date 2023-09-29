@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 55 "model.ump"
-// line 144 "model.ump"
+// line 137 "model.ump"
 public class Location
 {
 
@@ -15,8 +15,8 @@ public class Location
   //------------------------
 
   //Location Attributes
-  private int floor;
-  private String room;
+  private String floor;
+  private int room;
 
   //Location Associations
   private AssetPlus assetPlus;
@@ -26,10 +26,10 @@ public class Location
   // CONSTRUCTOR
   //------------------------
 
-  public Location(int aFloor, AssetPlus aAssetPlus)
+  public Location(String aFloor, AssetPlus aAssetPlus)
   {
     floor = aFloor;
-    room = null;
+    room = 0;
     boolean didAddAssetPlus = setAssetPlus(aAssetPlus);
     if (!didAddAssetPlus)
     {
@@ -42,7 +42,7 @@ public class Location
   // INTERFACE
   //------------------------
 
-  public boolean setFloor(int aFloor)
+  public boolean setFloor(String aFloor)
   {
     boolean wasSet = false;
     floor = aFloor;
@@ -50,7 +50,7 @@ public class Location
     return wasSet;
   }
 
-  public boolean setRoom(String aRoom)
+  public boolean setRoom(int aRoom)
   {
     boolean wasSet = false;
     room = aRoom;
@@ -58,12 +58,12 @@ public class Location
     return wasSet;
   }
 
-  public int getFloor()
+  public String getFloor()
   {
     return floor;
   }
 
-  public String getRoom()
+  public int getRoom()
   {
     return room;
   }
@@ -127,7 +127,7 @@ public class Location
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Asset addAsset(Date aPurchaseDate, int aExpectedLifespan, AssetType aAssetType, AssetPlus aAssetPlus, Manager aManager)
+  public Asset addAsset(Date aPurchaseDate, String aExpectedLifespan, AssetType aAssetType, AssetPlus aAssetPlus, Manager aManager)
   {
     return new Asset(aPurchaseDate, aExpectedLifespan, aAssetType, this, aAssetPlus, aManager);
   }

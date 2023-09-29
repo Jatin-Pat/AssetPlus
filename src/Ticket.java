@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.*;
 
 // line 61 "model.ump"
-// line 149 "model.ump"
+// line 142 "model.ump"
 public class Ticket
 {
 

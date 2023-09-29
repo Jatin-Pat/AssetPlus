@@ -5,7 +5,7 @@
 import java.util.*;
 
 // line 27 "model.ump"
-// line 117 "model.ump"
+// line 115 "model.ump"
 public class Employee extends User
 {
 
