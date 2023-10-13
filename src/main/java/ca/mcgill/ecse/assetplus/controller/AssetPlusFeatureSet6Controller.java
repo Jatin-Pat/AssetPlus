@@ -71,7 +71,7 @@ public class AssetPlusFeatureSet6Controller {
         for (MaintenanceNote note : ticket.getTicketNotes()) {
           Date noteDate = note.getDate();
           String noteDescription = note.getDescription();
-          String noteTaker = note.getNoteTaker();
+          String noteTaker = note.getNoteTaker().getEmail();
           TOMaintenanceNote MaintenanceNote = new TOMaintenanceNote(noteDate, noteDescription, noteTaker);
           allNotes.add(MaintenanceNote);
         }
