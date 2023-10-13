@@ -2,35 +2,20 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.TooManyListenersException;
 import java.util.ArrayList;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.*;
-import ca.mcgill.ecse.assetplus.controller.TOMaintenanceNote;
-import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
+
 
 public class AssetPlusFeatureSet6Controller {
 
   public static void deleteEmployeeOrGuest(String email) {
-
-    //Checking if email is manager's email
-    if(email.equals("manager@ap.com")){
-      throw new IllegalArgumentException("Cannot delete Manager");
-    }
     
-    //Checking if employee with given email exists
-    if(Employee.hasWithEmail(email)){
-      Employee.getWithEmail(email).delete();
-    }
-    //Checking if guest with given email exists
-    else if(Guest.hasWithEmail(email)){
-      Guest.getWithEmail(email).delete();
-    }
-    //Throw error since no user with given email exists
-    else{
-        throw new IllegalArgumentException("No user with given email");
-    }
+    User queriedUser = User.getWithEmail(email);
+    if(queriedUser instanceof Guest || queriedUser instanceof Employee){
+      queriedUser.delete();
+    }    
   }
 
   // returns all tickets
