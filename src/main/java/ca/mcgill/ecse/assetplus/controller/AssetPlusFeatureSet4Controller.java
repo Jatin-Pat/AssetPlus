@@ -97,7 +97,6 @@ public class AssetPlusFeatureSet4Controller {
   }
 
   public static void deleteMaintenanceTicket(int id) {
-    // Remove this exception when you implement this method
     assetPlus.getMaintenanceTicket(id).delete();
   }
 }
