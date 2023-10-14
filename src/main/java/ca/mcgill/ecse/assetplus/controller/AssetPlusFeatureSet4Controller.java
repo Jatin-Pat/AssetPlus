@@ -4,8 +4,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import java.util.List;
-import java.util.ArrayList;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
@@ -23,15 +21,6 @@ public class AssetPlusFeatureSet4Controller {
   }
   private static boolean isValidID(int id) {
     return id >= 0;
-  }
-  private static boolean isExistingID(int id) {
-    List<MaintenanceTicket> ticketList = assetPlus.getMaintenanceTickets();
-    for (MaintenanceTicket maintenanceTicket : ticketList) {
-      if (id == maintenanceTicket.getId()) {
-        return true;
-      }
-    }
-    return false;
   }
   private static boolean isValidDate(Date raisedOnDate) {
     Date todayDate = Date.valueOf(LocalDate.now());
@@ -74,7 +63,7 @@ public class AssetPlusFeatureSet4Controller {
     if (! isValidID(id)) {
       errorMessage.append("Invalid ID \n");
     }
-    if (! isExistingID(id)) {
+    if (! MaintenanceTicket.hasWithId(id)) {
       errorMessage.append("Ticket ID does not exist \n");
     }
     if (! isValidDate(newRaisedOnDate)) {
