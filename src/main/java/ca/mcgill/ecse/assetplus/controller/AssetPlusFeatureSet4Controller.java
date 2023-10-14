@@ -26,8 +26,8 @@ public class AssetPlusFeatureSet4Controller {
   }
   private static boolean isExistingID(int id) {
     List<MaintenanceTicket> ticketList = assetPlus.getMaintenanceTickets();
-    for (int i = 0; i < ticketList.size(); i++) {
-      if (id == ticketList.get(i).getId()) {
+    for (MaintenanceTicket maintenanceTicket : ticketList) {
+      if (id == maintenanceTicket.getId()) {
         return true;
       }
     }
@@ -41,14 +41,15 @@ public class AssetPlusFeatureSet4Controller {
   // assetNumber -1 means that no asset is specified
   public static String addMaintenanceTicket(int id, Date raisedOnDate, String description,
       String email, int assetNumber) {
+    StringBuilder errorMessage = new StringBuilder();
     if (! isValidEmail(email)) {
-      throw new IllegalArgumentException("Invalid email");
+      errorMessage.append("Invalid email \n");
     }
     if (! isValidID(id)) {
-      throw new IllegalArgumentException("Invalid ID");
+      errorMessage.append("Invalid ID \n");
     }
     if (! isValidDate(raisedOnDate)) {
-      throw new IllegalArgumentException("Invalid date");
+      errorMessage.append("Invalid date \n");
     }
     User aUser = User.getWithEmail(email);
     MaintenanceTicket aTicket = assetPlus.addMaintenanceTicket(id, raisedOnDate, description, aUser);
@@ -57,27 +58,27 @@ public class AssetPlusFeatureSet4Controller {
 
     if (assetNumber != -1) {
       if (SpecificAsset.getWithAssetNumber(assetNumber) == null) {
-        throw new IllegalArgumentException("Invalid asset number");
+        errorMessage.append("Invalid asset number \n");
       }
       SpecificAsset aAsset = SpecificAsset.getWithAssetNumber(assetNumber);
       aTicket.setAsset(aAsset);
     }
-
-    return "Ticket " + id + " added successfully";
+    return errorMessage.toString();
   }
 
   // newAssetNumber -1 means that no asset is specified
   public static String updateMaintenanceTicket(int id, Date newRaisedOnDate, String newDescription,
       String newEmail, int newAssetNumber) {
+    StringBuilder errorMessage = new StringBuilder();
     MaintenanceTicket aTicket = assetPlus.getMaintenanceTicket(id);
     if (! isValidID(id)) {
-      throw new IllegalArgumentException("Invalid ID");
+      errorMessage.append("Invalid ID \n");
     }
     if (! isExistingID(id)) {
-      throw new IllegalArgumentException("Ticket ID does not exist");
+      errorMessage.append("Ticket ID does not exist \n");
     }
     if (! isValidDate(newRaisedOnDate)) {
-      throw new IllegalArgumentException("Invalid date");
+      errorMessage.append("Invalid date \n");
     }
     if (aTicket != null) {
       aTicket.setRaisedOnDate(newRaisedOnDate);
@@ -90,9 +91,9 @@ public class AssetPlusFeatureSet4Controller {
       }
     }
     else {
-      throw new IllegalArgumentException("Ticket ID not found");
+      errorMessage.append("Ticket ID not found \n");
     }
-    return "Ticket " + id + " modified successfully";
+    return errorMessage.toString();
   }
 
   public static void deleteMaintenanceTicket(int id) {
