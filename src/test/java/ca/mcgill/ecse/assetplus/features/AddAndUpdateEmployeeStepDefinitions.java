@@ -3,6 +3,9 @@ package ca.mcgill.ecse.assetplus.features;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import ca.mcgill.ecse.assetplus.model.*;
 
 public class AddAndUpdateEmployeeStepDefinitions {
   @Given("the following employees exist in the system \\(p11)")
@@ -61,12 +64,29 @@ public class AddAndUpdateEmployeeStepDefinitions {
   public void a_new_employee_account_shall_exist_with_and_p11(String string, String string2,
       String string3, String string4) {
     // Write code here that turns the phrase above into concrete actions
+    
+    //Checks an employee with given email exists
+    assertTrue(Employee.hasWithEmail(string));
+    //Checks other employee attributes
+    Employee existingEmployee = (Employee) User.getWithEmail(string);
+    assertEquals(string2, existingEmployee.getName());
+    assertEquals(string3, existingEmployee.getPassword());
+    assertEquals(string4,existingEmployee.getPhoneNumber());
+    
     throw new io.cucumber.java.PendingException();
   }
 
   @Then("their employee account information will be updated and is now {string}, {string}, {string}, and {string} \\(p11)")
   public void their_employee_account_information_will_be_updated_and_is_now_and_p11(String string,
       String string2, String string3, String string4) {
+    //Not sure about this one, I will name an Employee variable, assuming
+    //it is instantiated in the related @When section above
+    Employee updatedEmployee;
+    assertEquals(string, updatedEmployee.getEmail());
+    assertEquals(string2, updatedEmployee.getName());
+    assertEquals(string3, updatedEmployee.getPassword());
+    assertEquals(string4, updatedEmployee.getPhoneNumber());
+    
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
@@ -74,6 +94,8 @@ public class AddAndUpdateEmployeeStepDefinitions {
   @Then("the following employees shall exist in the system \\(p11)")
   public void the_following_employees_shall_exist_in_the_system_p11(
       io.cucumber.datatable.DataTable dataTable) {
+    
+    
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
     // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
