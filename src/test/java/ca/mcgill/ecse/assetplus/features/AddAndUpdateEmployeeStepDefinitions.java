@@ -46,7 +46,24 @@ public class AddAndUpdateEmployeeStepDefinitions {
   @When("the employee with {string} attempts to update their account information to {string}, {string}, and {string} \\(p11)")
   public void the_employee_with_attempts_to_update_their_account_information_to_and_p11(
       String string, String string2, String string3, String string4) {
-    // Write code here that turns the phrase above into concrete actions
+    // string = email; string2 = newPassword; string3 = newName; string4 = newPhoneNumber;
+    //checks if the email and password fields are non-null
+    String[] strings = {string, string2};
+    for (String aString : strings) {
+      assertNotNull(aString);
+    }
+    assertTrue(Employee.hasWithEmail(string));
+    Employee employeeToBeUpdated = (Employee) User.getWithEmail(string);
+    employeeToBeUpdated.setPassword(string2);
+    if (string3 != null) {
+      employeeToBeUpdated.setName(string3);
+    }
+    if (string4 != null) {
+      employeeToBeUpdated.setPhoneNumber(string4);
+    }
+    assertEquals(employeeToBeUpdated.getPassword(), string2);
+    assertEquals(employeeToBeUpdated.getName(), string3);
+    assertEquals(employeeToBeUpdated.getPhoneNumber(), string4);
     throw new io.cucumber.java.PendingException();
   }
 
