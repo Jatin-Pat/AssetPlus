@@ -14,28 +14,30 @@ public class AssetPlusFeatureSet7Controller {
 
     public static String addMaintenanceNote(Date date, String description, int ticketID, String email) {
 
+        StringBuilder error = new StringBuilder();
+
         MaintenanceTicket ticket = assetplus.getMaintenanceTicket(ticketID);
 
         if (ticket == null) {
-            throw new IllegalArgumentException("This ticket does not exist.");
+            error.append("This ticket does not exist.");
         }
 
         User taker = User.getWithEmail(email);
 
         if(!(taker.hasWithEmail(email))) {
-            throw new IllegalArgumentException("There is no user with this email");
+            error.append("There is no user with this email");
         }
 
         if(!(taker instanceof HotelStaff)) {
-            throw new IllegalArgumentException("This user cannot write a maintenance note");
+            error.append("This user cannot write a maintenance note");
         }
 
         if (description.equals("")) {
-           throw new IllegalArgumentException("A description must be provided.");
+           error.append("A description must be provided.");
         }
 
         if (date.before(ticket.getRaisedOnDate())) {
-            throw new IllegalArgumentException("A maintenance note cannot be written before an maintenance ticket has been created.");
+            error.append("A maintenance note cannot be written before an maintenance ticket has been created.");
         }
 
         MaintenanceNote note = new MaintenanceNote(date, description, ticket, (HotelStaff) taker);
@@ -44,42 +46,44 @@ public class AssetPlusFeatureSet7Controller {
 
         ticket.addTicketNoteAt(note, index);
 
-        return (note.toString());
+        return (error.toString());
     }
 
     // index starts at 0
     public static String updateMaintenanceNote(int ticketID, int index, Date newDate, String newDescription, String newEmail) {
 
+        StringBuilder error = new StringBuilder();
+
         MaintenanceTicket ticket = assetplus.getMaintenanceTicket(ticketID);
 
         if (ticket == null) {
-            throw new IllegalArgumentException("This ticket does not exist.");
+            error.append("This ticket does not exist.");
         }
 
         User taker = User.getWithEmail(newEmail);
 
         if(!(taker.hasWithEmail(newEmail))) {
-            throw new IllegalArgumentException("There is no user with this email");
+            error.append("There is no user with this email");
         }
 
         if(!(taker instanceof HotelStaff)) {
-            throw new IllegalArgumentException("This user cannot write a maintenance note");
+            error.append("This user cannot write a maintenance note");
         }
 
         if (newDescription.equals("")) {
-            throw new IllegalArgumentException("A description must be provided.");
+            error.append("A description must be provided.");
         }
 
         if (newDate.before(ticket.getRaisedOnDate())) {
-            throw new IllegalArgumentException("A maintenance note cannot be written before an maintenance ticket has been created.");
+            error.append("A maintenance note cannot be written before an maintenance ticket has been created.");
         }
 
         if (index + 1 > ticket.numberOfTicketNotes()) {
-            throw new IllegalArgumentException("There is no maintenance note at the given index.");
+            error.append("There is no maintenance note at the given index.");
         }
 
         if (ticket.getTicketNote(index) == null) {
-            throw new IllegalArgumentException("The maintenance note is null.");
+            error.append("The maintenance note is null.");
         }
 
         MaintenanceNote note = ticket.getTicketNote(index);
@@ -88,24 +92,26 @@ public class AssetPlusFeatureSet7Controller {
         note.setDate(newDate);
         note.setDescription(newDescription);
 
-        return (note.toString());
+        return (error.toString());
     }
 
     // index starts at 0
     public static void deleteMaintenanceNote(int ticketID, int index) {
 
+        StringBuilder error = new StringBuilder();
+
         MaintenanceTicket ticket = assetplus.getMaintenanceTicket(ticketID);
 
         if (ticket == null) {
-            throw new IllegalArgumentException("This ticket does not exist.");
+            error.append("This ticket does not exist.");
         }
 
         if (index + 1 > ticket.numberOfTicketNotes()) {
-            throw new IllegalArgumentException("There is no maintenance note at the given index.");
+            error.append("There is no maintenance note at the given index.");
         }
 
         if (ticket.getTicketNote(index) == null) {
-            throw new IllegalArgumentException("The maintenance note is null.");
+            error.append("The maintenance note is null.");
         }
 
         MaintenanceNote note = ticket.getTicketNote(index);
