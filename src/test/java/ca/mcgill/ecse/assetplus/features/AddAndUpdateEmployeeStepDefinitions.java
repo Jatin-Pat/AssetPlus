@@ -48,10 +48,8 @@ public class AddAndUpdateEmployeeStepDefinitions {
       String string, String string2, String string3, String string4) {
     // string = email; string2 = newPassword; string3 = newName; string4 = newPhoneNumber;
     //checks if the email and password fields are non-null
-    String[] strings = {string, string2};
-    for (String aString : strings) {
-      assertNotNull(aString);
-    }
+    assertNotNull(string);
+    assertNotNull(string2);
     assertTrue(Employee.hasWithEmail(string));
     Employee employeeToBeUpdated = (Employee) User.getWithEmail(string);
     employeeToBeUpdated.setPassword(string2);
