@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AddAndUpdateEmployeeStepDefinitions {
+  //team1
   @Given("the following employees exist in the system \\(p11)")
   public void the_following_employees_exist_in_the_system_p11(
       io.cucumber.datatable.DataTable dataTable) {
@@ -44,10 +45,28 @@ public class AddAndUpdateEmployeeStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
+  //team2
   @When("the employee with {string} attempts to update their account information to {string}, {string}, and {string} \\(p11)")
   public void the_employee_with_attempts_to_update_their_account_information_to_and_p11(
       String string, String string2, String string3, String string4) {
-    // Write code here that turns the phrase above into concrete actions
+    // string = email; string2 = newPassword; string3 = newName; string4 = newPhoneNumber;
+    //checks if the email and password fields are non-null
+    String[] strings = {string, string2};
+    for (String aString : strings) {
+      assertNotNull(aString);
+    }
+    assertTrue(Employee.hasWithEmail(string));
+    Employee employeeToBeUpdated = (Employee) User.getWithEmail(string);
+    employeeToBeUpdated.setPassword(string2);
+    if (string3 != null) {
+      employeeToBeUpdated.setName(string3);
+    }
+    if (string4 != null) {
+      employeeToBeUpdated.setPhoneNumber(string4);
+    }
+    assertEquals(employeeToBeUpdated.getPassword(), string2);
+    assertEquals(employeeToBeUpdated.getName(), string3);
+    assertEquals(employeeToBeUpdated.getPhoneNumber(), string4);
     throw new io.cucumber.java.PendingException();
   }
 
@@ -60,9 +79,15 @@ public class AddAndUpdateEmployeeStepDefinitions {
   @Then("the number of employees in the system shall be {string} \\(p11)")
   public void the_number_of_employees_in_the_system_shall_be_p11(String string) {
     // Write code here that turns the phrase above into concrete actions
+    AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); 
+    // I don't know if this is right
+    List<Employee> employees = assetPlus.getEmployees();
+
+    assertEquals(assetPlus.numberOfEmployees(), employees.size());
     throw new io.cucumber.java.PendingException();
   }
 
+  //team3
   @Then("a new employee account shall exist with {string}, {string}, {string}, and {string} \\(p11)")
   public void a_new_employee_account_shall_exist_with_and_p11(String string, String string2,
       String string3, String string4) {
