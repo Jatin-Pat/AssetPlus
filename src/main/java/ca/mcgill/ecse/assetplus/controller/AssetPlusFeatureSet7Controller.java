@@ -12,6 +12,13 @@ public class AssetPlusFeatureSet7Controller {
 
     private static AssetPlus assetplus = AssetPlusApplication.getAssetPlus();
 
+    /**
+     * @param date the date the maintenance note was written
+     * @param description the description of what is broken/report on fixing the issue
+     * @param email the email of the person writing the note
+     * @param ticketID the ID number of the associated ticket
+     * @return the error message (if there is an error in any of the input)
+     */
     public static String addMaintenanceNote(Date date, String description, int ticketID, String email) {
 
         StringBuilder error = new StringBuilder();
@@ -48,6 +55,14 @@ public class AssetPlusFeatureSet7Controller {
 
         return (error.toString());
     }
+
+    /**
+     * @param newDate date the new maintenance note that was written
+     * @param newDescription the new description of what is broken/report on fixing the issue
+     * @param newEmail the email of the person writing the note
+     * @param ticketID the ID number of the associated ticket
+     * @return the error message (if there is an error in any of the input)
+     */
 
     // index starts at 0
     public static String updateMaintenanceNote(int ticketID, int index, Date newDate, String newDescription, String newEmail) {
@@ -94,6 +109,11 @@ public class AssetPlusFeatureSet7Controller {
 
         return (error.toString());
     }
+
+    /**
+     * @param index the index of the maintenance note that we wish to delete
+     * @param ticketID the ID number of the associated ticket
+     */
 
     // index starts at 0
     public static void deleteMaintenanceNote(int ticketID, int index) {
