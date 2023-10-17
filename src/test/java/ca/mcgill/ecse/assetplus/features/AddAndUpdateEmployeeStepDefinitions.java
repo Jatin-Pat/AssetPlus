@@ -19,7 +19,7 @@ public class AddAndUpdateEmployeeStepDefinitions {
   
 
   /**
-   * @author Jatin Patel and Anastasiia nemyrovska
+   * @author Jatin Patel and Anastasiia Nemyrovska
    */
   @Given("the following employees exist in the system \\(p11)")
   public void the_following_employees_exist_in_the_system_p11(
@@ -38,7 +38,7 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /** 
-   * @author Jatin Patel and Anastasiia nemyrovska
+   * @author Jatin Patel and Anastasiia Nemyrovska
    */
   @Given("the following manager exists in the system \\(p11)")
   public void the_following_manager_exists_in_the_system_p11(
@@ -57,7 +57,7 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /**
-   * @author Jatin Patel and Anastasiia nemyrovska
+   * @author Jatin Patel and Anastasiia Nemyrovska
    */
   @When("a new employee attempts to register with {string}, {string}, {string}, and {string} \\(p11)")
   public void a_new_employee_attempts_to_register_with_and_p11(String string, String string2,
