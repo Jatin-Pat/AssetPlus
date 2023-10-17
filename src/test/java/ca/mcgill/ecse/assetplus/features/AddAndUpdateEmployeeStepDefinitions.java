@@ -12,40 +12,59 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import ca.mcgill.ecse.assetplus.model.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class AddAndUpdateEmployeeStepDefinitions {
   private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
-  //team1 NEED TO ADD JAVADOC AUTHOR
+  
+
+  /**
+   * @author Jatin Patel and Anastasiia nemyrovska
+   */
   @Given("the following employees exist in the system \\(p11)")
   public void the_following_employees_exist_in_the_system_p11(
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
+
+    List<Map<String, String>> employeesToAdd = dataTable.asMaps();
+    for (Map<String, String> employee : employeesToAdd) {
+      String email = employee.get("email");
+      String name = employee.get("name");
+      String password = employee.get("password");
+      String phoneNumber = employee.get("phoneNumber");
+      assetPlus.addEmployee(email, name, password, phoneNumber);
+    }
+
     throw new io.cucumber.java.PendingException();
   }
 
+  /** 
+   * @author Jatin Patel and Anastasiia nemyrovska
+   */
   @Given("the following manager exists in the system \\(p11)")
   public void the_following_manager_exists_in_the_system_p11(
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
+
+    List<Map<String, String>> managerToAdd = dataTable.asMaps();
+    for (Map<String, String> manager : managerToAdd) {
+      String email = manager.get("email");
+      String name = manager.get("name");
+      String password = manager.get("password");
+      String phoneNumber = manager.get("phoneNumber");
+      new Manager(email, name, password, phoneNumber, assetPlus);
+    }
+
     throw new io.cucumber.java.PendingException();
   }
 
+  /**
+   * @author Jatin Patel and Anastasiia nemyrovska
+   */
   @When("a new employee attempts to register with {string}, {string}, {string}, and {string} \\(p11)")
   public void a_new_employee_attempts_to_register_with_and_p11(String string, String string2,
       String string3, String string4) {
-    // Write code here that turns the phrase above into concrete actions
+
+    assetPlus.addEmployee(string, string2, string3, string4);
+
     throw new io.cucumber.java.PendingException();
   }
 
