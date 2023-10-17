@@ -76,10 +76,13 @@ public class AddAndUpdateEmployeeStepDefinitions {
   public void the_number_of_employees_in_the_system_shall_be_p11(String string) {
     // Write code here that turns the phrase above into concrete actions
     
-    // I don't know if this is right
     List<Employee> employees = assetPlus.getEmployees();
 
-    assertEquals(assetPlus.numberOfEmployees(), employees.size());
+    int numberOfEmployees = employees.size();
+    int actualNumberOfEmployees = (int) string;
+
+    assertEquals(numberOfEmployees, actualNumberOfEmployees)
+  
     throw new io.cucumber.java.PendingException();
   }
 
