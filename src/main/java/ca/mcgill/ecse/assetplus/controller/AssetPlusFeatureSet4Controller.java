@@ -9,25 +9,58 @@ import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+/**
+ * The AssetPlusFeatureSet4Controller class provides methods for managing maintenance tickets
+ * and their associated data (ticket ID, date, email and asset number), including the addition,
+ * update, and deletion of maintenance tickets.
+ * This controller class interacts with the AssetPlus model.
+ */
 public class AssetPlusFeatureSet4Controller {
 
   private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
 
+  /**
+   * Checks if an email address is valid.
+   *
+   * @param email The email address to validate.
+   * @return True if the email is valid; false otherwise.
+   */
   private static boolean isValidEmail(String email) {
     String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(email);
     return matcher.find();
   }
+  /**
+   * Checks if a ticket ID is valid.
+   *
+   * @param id The ID to validate.
+   * @return True if the ID is valid; false otherwise.
+   */
   private static boolean isValidID(int id) {
     return id >= 0;
   }
+  /**
+   * Checks if a date is valid. A date can't be set in the past.
+   *
+   * @param raisedOnDate The date to validate.
+   * @return True if the date is valid; false otherwise.
+   */
   private static boolean isValidDate(Date raisedOnDate) {
     Date todayDate = Date.valueOf(LocalDate.now());
     int comparisonResult = raisedOnDate.compareTo(todayDate);
     return comparisonResult >= 0;
   }
-  // assetNumber -1 means that no asset is specified
+  /**
+   * Adds a maintenance ticket to AssetPlus.
+   *
+   * @param id The ID of the maintenance ticket.
+   * @param raisedOnDate The date when the ticket was raised.
+   * @param description The description of the ticket.
+   * @param email The email of the user associated with the ticket.
+   * @param assetNumber The asset number associated with the ticket, or -1 if none.
+   * @return A string containing any error messages, if applicable.
+   */
   public static String addMaintenanceTicket(int id, Date raisedOnDate, String description,
       String email, int assetNumber) {
     StringBuilder errorMessage = new StringBuilder();
@@ -55,7 +88,16 @@ public class AssetPlusFeatureSet4Controller {
     return errorMessage.toString();
   }
 
-  // newAssetNumber -1 means that no asset is specified
+  /**
+   * Updates an existing maintenance ticket.
+   *
+   * @param id The ID of the ticket to update.
+   * @param newRaisedOnDate The new date when the ticket was raised.
+   * @param newDescription The new description of the ticket.
+   * @param newEmail The new email of the user associated with the ticket.
+   * @param newAssetNumber The new asset number associated with the ticket, or -1 if none.
+   * @return A string containing any error messages, if applicable.
+   */
   public static String updateMaintenanceTicket(int id, Date newRaisedOnDate, String newDescription,
       String newEmail, int newAssetNumber) {
     StringBuilder errorMessage = new StringBuilder();
@@ -85,6 +127,11 @@ public class AssetPlusFeatureSet4Controller {
     return errorMessage.toString();
   }
 
+  /**
+   * Deletes a maintenance ticket from the system.
+   *
+   * @param id The ID of the ticket to delete.
+   */
   public static void deleteMaintenanceTicket(int id) {
     assetPlus.getMaintenanceTicket(id).delete();
   }
