@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import static ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller.updateEmployeeOrGuest;
+import static ca.mcgill.ecse.assetplus.model.User.getWithEmail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import ca.mcgill.ecse.assetplus.model.*;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class AddAndUpdateEmployeeStepDefinitions {
   private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
-  //team1
+  //team1 NEED TO ADD JAVADOC AUTHOR
   @Given("the following employees exist in the system \\(p11)")
   public void the_following_employees_exist_in_the_system_p11(
       io.cucumber.datatable.DataTable dataTable) {
@@ -49,20 +50,28 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   //team2
+  /**
+   * @author Pei Yan Geng
+   */
   @When("the employee with {string} attempts to update their account information to {string}, {string}, and {string} \\(p11)")
   public void the_employee_with_attempts_to_update_their_account_information_to_and_p11(
       String string, String string2, String string3, String string4) {
     // string = email; string2 = newPassword; string3 = newName; string4 = newPhoneNumber;
     updateEmployeeOrGuest(string, string2, string3, string4);
+    Employee updatedEmployee = (Employee) getWithEmail(string); //trying to fix the error on line 102
     throw new io.cucumber.java.PendingException();
   }
-
+  /**
+   * @author Dmytro Martyniuk
+   */
   @Then("the following {string} shall be raised \\(p11)")
   public void the_following_shall_be_raised_p11(String string) {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
-
+  /**
+   * @author Laurence Perrault
+   */
   @Then("the number of employees in the system shall be {string} \\(p11)")
   public void the_number_of_employees_in_the_system_shall_be_p11(String string) {
     // Write code here that turns the phrase above into concrete actions
@@ -83,7 +92,7 @@ public class AddAndUpdateEmployeeStepDefinitions {
     //Checks an employee with given email exists
     assertTrue(Employee.hasWithEmail(string));
     //Checks other employee attributes
-    Employee existingEmployee = (Employee) User.getWithEmail(string);
+    Employee existingEmployee = (Employee) getWithEmail(string);
     assertEquals(string2, existingEmployee.getName());
     assertEquals(string3, existingEmployee.getPassword());
     assertEquals(string4,existingEmployee.getPhoneNumber());
