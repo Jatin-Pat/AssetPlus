@@ -53,7 +53,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   public void the_employee_with_attempts_to_update_their_account_information_to_and_p11(
       String string, String string2, String string3, String string4) {
     // string = email; string2 = newPassword; string3 = newName; string4 = newPhoneNumber;
-    //checks if the email and password fields are non-null
     updateEmployeeOrGuest(string, string2, string3, string4);
     throw new io.cucumber.java.PendingException();
   }
