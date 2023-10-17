@@ -1,13 +1,19 @@
 package ca.mcgill.ecse.assetplus.features;
 
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import static ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller.updateEmployeeOrGuest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import ca.mcgill.ecse.assetplus.model.*;
 
+import java.util.List;
+
 public class AddAndUpdateEmployeeStepDefinitions {
+  private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
   //team1
   @Given("the following employees exist in the system \\(p11)")
   public void the_following_employees_exist_in_the_system_p11(
@@ -48,22 +54,7 @@ public class AddAndUpdateEmployeeStepDefinitions {
       String string, String string2, String string3, String string4) {
     // string = email; string2 = newPassword; string3 = newName; string4 = newPhoneNumber;
     //checks if the email and password fields are non-null
-    String[] strings = {string, string2};
-    for (String aString : strings) {
-      assertNotNull(aString);
-    }
-    assertTrue(Employee.hasWithEmail(string));
-    Employee employeeToBeUpdated = (Employee) User.getWithEmail(string);
-    employeeToBeUpdated.setPassword(string2);
-    if (string3 != null) {
-      employeeToBeUpdated.setName(string3);
-    }
-    if (string4 != null) {
-      employeeToBeUpdated.setPhoneNumber(string4);
-    }
-    assertEquals(employeeToBeUpdated.getPassword(), string2);
-    assertEquals(employeeToBeUpdated.getName(), string3);
-    assertEquals(employeeToBeUpdated.getPhoneNumber(), string4);
+    updateEmployeeOrGuest(string, string2, string3, string4);
     throw new io.cucumber.java.PendingException();
   }
 
