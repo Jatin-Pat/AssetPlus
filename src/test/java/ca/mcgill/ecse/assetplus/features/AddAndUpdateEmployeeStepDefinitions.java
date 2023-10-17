@@ -89,7 +89,7 @@ public class AddAndUpdateEmployeeStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
   /**
-   * @author Laurence Perrault
+   * @author Laurence Perreault
    */
   @Then("the number of employees in the system shall be {string} \\(p11)")
   public void the_number_of_employees_in_the_system_shall_be_p11(String string) {
