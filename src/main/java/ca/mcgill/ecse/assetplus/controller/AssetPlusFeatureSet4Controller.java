@@ -10,6 +10,7 @@ import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 /**
+ * @author Pei Yan Geng
  * The AssetPlusFeatureSet4Controller class provides methods for managing maintenance tickets
  * and their associated data (ticket ID, date, email and asset number), including the addition,
  * update, and deletion of maintenance tickets.
