@@ -3,10 +3,26 @@ package ca.mcgill.ecse.assetplus.controller;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 
+
+    /**
+  * The controller for the adding an image and delete an image to/from a maitenance ticket
+  * @since 1.0
+  * @author Dmytro Martyniuk - Student ID: 261118276
+  */
 public class AssetPlusFeatureSet5Controller {
 
-    public static String addImageToMaintenanceTicket(String imageURL, int ticketID) {
+    /**
+   * Adds a specific image to a specific Maintenance Ticket .
+   *
+   * @param imageURL which is the url of the image the user wants to add to a Maitenance ticket
+   * @param ticketID the id of the Maintenance to which the user wants to add an image
 
+   * @return the error message if any error occurs during asset addition or returns an empty string if successfully added.
+   * @author Dmytro Martyniuk
+
+   */
+    public static String addImageToMaintenanceTicket(String imageURL, int ticketID) {
+        // Validattion of the inputs 
         StringBuilder error = new StringBuilder();
 
         if (imageURL == null || imageURL == "") {
@@ -52,7 +68,15 @@ public class AssetPlusFeatureSet5Controller {
         String result = error.toString();
         return result;
     }
+    /**
+   * Deletes a specific image from a specific Maintenance Ticket .
+   *
+   * @param imageURL which is the url of the image the user wants to delete from a Maitenance ticket
+   * @param ticketID the id of the Maintenance from which the user wants to delete an image
 
+   * @author Dmytro Martyniuk
+
+   */
     public static void deleteImageFromMaintenanceTicket(String imageURL, int ticketID) {
 
         var error = "";
@@ -71,16 +95,16 @@ public class AssetPlusFeatureSet5Controller {
         if (error.isEmpty()){
             try {
                 MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-                // Searches for the correct image to be removed from the ticket. BY cheking the
-                // urls of all iamges in the ticket
+                // Searches for the correct image to be removed from the ticket. By cheking the
+                // Urls of all iamges in the ticket
                 for (TicketImage image : ticket.getTicketImages()) {
                     if (image.getImageURL().equals(imageURL)) {
-                        // remove the image from the maintenace ticket
+                        // Remove the image from the maintenace ticket
                         ticket.removeTicketImage(image);
                         // Deletes the image
                         image.delete();
-                        // Should the program exit ?
-                        break; // Should I Exit the loop since the image is found ?
+                        // Exits from the loop since the image is found
+                        break; 
                     }
                 }
             } catch (RuntimeException e) {
