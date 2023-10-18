@@ -74,16 +74,10 @@ public class AddAndUpdateEmployeeStepDefinitions {
    */
   @Then("the number of employees in the system shall be {string} \\(p11)")
   public void the_number_of_employees_in_the_system_shall_be_p11(String string) {
-    // Write code here that turns the phrase above into concrete actions
     
     List<Employee> employees = assetPlus.getEmployees();
 
-    int numberOfEmployees = employees.size();
-    int actualNumberOfEmployees = (int) string;
-
-    assertEquals(numberOfEmployees, actualNumberOfEmployees)
-  
-    throw new io.cucumber.java.PendingException();
+    assertEquals( (Integer) employees.size(), Integer.parseInt(string));
   }
 
   //team3
