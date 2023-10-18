@@ -100,8 +100,8 @@ public class AddAndUpdateEmployeeStepDefinitions {
     assertTrue(Employee.hasWithEmail(string));
     //Checks other employee attributes
     Employee existingEmployee = (Employee) User.getWithEmail(string);
-    assertEquals(string2, existingEmployee.getName());
-    assertEquals(string3, existingEmployee.getPassword());
+    assertEquals(string2, existingEmployee.getPassword());
+    assertEquals(string3, existingEmployee.getName());
     assertEquals(string4,existingEmployee.getPhoneNumber());
 
   }
@@ -115,8 +115,8 @@ public class AddAndUpdateEmployeeStepDefinitions {
     
     assertTrue(Employee.hasWithEmail(string));    
     Employee updatedEmployeeWithKnownEmailAddress = (Employee) User.getWithEmail(string);
-    assertEquals(string2, updatedEmployeeWithKnownEmailAddress.getName());
-    assertEquals(string3, updatedEmployeeWithKnownEmailAddress.getPassword());
+    assertEquals(string2, updatedEmployeeWithKnownEmailAddress.getPassword());
+    assertEquals(string3, updatedEmployeeWithKnownEmailAddress.getName());
     assertEquals(string4, updatedEmployeeWithKnownEmailAddress.getPhoneNumber());
   }
 

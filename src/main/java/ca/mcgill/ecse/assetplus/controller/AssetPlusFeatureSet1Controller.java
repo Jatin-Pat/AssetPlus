@@ -63,7 +63,9 @@ public class AssetPlusFeatureSet1Controller {
       error += "Email domain cannot be @ap.com";
     } if(isEmployee && ! email.endsWith("@ap.com")){
       error += "Email domain must be @ap.com";
-    } if(email.isBlank()){
+    } if (email.contains(" ")) {
+      error += "Email must not contain any spaces";
+    }if(email.isBlank()){
       error += "Email cannot be empty";
     } if ( ! email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")){
       error += "Invalid email";
