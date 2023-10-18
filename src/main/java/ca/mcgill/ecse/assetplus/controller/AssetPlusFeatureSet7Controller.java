@@ -126,7 +126,7 @@ public class AssetPlusFeatureSet7Controller {
             error.append("This ticket does not exist.");
         }
 
-        if (index + 1 > ticket.numberOfTicketNotes()) {
+        if (index + 1 > ticket.numberOfTicketNotes() || index < 0) {
             error.append("There is no maintenance note at the given index.");
         }
 
