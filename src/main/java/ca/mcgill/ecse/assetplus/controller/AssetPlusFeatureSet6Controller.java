@@ -8,8 +8,23 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.*;
 
 
+  /**
+ * <h1> Feature Set 6 Controller Methods</h1>
+ * @author Behrad Rezaie
+ * @version 1.0
+ * @since 2023-10-12
+ *  
+ * Contains deleteEmployeeOrGuest and getTickets methods
+ 
+ * 
+ * 
+ **/
 public class AssetPlusFeatureSet6Controller {
-
+/** <h2> deleteEmployeeOrGuest(String s) </h2>
+ * Finds user by email. Deletes the object from the assetPlus instance
+ * if the user is an employee or a guest.
+ * Returns void
+ * */
   public static void deleteEmployeeOrGuest(String email) {
     
     User queriedUser = User.getWithEmail(email);
@@ -18,7 +33,13 @@ public class AssetPlusFeatureSet6Controller {
     }    
   }
 
-  // returns all tickets
+  /**<h2> getTickets() </h2>
+ * 
+ * Gets all maintenance tickets in the assetPlus instance and returns them as
+ * a List<TOMaintenanceTicket>. Retrieves each individual ticket information, 
+ * creates its TO-object, and adds it to the list, iterating to the next ticket.
+ * Returns List of TOMaintenanceTicket
+ * */ 
   public static List<TOMaintenanceTicket> getTickets() {
       AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
       List<TOMaintenanceTicket> listOfTickets = new ArrayList<TOMaintenanceTicket>(); //Return value
