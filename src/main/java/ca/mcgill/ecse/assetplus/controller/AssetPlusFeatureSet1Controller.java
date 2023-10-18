@@ -112,7 +112,7 @@ public class AssetPlusFeatureSet1Controller {
   */
  public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
     var error = "";
-    if(User.hasWithEmail(email)){
+    if(!User.hasWithEmail(email)){
       error += "There exist no user with email: " + email +" in the system.";
     } if (newPassword == null || newPassword.isBlank()){ 
       error += "Password cannot be empty";
