@@ -47,11 +47,11 @@ public class AssetPlusFeatureSet2Controller {
     StringBuilder errorMessage = new StringBuilder();
 
     if (!checkName(name)) {
-      errorMessage.append("The name must not be empty /n");
+      errorMessage.append("The name must not be empty\n");
     }
 
     if (!checkExpectedLifeSpan(expectedLifeSpanInDays)) {
-      errorMessage.append("The expected life span must be greater than 0 days /n");
+      errorMessage.append("The expected life span must be greater than 0 days\n");
     }
 
     if (errorMessage.length() > 0) {
@@ -63,9 +63,9 @@ public class AssetPlusFeatureSet2Controller {
     } catch (RuntimeException e) {
       String error = e.getMessage();
       if (error.startsWith("Cannot create due to duplicate name.")) {
-        errorMessage.append("The asset type already exists \n");
+        errorMessage.append("The asset type already exists\n");
       } else if (error.startsWith("Unable to create assetType due to assetPlus.")) {
-        errorMessage.append("The asset plus does not exist \n");
+        errorMessage.append("The asset plus does not exist\n");
       }
     }
     return errorMessage.toString();
@@ -81,11 +81,11 @@ public class AssetPlusFeatureSet2Controller {
   public static String updateAssetType(String oldName, String newName, int newExpectedLifeSpanInDays) {
     StringBuilder errorMessage = new StringBuilder();
     if (!checkName(oldName) || !checkName(newName)) {
-      errorMessage.append("The name must not be empty /n");
+      errorMessage.append("The name must not be empty\n");
     }
 
     if (!checkExpectedLifeSpan(newExpectedLifeSpanInDays)) {
-      errorMessage.append("The expected life span must be greater than 0 days /n");
+      errorMessage.append("The expected life span must be greater than 0 days\n");
     }
 
     if (errorMessage.length() > 0) {
@@ -93,11 +93,11 @@ public class AssetPlusFeatureSet2Controller {
     }
 
     if (AssetType.hasWithName(newName.toLowerCase())) {
-        errorMessage.append("The asset type already exists \n");
+        errorMessage.append("The asset type already exists\n");
     }
 
     if (!AssetType.hasWithName(oldName.toLowerCase())) {
-        errorMessage.append("The asset type with name " + oldName + " does not exist \n");
+        errorMessage.append("The asset type with name " + oldName + " does not exist\n");
     } else {
         AssetType assetType = AssetType.getWithName(oldName.toLowerCase());
         assetType.setName(newName.toLowerCase());
