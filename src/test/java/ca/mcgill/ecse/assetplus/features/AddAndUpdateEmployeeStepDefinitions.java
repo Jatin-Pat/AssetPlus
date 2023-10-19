@@ -56,10 +56,10 @@ public class AddAndUpdateEmployeeStepDefinitions {
    * @author Jatin Patel and Anastasiia Nemyrovska
    */
   @When("a new employee attempts to register with {string}, {string}, {string}, and {string} \\(p11)")
-  public void a_new_employee_attempts_to_register_with_and_p11(String string, String string2,
-      String string3, String string4) {
+  public void a_new_employee_attempts_to_register_with_and_p11(String email, String password,
+      String name, String phoneNumber) {
 
-    callController(addEmployeeOrGuest(string, string2, string3, string4,true));
+    callController(addEmployeeOrGuest(email, password, name, phoneNumber,true));
   }
 
   /**
