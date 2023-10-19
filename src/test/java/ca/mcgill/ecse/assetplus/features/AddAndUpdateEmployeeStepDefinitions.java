@@ -64,12 +64,15 @@ public class AddAndUpdateEmployeeStepDefinitions {
 
   /**
    * @author Pei Yan Geng, Dmytro Martyniuk and Laurence Perreault
+   * @param email The email address of an employee
+   * @param newPassword The password of the corresponding employee
+   * @param newName The name of the following employee
+   * @param newPhoneNumber The phone number of the following employee
    */
   @When("the employee with {string} attempts to update their account information to {string}, {string}, and {string} \\(p11)")
   public void the_employee_with_attempts_to_update_their_account_information_to_and_p11(
-      String string, String string2, String string3, String string4) {
-    // string = email; string2 = newPassword; string3 = newName; string4 = newPhoneNumber;
-    callController(updateEmployeeOrGuest(string, string2, string3, string4)); 
+      String email, String newPassword, String newName, String newPhoneNumber) {
+    callController(updateEmployeeOrGuest(email, newPassword, newName, newPhoneNumber));
   }
   /**
    * @author Pei Yan Geng, Dmytro Martyniuk and Laurence Perreault
