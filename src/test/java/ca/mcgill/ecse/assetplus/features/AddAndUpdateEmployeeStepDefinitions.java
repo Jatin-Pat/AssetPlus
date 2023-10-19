@@ -81,11 +81,11 @@ public class AddAndUpdateEmployeeStepDefinitions {
    * @author Pei Yan Geng, Dmytro Martyniuk and Laurence Perreault
    */
   @Then("the number of employees in the system shall be {string} \\(p11)")
-  public void the_number_of_employees_in_the_system_shall_be_p11(String string) {
+  public void the_number_of_employees_in_the_system_shall_be_p11(String expectedNumberOfEmployees) {
     
     List<Employee> employees = assetPlus.getEmployees();
 
-    assertEquals( (Integer) employees.size(), Integer.parseInt(string));
+    assertEquals( (Integer) employees.size(), Integer.parseInt(expectedNumberOfEmployees));
   }
   
    /**
