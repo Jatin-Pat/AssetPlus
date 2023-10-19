@@ -59,17 +59,7 @@ public class AssetPlusFeatureSet4Controller {
     return SpecificAsset.getWithAssetNumber(assetNumber) != null;
   }
 
-  /**
-   * Adds a maintenance ticket to AssetPlus.
-   *
-   * @param id The ID of the maintenance ticket.
-   * @param raisedOnDate The date when the ticket was raised.
-   * @param description The description of the ticket.
-   * @param email The email of the user associated with the ticket.
-   * @param assetNumber The asset number associated with the ticket, or -1 if none.
-   * @return A string containing any error messages, if applicable, or a success message.
-   */
-  public static String addMaintenanceTicket(int id, Date raisedOnDate, String description, String email, int assetNumber) {
+  private static StringBuilder errorGenerator(int id, Date raisedOnDate, String description, String email, int assetNumber) {
     StringBuilder errorMessage = new StringBuilder();
     if (id < 0) {
       errorMessage.append("Invalid ID \n");
@@ -86,6 +76,20 @@ public class AssetPlusFeatureSet4Controller {
     if (!isValidAssetNumber(assetNumber)) {
       errorMessage.append("Invalid asset number \n");
     }
+    return errorMessage;
+  }
+  /**
+   * Adds a maintenance ticket to AssetPlus.
+   *
+   * @param id The ID of the maintenance ticket.
+   * @param raisedOnDate The date when the ticket was raised.
+   * @param description The description of the ticket.
+   * @param email The email of the user associated with the ticket.
+   * @param assetNumber The asset number associated with the ticket, or -1 if none.
+   * @return A string containing any error messages, if applicable, or a success message.
+   */
+  public static String addMaintenanceTicket(int id, Date raisedOnDate, String description, String email, int assetNumber) {
+    StringBuilder errorMessage = errorGenerator(id, raisedOnDate, description, email, assetNumber);
     if (errorMessage.length() > 0) {
       System.out.println(errorMessage);
       return errorMessage.toString();
@@ -128,22 +132,7 @@ public class AssetPlusFeatureSet4Controller {
    * @return A string containing any error messages, if applicable, or a success message.
    */
   public static String updateMaintenanceTicket(int id, Date newRaisedOnDate, String newDescription, String newEmail, int newAssetNumber) {
-    StringBuilder errorMessage = new StringBuilder();
-    if (id < 0) {
-      errorMessage.append("Invalid ID \n");
-    }
-    if (newDescription.isEmpty()) {
-      errorMessage.append("Invalid description \n");
-    }
-    if (!isValidDate(newRaisedOnDate)) {
-      errorMessage.append("Invalid date \n");
-    }
-    if (!isValidEmail(newEmail)) {
-      errorMessage.append("Invalid email \n");
-    }
-    if (!isValidAssetNumber(newAssetNumber)) {
-      errorMessage.append("Invalid asset number \n");
-    }
+    StringBuilder errorMessage = errorGenerator(id, newRaisedOnDate, newDescription, newEmail, newAssetNumber);
     if (errorMessage.length() > 0) {
       System.out.println(errorMessage);
       return errorMessage.toString();
