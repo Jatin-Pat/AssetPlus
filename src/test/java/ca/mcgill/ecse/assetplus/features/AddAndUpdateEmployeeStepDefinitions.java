@@ -90,10 +90,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   
    /**
    * @author Marc-Antoine Nadeau & Behrad Rezaie
-   * @param email The email address of an employee
-   * @param password The password of the corresponding employee
-   * @param name The name of the following employee
-   * @param phoneNumber The phone number of the following employee
    */
   @Then("a new employee account shall exist with {string}, {string}, {string}, and {string} \\(p11)")
   public void a_new_employee_account_shall_exist_with_and_p11(String email, String password, String name, String phoneNumber) {
@@ -110,10 +106,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   
   /**
    * @author Marc-Antoine Nadeau & Behrad Rezaie
-   * @param email The email address of an employee
-   * @param newPassword The new password of the corresponding employee
-   * @param newName The new name of the following employee
-   * @param newPhoneNumber The new phone number of the following employee
    */
   @Then("their employee account information will be updated and is now {string}, {string}, {string}, and {string} \\(p11)")
   public void their_employee_account_information_will_be_updated_and_is_now_and_p11(String email, String newPassword, String newName, String newPhoneNumber) {
