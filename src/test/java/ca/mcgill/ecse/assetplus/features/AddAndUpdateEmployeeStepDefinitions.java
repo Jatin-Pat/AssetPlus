@@ -75,8 +75,8 @@ public class AddAndUpdateEmployeeStepDefinitions {
    * @author Pei Yan Geng, Dmytro Martyniuk and Laurence Perreault
    */
   @Then("the following {string} shall be raised \\(p11)")
-  public void the_following_shall_be_raised_p11(String string) {
-    assertTrue(error.contains(string));
+  public void the_following_shall_be_raised_p11(String errorString) {
+    assertTrue(error.contains(errorString));
   }
   /**
    * @author Pei Yan Geng, Dmytro Martyniuk and Laurence Perreault
