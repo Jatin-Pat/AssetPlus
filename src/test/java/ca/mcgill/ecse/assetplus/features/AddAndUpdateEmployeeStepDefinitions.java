@@ -91,33 +91,41 @@ public class AddAndUpdateEmployeeStepDefinitions {
   
    /**
    * @author Marc-Antoine Nadeau & Behrad Rezaie
+   * @param email The email address of an employee
+   * @param password The password of the corresponding employee
+   * @param name The name of the following employee
+   * @param phoneNumber The phone number of the following employee
    */
   @Then("a new employee account shall exist with {string}, {string}, {string}, and {string} \\(p11)")
-  public void a_new_employee_account_shall_exist_with_and_p11(String string, String string2,
-      String string3, String string4) {
+  public void a_new_employee_account_shall_exist_with_and_p11(String email, String password,
+      String name, String phoneNumber) {
     
     //Checks an employee with given email exists
-    assertTrue(Employee.hasWithEmail(string));
+    assertTrue(Employee.hasWithEmail(email));
     //Checks other employee attributes
-    Employee existingEmployee = (Employee) User.getWithEmail(string);
-    assertEquals(string2, existingEmployee.getPassword());
-    assertEquals(string3, existingEmployee.getName());
-    assertEquals(string4,existingEmployee.getPhoneNumber());
+    Employee existingEmployee = (Employee) User.getWithEmail(email);
+    assertEquals(password, existingEmployee.getPassword());
+    assertEquals(name, existingEmployee.getName());
+    assertEquals(phoneNumber,existingEmployee.getPhoneNumber());
 
   }
   
   /**
    * @author Marc-Antoine Nadeau & Behrad Rezaie
+   * @param email The email address of an employee
+   * @param newPassword The new password of the corresponding employee
+   * @param newName The new name of the following employee
+   * @param newPhoneNumber The new phone number of the following employee
    */
   @Then("their employee account information will be updated and is now {string}, {string}, {string}, and {string} \\(p11)")
-  public void their_employee_account_information_will_be_updated_and_is_now_and_p11(String string,
-      String string2, String string3, String string4) {
+  public void their_employee_account_information_will_be_updated_and_is_now_and_p11(String email, String newPassword,
+      String newName, String newPhoneNumber) {
     
-    assertTrue(Employee.hasWithEmail(string));    
-    Employee updatedEmployeeWithKnownEmailAddress = (Employee) User.getWithEmail(string);
-    assertEquals(string2, updatedEmployeeWithKnownEmailAddress.getPassword());
-    assertEquals(string3, updatedEmployeeWithKnownEmailAddress.getName());
-    assertEquals(string4, updatedEmployeeWithKnownEmailAddress.getPhoneNumber());
+    assertTrue(Employee.hasWithEmail(email));    
+    Employee updatedEmployeeWithKnownEmailAddress = (Employee) User.getWithEmail(email);
+    assertEquals(newPassword, updatedEmployeeWithKnownEmailAddress.getPassword());
+    assertEquals(newName, updatedEmployeeWithKnownEmailAddress.getName());
+    assertEquals(newPhoneNumber, updatedEmployeeWithKnownEmailAddress.getPhoneNumber());
   }
 
   /**
