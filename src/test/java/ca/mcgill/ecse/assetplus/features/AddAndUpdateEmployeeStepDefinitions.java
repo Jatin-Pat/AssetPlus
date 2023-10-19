@@ -97,8 +97,7 @@ public class AddAndUpdateEmployeeStepDefinitions {
    * @param phoneNumber The phone number of the following employee
    */
   @Then("a new employee account shall exist with {string}, {string}, {string}, and {string} \\(p11)")
-  public void a_new_employee_account_shall_exist_with_and_p11(String email, String password,
-      String name, String phoneNumber) {
+  public void a_new_employee_account_shall_exist_with_and_p11(String email, String password, String name, String phoneNumber) {
     
     //Checks an employee with given email exists
     assertTrue(Employee.hasWithEmail(email));
@@ -118,8 +117,7 @@ public class AddAndUpdateEmployeeStepDefinitions {
    * @param newPhoneNumber The new phone number of the following employee
    */
   @Then("their employee account information will be updated and is now {string}, {string}, {string}, and {string} \\(p11)")
-  public void their_employee_account_information_will_be_updated_and_is_now_and_p11(String email, String newPassword,
-      String newName, String newPhoneNumber) {
+  public void their_employee_account_information_will_be_updated_and_is_now_and_p11(String email, String newPassword, String newName, String newPhoneNumber) {
     
     assertTrue(Employee.hasWithEmail(email));    
     Employee updatedEmployeeWithKnownEmailAddress = (Employee) User.getWithEmail(email);
