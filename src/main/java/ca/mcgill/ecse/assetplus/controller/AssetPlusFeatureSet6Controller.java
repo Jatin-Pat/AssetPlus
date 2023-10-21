@@ -51,13 +51,20 @@ public class AssetPlusFeatureSet6Controller {
         String emailRaiser = ticket.getTicketRaiser().getEmail();
         
         //Getting SpecificAsset Information
-        SpecificAsset asset = ticket.getAsset();
-        
-        String assetName = asset.getAssetType().getName();
-        int lifeSpan = asset.getAssetType().getExpectedLifeSpan();
-        Date purchaseDate = asset.getPurchaseDate();
-        int aFloorNumber = asset.getFloorNumber();
-        int aRoomNumber = asset.getRoomNumber();
+        String assetName = null;
+        int lifeSpan = -1;
+        Date purchaseDate = null;
+        int aFloorNumber = -1;
+        int aRoomNumber = -1;
+        if (ticket.hasAsset()){
+          SpecificAsset asset = ticket.getAsset();
+          
+           assetName = asset.getAssetType().getName();
+           lifeSpan = asset.getAssetType().getExpectedLifeSpan();
+           purchaseDate = asset.getPurchaseDate();
+           aFloorNumber = asset.getFloorNumber();
+           aRoomNumber = asset.getRoomNumber();
+          }
         
         //Getting Ticket Image URLS
         List<String> imageURLS = new ArrayList<String>();
