@@ -23,7 +23,7 @@ public class AssetPlusFeatureSet1Controller {
   public static String updateManager(String password) {  
     //Input Validation
     var error = "";
-    if (password.length() < 3){
+    if (password.length() <= 3){
       error = "Password must be at least four characters long";
     } if( ! (password.contains("!") || password.contains("#") || password.contains("$"))){
        error += "Password must contain one character out of !#$";
