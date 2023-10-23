@@ -57,20 +57,18 @@ public class UpdateManagerStepDefinitions {
    * @author Achraf Ghellach
    */
   @Then("the manager account information will not be updated and will keep {string} and {string} \\(p6)")
-  public void the_manager_account_information_will_not_be_updated_and_will_keep_and_p6(
-          String email, String password) {
-    Assertions.assertEquals(email, this.email);
-    Assertions.assertEquals(password, this.password);
+  public void the_manager_account_information_will_not_be_updated_and_will_keep_and_p6(String email, String password) {
+    Assertions.assertEquals(this.email, email);
+    Assertions.assertEquals(this.password, password);
   }
 
   /**
    * @author Teddy El-Husseini
    */
   @Then("the manager account information will be updated and is now {string} and {string} \\(p6)")
-  public void the_manager_account_information_will_be_updated_and_is_now_and_p6(String email,
-                                                                                String password) {
-    Assertions.assertEquals(email, this.email);
-    Assertions.assertEquals(password, this.password);
+  public void the_manager_account_information_will_be_updated_and_is_now_and_p6(String email, String password) {
+    Assertions.assertEquals(this.email, email);
+    Assertions.assertEquals(this.password, password);
   }
 
   /**

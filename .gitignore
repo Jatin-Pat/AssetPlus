@@ -11,3 +11,6 @@ bin
 */**/__pycache__
 
 **/*.class
+
+#  Ignore IntelliJ's project specific settings files
+.idea

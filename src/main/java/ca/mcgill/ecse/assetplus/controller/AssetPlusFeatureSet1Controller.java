@@ -1,6 +1,9 @@
 package ca.mcgill.ecse.assetplus.controller;
 
-public class AssetPlusFeatureSet1Controller {
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import ca.mcgill.ecse.assetplus.model.Manager;
+import ca.mcgill.ecse.assetplus.model.User;
 
 /**
   * The controller for the Update Manager Password & Add and Update Employee/Guest
@@ -41,16 +44,93 @@ public class AssetPlusFeatureSet1Controller {
     manager.setPassword(password);
     return error; 
   }
-
-  public static String addEmployeeOrGuest(String email, String password, String name, String phoneNumber,
-        boolean isEmployee) {
-    // Remove this exception when you implement this method
-    throw new UnsupportedOperationException("Not Implemented!");
+  /**
+   * Add employee or guest to the assetplus system and performs input validations
+   * @param email The email address of an employee or guest following certain guidelines
+   * @param password The password of the corresponding employee or guest
+   * @param name The name of the following employee or guest
+   * @param phoneNumber The phone number of the following employee or guest
+   * @param isEmployee Boolean telling if it is an employee or a guest
+   * @return An empty string when the employee or guest has been added, or a String with all the error messages combined in case of failure.
+   * @since 1.0 
+   */
+  public static String addEmployeeOrGuest(String email, String password, String name, String phoneNumber, boolean isEmployee) {
+    // Input Validation
+    var error = "";
+    if (email.equals("manager@ap.com")){
+      error += "Email cannot be manager@ap.com";
+    } if(!isEmployee && email.endsWith("@ap.com")){
+      error += "Email domain cannot be @ap.com";
+    } if(isEmployee && ! email.endsWith("@ap.com")){
+      error += "Email domain must be @ap.com";
+    } if (email.contains(" ")) {
+      error += "Email must not contain any spaces";
+    }if(email.isBlank()){
+      error += "Email cannot be empty";
+    } if ( ! email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")){
+      error += "Invalid email";
+    } if (password == null || password.isBlank()){ 
+      error += "Password cannot be empty";
+    } if ( phoneNumber == null){ 
+      error += "Phone number cannot be empty ";
+    } if(name == null){
+      error += "Name cannot be empty ";
+    }
+    
+    if ( ! error.isEmpty()) { 
+      return error.trim();
+    }
+    try {
+      // Calls model for employee
+      if(isEmployee){  
+        assetplus.addEmployee(email, name, password, phoneNumber);
+      } 
+      // Calls model for Guest
+      else {
+        assetplus.addGuest(email, name, password, phoneNumber);
+      } 
+    } catch (RuntimeException e){
+      error = e.getMessage();
+      if(error.startsWith("Cannot create due to duplicate email.") && isEmployee){
+        error = "Email already linked to an employee account";
+      } else if (error.startsWith("Cannot create due to duplicate email") && !isEmployee){
+        error = "Email already linked to an guest account";
+      }
+    }
+  return error;
+ }
+ 
+ /**
+  * 
+  * Updates employee or guest to the assetplus system and performs input validations
+  * @param email The email address of an employee or guest following certain guidelines
+  * @param newPassword The new password of the corresponding employee or guest
+  * @param newName The new name of the following employee or guest
+  * @param newPhoneNumber The new phone number of the following employee or guest
+  * @return An empty string when the employee or guest has been updated, or a String with all the error messages combined in case of failure.
+  * @since 1.0 
+  */
+ public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
+    var error = "";
+    if(!User.hasWithEmail(email)){
+      error += "There exist no user with email: " + email +" in the system.";
+    } if (newPassword == null || newPassword.isBlank()){ 
+      error += "Password cannot be empty";
+    } if ( newPhoneNumber == null){ 
+      error += "Phone number cannot be empty ";
+    } if(newName == null){
+      error += "Name cannot be empty ";
+    }
+    
+    
+    if (!error.isEmpty()) {
+      return error.trim();
+    }
+    //Call controller for User (Guest and Employee)
+    User specificUser = User.getWithEmail(email);
+    specificUser.setPassword(newPassword);
+    specificUser.setName(newName);
+    specificUser.setPhoneNumber(newPhoneNumber);
+   return error;
   }
-
-  public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
-    // Remove this exception when you implement this method
-    throw new UnsupportedOperationException("Not Implemented!");
-  }
-
 }
