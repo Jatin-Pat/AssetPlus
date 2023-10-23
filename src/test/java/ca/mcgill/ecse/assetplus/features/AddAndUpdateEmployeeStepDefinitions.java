@@ -1,4 +1,3 @@
-
 package ca.mcgill.ecse.assetplus.features;
 
 import static ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller.addEmployeeOrGuest;
