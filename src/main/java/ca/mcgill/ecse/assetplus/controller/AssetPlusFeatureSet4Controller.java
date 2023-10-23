@@ -20,7 +20,6 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 public class AssetPlusFeatureSet4Controller {
 
   private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
-
   /**
    * Checks if an email address is valid.
    *
