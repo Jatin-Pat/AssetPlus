@@ -25,17 +25,17 @@ public class AssetPlusFeatureSet3Controller {
     boolean constraintsMet = true;
 
     if (assetNumber < 1) {
-      message.append("The asset number shall not be less than 1. ");
+      message.append("The asset number shall not be less than 1");
       constraintsMet = false;
     }
 
     if (floorNumber < 0) {
-      message.append("The floor number shall not be less than 0. ");
+      message.append("The floor number shall not be less than 0");
       constraintsMet = false;
     }
 
     if (roomNumber < -1) {
-      message.append("The room number shall not be less than -1.");
+      message.append("The room number shall not be less than -1");
       constraintsMet = false;
     }
 
@@ -74,7 +74,7 @@ public class AssetPlusFeatureSet3Controller {
         error = "The AssetPlus does not exist.";
       }
       if (error.startsWith("Unable to create specificAsset due to assetType.")) {
-        error = "The asset type does not exist.";
+        error = "The asset type does not exist";
       }
       return error;
     }
@@ -110,7 +110,7 @@ public class AssetPlusFeatureSet3Controller {
     }
     AssetType newAssetType = AssetType.getWithName(newAssetTypeName.toLowerCase());
     if (newAssetType == null) {
-      error += "The asset type does not exist.";
+      error += "The asset type does not exist";
     }
     if (error.length() > 0) {
       return error;
