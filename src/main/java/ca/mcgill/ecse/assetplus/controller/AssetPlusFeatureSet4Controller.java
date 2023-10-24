@@ -2,6 +2,8 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -31,7 +33,7 @@ public class AssetPlusFeatureSet4Controller {
     String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9]+(\\.[A-Za-z]+)*$";
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(email);
-    return matcher.matches();
+    return matcher.matches() && User.hasWithEmail(email);
   }
 
   /**
@@ -45,36 +47,38 @@ public class AssetPlusFeatureSet4Controller {
   }
 
   /**
-   * Checks if a date is valid. A date can't be set in the past.
+   * Checks if an asset ID is valid.
    *
-   * @param raisedOnDate The date to validate.
-   * @return True if the date is valid; false otherwise.
+   * @param assetNumber The asset ID to validate.
+   * @return True if the ID is valid; false otherwise.
    */
-  private static boolean isValidDate(Date raisedOnDate) {
-    Date todayDate = Date.valueOf(LocalDate.now());
-    int comparisonResult = raisedOnDate.compareTo(todayDate);
-    return comparisonResult >= 0;
-  }
   private static boolean isValidAssetNumber(int assetNumber) {
-    return SpecificAsset.getWithAssetNumber(assetNumber) != null;
+    return SpecificAsset.getWithAssetNumber(assetNumber) != null || assetNumber == -1;
   }
 
+  /**
+   * Generates error messages.
+   *
+   * @param id The ticket ID to validate.
+   * @param raisedOnDate The date to validate.
+   * @param description The description to validate.
+   * @param email The email to validate.
+   * @param assetNumber The asset ID to validate.
+   * @return StringBuilder containing error messages
+   */
   private static StringBuilder errorGenerator(int id, Date raisedOnDate, String description, String email, int assetNumber) {
     StringBuilder errorMessage = new StringBuilder();
     if (id < 0) {
       errorMessage.append("Invalid ID \n");
     }
     if (description.isEmpty()) {
-      errorMessage.append("Invalid description \n");
-    }
-    if (!isValidDate(raisedOnDate)) {
-      errorMessage.append("Invalid date \n");
+      errorMessage.append("Ticket description cannot be empty");
     }
     if (!isValidEmail(email)) {
-      errorMessage.append("Invalid email \n");
+      errorMessage.append("The ticket raiser does not exist");
     }
     if (!isValidAssetNumber(assetNumber)) {
-      errorMessage.append("Invalid asset number \n");
+      errorMessage.append("The asset does not exist");
     }
     return errorMessage;
   }
@@ -111,7 +115,7 @@ public class AssetPlusFeatureSet4Controller {
     catch (Exception e) {
       String eString = e.getMessage();
       if (eString.startsWith("Cannot create due to duplicate id.")) {
-        errorMessage.append("Ticket with specified ID already exists \n");
+        errorMessage.append("Ticket id already exists");
       }
     }
     if (errorMessage.length() == 0) {
@@ -149,10 +153,12 @@ public class AssetPlusFeatureSet4Controller {
           SpecificAsset aAsset = SpecificAsset.getWithAssetNumber(newAssetNumber);
           aTicket.setAsset(aAsset);
         }
-        //else: leave asset number unmodified
+        else {
+          aTicket.setAsset(null);
+        }
       }
       else {
-        errorMessage.append("Ticket not found \n");
+        errorMessage.append("Ticket not found");
       }
     }
     catch (Exception e) {
