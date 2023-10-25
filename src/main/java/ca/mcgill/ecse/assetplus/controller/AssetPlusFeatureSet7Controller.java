@@ -3,6 +3,7 @@ package ca.mcgill.ecse.assetplus.controller;
 import java.sql.Date;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
@@ -13,6 +14,7 @@ public class AssetPlusFeatureSet7Controller {
     private static AssetPlus assetplus = AssetPlusApplication.getAssetPlus();
 
     /**
+     * @author Laurence Perreault
      * @param date the date the maintenance note was written
      * @param description the description of what is broken/report on fixing the issue
      * @param email the email of the person writing the note
@@ -20,43 +22,70 @@ public class AssetPlusFeatureSet7Controller {
      * @return the error message (if there is an error in any of the input)
      */
     public static String addMaintenanceNote(Date date, String description, int ticketID, String email) {
-
         StringBuilder error = new StringBuilder();
 
-        MaintenanceTicket ticket = assetplus.getMaintenanceTicket(ticketID);
-
-        if (ticket == null) {
-            error.append("This ticket does not exist.");
+        if (description == null || description == "") {
+            error.append("Description cannot be empty\n'");
+        } 
+        
+        if (ticketID < 0) {
+            error.append("Ticket does not exist\n'");
+        }
+        
+        if(!(MaintenanceTicket.hasWithId(ticketID))){
+            error.append("Ticket does not exist\n ");
+        }
+        else {
+            MaintenanceTicket maintenanceTicket = MaintenanceTicket.getWithId(ticketID);
+            
+            if (date.before(maintenanceTicket.getRaisedOnDate())) {
+                error.append("The date is incorrect\n ");
+            }
         }
 
-        User taker = User.getWithEmail(email);
+        if( !User.hasWithEmail(email)){
+            error.append("User does not exist\n ");
+        }
+        else {
+            User user = User.getWithEmail(email);
 
-        if(!(taker.hasWithEmail(email))) {
-            error.append("There is no user with this email");
+            if (!(user instanceof HotelStaff)) {
+                error.append("User cannot write a maintenance note\n ");
+            }
         }
 
-        if(!(taker instanceof HotelStaff)) {
-            error.append("This user cannot write a maintenance note");
+        if (!error.isEmpty()){
+            String result = error.toString();
+            return result;
         }
+        
+        try {
+            MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+            User noteTaker = User.getWithEmail(email);
 
-        if (description.equals("")) {
-           error.append("A description must be provided.");
+            for (MaintenanceNote note : ticket.getTicketNotes()) {
+                if (note.getDescription().equals(description) && note.getNoteTaker().equals(noteTaker) && note.getDate().equals(date)) {
+                    error.append("Note already exists for the ticket ");
+                    String result = error.toString();
+                    return result;
+                }
+            }
+            
+            MaintenanceNote note = new MaintenanceNote (date, description, ticket, (HotelStaff) noteTaker);
+
+            ticket.addTicketNote(note);
+        } catch (Exception e){
+            error.append(e.getMessage());
+            String result = error.toString();
+            return result;
         }
-
-        if (date.before(ticket.getRaisedOnDate())) {
-            error.append("A maintenance note cannot be written before an maintenance ticket has been created.");
-        }
-
-        MaintenanceNote note = new MaintenanceNote(date, description, ticket, (HotelStaff) taker);
-
-        int index = ticket.numberOfTicketNotes();
-
-        ticket.addTicketNoteAt(note, index);
-
-        return (error.toString());
+        
+        String result = error.toString();
+        return result;
     }
 
     /**
+     * @author Laurence Perreault
      * @param newDate date the new maintenance note that was written
      * @param newDescription the new description of what is broken/report on fixing the issue
      * @param newEmail the email of the person writing the note
@@ -69,73 +98,84 @@ public class AssetPlusFeatureSet7Controller {
 
         StringBuilder error = new StringBuilder();
 
-        MaintenanceTicket ticket = assetplus.getMaintenanceTicket(ticketID);
-
-        if (ticket == null) {
-            error.append("This ticket does not exist.");
+        if (newDescription == null || newDescription == "") {
+            error.append("Description cannot be empty\n'");
+        } 
+        
+        if (ticketID < 0) {
+            error.append("Ticket does not exist\n'");
+        }
+        
+        if(!(MaintenanceTicket.hasWithId(ticketID))){
+            error.append("Ticket does not exist\n ");
+        }
+        else {
+            MaintenanceTicket maintenanceTicket = MaintenanceTicket.getWithId(ticketID);
+            
+            if (newDate.before(maintenanceTicket.getRaisedOnDate())) {
+                error.append("The date is incorrect\n ");
+            }
         }
 
-        User taker = User.getWithEmail(newEmail);
+        if( !User.hasWithEmail(newEmail)){
+            error.append("User does not exist\n ");
+        }
+        else {
+            User user = User.getWithEmail(newEmail);
 
-        if(!(taker.hasWithEmail(newEmail))) {
-            error.append("There is no user with this email");
+            if (!(user instanceof HotelStaff)) {
+                error.append("User cannot write a maintenance note\n ");
+            }
         }
 
-        if(!(taker instanceof HotelStaff)) {
-            error.append("This user cannot write a maintenance note");
+        if (!error.isEmpty()){
+            String result = error.toString();
+            return result;
         }
+        
+        try{
+            MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+            User noteTaker = User.getWithEmail(newEmail);
 
-        if (newDescription.equals("")) {
-            error.append("A description must be provided.");
+            if (index >= ticket.numberOfTicketNotes()) {
+                error.append("There is no maintenance note at this index\n");
+
+                String result = error.toString();
+                return result;
+            }
+
+            for (MaintenanceNote note : ticket.getTicketNotes()) {
+                if (note.getDescription().equals(newDescription) && note.getNoteTaker().equals(noteTaker) && note.getDate().equals(newDate)) {
+                    error.append("Note already exists for the ticket ");
+                    String result = error.toString();
+                    return result;
+                }
+            }
+            
+            MaintenanceNote updatedNote = ticket.getTicketNote(index);
+
+            updatedNote.setDate(newDate);
+            updatedNote.setDescription(newDescription);
+            updatedNote.setNoteTaker((HotelStaff) noteTaker);
+            
+        } catch (Exception e){
+            error.append(e.getMessage());
+            String result = error.toString();
+            return result;
         }
-
-        if (newDate.before(ticket.getRaisedOnDate())) {
-            error.append("A maintenance note cannot be written before an maintenance ticket has been created.");
-        }
-
-        if (index + 1 > ticket.numberOfTicketNotes()) {
-            error.append("There is no maintenance note at the given index.");
-        }
-
-        if (ticket.getTicketNote(index) == null) {
-            error.append("The maintenance note is null.");
-        }
-
-        MaintenanceNote note = ticket.getTicketNote(index);
-
-        note.setNoteTaker((HotelStaff) taker);
-        note.setDate(newDate);
-        note.setDescription(newDescription);
-
-        return (error.toString());
+        
+        String result = error.toString();
+        return result;
     }
 
     /**
+     * @author Laurence Perreault
      * @param index the index of the maintenance note that we wish to delete
      * @param ticketID the ID number of the associated ticket
      */
 
     // index starts at 0
     public static void deleteMaintenanceNote(int ticketID, int index) {
-
-        StringBuilder error = new StringBuilder();
-
-        MaintenanceTicket ticket = assetplus.getMaintenanceTicket(ticketID);
-
-        if (ticket == null) {
-            error.append("This ticket does not exist.");
-        }
-
-        if (index + 1 > ticket.numberOfTicketNotes() || index < 0) {
-            error.append("There is no maintenance note at the given index.");
-        }
-
-        if (ticket.getTicketNote(index) == null) {
-            error.append("The maintenance note is null.");
-        }
-
-        MaintenanceNote note = ticket.getTicketNote(index);
-
-        ticket.removeTicketNote(note);
+        
     }
 }
