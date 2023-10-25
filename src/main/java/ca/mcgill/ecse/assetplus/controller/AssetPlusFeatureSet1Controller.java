@@ -72,9 +72,9 @@ public class AssetPlusFeatureSet1Controller {
     } if (password == null || password.isBlank()){ 
       error += "Password cannot be empty";
     } if ( phoneNumber == null){ 
-      error += "Phone number cannot be empty ";
+      error += "Phone number cannot be empty";
     } if(name == null){
-      error += "Name cannot be empty ";
+      error += "Name cannot be empty";
     }
     
     if ( ! error.isEmpty()) { 
@@ -117,9 +117,9 @@ public class AssetPlusFeatureSet1Controller {
     } if (newPassword == null || newPassword.isBlank()){ 
       error += "Password cannot be empty";
     } if ( newPhoneNumber == null){ 
-      error += "Phone number cannot be empty ";
+      error += "Phone number cannot be empty";
     } if(newName == null){
-      error += "Name cannot be empty ";
+      error += "Name cannot be empty";
     }
     
     
