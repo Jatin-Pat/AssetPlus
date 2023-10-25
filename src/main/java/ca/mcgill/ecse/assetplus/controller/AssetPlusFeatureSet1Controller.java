@@ -94,7 +94,7 @@ public class AssetPlusFeatureSet1Controller {
       if(error.startsWith("Cannot create due to duplicate email.") && isEmployee){
         error = "Email already linked to an employee account";
       } else if (error.startsWith("Cannot create due to duplicate email") && !isEmployee){
-        error = "Email already linked to an guest account";
+        error = "Email already linked to a guest account";
       }
     }
   return error;

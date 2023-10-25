@@ -35,7 +35,7 @@ As a guest, I wish to register and update a guest account in the system
       | email           | password | name | emergencyContact | error                                    |
       | manager@ap.com  | pass1    | Paul | (111)111-1111    | Email cannot be manager@ap.com           |
       | jeff@ap.com     | pass1    | Jeff | (111)111-1111    | Email domain cannot be @ap.com           |
-      | jeff@gmail.com  | pass2    | Jeff | (111)777-7777    | Email already linked to an guest account |
+      | jeff@gmail.com  | pass2    | Jeff | (111)777-7777    | Email already linked to a guest account |
       | bart @ ap.com   | pass3    | Bart | (444)666-6666    | Email must not contain any spaces        |
       | dony@gmail@.com | pass4    | Dony | (777)555-7777    | Invalid email                            |
       | kyle@gmail.     | pass5    | Kyle | (666)777-6666    | Invalid email                            |
