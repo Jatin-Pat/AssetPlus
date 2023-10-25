@@ -26,11 +26,11 @@ public class AssetPlusFeatureSet7Controller {
         StringBuilder error = new StringBuilder();
 
         if (description == null || description == "") {
-            error.append("Description cannot be empty");
+            error.append("Ticket description cannot be empty");
         } 
         
         if (ticketID < 0) {
-            error.append("Ticket does not exist");
+            error.append("Ticket id does not exist'");
         }
         
         if(!(MaintenanceTicket.hasWithId(ticketID))){
@@ -45,7 +45,7 @@ public class AssetPlusFeatureSet7Controller {
         }
 
         if( !User.hasWithEmail(email)){
-            error.append("User does not exist");
+            error.append("Hotel staff does not exist");
         }
         else {
             User user = User.getWithEmail(email);
@@ -100,11 +100,11 @@ public class AssetPlusFeatureSet7Controller {
         StringBuilder error = new StringBuilder();
 
         if (newDescription == null || newDescription == "") {
-            error.append("Description cannot be empty");
+            error.append("Ticket description cannot be empty");
         } 
         
         if (ticketID < 0) {
-            error.append("Ticket does not exist");
+            error.append("The ticket id is incorrect");
         }
         
         if(!(MaintenanceTicket.hasWithId(ticketID))){
@@ -119,13 +119,13 @@ public class AssetPlusFeatureSet7Controller {
         }
 
         if( !User.hasWithEmail(newEmail)){
-            error.append("User does not exist");
+            error.append("Hotel staff does not exist");
         }
         else {
             User user = User.getWithEmail(newEmail);
 
             if (!(user instanceof HotelStaff)) {
-                error.append("User cannot write a maintenance note");
+                error.append("The user cannot write a maintenance note");
             }
         }
 
@@ -134,12 +134,12 @@ public class AssetPlusFeatureSet7Controller {
             return result;
         }
         
-        try{
+        try {
             MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
             User noteTaker = User.getWithEmail(newEmail);
 
             if (index >= ticket.numberOfTicketNotes()) {
-                error.append("There is no maintenance note at this index");
+                error.append("Note does not exist");
 
                 String result = error.toString();
                 return result;
@@ -147,7 +147,7 @@ public class AssetPlusFeatureSet7Controller {
 
             for (MaintenanceNote note : ticket.getTicketNotes()) {
                 if (note.getDescription().equals(newDescription) && note.getNoteTaker().equals(noteTaker) && note.getDate().equals(newDate)) {
-                    error.append("Note already exists for the ticket");
+                    error.append("The maintenance note already exists");
                     String result = error.toString();
                     return result;
                 }
@@ -181,10 +181,11 @@ public class AssetPlusFeatureSet7Controller {
         StringBuilder error = new StringBuilder();
         
         if (ticketID < 0) {
-            error.append("Ticket does not exist");
+            error.append("Ticket does not exist\n'");
         }
+
         if(!(MaintenanceTicket.hasWithId(ticketID))){
-            error.append("Ticket does not exist");
+            error.append("Ticket does not exist\n ");
         }
 
         try {
@@ -194,7 +195,5 @@ public class AssetPlusFeatureSet7Controller {
             ticket.removeTicketNote(deletedMaintenanceNote);
         } catch (RuntimeException e) {
     }
-
-
     }
 }
