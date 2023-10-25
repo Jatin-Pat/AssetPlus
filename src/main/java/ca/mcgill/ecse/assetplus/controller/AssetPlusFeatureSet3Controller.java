@@ -62,6 +62,9 @@ public class AssetPlusFeatureSet3Controller {
       return inputValidation;
     }
     AssetType assetType = AssetType.getWithName(assetTypeName.toLowerCase());
+    if (assetType == null) {
+      return "The asset type does not exist";
+    }
     SpecificAsset assetToAdd;
     try {
       assetToAdd = new SpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, assetPlus, assetType);
@@ -72,9 +75,6 @@ public class AssetPlusFeatureSet3Controller {
       }
       if (error.startsWith("Unable to create specificAsset due to assetPlus.")) {
         error = "The AssetPlus does not exist.";
-      }
-      if (error.startsWith("Unable to create specificAsset due to assetType.")) {
-        error = "The asset type does not exist";
       }
       return error;
     }
@@ -135,7 +135,7 @@ public class AssetPlusFeatureSet3Controller {
   public static void deleteSpecificAsset(int assetNumber) {
     try {
       SpecificAsset assetToDelete = SpecificAsset.getWithAssetNumber(assetNumber);
-      assetPlus.removeSpecificAsset(assetToDelete);
+      assetToDelete.delete();
     } catch (RuntimeException e) {}
   }
 
