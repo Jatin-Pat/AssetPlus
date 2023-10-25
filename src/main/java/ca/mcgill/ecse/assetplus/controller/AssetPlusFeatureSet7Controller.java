@@ -183,7 +183,6 @@ public class AssetPlusFeatureSet7Controller {
         if (ticketID < 0) {
             error.append("Ticket does not exist");
         }
-
         if(!(MaintenanceTicket.hasWithId(ticketID))){
             error.append("Ticket does not exist");
         }
