@@ -2,6 +2,7 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import java.sql.Date;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
@@ -176,6 +177,25 @@ public class AssetPlusFeatureSet7Controller {
 
     // index starts at 0
     public static void deleteMaintenanceNote(int ticketID, int index) {
+
+        StringBuilder error = new StringBuilder();
         
+        if (ticketID < 0) {
+            error.append("Ticket does not exist\n'");
+        }
+
+        if(!(MaintenanceTicket.hasWithId(ticketID))){
+            error.append("Ticket does not exist\n ");
+        }
+
+        try {
+            MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+            MaintenanceNote deletedMaintenanceNote = ticket.getTicketNote(index);
+            deletedMaintenanceNote.delete();
+            ticket.removeTicketNote(deletedMaintenanceNote);
+        } catch (RuntimeException e) {
+    }
+
+
     }
 }
