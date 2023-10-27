@@ -23,8 +23,9 @@ public class UpdateManagerStepDefinitions {
    */
   @Given("the following manager exists in the system \\(p6)")
   public void the_following_manager_exists_in_the_system_p6(
-          io.cucumber.datatable.DataTable dataTable) {
-    Manager manager = new Manager(dataTable.row(1).get(0), null, dataTable.row(1).get(1), null, assetPlus);
+      io.cucumber.datatable.DataTable dataTable) {
+    Manager manager =
+        new Manager(dataTable.row(1).get(0), null, dataTable.row(1).get(1), null, assetPlus);
     if (!assetPlus.hasManager())
       assetPlus.setManager(manager);
 
@@ -38,7 +39,8 @@ public class UpdateManagerStepDefinitions {
    * @author Omar Moussa
    */
   @When("a manager with {string} attempts to update their password to {string} \\(p6)")
-  public void a_manager_with_attempts_to_update_their_password_to_p6(String email, String password) {
+  public void a_manager_with_attempts_to_update_their_password_to_p6(String email,
+      String password) {
     this.error = AssetPlusFeatureSet1Controller.updateManager(password);
     this.email = assetPlus.getManager().getEmail();
     this.password = assetPlus.getManager().getPassword();
@@ -52,23 +54,26 @@ public class UpdateManagerStepDefinitions {
     Assertions.assertTrue(error.contains(errorExpected));
     error = "";
   }
-  
+
   /**
    * @author Achraf Ghellach
    */
   @Then("the manager account information will not be updated and will keep {string} and {string} \\(p6)")
-  public void the_manager_account_information_will_not_be_updated_and_will_keep_and_p6(String email, String password) {
-    Assertions.assertEquals(this.email, email);
-    Assertions.assertEquals(this.password, password);
+
+  public void the_manager_account_information_will_not_be_updated_and_will_keep_and_p6(
+          String email, String password) {
+    Assertions.assertEquals(email, this.email);
+    Assertions.assertEquals(password, this.password);
   }
 
   /**
    * @author Teddy El-Husseini
    */
   @Then("the manager account information will be updated and is now {string} and {string} \\(p6)")
-  public void the_manager_account_information_will_be_updated_and_is_now_and_p6(String email, String password) {
-    Assertions.assertEquals(this.email, email);
-    Assertions.assertEquals(this.password, password);
+  public void the_manager_account_information_will_be_updated_and_is_now_and_p6(String email,
+                                                                                String password) {
+    Assertions.assertEquals(email, this.email);
+    Assertions.assertEquals(password, this.password);
   }
 
   /**
