@@ -1,3 +1,4 @@
+
 package ca.mcgill.ecse.assetplus.features;
 
 import static ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller.addEmployeeOrGuest;
@@ -18,8 +19,7 @@ import io.cucumber.java.en.When;
 
 public class AddAndUpdateEmployeeStepDefinitions {
   private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
-  private String error="";
-
+  private String error = "";
 
   /**
    * @author Jatin Patel and Anastasiia Nemyrovska

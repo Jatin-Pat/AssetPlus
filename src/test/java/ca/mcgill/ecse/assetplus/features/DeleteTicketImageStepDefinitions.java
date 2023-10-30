@@ -29,7 +29,6 @@ public class DeleteTicketImageStepDefinitions {
    * 
    * @author Yoonjung Choi
    * @author Kyujin Chu
-   * @author Minhui Roh
    * @param dataTable DataTable representing the employees' details.
    */
   @Given("the following employees exist in the system \\(p13)")
@@ -50,7 +49,6 @@ public class DeleteTicketImageStepDefinitions {
    * 
    * @author Yoonjung Choi
    * @author Kyujin Chu
-   * @author Minhui Roh
    * @param dataTable DataTable representing the manager's details.
    */
   @Given("the following manager exists in the system \\(p13)")
@@ -73,7 +71,6 @@ public class DeleteTicketImageStepDefinitions {
    * 
    * @author Yoonjung Choi
    * @author Kyujin Chu
-   * @author Minhui Roh
    * @param dataTable DataTable representing the asset types' details.
    */
   @Given("the following asset types exist in the system \\(p13)")
@@ -92,7 +89,6 @@ public class DeleteTicketImageStepDefinitions {
    * 
    * @author Kyujin Chu
    * @author Yoonjung Choi
-   * @author Minhui Roh
    * @param dataTable DataTable representing the assets' details.
    */
   @Given("the following assets exist in the system \\(p13)")
@@ -112,9 +108,9 @@ public class DeleteTicketImageStepDefinitions {
   /**
    * Sets up the system with the specified maintenance tickets.
    * 
-   * @author Melissa Qian
-   * @author Minhui Roh
    * @author Kyujin Chu
+   * @author Yoonjung Choi
+   * @author Melissa Qian
    * @param dataTable DataTable representing the tickets' details.
    */
   @Given("the following tickets exist in the system \\(p13)")
@@ -137,8 +133,7 @@ public class DeleteTicketImageStepDefinitions {
    * Sets up the system with the specified ticket images.
    * 
    * @author Melissa Qian
-   * @author Minhui Roh
-   * @author Leon Song
+   * @author Yoonjung Choi
    * @param dataTable DataTable representing the ticket images' details.
    */
   @Given("the following ticket images exist in the system \\(p13)")
@@ -157,7 +152,8 @@ public class DeleteTicketImageStepDefinitions {
    * 
    * @author Minhui Roh
    * @author Joseph Ciaravella
-   * @author Jione Ban 
+   * @author Yoonjung Choi
+   * @author Melissa Qian
    * @param imageURL The URL of the image to be deleted.
    * @param ticketID The ID of the ticket from which the image will be deleted.
    */
