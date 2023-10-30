@@ -166,6 +166,7 @@ public class TOMaintenanceTicket
   {
     List<TOMaintenanceNote> newNotes = Collections.unmodifiableList(notes);
     return newNotes;
+    
   }
 
   public int numberOfNotes()
