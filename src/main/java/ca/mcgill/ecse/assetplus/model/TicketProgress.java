@@ -1,3 +1,5 @@
+//%% NEW FILE TicketProgress BEGINS HERE %%
+
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
@@ -104,7 +106,7 @@ public class TicketProgress
     return wasEventProcessed;
   }
 
-  public boolean approved()
+  public boolean approve()
   {
     boolean wasEventProcessed = false;
     
@@ -122,7 +124,7 @@ public class TicketProgress
     return wasEventProcessed;
   }
 
-  public boolean disapproved()
+  public boolean disapprove()
   {
     boolean wasEventProcessed = false;
     
