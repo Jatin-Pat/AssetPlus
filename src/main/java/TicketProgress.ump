@@ -1,0 +1,28 @@
+class TicketProgress {
+    TicketStatus {
+          Raised {
+            assignStaff() -> Assigned;
+        }
+        Assigned {
+            beginWork() -> InProgress;
+        }
+        InProgress {
+            completeWork() [approvalRequired()] -> Resolved;
+          	completeWork() [!approvalRequired()] -> Closed;
+        }
+        Resolved{
+            approved -> Closed;
+          	disapproved -> InProgress;
+        } 
+      	Closed{
+      	}
+    }
+}//$?[End_of_model]$?
+
+namespace -;
+
+
+class TicketProgress
+{
+  position 50 30 109 45;
+}
