@@ -11,8 +11,8 @@ class TicketProgress {
           	completeWork() [!approvalRequired()] -> Closed;
         }
         Resolved{
-            approved() -> Closed;
-          	disapproved() -> InProgress;
+            approve() -> Closed;
+          	disapprove() -> InProgress;
         } 
       	Closed{
       	}
