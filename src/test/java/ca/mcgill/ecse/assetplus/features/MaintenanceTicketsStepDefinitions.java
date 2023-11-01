@@ -107,6 +107,7 @@ public class MaintenanceTicketsStepDefinitions {
 
   @Given("ticket {string} is marked as {string}")
   public void ticket_is_marked_as(String ticketId, String state) {
+    
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
