@@ -101,15 +101,19 @@ public class MaintenanceTicketsStepDefinitions {
 
   @Given("ticket {string} is marked as {string} with requires approval {string}")
   public void ticket_is_marked_as_with_requires_approval(String ticketId, String initialState, String requiresApproval) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    int ticketID = Integer.parseInt(ticketId);
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+    ticket.setTicketStatus(initialState); //why can't i do this? 
+    if(Boolean.parseBoolean(requiresApproval)){ //Not sure about this!
+      ticket.setFixApprover(assetPlus.getManager());
+    }
   }
 
   @Given("ticket {string} is marked as {string}")
   public void ticket_is_marked_as(String ticketId, String state) {
-    
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    int ticketID = Integer.parseInt(ticketId);
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+    ticket.setTicketStatus(state); //why can't i do this? 
   }
 
   @When("the manager attempts to view all maintenance tickets in the system")
