@@ -54,40 +54,54 @@ class TicketProgress {
     private void doAssign(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval){
       //Implement this
     }
+
     //Should it be int or String instead of MaintenanceTicket
   	private void doApprove(MaintenanceTicket id){
       MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
+      if (ticket == null){
+        throw new RuntimeException("Maintenance ticket does not exist.");
+      }
       if (ticket.getTicketStatus() == "Resolved"){ //Don't think that's necessary
         ticket.approve();
       }
     }
+
     //Should it be int or String instead of MaintenanceTicket
     private void doDisapprove(MaintenanceTicket id, Date date, Description description, Manager email){
       MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
-      if (ticket.getTicketStatus() == "Resolved"){ //Don;t think that's necessary
-        if(email = "manager@ap.com"){
+      //Are they strings?
+      if(ticket == null){
+        throw new RuntimeException("Maintenance ticket does not exist.");
+      }
+
+      if (ticket.getTicketStatus() == Resolved){ //Don't think that's necessary
+        if(email = "manager@ap.com"){ //Don't think that's necessary
           Manager manager = getAssetPlus.getManager();
           ticketNote = addTicketNote(date, description, manager)
           ticket.disapprove();
       }
       }
     }
+    
     private void rejectApprove(MaintenanceTicket id){
       MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
-      String ticketStatus =  ticket.getTicketStatus();
-      
-      if (ticketStatus == "Closed"){
-        throw new RuntimeException("The maintenance ticket is already closed.");
-      }
-      
-      throw new RuntimeException("Cannot approve a maintenance ticket which is "+ ticketStatus.toLowerCase() +".");
-    }
-    private void rejectDisapprove(MaintenanceTicket id){
-      MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
-      if (ticket == null){
+      if (ticket == null){ // necessary ??
         throw new RuntimeException("Maintenance ticket does not exist")
       }
       
+      String ticketStatus =  ticket.getTicketStatus();
+      //are they string? 
+      if (ticketStatus == Closed){
+        throw new RuntimeException("The maintenance ticket is already closed.");
+      }
+      throw new RuntimeException("Cannot approve a maintenance ticket which is "+ ticketStatus.toLowerCase() +".");
+    }
+
+    private void rejectDisapprove(MaintenanceTicket id){
+      MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
+      if (ticket == null){ // necessary ??
+        throw new RuntimeException("Maintenance ticket does not exist")
+      }
       String ticketStatus =  ticket.getTicketStatus();
       throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+ ticketStatus.toLowerCase() +".");
     }
