@@ -56,26 +56,42 @@ class TicketProgress {
     }
     //Should it be int or String instead of MaintenanceTicket
   	private void doApprove(MaintenanceTicket id){
-      int ticketID = parse.Integer(id);
-      MaintenaceTickett ticket = getMaintenanceTicket(ticketID);
-      if (ticket.getTicketStatus() == Resolved){ //Don't think that's necessary
+      MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
+      if (ticket.getTicketStatus() == "Resolved"){ //Don't think that's necessary
         ticket.approve();
       }
     }
     //Should it be int or String instead of MaintenanceTicket
-    private void doDisapprove(MaintenanceTicket id){
-      int ticketID = parse.Integer(id);
-      MaintenaceTickett ticket = getMaintenanceTicket(ticketID);
-      if (ticket.getTicketStatus() == Resolved){ //Don;t think that's necessary
-        ticket.disapprove();
+    private void doDisapprove(MaintenanceTicket id, Date date, Description description, Manager email){
+      MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
+      if (ticket.getTicketStatus() == "Resolved"){ //Don;t think that's necessary
+        if(email = "manager@ap.com"){
+          Manager manager = getAssetPlus.getManager();
+          ticketNote = addTicketNote(date, description, manager)
+          ticket.disapprove();
+      }
       }
     }
     private void rejectApprove(MaintenanceTicket id){
+      MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
+      String ticketStatus =  ticket.getTicketStatus();
       
+      if (ticketStatus == "Closed"){
+        throw new RuntimeException("The maintenance ticket is already closed.");
+      }
       
-      throw new RuntimeException("A bus that is being repaired cannot be assigned.");
-
+      throw new RuntimeException("Cannot approve a maintenance ticket which is "+ ticketStatus.toLowerCase() +".");
     }
+    private void rejectDisapprove(MaintenanceTicket id){
+      MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
+      if (ticket == null){
+        throw new RuntimeException("Maintenance ticket does not exist")
+      }
+      
+      String ticketStatus =  ticket.getTicketStatus();
+      throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+ ticketStatus.toLowerCase() +".");
+    }
+
   	private void rejectAssign(email, level, estimate, approval){
      //Implement This
     }
