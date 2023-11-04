@@ -54,11 +54,27 @@ class TicketProgress {
     private void doAssign(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval){
       //Implement this
     }
-  	private void doApprove(MaintenanceTicket ticket){
-      //Implement this
+    //Should it be int or String instead of MaintenanceTicket
+  	private void doApprove(MaintenanceTicket id){
+      int ticketID = parse.Integer(id);
+      MaintenaceTickett ticket = getMaintenanceTicket(ticketID);
+      if (ticket.getTicketStatus() == Resolved){ //Don't think that's necessary
+        ticket.approve();
+      }
     }
-    private void doDisapprove(MaintenanceTicket ticket){
-      //Implement This
+    //Should it be int or String instead of MaintenanceTicket
+    private void doDisapprove(MaintenanceTicket id){
+      int ticketID = parse.Integer(id);
+      MaintenaceTickett ticket = getMaintenanceTicket(ticketID);
+      if (ticket.getTicketStatus() == Resolved){ //Don;t think that's necessary
+        ticket.disapprove();
+      }
+    }
+    private void rejectApprove(MaintenanceTicket id){
+      
+      
+      throw new RuntimeException("A bus that is being repaired cannot be assigned.");
+
     }
   	private void rejectAssign(email, level, estimate, approval){
      //Implement This
