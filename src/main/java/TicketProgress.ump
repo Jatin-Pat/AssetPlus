@@ -1,28 +1,67 @@
 class TicketProgress {
     TicketStatus {
-          Raised {
-            assignStaff() -> Assigned;
+        Open {
+            //event action
+            assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {
+               doAssign(email, level, estimate, approval)
+               } -> Assigned;
+          	approve(MaintenaceTicket ticket) / {rejectApprove(ticket)}  -> Open;
+          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket)} -> Open;
+          	completeWork() [!getApprovalRequired()] -> Open;
+          	beginWork() -> Open;
+          	
         }
         Assigned {
             beginWork() -> InProgress;
+          	// Add Error when already assigned
+          	completeWork() [!getApprovalRequired()] -> Assigned;
+          	approve(MaintenaceTicket ticket) / {rejectApprove(ticket)}  -> Assigned;
+          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket)} -> Assigned;
         }
         InProgress {
-            completeWork() [approvalRequired()] -> Resolved;
-          	completeWork() [!approvalRequired()] -> Closed;
+          	
+            completeWork() [getApprovalRequired()] -> Resolved;
+            completeWork() [!getApprovalRequired()] -> Closed;
+          
+          	//Add Error when already InProgress
+          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {rejectAssign(email, level, estimate, approval)} -> InProgress;
+            approve(MaintenaceTicket ticket) / {rejectApprove(ticket)}  -> InProgress;
+            disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket)} -> InProgress;
         }
         Resolved{
-            approve() -> Closed;
-          	disapprove() -> InProgress;
+          	//add fields
+            approve(MaintenaceTicket ticket) / {doApprove(ticket)}  -> Closed;
+            //add fields
+            disapprove(MaintenanceTicket ticket) / {doDisapprove(ticket)} -> InProgress;
+          
+           //Add Error when already Resolved
+          	beginWork() -> Resolved;
+          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {rejectAssign(email, level, estimate, approval)} -> Resolved;
+           
         } 
-      	Closed{
-      	}
+          Closed{
+            //Add Error when already Closed
+            assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {
+               rejectAssign(email, level, estimate, approval)
+               } -> Closed;
+            approve(MaintenaceTicket ticket) / {rejectApprove(ticket)}  -> Closed;
+            disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket)} -> Closed;
+            beginWork() -> Closed;
+          }
     }
-}//$?[End_of_model]$?
-
-namespace -;
 
 
-class TicketProgress
-{
-  position 50 30 109 45;
+    private void doAssign(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval){
+      //Implement this
+    }
+  	private void doApprove(MaintenanceTicket ticket){
+      //Implement this
+    }
+    private void doDisapprove(MaintenanceTicket ticket){
+      //Implement This
+    }
+  	private void rejectAssign(email, level, estimate, approval){
+     //Implement This
+    }
+
 }
