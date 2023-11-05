@@ -50,6 +50,11 @@ public class AssetPlusFeatureSet6Controller {
         String aDescription = ticket.getDescription();
         String emailRaiser = ticket.getTicketRaiser().getEmail();
         
+        String priorityLevel = ticket.getPriority().name();
+        String timeEstimate = ticket.getTimeToResolve().name();
+        String ticketFixer = ticket.getTicketFixer().getEmail();
+        boolean approvalRequired = ticket.hasFixApprover();
+        
         //Getting SpecificAsset Information
         String assetName = null;
         int lifeSpan = -1;
@@ -86,10 +91,8 @@ public class AssetPlusFeatureSet6Controller {
           i++;
         }
         //Constructing TO of current Ticket
-        //TOMaintenanceTicket TOTicket = new TOMaintenanceTicket( aID,  aRaisedOnDate,  aDescription, emailRaiser , assetName , lifeSpan,  purchaseDate , aFloorNumber, aRoomNumber, imageURLS, allNotes);
-        //TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, assetName, assetName, assetName, aDescription, emailRaiser, false, assetName, lifeSpan, purchaseDate, aFloorNumber, aRoomNumber, imageURLS, allNotes);
         
-        TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, emailRaiser, "open","fixer","timeToresolve","priority",false, assetName,lifeSpan,purchaseDate,aFloorNumber,aRoomNumber,imageURLS,allNotes);
+        TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, emailRaiser, "open",ticketFixer,timeEstimate,priorityLevel,approvalRequired, assetName,lifeSpan,purchaseDate,aFloorNumber,aRoomNumber,imageURLS,allNotes);
         listOfTickets.add(TOTicket);
       }
     return listOfTickets;

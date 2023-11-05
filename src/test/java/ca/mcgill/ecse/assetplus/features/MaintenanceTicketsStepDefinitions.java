@@ -114,6 +114,7 @@ public class MaintenanceTicketsStepDefinitions {
     int ticketID = Integer.parseInt(ticketId);
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
     ticket.setTicketStatus(state); //why can't i do this? 
+    //because setTicketStatus is a TicketStatus method, not a MaintenanceTicketMethod
   }
 
   @When("the manager attempts to view all maintenance tickets in the system")
