@@ -50,9 +50,20 @@ public class AssetPlusFeatureSet6Controller {
         String aDescription = ticket.getDescription();
         String emailRaiser = ticket.getTicketRaiser().getEmail();
         
-        String priorityLevel = ticket.getPriority().name();
-        String timeEstimate = ticket.getTimeToResolve().name();
-        String ticketFixer = ticket.getTicketFixer().getEmail();
+        String priorityLevel = null;
+        String timeEstimate = null;
+        String ticketFixer = null;
+        MaintenanceTicket.PriorityLevel priority = ticket.getPriority();
+        if(priority != null){
+          priorityLevel = priority.name();
+        }
+        MaintenanceTicket.TimeEstimate estimate = ticket.getTimeToResolve();
+        if(estimate != null){
+          timeEstimate = estimate.name();
+        }
+        if(ticket.hasTicketFixer()){
+          ticketFixer = ticket.getTicketFixer().getEmail();
+        }
         boolean approvalRequired = ticket.hasFixApprover();
         
         //Getting SpecificAsset Information
