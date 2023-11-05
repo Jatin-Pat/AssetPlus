@@ -1,8 +1,10 @@
 package ca.mcgill.ecse.assetplus.features;
 
+import static org.junit.Assert.assertEquals;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Assertions;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
@@ -12,6 +14,7 @@ import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
+import cucumber.api.cli.Main;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -131,26 +134,26 @@ public class MaintenanceTicketsStepDefinitions {
   }
 
   @When("the hotel staff attempts to start the ticket {string}")
-  public void the_hotel_staff_attempts_to_start_the_ticket(String string) {
+  public void the_hotel_staff_attempts_to_start_the_ticket(String ticketIDString) {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
 
   @When("the manager attempts to approve the ticket {string}")
-  public void the_manager_attempts_to_approve_the_ticket(String string) {
+  public void the_manager_attempts_to_approve_the_ticket(String ticketIDString) {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
 
   @When("the hotel staff attempts to complete the ticket {string}")
-  public void the_hotel_staff_attempts_to_complete_the_ticket(String string) {
+  public void the_hotel_staff_attempts_to_complete_the_ticket(String ticketIDString) {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
 
   @When("the manager attempts to disapprove the ticket {string} on date {string} and with reason {string}")
-  public void the_manager_attempts_to_disapprove_the_ticket_on_date_and_with_reason(String string,
-      String string2, String string3) {
+  public void the_manager_attempts_to_disapprove_the_ticket_on_date_and_with_reason(String ticketIDString,
+      String dateString, String reasonString) {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
@@ -162,34 +165,42 @@ public class MaintenanceTicketsStepDefinitions {
   }
 
   @Then("the system shall raise the error {string}")
-  public void the_system_shall_raise_the_error(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_system_shall_raise_the_error(String errorMessage) {
+
+    Assertions.assertTrue(error.contains(errorMessage));
   }
 
   @Then("the ticket {string} shall not exist in the system")
-  public void the_ticket_shall_not_exist_in_the_system(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_ticket_shall_not_exist_in_the_system(String ticketIDString) {
+    
+    Assertions.assertEquals(MaintenanceTicket.hasWithId(Integer.parseInt(ticketIDString)),false);
+
   }
 
   @Then("the ticket {string} shall have estimated time {string}, priority {string}, and requires approval {string}")
-  public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String string,
-      String string2, String string3, String string4) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String ticketIDString,
+      String estimatedTimeString, String priorityLevelString, String approvalRequiredString) {
+    
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(ticketIDString));
+    
+    Assertions.assertEquals(ticket.getTimeToResolve().name(), estimatedTimeString);
+    Assertions.assertEquals(ticket.getPriority().name(), priorityLevelString);
+    Assertions.assertEquals(ticket.hasFixApprover(), Boolean.parseBoolean(estimatedTimeString));
+  
   }
 
   @Then("the ticket {string} shall be assigned to {string}")
-  public void the_ticket_shall_be_assigned_to(String string, String string2) {
+  public void the_ticket_shall_be_assigned_to(String ticketIDString, String tickerFixerEmail) {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
 
   @Then("the number of tickets in the system shall be {string}")
-  public void the_number_of_tickets_in_the_system_shall_be(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_number_of_tickets_in_the_system_shall_be(String numTicketsString) {
+    //Convert string to integer
+    int numTicketsExpected = Integer.parseInt(numTicketsString);
+    //Assert expected number same as actual numbers
+    Assertions.assertEquals(numTicketsExpected,assetPlus.numberOfMaintenanceTickets());
   }
 
   @Then("the following maintenance tickets shall be presented")
@@ -219,9 +230,13 @@ public class MaintenanceTicketsStepDefinitions {
   }
 
   @Then("the ticket with id {string} shall have no notes")
-  public void the_ticket_with_id_shall_have_no_notes(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_ticket_with_id_shall_have_no_notes(String ticketIDString) {
+    //Convert string to integer ID  
+    int ticketID = Integer.parseInt(ticketIDString);
+
+    //Assert ticket has no notes
+    Assertions.assertEquals(false,MaintenanceTicket.getWithId(ticketID).hasTicketNotes());
+
   }
 
   @Then("the ticket with id {string} shall have the following images")
@@ -238,8 +253,11 @@ public class MaintenanceTicketsStepDefinitions {
   }
 
   @Then("the ticket with id {string} shall have no images")
-  public void the_ticket_with_id_shall_have_no_images(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_ticket_with_id_shall_have_no_images(String ticketIDString) {
+    //Convert string to integer ID  
+    int ticketID = Integer.parseInt(ticketIDString);
+    //assert ticket has no images
+    Assertions.assertEquals(false,MaintenanceTicket.getWithId(ticketID).hasTicketImages());
+  
   }
 }
