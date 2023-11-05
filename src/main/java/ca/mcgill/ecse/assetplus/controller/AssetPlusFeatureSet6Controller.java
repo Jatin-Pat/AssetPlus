@@ -86,7 +86,10 @@ public class AssetPlusFeatureSet6Controller {
           i++;
         }
         //Constructing TO of current Ticket
-        TOMaintenanceTicket TOTicket = new TOMaintenanceTicket( aID,  aRaisedOnDate,  aDescription, emailRaiser , assetName , lifeSpan,  purchaseDate , aFloorNumber, aRoomNumber, imageURLS, allNotes);
+        //TOMaintenanceTicket TOTicket = new TOMaintenanceTicket( aID,  aRaisedOnDate,  aDescription, emailRaiser , assetName , lifeSpan,  purchaseDate , aFloorNumber, aRoomNumber, imageURLS, allNotes);
+        //TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, assetName, assetName, assetName, aDescription, emailRaiser, false, assetName, lifeSpan, purchaseDate, aFloorNumber, aRoomNumber, imageURLS, allNotes);
+        
+        TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, emailRaiser, "open","fixer","timeToresolve","priority",false, assetName,lifeSpan,purchaseDate,aFloorNumber,aRoomNumber,imageURLS,allNotes);
         listOfTickets.add(TOTicket);
       }
     return listOfTickets;
