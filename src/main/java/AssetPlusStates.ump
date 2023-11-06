@@ -7,7 +7,9 @@ class MaintenanceTicket {
                } -> Assigned;
             
           	approve(MaintenanceTicket ticket) / {rejectApprove(ticket);}  -> Open;
-          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Open;
+          	//disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Open;
+          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove("open");} -> Open;
+
           	completeWork() / {rejectComplete("open")} -> Open;
           	beginWork() /{rejectBegin("open")} -> Open;
           	
@@ -15,10 +17,12 @@ class MaintenanceTicket {
         Assigned {
             beginWork() -> InProgress;
 
-          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign(email, level, estimate, approval);} -> Assigned;
+          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("assigned");} -> Assigned;
           	completeWork() / {rejectComplete("assigned")} -> Assigned;
           	approve(MaintenanceTicket ticket) / {rejectApprove(ticket);}  -> Assigned;
-          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Assigned;
+          	//disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Assigned;
+          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove("assigned");} -> Assigned;
+
         }
         InProgress {
             completeWork() [getApprovalRequired()] -> Resolved;
@@ -26,9 +30,12 @@ class MaintenanceTicket {
           
           	//Add Error when already InProgress
             beginWork() /{rejectBegin("in progress")} -> InProgress;
-          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign(email, level, estimate, approval);} -> InProgress;
-            approve(MaintenanceTicket ticket) / {rejectApprove(ticket);}  -> InProgress;
-            disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> InProgress;
+          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("in progress");} -> InProgress;
+            
+            approve(MaintenanceTicket ticket) / {rejectApprove("in progress");}  -> InProgress;
+            //disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> InProgress;
+            disapprove(MaintenanceTicket ticket) / {rejectDisapprove("in progress");} -> InProgress;
+        
         }
         Resolved{
           	//add fields
@@ -38,16 +45,16 @@ class MaintenanceTicket {
           
             completeWork() / {rejectComplete("resolved")} -> Resolved; //Cannot complete if already resolved
           	beginWork() / {rejectBegin("resolved")} -> Resolved;
-          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign(email, level, estimate, approval);} -> Resolved;
+          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("resolved");} -> Resolved;
            
         } 
         Closed{
             completeWork() / {rejectComplete("closed")} -> Closed; //Cannot complete if already closed
             assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {
-               rejectAssign(email, level, estimate, approval);
+               rejectAssign("closed");
                } -> Closed;
-            approve(MaintenanceTicket ticket) / {rejectApprove(ticket);}  -> Closed;
-            disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Closed;
+            approve(MaintenanceTicket ticket) / {rejectApprove("closed");}  -> Closed;
+            disapprove(MaintenanceTicket ticket) / {rejectDisapprove("closed");} -> Closed;
             beginWork() / {rejectBegin("closed")} -> Closed;
           }
     }
@@ -55,13 +62,15 @@ class MaintenanceTicket {
 
     private void doAssign(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval){
       //Implement this
-    }
-    private void rejectAssign(email, level, estimate, approval){
-     //Implement this
+      //Have this call the assign controller method
     }
 
     //Should it be int or String instead of MaintenanceTicket
   	private void doApprove(MaintenanceTicket id){
+      //have this call the approve controller method
+
+
+
       MaintenanceTickett ticket = getMaintenanceTicket(parse.Integer(id));
       if (ticket == null){
         throw new RuntimeException("Maintenance ticket does not exist.");
@@ -73,6 +82,9 @@ class MaintenanceTicket {
 
     //Should it be int or String instead of MaintenanceTicket
     private void doDisapprove(MaintenanceTicket id, Date date, Description description, Manager email){
+      //have this call the controller method
+      //dont do it in here
+      
       MaintenanceTicket ticket = getMaintenanceTicket(parse.Integer(id));
       //Are they strings?
       if(ticket == null){
@@ -87,7 +99,13 @@ class MaintenanceTicket {
       }
     }
     
-    private void rejectApprove(MaintenanceTicket id){
+    private void doBeginWork(){
+      //Implement this
+    }
+
+    //I wrote a different version of these below
+    /*private void rejectApprove(MaintenanceTicket id){
+      //i wrote a different version of this below -behrad
       MaintenanceTicket ticket = getMaintenanceTicket(parse.Integer(id));
       if (ticket == null){ // necessary ??
         throw new RuntimeException("Maintenance ticket does not exist");
@@ -102,8 +120,7 @@ class MaintenanceTicket {
     }
 
     private void rejectDisapprove(MaintenanceTicket id){
-      //I think all this method should do is return an error saying it cant be disapproved
-      // since its in the wrong state
+      //I wrote a different version of this below -behrad
 
       MaintenanceTicket ticket = getMaintenanceTicket(parse.Integer(id));
       if (ticket == null){ // necessary ??
@@ -111,18 +128,46 @@ class MaintenanceTicket {
       }
       String ticketStatus =  ticket.getTicketStatus();
       throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+ ticketStatus.toLowerCase() +".");
-    }
+    }*/
 
 
 
-    private void doBeginWork(){
-      //Implement this
-    }
 
+
+    //ALL REJECT METHODS DUE TO WRONG STATE
     //Behrad
-    private void rejectBegin(String statusOfTicket){
-      //Covers all beginWork rejections from states where ticket work cannot be started
-      throw new RuntimeException("Cannot begin a maintenance ticket which is "+statusOfTicket+".");
+    private void rejectBegin(String status){
+      if(status.contains("progress")){
+        throw new RuntimeException("The maintenance ticket is already in progress.");
+      }
+      throw new RuntimeException("Cannot start a maintenance ticket which is "+status+".");
+    }
+    //Behrad
+    private void rejectComplete(String status){
+      if(status.contains("complete") || status.contains("resolved")){
+        throw new RuntimeExcetion("The maintenance ticket is already "+status);
+      }
+      throw new RuntimeException("Cannot complete a maintenance ticket which is "+status+".");
+    }
+    //Behrad
+    private void rejectAssign(String status){
+     //Case where ticket cannot be assigned due to its status
+      if (status.contains("assigned")){
+        throw new RuntimeException("The maintenance ticket is already assigned.");
+     }
+      throw new RuntimeException("Cannot assign a ticket which is "+status+".");
     }
 
+    //HAVE TO DISCUSS THE FOLLOWING TWO WITH TEAM
+    //Behrad & Marc-Antoine
+    private void rejectApprove(String status){
+      if (status.contains("closed")){
+        throw new RuntimeException("The maintenance ticket is already closed.");
+      }
+      throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
+    }
+    //Behrad & Marc-Antoine
+    private void rejectDisapprove(String status){
+      throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".")
+    }
 }
