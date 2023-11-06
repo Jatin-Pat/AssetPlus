@@ -6,7 +6,7 @@ package ca.mcgill.ecse.assetplus.model;
 // line 65 "../../../../../AssetPlus.ump"
 public class TicketImage
 {
-
+  
   //------------------------
   // MEMBER VARIABLES
   //------------------------
