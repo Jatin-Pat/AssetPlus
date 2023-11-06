@@ -1,3 +1,5 @@
+package ca.mcgill.ecse.assetplus.model;
+
 //%% NEW FILE TicketProgress BEGINS HERE %%
 
 /*PLEASE DO NOT EDIT THIS CODE*/

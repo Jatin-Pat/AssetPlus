@@ -3,20 +3,20 @@ class TicketProgress {
         Open {
             //event action
             assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {
-               doAssign(email, level, estimate, approval)
+               doAssign(email, level, estimate, approval);
                } -> Assigned;
-          	approve(MaintenaceTicket ticket) / {rejectApprove(ticket)}  -> Open;
-          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket)} -> Open;
+          	approve(MaintenaceTicket ticket) / {rejectApprove(ticket);}  -> Open;
+          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Open;
           	completeWork() [!getApprovalRequired()] -> Open;
           	beginWork() -> Open;
           	
         }
         Assigned {
-            beginWork(HotelStaff name) /{doBeginWork(name)} -> InProgress;
+            beginWork(HotelStaff name) /{doBeginWork(name);} -> InProgress;
           	// Add Error when already assigned
           	completeWork() [!getApprovalRequired()] -> Assigned;
-          	approve(MaintenaceTicket ticket) / {rejectApprove(ticket)}  -> Assigned;
-          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket)} -> Assigned;
+          	approve(MaintenaceTicket ticket) / {rejectApprove(ticket);}  -> Assigned;
+          	disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Assigned;
         }
         InProgress {
           	
@@ -24,28 +24,28 @@ class TicketProgress {
             completeWork() [!getApprovalRequired()] -> Closed;
           
           	//Add Error when already InProgress
-          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {rejectAssign(email, level, estimate, approval)} -> InProgress;
-            approve(MaintenaceTicket ticket) / {rejectApprove(ticket)}  -> InProgress;
-            disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket)} -> InProgress;
+          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {rejectAssign(email, level, estimate, approval);} -> InProgress;
+            approve(MaintenaceTicket ticket) / {rejectApprove(ticket);}  -> InProgress;
+            disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> InProgress;
         }
         Resolved{
           	//add fields
-            approve(MaintenaceTicket ticket) / {doApprove(ticket)}  -> Closed;
+            approve(MaintenaceTicket ticket) / {doApprove(ticket);}  -> Closed;
             //add fields
-            disapprove(MaintenanceTicket ticket) / {doDisapprove(ticket)} -> InProgress;
+            disapprove(MaintenanceTicket ticket) / {doDisapprove(ticket);} -> InProgress;
           
            //Add Error when already Resolved
           	beginWork() -> Resolved;
-          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {rejectAssign(email, level, estimate, approval)} -> Resolved;
+          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {rejectAssign(email, level, estimate, approval);} -> Resolved;
            
         } 
           Closed{
             //Add Error when already Closed
             assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval) / {
-               rejectAssign(email, level, estimate, approval)
+               rejectAssign(email, level, estimate, approval);
                } -> Closed;
-            approve(MaintenaceTicket ticket) / {rejectApprove(ticket)}  -> Closed;
-            disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket)} -> Closed;
+            approve(MaintenaceTicket ticket) / {rejectApprove(ticket);}  -> Closed;
+            disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Closed;
             beginWork() -> Closed;
           }
     }
@@ -77,7 +77,7 @@ class TicketProgress {
       if (ticket.getTicketStatus() == Resolved){ //Don't think that's necessary
         if(email = "manager@ap.com"){ //Don't think that's necessary
           Manager manager = getAssetPlus.getManager();
-          ticketNote = addTicketNote(date, description, manager)
+          ticketNote = addTicketNote(date, description, manager);
       }
       }
     }
@@ -85,7 +85,7 @@ class TicketProgress {
     private void rejectApprove(MaintenanceTicket id){
       MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
       if (ticket == null){ // necessary ??
-        throw new RuntimeException("Maintenance ticket does not exist")
+        throw new RuntimeException("Maintenance ticket does not exist");
       }
       
       String ticketStatus =  ticket.getTicketStatus();
@@ -99,7 +99,7 @@ class TicketProgress {
     private void rejectDisapprove(MaintenanceTicket id){
       MaintenaceTickett ticket = getMaintenanceTicket(parse.Integer(id));
       if (ticket == null){ // necessary ??
-        throw new RuntimeException("Maintenance ticket does not exist")
+        throw new RuntimeException("Maintenance ticket does not exist");
       }
       String ticketStatus =  ticket.getTicketStatus();
       throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+ ticketStatus.toLowerCase() +".");
