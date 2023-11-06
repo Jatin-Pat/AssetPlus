@@ -18,10 +18,18 @@ import cucumber.api.cli.Main;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import ca.mcgill.ecse.assetplus.controller.TicketMaintenanceController;
 
 public class MaintenanceTicketsStepDefinitions {
-   private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
+  private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
   private String error = "";
+  
+  
+  private void callController(String result) {
+    if (!result.isEmpty()) {
+      error += result;
+    }
+  }
 
   @Given("the following employees exist in the system")
   public void the_following_employees_exist_in_the_system_p11(io.cucumber.datatable.DataTable dataTable) {
@@ -128,34 +136,32 @@ public class MaintenanceTicketsStepDefinitions {
 
   @When("the manager attempts to assign the ticket {string} to {string} with estimated time {string}, priority {string}, and requires approval {string}")
   public void the_manager_attempts_to_assign_the_ticket_to_with_estimated_time_priority_and_requires_approval(
-      String string, String string2, String string3, String string4, String string5) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+      String ticketID, String staffEmail, String timeEstimate, String priorityLevel, String approvalRequired) {
+        
+        callController(TicketMaintenanceController.assignStaffToTicket(ticketID,staffEmail,timeEstimate,priorityLevel,approvalRequired));
+    
   }
 
   @When("the hotel staff attempts to start the ticket {string}")
-  public void the_hotel_staff_attempts_to_start_the_ticket(String ticketIDString) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_hotel_staff_attempts_to_start_the_ticket(String ticketID) {
+    callController(TicketMaintenanceController.beginTicketWork(ticketID));
   }
 
   @When("the manager attempts to approve the ticket {string}")
-  public void the_manager_attempts_to_approve_the_ticket(String ticketIDString) {
+  public void the_manager_attempts_to_approve_the_ticket(String ticketID) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    callController(TicketMaintenanceController.approveTicketWork(ticketID));
   }
 
   @When("the hotel staff attempts to complete the ticket {string}")
-  public void the_hotel_staff_attempts_to_complete_the_ticket(String ticketIDString) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_hotel_staff_attempts_to_complete_the_ticket(String ticketID) {
+    callController(TicketMaintenanceController.completeTicketWork(ticketID));
   }
 
   @When("the manager attempts to disapprove the ticket {string} on date {string} and with reason {string}")
-  public void the_manager_attempts_to_disapprove_the_ticket_on_date_and_with_reason(String ticketIDString,
-      String dateString, String reasonString) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_manager_attempts_to_disapprove_the_ticket_on_date_and_with_reason(String ticketID,
+      String date, String reason) {
+        callController(TicketMaintenanceController.disapproveTicketWork(ticketID,date,reason));
   }
 
   @Then("the ticket {string} shall be marked as {string}")

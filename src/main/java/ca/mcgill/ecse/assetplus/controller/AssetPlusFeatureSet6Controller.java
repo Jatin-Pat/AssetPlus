@@ -49,6 +49,7 @@ public class AssetPlusFeatureSet6Controller {
         Date aRaisedOnDate = ticket.getRaisedOnDate();
         String aDescription = ticket.getDescription();
         String emailRaiser = ticket.getTicketRaiser().getEmail();
+        String status = "to implement";
         
         String priorityLevel = null;
         String timeEstimate = null;
@@ -103,7 +104,7 @@ public class AssetPlusFeatureSet6Controller {
         }
         //Constructing TO of current Ticket
         
-        TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, emailRaiser, "open",ticketFixer,timeEstimate,priorityLevel,approvalRequired, assetName,lifeSpan,purchaseDate,aFloorNumber,aRoomNumber,imageURLS,allNotes);
+        TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, emailRaiser, status,ticketFixer,timeEstimate,priorityLevel,approvalRequired, assetName,lifeSpan,purchaseDate,aFloorNumber,aRoomNumber,imageURLS,allNotes);
         listOfTickets.add(TOTicket);
       }
     return listOfTickets;
