@@ -133,7 +133,9 @@ public class MaintenanceTicketsStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @When("the manager attempts to assign the ticket {string} to {string} with estimated time {string}, priority {string}, and requires approval {string}")
   public void the_manager_attempts_to_assign_the_ticket_to_with_estimated_time_priority_and_requires_approval(
       String ticketID, String staffEmail, String timeEstimate, String priorityLevel, String approvalRequired) {
@@ -141,29 +143,37 @@ public class MaintenanceTicketsStepDefinitions {
         callController(TicketMaintenanceController.assignStaffToTicket(ticketID,staffEmail,timeEstimate,priorityLevel,approvalRequired));
     
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @When("the hotel staff attempts to start the ticket {string}")
   public void the_hotel_staff_attempts_to_start_the_ticket(String ticketID) {
     callController(TicketMaintenanceController.beginTicketWork(ticketID));
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @When("the manager attempts to approve the ticket {string}")
   public void the_manager_attempts_to_approve_the_ticket(String ticketID) {
     // Write code here that turns the phrase above into concrete actions
     callController(TicketMaintenanceController.approveTicketWork(ticketID));
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @When("the hotel staff attempts to complete the ticket {string}")
   public void the_hotel_staff_attempts_to_complete_the_ticket(String ticketID) {
     callController(TicketMaintenanceController.completeTicketWork(ticketID));
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @When("the manager attempts to disapprove the ticket {string} on date {string} and with reason {string}")
   public void the_manager_attempts_to_disapprove_the_ticket_on_date_and_with_reason(String ticketID,
       String date, String reason) {
         callController(TicketMaintenanceController.disapproveTicketWork(ticketID,date,reason));
   }
-
+  
   @Then("the ticket {string} shall be marked as {string}")
   public void the_ticket_shall_be_marked_as(String string, String string2) {
     // Write code here that turns the phrase above into concrete actions
@@ -175,14 +185,18 @@ public class MaintenanceTicketsStepDefinitions {
 
     Assertions.assertTrue(error.contains(errorMessage));
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @Then("the ticket {string} shall not exist in the system")
   public void the_ticket_shall_not_exist_in_the_system(String ticketIDString) {
     
     Assertions.assertEquals(MaintenanceTicket.hasWithId(Integer.parseInt(ticketIDString)),false);
 
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @Then("the ticket {string} shall have estimated time {string}, priority {string}, and requires approval {string}")
   public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String ticketIDString,
       String estimatedTimeString, String priorityLevelString, String approvalRequiredString) {
@@ -200,7 +214,9 @@ public class MaintenanceTicketsStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @Then("the number of tickets in the system shall be {string}")
   public void the_number_of_tickets_in_the_system_shall_be(String numTicketsString) {
     //Convert string to integer
