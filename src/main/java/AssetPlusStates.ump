@@ -108,7 +108,7 @@ class MaintenanceTicket {
     }
 
     //Should it be int or String instead of MaintenanceTicket
-  	private void doApprove(MaintenanceTicket id){
+  	private void doApprove(String id){
 
 
 
