@@ -101,8 +101,11 @@ public class MaintenanceTicketsStepDefinitions {
       Date raisedOnDate = Date.valueOf(ticket.get("raisedOnDate"));
       String description = ticket.get("description");
       int assetNumber = Integer.parseInt(ticket.get("assetNumber"));
+      TicketStatus ticketStatus = TicketStatus.valueOf(ticket.get("status"));
+
       MaintenanceTicket maintenanceTicket = new MaintenanceTicket(id, raisedOnDate, description, assetPlus, ticketRaiser);
       maintenanceTicket.setAsset(SpecificAsset.getWithAssetNumber(assetNumber));
+      maintenanceTicket.setTicketStatus(ticketStatus);
     }
   }
 

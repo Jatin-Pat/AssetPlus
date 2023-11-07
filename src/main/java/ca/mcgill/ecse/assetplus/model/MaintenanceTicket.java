@@ -811,10 +811,10 @@ public class MaintenanceTicket
 
   // line 90 "../../../../../../AssetPlusStates.ump"
    private void doApprove(String id){
-    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
-      if (ticket == null){
-        throw new RuntimeException("Maintenance ticket does not exist.");
-      }
+    //MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
+    //  if (ticket == null){
+    //    throw new RuntimeException("Maintenance ticket does not exist.");
+    //  }
   }
 
   // line 98 "../../../../../../AssetPlusStates.ump"
