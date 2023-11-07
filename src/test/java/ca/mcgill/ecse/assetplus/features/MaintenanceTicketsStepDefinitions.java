@@ -330,9 +330,11 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
-  //!
+  /**
+   * @author Laurence Perreault
+   */
   @Then("the ticket with id {string} shall have the following notes")
-  public void the_ticket_with_id_shall_have_the_following_notes(String string,
+  public void the_ticket_with_id_shall_have_the_following_notes(String ticketIDString,
       io.cucumber.datatable.DataTable dataTable) {
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
@@ -341,7 +343,23 @@ public class MaintenanceTicketsStepDefinitions {
     // Double, Byte, Short, Long, BigInteger or BigDecimal.
     //
     // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
+
+    int ticketID = Integer.parseInt(ticketIDString);
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+
+    List<MaintenanceNote> activeNote = ticket.getTicketNotes();
+
+    List<Map<String, String>> ticketNoteList = dataTable.asMaps();
+
+    for(Map<String, String> ticketNote : ticketNoteList){
+
+      String description = ticketNote.get("description");
+      Date date = Date.valueOf(ticketNote.get("date"));
+
+      Assertions.assertEquals(true, activeNote.contains(description));
+      Assertions.assertEquals(true, activeNote.contains(date));
+    }
+
   }
 
   @Then("the ticket with id {string} shall have no notes")
