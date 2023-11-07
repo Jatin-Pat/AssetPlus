@@ -162,16 +162,24 @@ public class MaintenanceTicketsStepDefinitions {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
     ticket.setTicketStatus(TicketStatus.valueOf(state)); //why can't i do this? 
   }
-  /**
-   * @author unkn
+  /*
+   * @author Peiyan-geng + Jatin Patel
    */
   @When("the manager attempts to view all maintenance tickets in the system")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system() {
-    List<MaintenanceTicket> ticketList = assetPlus.getMaintenanceTickets();
-    for (int i = 1; i <= ticketList.size(); i++) {
-      System.out.println(MaintenanceTicket.getWithId(i).toString());
+
+    List<MaintenanceTicket> tickets = assetPlus.getMaintenanceTickets();
+
+    for (MaintenanceTicket ticket : tickets) {
+
+      
+
+      System.out.println(ticket.toString());
+
     }
+
   }
+
   /**
    * @author Behrad Rezaie
    */
