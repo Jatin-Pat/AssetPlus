@@ -63,10 +63,10 @@ public class MaintenanceTicketsStepDefinitions {
     List<Map<String, String>> managerToAdd = dataTable.asMaps();
     for (Map<String, String> manager : managerToAdd) {
       String email = manager.get("email");
-      String name = manager.get("name");
+      //String name = manager.get("name");
       String password = manager.get("password");
-      String phoneNumber = manager.get("phoneNumber");
-      new Manager(email, name, password, phoneNumber, assetPlus);
+      //String phoneNumber = manager.get("phoneNumber");
+      new Manager(email, "", password, "", assetPlus);
     }
   }
   /**
