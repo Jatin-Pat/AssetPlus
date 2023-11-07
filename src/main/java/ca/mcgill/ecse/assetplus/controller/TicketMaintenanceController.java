@@ -10,7 +10,19 @@ public class TicketMaintenanceController {
   // changes (validate inputs)
   public static String assignStaffToTicket(String ticketID, String staffEmail, String timeEstimate,
       String priorityLevel, String approvalRequired) {
-    // to implement
+    if(!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))){
+      return "Maintenance ticket does not exist.";
+    }
+    if(!HotelStaff.hasWithEmail(staffEmail)){
+      return "Staff to assign does not exist.";
+    }
+
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(ticketID));
+    try{
+      ticket.assignStaff(staffEmail, MaintenanceTicket.PriorityLevel.valueOf(priorityLevel), MaintenanceTicket.TimeEstimate.valueOf(timeEstimate), Boolean.parseBoolean(approvalRequired));
+    }catch(Exception e){
+      return e.getMessage();
+    }
     return "";
   }
 
@@ -47,9 +59,8 @@ public class TicketMaintenanceController {
   }
   public static String approveTicketWork(String ticketID){
     //Input validation
-    AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
     if(!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))){
-      return "Maintenance ticket does not exist";
+      return "Maintenance ticket does not exist.";
     }
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(ticketID));
 
@@ -61,10 +72,9 @@ public class TicketMaintenanceController {
     return "";
   }
   public static String disapproveTicketWork(String ticketID, String date, String reason){
-    AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
     //Input validation
     if(!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))){
-      return "Maintenance ticket does not exist";
+      return "Maintenance ticket does not exist.";
     }
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(ticketID));
 
