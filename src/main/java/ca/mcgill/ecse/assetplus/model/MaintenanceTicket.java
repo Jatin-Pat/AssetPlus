@@ -799,21 +799,17 @@ public class MaintenanceTicket
   // line 78 "../../../../../../AssetPlusStates.ump"
    private void doAssign(String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
     //Implement this
-      //Have this call the assign controller method
       MaintenanceTicket ticket = this;
-            if (ticket == null){
-              throw new RuntimeException("Maintenance ticket does not exist.");
-            }
-            ticket.setTicketFixer((HotelStaff) User.getWithEmail(email));
-            ticket.setPriority(level);
-            ticket.setTimeToResolve(estimate);
-            if(approval){
-              ticket.setFixApprover(this.getAssetPlus().getManager());
-            }
-            //ticket.approvalRequired = approval;
+        
+      ticket.setTicketFixer((HotelStaff) User.getWithEmail(email));
+      ticket.setPriority(level);
+      ticket.setTimeToResolve(estimate);
+      if(approval){
+         ticket.setFixApprover(this.getAssetPlus().getManager());
+      }
   }
 
-  // line 94 "../../../../../../AssetPlusStates.ump"
+  // line 90 "../../../../../../AssetPlusStates.ump"
    private void doApprove(String id){
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
       if (ticket == null){
@@ -821,13 +817,13 @@ public class MaintenanceTicket
       }
   }
 
-  // line 102 "../../../../../../AssetPlusStates.ump"
+  // line 98 "../../../../../../AssetPlusStates.ump"
    private void doDisapprove(String id, String date, String description){
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
       ticket.addTicketNote(Date.valueOf(date), description, ticket.getAssetPlus().getManager());
   }
 
-  // line 107 "../../../../../../AssetPlusStates.ump"
+  // line 103 "../../../../../../AssetPlusStates.ump"
    private void doBeginWork(){
     //Implement this
   }
@@ -837,7 +833,7 @@ public class MaintenanceTicket
    * ALL REJECT METHODS DUE TO WRONG STATE
    * Behrad
    */
-  // line 113 "../../../../../../AssetPlusStates.ump"
+  // line 109 "../../../../../../AssetPlusStates.ump"
    private String rejectBegin(String status){
     if(status.contains("progress")){
         throw new RuntimeException("The maintenance ticket is already in progress.");
@@ -849,10 +845,10 @@ public class MaintenanceTicket
   /**
    * Behrad
    */
-  // line 120 "../../../../../../AssetPlusStates.ump"
+  // line 116 "../../../../../../AssetPlusStates.ump"
    private String rejectComplete(String status){
-    if(status.contains("complete") || status.contains("resolved")){
-        throw new RuntimeException("The maintenance ticket is already "+status);
+    if(status.contains("closed") || status.contains("resolved")){
+        throw new RuntimeException("The maintenance ticket is already "+status+".");
       }
       throw new RuntimeException("Cannot complete a maintenance ticket which is "+status+".");
   }
@@ -861,12 +857,12 @@ public class MaintenanceTicket
   /**
    * Behrad
    */
-  // line 127 "../../../../../../AssetPlusStates.ump"
+  // line 123 "../../../../../../AssetPlusStates.ump"
    private String rejectAssign(String status){
     if (status.contains("assigned")){
         throw new RuntimeException("The maintenance ticket is already assigned.");
      }
-      throw new RuntimeException("Cannot assign a ticket which is "+status+".");
+      throw new RuntimeException("Cannot assign a maintenance ticket which is "+status+".");
   }
 
 
@@ -874,7 +870,7 @@ public class MaintenanceTicket
    * HAVE TO DISCUSS THE FOLLOWING TWO WITH TEAM
    * Behrad & Marc-Antoine
    */
-  // line 136 "../../../../../../AssetPlusStates.ump"
+  // line 132 "../../../../../../AssetPlusStates.ump"
    private String rejectApprove(String status){
     if (status.contains("closed")){
         throw new RuntimeException("The maintenance ticket is already closed.");
@@ -886,7 +882,7 @@ public class MaintenanceTicket
   /**
    * Behrad & Marc-Antoine
    */
-  // line 143 "../../../../../../AssetPlusStates.ump"
+  // line 139 "../../../../../../AssetPlusStates.ump"
    private String rejectDisapprove(String status){
     throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+status+".");
   }

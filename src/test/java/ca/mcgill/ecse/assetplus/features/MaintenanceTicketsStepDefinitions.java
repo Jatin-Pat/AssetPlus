@@ -1,8 +1,10 @@
 package ca.mcgill.ecse.assetplus.features;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.sql.Date;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
@@ -14,9 +16,11 @@ import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
+import io.cucumber.java.bs.A.As;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import javafx.application.Application;
 import ca.mcgill.ecse.assetplus.controller.TicketMaintenanceController;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TicketStatus;
 public class MaintenanceTicketsStepDefinitions {
@@ -204,7 +208,7 @@ public class MaintenanceTicketsStepDefinitions {
     
     Assertions.assertEquals(ticket.getTimeToResolve().name(), estimatedTimeString);
     Assertions.assertEquals(ticket.getPriority().name(), priorityLevelString);
-    Assertions.assertEquals(ticket.hasFixApprover(), Boolean.parseBoolean(estimatedTimeString));
+    Assertions.assertEquals( Boolean.parseBoolean(approvalRequiredString),ticket.hasFixApprover());
   
   }
   /**
@@ -237,7 +241,41 @@ public class MaintenanceTicketsStepDefinitions {
     // Double, Byte, Short, Long, BigInteger or BigDecimal.
     //
     // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
+
+    List<Map<String, String>> ticketList = dataTable.asMaps();
+    for (Map<String, String> ticket : ticketList){
+      int id = Integer.parseInt(ticket.get("id"));
+      MaintenanceTicket actualTicket = MaintenanceTicket.getWithId(id);
+
+      String raiserEmail = ticket.get("ticketRaiser");
+      Date raisedDate = Date.valueOf(ticket.get("raisedOnDate"));
+      String description = ticket.get("description");
+      String assetName = ticket.get("assetName");
+      int lifeSpan = Integer.parseInt(ticket.get("expectLifeSpan"));
+      Date purchaseDate = Date.valueOf(ticket.get("purchaseDate"));
+      int floorNumber = Integer.parseInt(ticket.get("floorNumber"));
+      int roomNumber = Integer.parseInt(ticket.get("roomNumber"));
+      String status = ticket.get("status");
+      String fixedByEmail = ticket.get("fixedByEmail");
+      String timeToResolve = ticket.get("timeToResolve");
+      String priority = ticket.get("priority");
+      boolean approvalRequired = Boolean.parseBoolean(ticket.get("approvalRequired"));
+      
+      Assertions.assertEquals(raiserEmail,actualTicket.getTicketRaiser().getEmail());
+      Assertions.assertEquals(raisedDate, actualTicket.getRaisedOnDate());
+      Assertions.assertEquals(description, actualTicket.getDescription());
+      Assertions.assertEquals(assetName, actualTicket.getAsset().getAssetType().getName());
+      Assertions.assertEquals(lifeSpan, actualTicket.getAsset().getAssetType().getExpectedLifeSpan());
+      Assertions.assertEquals(purchaseDate, actualTicket.getAsset().getPurchaseDate());
+      Assertions.assertEquals(floorNumber, actualTicket.getAsset().getFloorNumber());
+      Assertions.assertEquals(roomNumber, actualTicket.getAsset().getRoomNumber());
+      Assertions.assertEquals(status, actualTicket.getTicketStatusFullName());
+      Assertions.assertEquals(fixedByEmail, actualTicket.getTicketFixer().getEmail());
+      Assertions.assertEquals(timeToResolve, actualTicket.getTimeToResolve().name());
+      Assertions.assertEquals(priority, actualTicket.getPriority().name());
+      Assertions.assertEquals(approvalRequired, actualTicket.hasFixApprover());
+    
+    }
   }
 
   @Then("the ticket with id {string} shall have the following notes")

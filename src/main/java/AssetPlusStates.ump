@@ -76,19 +76,15 @@ class MaintenanceTicket {
     //Blame Ana if not Good
     private void doAssign(String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
       //Implement this
-      //Have this call the assign controller method
       MaintenanceTicket ticket = this;
-            if (ticket == null){
-              throw new RuntimeException("Maintenance ticket does not exist.");
-            }
-            ticket.setTicketFixer((HotelStaff) User.getWithEmail(email));
-            ticket.setPriority(level);
-            ticket.setTimeToResolve(estimate);
-            if(approval){
-              ticket.setFixApprover(this.getAssetPlus().getManager());
-            }
-            //ticket.approvalRequired = approval;
-          }
+        
+      ticket.setTicketFixer((HotelStaff) User.getWithEmail(email));
+      ticket.setPriority(level);
+      ticket.setTimeToResolve(estimate);
+      if(approval){
+         ticket.setFixApprover(this.getAssetPlus().getManager());
+      }
+    }
 
   	private void doApprove(String id){
       MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
@@ -117,8 +113,8 @@ class MaintenanceTicket {
     }
     //Behrad
     private String rejectComplete(String status){
-      if(status.contains("complete") || status.contains("resolved")){
-        throw new RuntimeException("The maintenance ticket is already "+status);
+      if(status.contains("closed") || status.contains("resolved")){
+        throw new RuntimeException("The maintenance ticket is already "+status+".");
       }
       throw new RuntimeException("Cannot complete a maintenance ticket which is "+status+".");
     }
@@ -127,7 +123,7 @@ class MaintenanceTicket {
       if (status.contains("assigned")){
         throw new RuntimeException("The maintenance ticket is already assigned.");
      }
-      throw new RuntimeException("Cannot assign a ticket which is "+status+".");
+      throw new RuntimeException("Cannot assign a maintenance ticket which is "+status+".");
     }
 
     //HAVE TO DISCUSS THE FOLLOWING TWO WITH TEAM
