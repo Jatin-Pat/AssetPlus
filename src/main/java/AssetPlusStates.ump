@@ -77,27 +77,34 @@ class MaintenanceTicket {
     //Blame Jatin if not Good
     /*
     private boolean isManager(String email){
-      String user = User.getWithEmail(email);
+      String user = User.getWithEmail(email).email;
       return user != null && user.equals("manager@ap.com");
     }
 
 
     //Verify with team if this is correct
     //Blame Jatin if not Good
-    private boolean isHotelStaff(string email){
-      String user = User.getWithEmail(email);
+    private boolean isHotelStaff(String email){
+      String user = User.getWithEmail(email).email;
       return user != null && user.endsWith("@ap.com");
     }*/
 
 
 
     //Verify with team if this is correct
-    //Blame Jatin if not Good
-    private void doAssign(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval){
+    //Blame Ana if not Good
+    private void doAssign(MaintenanceTicket id, String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
       //Implement this
-      
-
-
+      //Have this call the assign controller method
+      MaintenanceTicket ticket = getMaintenanceTicket(Integer.parseInt(id));
+            if (ticket == null){
+              throw new RuntimeException("Maintenance ticket does not exist.");
+            }
+            ticket.setTicketFixer(getWithEmail(email));
+            ticket.setPriority(level);
+            ticket.setTimeToResolve(estimate);
+            ticket.approvalRequired = approval;
+          }
     }
 
     //Should it be int or String instead of MaintenanceTicket
