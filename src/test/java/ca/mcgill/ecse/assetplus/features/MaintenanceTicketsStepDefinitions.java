@@ -111,21 +111,21 @@ public class MaintenanceTicketsStepDefinitions {
         assetNumber = Integer.parseInt(ticket.get("assetNumber"));
       }
       MaintenanceTicket maintenanceTicket = new MaintenanceTicket(id, raisedOnDate, description, assetPlus, ticketRaiser);
-      /* 
-      TicketStatus ticketStatus = TicketStatus.valueOf(ticket.get("status"));
-      HotelStaff fixedByEmail = (HotelStaff) User.getWithEmail(ticket.get("fixedByEmail"));
-      Boolean approvalRequired = Boolean.parseBoolean(ticket.get("approvalRequired"));
-      PriorityLevel priorityLevel = PriorityLevel.valueOf(ticket.get("priority"));
-      TimeEstimate timeToResolve = TimeEstimate.valueOf(ticket.get("timeToResolve"));
-      
       maintenanceTicket.setAsset(SpecificAsset.getWithAssetNumber(assetNumber));
+      TicketStatus ticketStatus = TicketStatus.valueOf(ticket.get("status"));
       maintenanceTicket.setTicketStatus(ticketStatus);
+      HotelStaff fixedByEmail = (HotelStaff) User.getWithEmail(ticket.get("fixedByEmail"));
       maintenanceTicket.setTicketFixer(fixedByEmail);
-      maintenanceTicket.setPriority(priorityLevel);
-      maintenanceTicket.setTimeToResolve(timeToResolve);
+      Boolean approvalRequired = Boolean.parseBoolean(ticket.get("approvalRequired"));
       if(approvalRequired){
         maintenanceTicket.setFixApprover(assetPlus.getManager()); 
-      }*/
+        
+      }
+      //! these two FAIL
+      //TimeEstimate timeToResolve = TimeEstimate.valueOf(ticket.get("timeToResolve"));
+      //maintenanceTicket.setTimeToResolve(timeToResolve);
+      //PriorityLevel priorityLevel = PriorityLevel.valueOf(ticket.get("priority"));
+      //maintenanceTicket.setPriority(priorityLevel);
     }
   }
 
