@@ -186,9 +186,8 @@ public class MaintenanceTicketsStepDefinitions {
     ticket.setTicketStatus(TicketStatus.valueOf(state)); 
   }
   /**
-   * @author Pei Yan Geng
+   * @author Pei Yan Geng & Behrad Rezaie
    */
-  //TODO: this has to call a controller method
   @When("the manager attempts to view all maintenance tickets in the system")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system() {
     
