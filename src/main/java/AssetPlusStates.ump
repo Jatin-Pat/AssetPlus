@@ -1,68 +1,103 @@
 class MaintenanceTicket {
     TicketStatus {
         Open {
-            //event action
-            assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {
+            assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) [isManager(email)] / {
+
                doAssign(email, level, estimate, approval);
+
                } -> Assigned;
+
+            beginWork() /{rejectBegin("open")} -> Open;
             
           	approve(MaintenanceTicket ticket) / {rejectApprove(ticket);}  -> Open;
-          	//disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Open;
+
           	disapprove(MaintenanceTicket ticket) / {rejectDisapprove("open");} -> Open;
 
           	completeWork() / {rejectComplete("open")} -> Open;
-          	beginWork() /{rejectBegin("open")} -> Open;
           	
         }
         Assigned {
-            beginWork() -> InProgress;
+            beginWork() [isHotelStaff(email)] -> InProgress;
 
-          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("assigned");} -> Assigned;
+          	assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("assigned");} -> Assigned;
+
           	completeWork() / {rejectComplete("assigned")} -> Assigned;
+
           	approve(MaintenanceTicket ticket) / {rejectApprove(ticket);}  -> Assigned;
-          	//disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> Assigned;
+
           	disapprove(MaintenanceTicket ticket) / {rejectDisapprove("assigned");} -> Assigned;
 
         }
         InProgress {
             completeWork() [getApprovalRequired()] -> Resolved;
+            
             completeWork() [!getApprovalRequired()] -> Closed;
           
-          	//Add Error when already InProgress
             beginWork() /{rejectBegin("in progress")} -> InProgress;
-          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("in progress");} -> InProgress;
+
+          	assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("in progress");} -> InProgress;
             
             approve(MaintenanceTicket ticket) / {rejectApprove("in progress");}  -> InProgress;
-            //disapprove(MaintenanceTicket ticket) / {rejectDisapprove(ticket);} -> InProgress;
+
             disapprove(MaintenanceTicket ticket) / {rejectDisapprove("in progress");} -> InProgress;
         
         }
         Resolved{
-          	//add fields
-            approve(MaintenanceTicket ticket) / {doApprove(ticket);}  -> Closed;
-            //add fields
-            disapprove(MaintenanceTicket ticket) / {doDisapprove(ticket);} -> InProgress;
+            approve(MaintenanceTicket ticket) [isManager(email)] / {doApprove(ticket);}  -> Closed;
+
+            disapprove(MaintenanceTicket ticket) [isManager(email)] / {doDisapprove(ticket);} -> InProgress;
           
-            completeWork() / {rejectComplete("resolved")} -> Resolved; //Cannot complete if already resolved
+            completeWork() / {rejectComplete("resolved")} -> Resolved;
+
           	beginWork() / {rejectBegin("resolved")} -> Resolved;
-          	assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("resolved");} -> Resolved;
+
+          	assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("resolved");} -> Resolved;
            
         } 
         Closed{
-            completeWork() / {rejectComplete("closed")} -> Closed; //Cannot complete if already closed
-            assignStaff(Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {
+            completeWork() / {rejectComplete("closed")} -> Closed;
+
+            assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {
+
                rejectAssign("closed");
                } -> Closed;
+
             approve(MaintenanceTicket ticket) / {rejectApprove("closed");}  -> Closed;
+
             disapprove(MaintenanceTicket ticket) / {rejectDisapprove("closed");} -> Closed;
+
             beginWork() / {rejectBegin("closed")} -> Closed;
+
           }
     }
 
 
+
+    //Verify with team if this is correct
+    //Blame Jatin if not Good
+    private boolean isManager(String email){
+      String user = User.getWithEmail(email);
+      return user != null && user.equals("manager@ap.com");
+    }
+
+
+    //Verify with team if this is correct
+    //Blame Jatin if not Good
+    private boolean isHotelStaff(string email){
+      String user = User.getWithEmail(email);
+      return user != null && user.endsWith("@ap.com");
+    }
+
+
+
+    //Verify with team if this is correct
+    //Blame Jatin if not Good
     private void doAssign(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval){
       //Implement this
       //Have this call the assign controller method
+
+
+
     }
 
     //Should it be int or String instead of MaintenanceTicket
