@@ -339,18 +339,30 @@ public class MaintenanceTicketsStepDefinitions {
 
   }
 
-  //!
+  /**
+   * @author Jatin Patel
+   * @param ticketIDString id of ticket
+   * @param dataTable table of images to check existance
+   */
   @Then("the ticket with id {string} shall have the following images")
-  public void the_ticket_with_id_shall_have_the_following_images(String string,
+  public void the_ticket_with_id_shall_have_the_following_images(String ticketIDString,
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
+
+    int ticketID = Integer.parseInt(ticketIDString);
+
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+
+    List<TicketImage> actifImages = ticket.getTicketImages();
+
+    List<Map<String, String>> ticketImageList = dataTable.asMaps();
+
+    for(Map<String, String> ticketImage : ticketImageList){
+
+      String imageUrl = ticketImage.get("imageUrl");
+
+      Assertions.assertEquals(true, actifImages.contains(imageUrl));
+    }
+
   }
 
   @Then("the ticket with id {string} shall have no images")
