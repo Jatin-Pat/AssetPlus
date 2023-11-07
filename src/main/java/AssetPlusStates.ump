@@ -1,7 +1,7 @@
 class MaintenanceTicket {
     TicketStatus {
         Open {
-            assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval)/ {
+            assignStaff(String email, PriorityLevel level, TimeEstimate estimate, boolean approval)/ {
 
                doAssign(email, level, estimate, approval);
 
@@ -19,7 +19,7 @@ class MaintenanceTicket {
         Assigned {
             beginWork() -> InProgress;
 
-          	assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("assigned");} -> Assigned;
+          	assignStaff(String email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("assigned");} -> Assigned;
 
           	completeWork() / {rejectComplete("assigned");} -> Assigned;
 
@@ -35,7 +35,7 @@ class MaintenanceTicket {
           
             beginWork() /{rejectBegin("in progress");} -> InProgress;
 
-          	assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("in progress");} -> InProgress;
+          	assignStaff( String email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("in progress");} -> InProgress;
             
             approve() / {rejectApprove("in progress");}  -> InProgress;
 
@@ -43,7 +43,7 @@ class MaintenanceTicket {
         
         }
         Resolved{
-            approve() / {doApprove(ticket);}  -> Closed;
+            approve() / {doApprove(String.valueOf(this.getId()));}  -> Closed;
 
             disapprove(String ticketID, String date, String reason) / {doDisapprove(ticketID, date, reason);} -> InProgress;
           
@@ -51,13 +51,13 @@ class MaintenanceTicket {
 
           	beginWork() / {rejectBegin("resolved");} -> Resolved;
 
-          	assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("resolved");} -> Resolved;
+          	assignStaff(String email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {rejectAssign("resolved");} -> Resolved;
            
         } 
         Closed{
             completeWork() / {rejectComplete("closed");} -> Closed;
 
-            assignStaff(MaintenanceTicket ticket, Employee email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {
+            assignStaff(String email, PriorityLevel level, TimeEstimate estimate, boolean approval) / {
 
                rejectAssign("closed");
                } -> Closed;
@@ -66,66 +66,41 @@ class MaintenanceTicket {
 
             disapprove(String ticketID, String date, String reason) / {rejectDisapprove("closed");} -> Closed;
 
-            beginWork() / {rejectBegin("closed")} -> Closed;
+            beginWork() / {rejectBegin("closed");} -> Closed;
 
           }
     }
-
-
-
-    //Verify with team if this is correct
-    //Blame Jatin if not Good
-    /*
-    private boolean isManager(String email){
-      String user = User.getWithEmail(email).email;
-      return user != null && user.equals("manager@ap.com");
-    }
-
-
-    //Verify with team if this is correct
-    //Blame Jatin if not Good
-    private boolean isHotelStaff(String email){
-      String user = User.getWithEmail(email).email;
-      return user != null && user.endsWith("@ap.com");
-    }*/
-
 
 
     //Verify with team if this is correct
     //Blame Ana if not Good
-    private void doAssign(MaintenanceTicket id, String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
+    private void doAssign(String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
       //Implement this
       //Have this call the assign controller method
-      MaintenanceTicket ticket = getMaintenanceTicket(Integer.parseInt(id));
+      MaintenanceTicket ticket = this;
             if (ticket == null){
               throw new RuntimeException("Maintenance ticket does not exist.");
             }
-            ticket.setTicketFixer(getWithEmail(email));
+            ticket.setTicketFixer((HotelStaff) User.getWithEmail(email));
             ticket.setPriority(level);
             ticket.setTimeToResolve(estimate);
-            ticket.approvalRequired = approval;
+            if(approval){
+              ticket.setFixApprover(this.getAssetPlus().getManager());
+            }
+            //ticket.approvalRequired = approval;
           }
-    }
 
-    //Should it be int or String instead of MaintenanceTicket
   	private void doApprove(String id){
-
-
-
-      MaintenanceTicket ticket = getMaintenanceTicket(Integer.parseInt(id));
+      MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
       if (ticket == null){
         throw new RuntimeException("Maintenance ticket does not exist.");
       }
-      //if (ticket.getTicketStatus() == "Resolved"){ //Don't think that's necessary
-      //  ticket.approve();
-      //}
     }
 
-    //Should it be int or String instead of MaintenanceTicket
     private void doDisapprove(String id, String date, String description){
       
-      MaintenanceTicket ticket = getMaintenanceTicket(Integer.parseInt(id));
-      MaintenanceNote disapproveNote = new MaintenaceNote(Date.valueOf(date), description, ticket,ticket.getAssetPlus );
+      MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
+      ticket.addTicketNote(Date.valueOf(date), description, ticket.getAssetPlus().getManager());
     }
     
     private void doBeginWork(){
@@ -136,29 +111,22 @@ class MaintenanceTicket {
     //Behrad
     private String rejectBegin(String status){
       if(status.contains("progress")){
-        //return  "The maintenance ticket is already in progress.";
         throw new RuntimeException("The maintenance ticket is already in progress.");
       }
-      //return "Cannot start a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot start a maintenance ticket which is "+status+".");
     }
     //Behrad
     private String rejectComplete(String status){
       if(status.contains("complete") || status.contains("resolved")){
-        //return "The maintenance ticket is already "+status+".";
-        throw new RuntimeExcetion("The maintenance ticket is already "+status);
+        throw new RuntimeException("The maintenance ticket is already "+status);
       }
-      //return "Cannot complete a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot complete a maintenance ticket which is "+status+".");
     }
     //Behrad
     private String rejectAssign(String status){
-     //Case where ticket cannot be assigned due to its status
       if (status.contains("assigned")){
-        //return "The maintenance ticket is already assigned.";
         throw new RuntimeException("The maintenance ticket is already assigned.");
      }
-     //return "Cannot assign a ticket which is "+status+".";
       throw new RuntimeException("Cannot assign a ticket which is "+status+".");
     }
 
@@ -166,15 +134,12 @@ class MaintenanceTicket {
     //Behrad & Marc-Antoine
     private String rejectApprove(String status){
       if (status.contains("closed")){
-        //return "The maintenance ticket is already closed.";
         throw new RuntimeException("The maintenance ticket is already closed.");
       }
-      //return "Cannot approve a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
     }
     //Behrad & Marc-Antoine
     private String rejectDisapprove(String status){
-      //return "Cannot approve a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
     }
 }

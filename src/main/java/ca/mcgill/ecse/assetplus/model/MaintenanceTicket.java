@@ -175,7 +175,7 @@ public class MaintenanceTicket
     return ticketStatus;
   }
 
-  public boolean assignStaff(MaintenanceTicket ticket,Employee email,PriorityLevel level,TimeEstimate estimate,boolean approval)
+  public boolean assignStaff(String email,PriorityLevel level,TimeEstimate estimate,boolean approval)
   {
     boolean wasEventProcessed = false;
     
@@ -250,7 +250,7 @@ public class MaintenanceTicket
         break;
       case Closed:
         // line 69 "../../../../../../AssetPlusStates.ump"
-        rejectBegin("closed")
+        rejectBegin("closed");
         setTicketStatus(TicketStatus.Closed);
         wasEventProcessed = true;
         break;
@@ -288,7 +288,7 @@ public class MaintenanceTicket
         break;
       case Resolved:
         // line 46 "../../../../../../AssetPlusStates.ump"
-        doApprove(ticket);
+        doApprove(String.valueOf(this.getId()));
         setTicketStatus(TicketStatus.Closed);
         wasEventProcessed = true;
         break;
@@ -794,53 +794,40 @@ public class MaintenanceTicket
 
   /**
    * Verify with team if this is correct
-   * Blame Jatin if not Good
-   * private boolean isManager(String email){
-   * String user = User.getWithEmail(email);
-   * return user != null && user.equals("manager@ap.com");
-   * }
-   * 
-   * 
-   * //Verify with team if this is correct
-   * //Blame Jatin if not Good
-   * private boolean isHotelStaff(string email){
-   * String user = User.getWithEmail(email);
-   * return user != null && user.endsWith("@ap.com");
-   * }
-   * Verify with team if this is correct
-   * Blame Jatin if not Good
+   * Blame Ana if not Good
    */
-  // line 97 "../../../../../../AssetPlusStates.ump"
-   private void doAssign(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval){
+  // line 78 "../../../../../../AssetPlusStates.ump"
+   private void doAssign(String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
     //Implement this
+      //Have this call the assign controller method
+      MaintenanceTicket ticket = this;
+            if (ticket == null){
+              throw new RuntimeException("Maintenance ticket does not exist.");
+            }
+            ticket.setTicketFixer((HotelStaff) User.getWithEmail(email));
+            ticket.setPriority(level);
+            ticket.setTimeToResolve(estimate);
+            if(approval){
+              ticket.setFixApprover(this.getAssetPlus().getManager());
+            }
+            //ticket.approvalRequired = approval;
   }
 
-
-  /**
-   * Should it be int or String instead of MaintenanceTicket
-   */
-  // line 108 "../../../../../../AssetPlusStates.ump"
-   private void doApprove(MaintenanceTicket id){
-    MaintenanceTicket ticket = getMaintenanceTicket(Integer.parseInt(id));
+  // line 94 "../../../../../../AssetPlusStates.ump"
+   private void doApprove(String id){
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
       if (ticket == null){
         throw new RuntimeException("Maintenance ticket does not exist.");
       }
-      //if (ticket.getTicketStatus() == "Resolved"){ //Don't think that's necessary
-      //  ticket.approve();
-      //}
   }
 
-
-  /**
-   * Should it be int or String instead of MaintenanceTicket
-   */
-  // line 120 "../../../../../../AssetPlusStates.ump"
+  // line 102 "../../../../../../AssetPlusStates.ump"
    private void doDisapprove(String id, String date, String description){
-    MaintenanceTicket ticket = getMaintenanceTicket(Integer.parseInt(id));
-      MaintenanceNote disapproveNote = new MaintenaceNote(Date.valueOf(date), description, ticket,ticket.getAssetPlus );
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
+      ticket.addTicketNote(Date.valueOf(date), description, ticket.getAssetPlus().getManager());
   }
 
-  // line 125 "../../../../../../AssetPlusStates.ump"
+  // line 107 "../../../../../../AssetPlusStates.ump"
    private void doBeginWork(){
     //Implement this
   }
@@ -850,13 +837,11 @@ public class MaintenanceTicket
    * ALL REJECT METHODS DUE TO WRONG STATE
    * Behrad
    */
-  // line 131 "../../../../../../AssetPlusStates.ump"
+  // line 113 "../../../../../../AssetPlusStates.ump"
    private String rejectBegin(String status){
     if(status.contains("progress")){
-        //return  "The maintenance ticket is already in progress.";
         throw new RuntimeException("The maintenance ticket is already in progress.");
       }
-      //return "Cannot start a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot start a maintenance ticket which is "+status+".");
   }
 
@@ -864,13 +849,11 @@ public class MaintenanceTicket
   /**
    * Behrad
    */
-  // line 140 "../../../../../../AssetPlusStates.ump"
+  // line 120 "../../../../../../AssetPlusStates.ump"
    private String rejectComplete(String status){
     if(status.contains("complete") || status.contains("resolved")){
-        //return "The maintenance ticket is already "+status+".";
-        throw new RuntimeExcetion("The maintenance ticket is already "+status);
+        throw new RuntimeException("The maintenance ticket is already "+status);
       }
-      //return "Cannot complete a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot complete a maintenance ticket which is "+status+".");
   }
 
@@ -878,14 +861,11 @@ public class MaintenanceTicket
   /**
    * Behrad
    */
-  // line 149 "../../../../../../AssetPlusStates.ump"
+  // line 127 "../../../../../../AssetPlusStates.ump"
    private String rejectAssign(String status){
-    //Case where ticket cannot be assigned due to its status
-      if (status.contains("assigned")){
-        //return "The maintenance ticket is already assigned.";
+    if (status.contains("assigned")){
         throw new RuntimeException("The maintenance ticket is already assigned.");
      }
-     //return "Cannot assign a ticket which is "+status+".";
       throw new RuntimeException("Cannot assign a ticket which is "+status+".");
   }
 
@@ -894,13 +874,11 @@ public class MaintenanceTicket
    * HAVE TO DISCUSS THE FOLLOWING TWO WITH TEAM
    * Behrad & Marc-Antoine
    */
-  // line 161 "../../../../../../AssetPlusStates.ump"
+  // line 136 "../../../../../../AssetPlusStates.ump"
    private String rejectApprove(String status){
     if (status.contains("closed")){
-        //return "The maintenance ticket is already closed.";
         throw new RuntimeException("The maintenance ticket is already closed.");
       }
-      //return "Cannot approve a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
   }
 
@@ -908,10 +886,9 @@ public class MaintenanceTicket
   /**
    * Behrad & Marc-Antoine
    */
-  // line 170 "../../../../../../AssetPlusStates.ump"
+  // line 143 "../../../../../../AssetPlusStates.ump"
    private String rejectDisapprove(String status){
-    //return "Cannot approve a maintenance ticket which is "+status+".";
-      throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
+    throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
   }
 
 
