@@ -29,7 +29,7 @@ public class TicketMaintenanceController {
     String errorMsg = "";
     int intTicketID = Integer.parseInt(ticketID);
     if(!MaintenanceTicket.hasWithId(intTicketID)){
-      errorMsg += "Maintenance ticket does not exist";
+      errorMsg += "Maintenance ticket does not exist.";
     }
 
     MaintenanceTicket aTicket = MaintenanceTicket.getWithId(intTicketID);

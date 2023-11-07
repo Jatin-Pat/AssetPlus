@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.features;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.sql.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
+import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
@@ -22,6 +24,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import javafx.application.Application;
+import javafx.scene.layout.Priority;
 import ca.mcgill.ecse.assetplus.controller.TicketMaintenanceController;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TicketStatus;
@@ -121,11 +124,14 @@ public class MaintenanceTicketsStepDefinitions {
         maintenanceTicket.setFixApprover(assetPlus.getManager()); 
         
       }
-      //! these two FAIL
-      //TimeEstimate timeToResolve = TimeEstimate.valueOf(ticket.get("timeToResolve"));
-      //maintenanceTicket.setTimeToResolve(timeToResolve);
-      //PriorityLevel priorityLevel = PriorityLevel.valueOf(ticket.get("priority"));
-      //maintenanceTicket.setPriority(priorityLevel);
+      String timeToResolve = ticket.get("timeToResolve");
+      String priority = ticket.get("priority");
+      if(timeToResolve!=null){
+        maintenanceTicket.setTimeToResolve(TimeEstimate.valueOf(timeToResolve));
+      }
+      if(priority != null){
+        maintenanceTicket.setPriority(PriorityLevel.valueOf(priority));
+      }
     }
   }
 
@@ -161,8 +167,8 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as_with_requires_approval(String ticketId, String initialState, String requiresApproval) {
     int ticketID = Integer.parseInt(ticketId);
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-    ticket.setTicketStatus(TicketStatus.valueOf(initialState)); //why can't i do this? 
-    if(Boolean.parseBoolean(requiresApproval)){ //Not sure about this!
+    ticket.setTicketStatus(TicketStatus.valueOf(initialState)); 
+    if(Boolean.parseBoolean(requiresApproval)){
       ticket.setFixApprover(assetPlus.getManager());
     }
   }
@@ -174,11 +180,12 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as(String ticketId, String state) {
     int ticketID = Integer.parseInt(ticketId);
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-    ticket.setTicketStatus(TicketStatus.valueOf(state)); //why can't i do this? 
+    ticket.setTicketStatus(TicketStatus.valueOf(state)); 
   }
   /**
    * @author Pei Yan Geng
    */
+  //TODO: this has to call a controller method
   @When("the manager attempts to view all maintenance tickets in the system")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system() {
     List<MaintenanceTicket> ticketList = assetPlus.getMaintenanceTickets();
@@ -282,18 +289,12 @@ public class MaintenanceTicketsStepDefinitions {
     int numTicketsExpected = Integer.parseInt(numTicketsString);
     Assertions.assertEquals(numTicketsExpected,assetPlus.numberOfMaintenanceTickets());
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @Then("the following maintenance tickets shall be presented")
   public void the_following_maintenance_tickets_shall_be_presented(
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-
     List<Map<String, String>> ticketList = dataTable.asMaps();
     for (Map<String, String> ticket : ticketList){
       int id = Integer.parseInt(ticket.get("id"));
@@ -336,38 +337,36 @@ public class MaintenanceTicketsStepDefinitions {
   @Then("the ticket with id {string} shall have the following notes")
   public void the_ticket_with_id_shall_have_the_following_notes(String ticketIDString,
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
+    
 
+      
     int ticketID = Integer.parseInt(ticketIDString);
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-
-    List<MaintenanceNote> activeNote = ticket.getTicketNotes();
-
+    List<MaintenanceNote> activeNotes = ticket.getTicketNotes();
+    
     List<Map<String, String>> ticketNoteList = dataTable.asMaps();
-
+    Assertions.assertEquals(ticketNoteList.size(), ticket.numberOfTicketNotes());
+    String expectedNotes = "";
     for(Map<String, String> ticketNote : ticketNoteList){
-
       String description = ticketNote.get("description");
-      Date date = Date.valueOf(ticketNote.get("date"));
-
-      Assertions.assertEquals(true, activeNote.contains(description));
-      Assertions.assertEquals(true, activeNote.contains(date));
+      String date = ticketNote.get("addedOnDate");
+      String noteTaker = ticketNote.get("noteTaker");
+      
+      expectedNotes+= description+date+noteTaker;
+    }
+    for(MaintenanceNote note : activeNotes){
+      Assertions.assertTrue(expectedNotes.contains(note.getDate().toString()));
+      Assertions.assertTrue(expectedNotes.contains(note.getNoteTaker().getEmail()));
+      Assertions.assertTrue(expectedNotes.contains(note.getDescription()));
     }
 
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @Then("the ticket with id {string} shall have no notes")
   public void the_ticket_with_id_shall_have_no_notes(String ticketIDString) {
-    //Convert string to integer ID  
     int ticketID = Integer.parseInt(ticketIDString);
-
-    //Assert ticket has no notes
     Assertions.assertEquals(false,MaintenanceTicket.getWithId(ticketID).hasTicketNotes());
 
   }
@@ -397,10 +396,11 @@ public class MaintenanceTicketsStepDefinitions {
     }
 
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @Then("the ticket with id {string} shall have no images")
   public void the_ticket_with_id_shall_have_no_images(String ticketIDString) {
-
     int ticketID = Integer.parseInt(ticketIDString);
     Assertions.assertEquals(false,MaintenanceTicket.getWithId(ticketID).hasTicketImages());
   
