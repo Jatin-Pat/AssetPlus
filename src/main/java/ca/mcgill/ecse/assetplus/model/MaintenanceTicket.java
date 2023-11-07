@@ -369,13 +369,13 @@ public class MaintenanceTicket
         wasEventProcessed = true;
         break;
       case InProgress:
-        if (!(this.hasFixApprover()))
+        if (this.hasFixApprover())
         {
           setTicketStatus(TicketStatus.Resolved);
           wasEventProcessed = true;
           break;
         }
-        if (this.hasFixApprover())
+        if (!(this.hasFixApprover()))
         {
           setTicketStatus(TicketStatus.Closed);
           wasEventProcessed = true;

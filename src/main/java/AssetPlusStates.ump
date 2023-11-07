@@ -29,9 +29,9 @@ class MaintenanceTicket {
 
         }
         InProgress {
-            completeWork() [!this.hasFixApprover()] -> Resolved;
+            completeWork() [this.hasFixApprover()] -> Resolved;
             
-            completeWork() [this.hasFixApprover()] -> Closed;
+            completeWork() [!this.hasFixApprover()] -> Closed;
           
             beginWork() /{rejectBegin("in progress");} -> InProgress;
 
