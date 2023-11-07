@@ -368,7 +368,7 @@ public class MaintenanceTicket
     {
       case Open:
         // line 14 "../../../../../../AssetPlusStates.ump"
-        rejectBegin("open")
+        rejectBegin("open");
         setTicketStatus(TicketStatus.Open);
         wasEventProcessed = true;
         break;
@@ -378,19 +378,19 @@ public class MaintenanceTicket
         break;
       case InProgress:
         // line 32 "../../../../../../AssetPlusStates.ump"
-        rejectBegin("in progress")
+        rejectBegin("in progress");
         setTicketStatus(TicketStatus.InProgress);
         wasEventProcessed = true;
         break;
       case Resolved:
         // line 47 "../../../../../../AssetPlusStates.ump"
-        rejectBegin("resolved")
+        rejectBegin("resolved");
         setTicketStatus(TicketStatus.Resolved);
         wasEventProcessed = true;
         break;
       case Closed:
         // line 58 "../../../../../../AssetPlusStates.ump"
-        rejectBegin("closed")
+        rejectBegin("closed");
         setTicketStatus(TicketStatus.Closed);
         wasEventProcessed = true;
         break;

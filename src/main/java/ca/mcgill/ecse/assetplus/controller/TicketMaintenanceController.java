@@ -1,5 +1,7 @@
 package ca.mcgill.ecse.assetplus.controller;
 
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+
 public class TicketMaintenanceController {
   
   //for each method, transform variables into proper form and use model to apply changes (validate inputs)
@@ -8,7 +10,9 @@ public class TicketMaintenanceController {
     return "";
   }
   public static String beginTicketWork(String ticketID){
-    //to implement
+    int intTicketID = Integer.parseInt(ticketID);
+    MaintenanceTicket aTicket = MaintenanceTicket.getWithId(intTicketID);
+    aTicket.beginWork();
     return "";
   }
   public static String completeTicketWork(String ticketID){
