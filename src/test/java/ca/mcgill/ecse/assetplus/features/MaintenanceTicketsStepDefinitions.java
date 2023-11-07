@@ -32,7 +32,9 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
-
+  /**
+   * @author Marc-Antoine Nadeau
+   */
   @Given("the following employees exist in the system")
   public void the_following_employees_exist_in_the_system_p11(io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> employeesToAdd = dataTable.asMaps();
@@ -44,7 +46,9 @@ public class MaintenanceTicketsStepDefinitions {
       assetPlus.addEmployee(email, name, password, phoneNumber);
     }
   }
-
+  /**
+   * @author Marc-Antoine Nadeau
+   */
   @Given("the following manager exists in the system")
   public void the_following_manager_exists_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> managerToAdd = dataTable.asMaps();
@@ -56,6 +60,9 @@ public class MaintenanceTicketsStepDefinitions {
       new Manager(email, name, password, phoneNumber, assetPlus);
     }
   }
+  /**
+   * @author Marc-Antoine Nadeau
+   */
   @Given("the following asset types exist in the system")
   public void the_following_asset_types_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> assetTypeToAdd = dataTable.asMaps();
@@ -65,6 +72,9 @@ public class MaintenanceTicketsStepDefinitions {
         assetPlus.addAssetType(name, lifeSpan);
         }
   }
+  /**
+   * @author Marc-Antoine Nadeau
+   */
 
   @Given("the following assets exist in the system")
   public void the_following_assets_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
@@ -79,6 +89,9 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  /**
+   * @author Marc-Antoine Nadeau
+   */
   @Given("the following tickets exist in the system")
   public void the_following_tickets_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> ticketToAdd = dataTable.asMaps();
@@ -93,6 +106,9 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  /**
+   * @author Marc-Antoine Nadeau
+   */
   @Given("the following notes exist in the system")
   public void the_following_notes_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> noteToAdd = dataTable.asMaps();
@@ -102,6 +118,9 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  /**
+   * @author Marc-Antoine Nadeau
+   */
   @Given("the following ticket images exist in the system")
   public void the_following_ticket_images_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> ticketImageToAdd= dataTable.asMaps();
@@ -112,6 +131,9 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  /**
+   * @author Marc-Antoine Nadeau
+   */
   @Given("ticket {string} is marked as {string} with requires approval {string}")
   public void ticket_is_marked_as_with_requires_approval(String ticketId, String initialState, String requiresApproval) {
     int ticketID = Integer.parseInt(ticketId);
@@ -122,6 +144,9 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  /**
+   * @author Marc-Antoine Nadeau
+   */
   @Given("ticket {string} is marked as {string}")
   public void ticket_is_marked_as(String ticketId, String state) {
     int ticketID = Integer.parseInt(ticketId);
@@ -129,6 +154,7 @@ public class MaintenanceTicketsStepDefinitions {
     ticket.setTicketStatus(TicketStatus.valueOf(state)); //why can't i do this? 
   }
 
+  //!
   @When("the manager attempts to view all maintenance tickets in the system")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system() {
     // Write code here that turns the phrase above into concrete actions
@@ -278,6 +304,7 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  //!
   @Then("the ticket with id {string} shall have the following notes")
   public void the_ticket_with_id_shall_have_the_following_notes(String string,
       io.cucumber.datatable.DataTable dataTable) {
@@ -301,6 +328,7 @@ public class MaintenanceTicketsStepDefinitions {
 
   }
 
+  //!
   @Then("the ticket with id {string} shall have the following images")
   public void the_ticket_with_id_shall_have_the_following_images(String string,
       io.cucumber.datatable.DataTable dataTable) {
