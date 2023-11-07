@@ -49,7 +49,7 @@ public class AssetPlusFeatureSet6Controller {
         Date aRaisedOnDate = ticket.getRaisedOnDate();
         String aDescription = ticket.getDescription();
         String emailRaiser = ticket.getTicketRaiser().getEmail();
-        String status = "to implement";
+        String status = ticket.getTicketStatusFullName();
         
         String priorityLevel = null;
         String timeEstimate = null;

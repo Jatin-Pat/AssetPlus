@@ -114,7 +114,7 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as_with_requires_approval(String ticketId, String initialState, String requiresApproval) {
     int ticketID = Integer.parseInt(ticketId);
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-    ticket.setTicketStatus(initialState); //why can't i do this? 
+    //ticket.setTicketStatus(initialState); //why can't i do this? 
     if(Boolean.parseBoolean(requiresApproval)){ //Not sure about this!
       ticket.setFixApprover(assetPlus.getManager());
     }
@@ -124,7 +124,7 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as(String ticketId, String state) {
     int ticketID = Integer.parseInt(ticketId);
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-    ticket.setTicketStatus(state); //why can't i do this? 
+    //ticket.setTicketStatus(state); //why can't i do this? 
     //because setTicketStatus is a TicketStatus method, not a MaintenanceTicketMethod
   }
 
@@ -179,10 +179,11 @@ public class MaintenanceTicketsStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @Then("the system shall raise the error {string}")
   public void the_system_shall_raise_the_error(String errorMessage) {
-
     Assertions.assertTrue(error.contains(errorMessage));
   }
   /**
@@ -208,11 +209,15 @@ public class MaintenanceTicketsStepDefinitions {
     Assertions.assertEquals(ticket.hasFixApprover(), Boolean.parseBoolean(estimatedTimeString));
   
   }
-
+  /**
+   * @author Behrad Rezaie
+   */
   @Then("the ticket {string} shall be assigned to {string}")
-  public void the_ticket_shall_be_assigned_to(String ticketIDString, String tickerFixerEmail) {
+  public void the_ticket_shall_be_assigned_to(String ticketIDString, String ticketFixerEmail) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId((Integer.parseInt(ticketIDString));
+    String actualfixerEmail = ticket.getTicketFixer().getEmail();
+    Assertions.assertEquals(ticketFixerEmail, actualfixerEmail);
   }
   /**
    * @author Behrad Rezaie

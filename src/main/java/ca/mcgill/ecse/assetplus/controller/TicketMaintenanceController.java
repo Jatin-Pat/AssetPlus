@@ -1,4 +1,6 @@
 package ca.mcgill.ecse.assetplus.controller;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.model.*;
 
 public class TicketMaintenanceController {
   
@@ -16,10 +18,25 @@ public class TicketMaintenanceController {
     return "";
   }
   public static String approveTicketWork(String ticketID){
+    //Input validation
+    AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
+    boolean ticketExists = MaintenanceTicket.hasWithId(Integer.parseInt(ticketID));
+    if(!ticketExists){
+      return "Maintenance ticket does not exist";
+    }
+
     //to implement
     return "";
   }
   public static String disapproveTicketWork(String ticketID, String date, String reason){
+    AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
+    //Input validation
+    boolean ticketExists = MaintenanceTicket.hasWithId(Integer.parseInt(ticketID));
+    if(!ticketExists){
+      return "Maintenance ticket does not exist";
+    }
+
+
     //to implement
     return "";
   }
