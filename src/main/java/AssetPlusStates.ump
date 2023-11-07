@@ -140,6 +140,6 @@ class MaintenanceTicket {
     }
     //Behrad & Marc-Antoine
     private String rejectDisapprove(String status){
-      throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
+      throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+status+".");
     }
 }

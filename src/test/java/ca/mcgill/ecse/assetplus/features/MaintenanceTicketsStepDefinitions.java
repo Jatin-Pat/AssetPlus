@@ -14,7 +14,6 @@ import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
-import cucumber.api.cli.Main;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -113,7 +112,7 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as_with_requires_approval(String ticketId, String initialState, String requiresApproval) {
     int ticketID = Integer.parseInt(ticketId);
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-    //ticket.setTicketStatus(TicketStatus.valueOf(initialState)); //why can't i do this? 
+    ticket.setTicketStatus(TicketStatus.valueOf(initialState)); //why can't i do this? 
     if(Boolean.parseBoolean(requiresApproval)){ //Not sure about this!
       ticket.setFixApprover(assetPlus.getManager());
     }
@@ -123,7 +122,7 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as(String ticketId, String state) {
     int ticketID = Integer.parseInt(ticketId);
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-    //ticket.setTicketStatus(state); //why can't i do this? 
+    ticket.setTicketStatus(TicketStatus.valueOf(state)); //why can't i do this? 
   }
 
   @When("the manager attempts to view all maintenance tickets in the system")
@@ -153,7 +152,6 @@ public class MaintenanceTicketsStepDefinitions {
    */
   @When("the manager attempts to approve the ticket {string}")
   public void the_manager_attempts_to_approve_the_ticket(String ticketID) {
-    // Write code here that turns the phrase above into concrete actions
     callController(TicketMaintenanceController.approveTicketWork(ticketID));
   }
   /**
@@ -214,8 +212,8 @@ public class MaintenanceTicketsStepDefinitions {
    */
   @Then("the ticket {string} shall be assigned to {string}")
   public void the_ticket_shall_be_assigned_to(String ticketIDString, String ticketFixerEmail) {
-    // Write code here that turns the phrase above into concrete actions
-    MaintenanceTicket ticket = MaintenanceTicket.getWithId((Integer.parseInt(ticketIDString));
+    
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId((Integer.parseInt(ticketIDString)));
     String actualfixerEmail = ticket.getTicketFixer().getEmail();
     Assertions.assertEquals(ticketFixerEmail, actualfixerEmail);
   }
@@ -224,9 +222,8 @@ public class MaintenanceTicketsStepDefinitions {
    */
   @Then("the number of tickets in the system shall be {string}")
   public void the_number_of_tickets_in_the_system_shall_be(String numTicketsString) {
-    //Convert string to integer
+    
     int numTicketsExpected = Integer.parseInt(numTicketsString);
-    //Assert expected number same as actual numbers
     Assertions.assertEquals(numTicketsExpected,assetPlus.numberOfMaintenanceTickets());
   }
 
@@ -281,9 +278,8 @@ public class MaintenanceTicketsStepDefinitions {
 
   @Then("the ticket with id {string} shall have no images")
   public void the_ticket_with_id_shall_have_no_images(String ticketIDString) {
-    //Convert string to integer ID  
+
     int ticketID = Integer.parseInt(ticketIDString);
-    //assert ticket has no images
     Assertions.assertEquals(false,MaintenanceTicket.getWithId(ticketID).hasTicketImages());
   
   }

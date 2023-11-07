@@ -401,7 +401,7 @@ public class MaintenanceTicket
     return wasEventProcessed;
   }
 
-  private void setTicketStatus(TicketStatus aTicketStatus)
+  public void setTicketStatus(TicketStatus aTicketStatus)
   {
     ticketStatus = aTicketStatus;
   }
@@ -888,7 +888,7 @@ public class MaintenanceTicket
    */
   // line 143 "../../../../../../AssetPlusStates.ump"
    private String rejectDisapprove(String status){
-    throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
+    throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+status+".");
   }
 
 
