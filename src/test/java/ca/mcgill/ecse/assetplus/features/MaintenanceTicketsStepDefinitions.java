@@ -90,7 +90,7 @@ public class MaintenanceTicketsStepDefinitions {
   }
 
   /**
-   * @author Marc-Antoine Nadeau
+   * @author Marc-Antoine Nadeau & Pei Yan Geng
    */
   @Given("the following tickets exist in the system")
   public void the_following_tickets_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
@@ -100,7 +100,13 @@ public class MaintenanceTicketsStepDefinitions {
       User ticketRaiser = User.getWithEmail(ticket.get("ticketRaiser"));
       Date raisedOnDate = Date.valueOf(ticket.get("raisedOnDate"));
       String description = ticket.get("description");
-      int assetNumber = Integer.parseInt(ticket.get("assetNumber"));
+      int assetNumber;
+      if (ticket.get("assetNumber") == null) {
+        assetNumber = -1;
+      }
+      else {
+        assetNumber = Integer.parseInt(ticket.get("assetNumber"));
+      }
       TicketStatus ticketStatus = TicketStatus.valueOf(ticket.get("status"));
 
       MaintenanceTicket maintenanceTicket = new MaintenanceTicket(id, raisedOnDate, description, assetPlus, ticketRaiser);
@@ -156,12 +162,14 @@ public class MaintenanceTicketsStepDefinitions {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
     ticket.setTicketStatus(TicketStatus.valueOf(state)); //why can't i do this? 
   }
-
-  //!
+  /**
+   * @author unkn
+   */
   @When("the manager attempts to view all maintenance tickets in the system")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    for (int i = 0; i < assetPlus.numberOfMaintenanceTickets(); i++) {
+      System.out.println(MaintenanceTicket.getWithId(i).toString());
+    }
   }
   /**
    * @author Behrad Rezaie

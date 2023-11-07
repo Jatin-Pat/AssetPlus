@@ -26,18 +26,19 @@ public class TicketMaintenanceController {
   }
 
   public static String beginTicketWork(String ticketID) {
+    String errorMsg = "";
     int intTicketID = Integer.parseInt(ticketID);
     if(!MaintenanceTicket.hasWithId(intTicketID)){
-      return "Maintenance ticket does not exist.";
+      errorMsg += "Maintenance ticket does not exist";
     }
 
     MaintenanceTicket aTicket = MaintenanceTicket.getWithId(intTicketID);
     try {
       aTicket.beginWork();
     } catch (Exception e) {
-      return e.getMessage();
+      errorMsg += e.getMessage();
     }
-    return "";
+    return errorMsg;
   }
 
   public static String completeTicketWork(String ticketID) {
