@@ -1,7 +1,7 @@
 package ca.mcgill.ecse.assetplus.application;
 
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
-import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
+// import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 public class AssetPlusApplication {
 
