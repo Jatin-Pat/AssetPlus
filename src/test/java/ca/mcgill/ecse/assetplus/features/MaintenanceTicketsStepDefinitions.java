@@ -167,7 +167,8 @@ public class MaintenanceTicketsStepDefinitions {
    */
   @When("the manager attempts to view all maintenance tickets in the system")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system() {
-    for (int i = 0; i < assetPlus.numberOfMaintenanceTickets(); i++) {
+    List<MaintenanceTicket> ticketList = assetPlus.getMaintenanceTickets();
+    for (int i = 1; i <= ticketList.size(); i++) {
       System.out.println(MaintenanceTicket.getWithId(i).toString());
     }
   }
