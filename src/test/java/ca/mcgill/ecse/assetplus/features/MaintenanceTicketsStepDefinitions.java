@@ -163,12 +163,12 @@ public class MaintenanceTicketsStepDefinitions {
     ticket.setTicketStatus(TicketStatus.valueOf(state)); //why can't i do this? 
   }
   /**
-   * @author unkn
+   * @author Pei Yan Geng
    */
   @When("the manager attempts to view all maintenance tickets in the system")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system() {
     List<MaintenanceTicket> ticketList = assetPlus.getMaintenanceTickets();
-    for (int i = 1; i <= ticketList.size(); i++) {
+    for (int i = 1; i <= ticketList.size(); i++) { //not sure if this is really what we're supposed to do
       System.out.println(MaintenanceTicket.getWithId(i).toString());
     }
   }
