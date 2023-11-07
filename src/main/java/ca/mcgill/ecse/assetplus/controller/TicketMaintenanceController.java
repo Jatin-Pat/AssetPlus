@@ -16,39 +16,63 @@ public class TicketMaintenanceController {
 
   public static String beginTicketWork(String ticketID) {
     int intTicketID = Integer.parseInt(ticketID);
+    //Input validation
+    if(!MaintenanceTicket.hasWithId(intTicketID)){
+      return "Maintenance ticket does not exist.";
+    }
+
     MaintenanceTicket aTicket = MaintenanceTicket.getWithId(intTicketID);
-    aTicket.beginWork();
+    try {
+      aTicket.beginWork();
+    } catch (Exception e) {
+      return e.getMessage();
+    }
     return "";
   }
 
   public static String completeTicketWork(String ticketID) {
-    // to implement
     int intTicketID = Integer.parseInt(ticketID);
+    //Input Validation
+    if(!MaintenanceTicket.hasWithId(intTicketID)){
+      return "Maintenance ticket does not exist.";
+    }
+    
     MaintenanceTicket aTicket = MaintenanceTicket.getWithId(intTicketID);
-    aTicket.completeWork();
+    try {
+      aTicket.completeWork();
+    } catch (Exception e) {
+      return e.getMessage();
+    }
     return "";
   }
   public static String approveTicketWork(String ticketID){
     //Input validation
     AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
-    boolean ticketExists = MaintenanceTicket.hasWithId(Integer.parseInt(ticketID));
-    if(!ticketExists){
+    if(!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))){
       return "Maintenance ticket does not exist";
     }
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(ticketID));
 
-    //to implement
+    try {
+      ticket.approve();
+    } catch (Exception e) {
+      return e.getMessage();
+    }
     return "";
   }
   public static String disapproveTicketWork(String ticketID, String date, String reason){
     AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
     //Input validation
-    boolean ticketExists = MaintenanceTicket.hasWithId(Integer.parseInt(ticketID));
-    if(!ticketExists){
+    if(!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))){
       return "Maintenance ticket does not exist";
     }
-
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(ticketID));
 
     //to implement
+    try{ ticket.disapprove(ticketID, date, reason);
+    }catch(Exception e){
+      return e.getMessage();
+    }
     return "";
   }
 

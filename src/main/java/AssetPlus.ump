@@ -1,7 +1,6 @@
 namespace ca.mcgill.ecse.assetplus.model;
 
 use AssetPlusStates.ump;
-use AssetPlusTransferObjects.ump;
 
 class AssetPlus
 {
@@ -113,4 +112,5 @@ association
 {
   0..1 Manager fixApprover -- * MaintenanceTicket ticketsForApproval;
 }
+use AssetPlusTransferObjects.ump;
 

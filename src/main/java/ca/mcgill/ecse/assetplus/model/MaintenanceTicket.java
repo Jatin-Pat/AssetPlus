@@ -5,8 +5,8 @@ package ca.mcgill.ecse.assetplus.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 43 "../../../../../../AssetPlus.ump"
 // line 1 "../../../../../../AssetPlusStates.ump"
+// line 45 "../../../../../../AssetPlus.ump"
 public class MaintenanceTicket
 {
 
@@ -175,7 +175,7 @@ public class MaintenanceTicket
     return ticketStatus;
   }
 
-  public boolean assignStaff(Employee email,PriorityLevel level,TimeEstimate estimate,boolean approval)
+  public boolean assignStaff(MaintenanceTicket ticket,Employee email,PriorityLevel level,TimeEstimate estimate,boolean approval)
   {
     boolean wasEventProcessed = false;
     
@@ -183,31 +183,31 @@ public class MaintenanceTicket
     switch (aTicketStatus)
     {
       case Open:
-        // line 5 "../../../../../../AssetPlusStates.ump"
+        // line 4 "../../../../../../AssetPlusStates.ump"
         doAssign(email, level, estimate, approval);
         setTicketStatus(TicketStatus.Assigned);
         wasEventProcessed = true;
         break;
       case Assigned:
-        // line 20 "../../../../../../AssetPlusStates.ump"
+        // line 22 "../../../../../../AssetPlusStates.ump"
         rejectAssign("assigned");
         setTicketStatus(TicketStatus.Assigned);
         wasEventProcessed = true;
         break;
       case InProgress:
-        // line 33 "../../../../../../AssetPlusStates.ump"
+        // line 38 "../../../../../../AssetPlusStates.ump"
         rejectAssign("in progress");
         setTicketStatus(TicketStatus.InProgress);
         wasEventProcessed = true;
         break;
       case Resolved:
-        // line 48 "../../../../../../AssetPlusStates.ump"
+        // line 54 "../../../../../../AssetPlusStates.ump"
         rejectAssign("resolved");
         setTicketStatus(TicketStatus.Resolved);
         wasEventProcessed = true;
         break;
       case Closed:
-        // line 53 "../../../../../../AssetPlusStates.ump"
+        // line 60 "../../../../../../AssetPlusStates.ump"
         rejectAssign("closed");
         setTicketStatus(TicketStatus.Closed);
         wasEventProcessed = true;
@@ -219,7 +219,7 @@ public class MaintenanceTicket
     return wasEventProcessed;
   }
 
-  public boolean approve(MaintenanceTicket ticket)
+  public boolean beginWork()
   {
     boolean wasEventProcessed = false;
     
@@ -227,31 +227,73 @@ public class MaintenanceTicket
     switch (aTicketStatus)
     {
       case Open:
-        // line 9 "../../../../../../AssetPlusStates.ump"
-        rejectApprove(ticket);
+        // line 10 "../../../../../../AssetPlusStates.ump"
+        rejectBegin("open");
         setTicketStatus(TicketStatus.Open);
         wasEventProcessed = true;
         break;
       case Assigned:
-        // line 22 "../../../../../../AssetPlusStates.ump"
-        rejectApprove(ticket);
+        setTicketStatus(TicketStatus.InProgress);
+        wasEventProcessed = true;
+        break;
+      case InProgress:
+        // line 36 "../../../../../../AssetPlusStates.ump"
+        rejectBegin("in progress");
+        setTicketStatus(TicketStatus.InProgress);
+        wasEventProcessed = true;
+        break;
+      case Resolved:
+        // line 52 "../../../../../../AssetPlusStates.ump"
+        rejectBegin("resolved");
+        setTicketStatus(TicketStatus.Resolved);
+        wasEventProcessed = true;
+        break;
+      case Closed:
+        // line 69 "../../../../../../AssetPlusStates.ump"
+        rejectBegin("closed")
+        setTicketStatus(TicketStatus.Closed);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean approve()
+  {
+    boolean wasEventProcessed = false;
+    
+    TicketStatus aTicketStatus = ticketStatus;
+    switch (aTicketStatus)
+    {
+      case Open:
+        // line 12 "../../../../../../AssetPlusStates.ump"
+        rejectApprove("open");
+        setTicketStatus(TicketStatus.Open);
+        wasEventProcessed = true;
+        break;
+      case Assigned:
+        // line 26 "../../../../../../AssetPlusStates.ump"
+        rejectApprove("assigned");
         setTicketStatus(TicketStatus.Assigned);
         wasEventProcessed = true;
         break;
       case InProgress:
-        // line 35 "../../../../../../AssetPlusStates.ump"
+        // line 40 "../../../../../../AssetPlusStates.ump"
         rejectApprove("in progress");
         setTicketStatus(TicketStatus.InProgress);
         wasEventProcessed = true;
         break;
       case Resolved:
-        // line 42 "../../../../../../AssetPlusStates.ump"
+        // line 46 "../../../../../../AssetPlusStates.ump"
         doApprove(ticket);
         setTicketStatus(TicketStatus.Closed);
         wasEventProcessed = true;
         break;
       case Closed:
-        // line 56 "../../../../../../AssetPlusStates.ump"
+        // line 65 "../../../../../../AssetPlusStates.ump"
         rejectApprove("closed");
         setTicketStatus(TicketStatus.Closed);
         wasEventProcessed = true;
@@ -263,7 +305,7 @@ public class MaintenanceTicket
     return wasEventProcessed;
   }
 
-  public boolean disapprove(MaintenanceTicket ticket)
+  public boolean disapprove(String ticketID,String date,String reason)
   {
     boolean wasEventProcessed = false;
     
@@ -271,31 +313,31 @@ public class MaintenanceTicket
     switch (aTicketStatus)
     {
       case Open:
-        // line 11 "../../../../../../AssetPlusStates.ump"
+        // line 14 "../../../../../../AssetPlusStates.ump"
         rejectDisapprove("open");
         setTicketStatus(TicketStatus.Open);
         wasEventProcessed = true;
         break;
       case Assigned:
-        // line 24 "../../../../../../AssetPlusStates.ump"
+        // line 28 "../../../../../../AssetPlusStates.ump"
         rejectDisapprove("assigned");
         setTicketStatus(TicketStatus.Assigned);
         wasEventProcessed = true;
         break;
       case InProgress:
-        // line 37 "../../../../../../AssetPlusStates.ump"
+        // line 42 "../../../../../../AssetPlusStates.ump"
         rejectDisapprove("in progress");
         setTicketStatus(TicketStatus.InProgress);
         wasEventProcessed = true;
         break;
       case Resolved:
-        // line 44 "../../../../../../AssetPlusStates.ump"
-        doDisapprove(ticket);
+        // line 48 "../../../../../../AssetPlusStates.ump"
+        doDisapprove(ticketID, date, reason);
         setTicketStatus(TicketStatus.InProgress);
         wasEventProcessed = true;
         break;
       case Closed:
-        // line 57 "../../../../../../AssetPlusStates.ump"
+        // line 67 "../../../../../../AssetPlusStates.ump"
         rejectDisapprove("closed");
         setTicketStatus(TicketStatus.Closed);
         wasEventProcessed = true;
@@ -315,25 +357,25 @@ public class MaintenanceTicket
     switch (aTicketStatus)
     {
       case Open:
-        // line 13 "../../../../../../AssetPlusStates.ump"
-        rejectComplete("open")
+        // line 16 "../../../../../../AssetPlusStates.ump"
+        rejectComplete("open");
         setTicketStatus(TicketStatus.Open);
         wasEventProcessed = true;
         break;
       case Assigned:
-        // line 21 "../../../../../../AssetPlusStates.ump"
-        rejectComplete("assigned")
+        // line 24 "../../../../../../AssetPlusStates.ump"
+        rejectComplete("assigned");
         setTicketStatus(TicketStatus.Assigned);
         wasEventProcessed = true;
         break;
       case InProgress:
-        if (getApprovalRequired())
+        if (!(this.hasFixApprover()))
         {
           setTicketStatus(TicketStatus.Resolved);
           wasEventProcessed = true;
           break;
         }
-        if (!(getApprovalRequired()))
+        if (this.hasFixApprover())
         {
           setTicketStatus(TicketStatus.Closed);
           wasEventProcessed = true;
@@ -341,56 +383,14 @@ public class MaintenanceTicket
         }
         break;
       case Resolved:
-        // line 46 "../../../../../../AssetPlusStates.ump"
-        rejectComplete("resolved")
-        setTicketStatus(TicketStatus.Resolved);
-        wasEventProcessed = true;
-        break;
-      case Closed:
-        // line 52 "../../../../../../AssetPlusStates.ump"
-        rejectComplete("closed")
-        setTicketStatus(TicketStatus.Closed);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  public boolean beginWork()
-  {
-    boolean wasEventProcessed = false;
-    
-    TicketStatus aTicketStatus = ticketStatus;
-    switch (aTicketStatus)
-    {
-      case Open:
-        // line 14 "../../../../../../AssetPlusStates.ump"
-        rejectBegin("open");
-        setTicketStatus(TicketStatus.Open);
-        wasEventProcessed = true;
-        break;
-      case Assigned:
-        setTicketStatus(TicketStatus.InProgress);
-        wasEventProcessed = true;
-        break;
-      case InProgress:
-        // line 32 "../../../../../../AssetPlusStates.ump"
-        rejectBegin("in progress");
-        setTicketStatus(TicketStatus.InProgress);
-        wasEventProcessed = true;
-        break;
-      case Resolved:
-        // line 47 "../../../../../../AssetPlusStates.ump"
-        rejectBegin("resolved");
+        // line 50 "../../../../../../AssetPlusStates.ump"
+        rejectComplete("resolved");
         setTicketStatus(TicketStatus.Resolved);
         wasEventProcessed = true;
         break;
       case Closed:
         // line 58 "../../../../../../AssetPlusStates.ump"
-        rejectBegin("closed");
+        rejectComplete("closed");
         setTicketStatus(TicketStatus.Closed);
         wasEventProcessed = true;
         break;
@@ -791,23 +791,37 @@ public class MaintenanceTicket
     }
   }
 
-  // line 64 "../../../../../../AssetPlusStates.ump"
+
+  /**
+   * Verify with team if this is correct
+   * Blame Jatin if not Good
+   * private boolean isManager(String email){
+   * String user = User.getWithEmail(email);
+   * return user != null && user.equals("manager@ap.com");
+   * }
+   * 
+   * 
+   * //Verify with team if this is correct
+   * //Blame Jatin if not Good
+   * private boolean isHotelStaff(string email){
+   * String user = User.getWithEmail(email);
+   * return user != null && user.endsWith("@ap.com");
+   * }
+   * Verify with team if this is correct
+   * Blame Jatin if not Good
+   */
+  // line 97 "../../../../../../AssetPlusStates.ump"
    private void doAssign(Employee email, PriorityLevel level, TimeEstimate estimate, approvalRequired approval){
     //Implement this
-      //Have this call the assign controller method
   }
 
 
   /**
    * Should it be int or String instead of MaintenanceTicket
    */
-  // line 70 "../../../../../../AssetPlusStates.ump"
+  // line 108 "../../../../../../AssetPlusStates.ump"
    private void doApprove(MaintenanceTicket id){
-    //have this call the approve controller method
-
-
-
-      MaintenanceTickett ticket = getMaintenanceTicket(parse.Integer(id));
+    MaintenanceTicket ticket = getMaintenanceTicket(Integer.parseInt(id));
       if (ticket == null){
         throw new RuntimeException("Maintenance ticket does not exist.");
       }
@@ -820,66 +834,29 @@ public class MaintenanceTicket
   /**
    * Should it be int or String instead of MaintenanceTicket
    */
-  // line 85 "../../../../../../AssetPlusStates.ump"
-   private void doDisapprove(MaintenanceTicket id, Date date, Description description, Manager email){
-    //have this call the controller method
-      //dont do it in here
-      
-      MaintenanceTicket ticket = getMaintenanceTicket(parse.Integer(id));
-      //Are they strings?
-      if(ticket == null){
-        throw new RuntimeException("Maintenance ticket does not exist.");
-      }
-
-      if (ticket.getTicketStatus() == Resolved){ //Don't think that's necessary
-        if(email = "manager@ap.com"){ //Don't think that's necessary
-          Manager manager = getAssetPlus.getManager();
-          ticketNote = addTicketNote(date, description, manager);
-      }
-      }
+  // line 120 "../../../../../../AssetPlusStates.ump"
+   private void doDisapprove(String id, String date, String description){
+    MaintenanceTicket ticket = getMaintenanceTicket(Integer.parseInt(id));
+      MaintenanceNote disapproveNote = new MaintenaceNote(Date.valueOf(date), description, ticket,ticket.getAssetPlus );
   }
 
-  // line 103 "../../../../../../AssetPlusStates.ump"
+  // line 125 "../../../../../../AssetPlusStates.ump"
    private void doBeginWork(){
     //Implement this
   }
 
 
   /**
-   * I wrote a different version of these below
-   * private void rejectApprove(MaintenanceTicket id){
-   * //i wrote a different version of this below -behrad
-   * MaintenanceTicket ticket = getMaintenanceTicket(parse.Integer(id));
-   * if (ticket == null){ // necessary ??
-   * throw new RuntimeException("Maintenance ticket does not exist");
-   * }
-   * 
-   * String ticketStatus =  ticket.getTicketStatus();
-   * //are they string? 
-   * if (ticketStatus == Closed){
-   * throw new RuntimeException("The maintenance ticket is already closed.");
-   * }
-   * throw new RuntimeException("Cannot approve a maintenance ticket which is "+ ticketStatus.toLowerCase() +".");
-   * }
-   * 
-   * private void rejectDisapprove(MaintenanceTicket id){
-   * //I wrote a different version of this below -behrad
-   * 
-   * MaintenanceTicket ticket = getMaintenanceTicket(parse.Integer(id));
-   * if (ticket == null){ // necessary ??
-   * throw new RuntimeException("Maintenance ticket does not exist");
-   * }
-   * String ticketStatus =  ticket.getTicketStatus();
-   * throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+ ticketStatus.toLowerCase() +".");
-   * }
    * ALL REJECT METHODS DUE TO WRONG STATE
    * Behrad
    */
-  // line 140 "../../../../../../AssetPlusStates.ump"
-   private void rejectBegin(String status){
+  // line 131 "../../../../../../AssetPlusStates.ump"
+   private String rejectBegin(String status){
     if(status.contains("progress")){
+        //return  "The maintenance ticket is already in progress.";
         throw new RuntimeException("The maintenance ticket is already in progress.");
       }
+      //return "Cannot start a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot start a maintenance ticket which is "+status+".");
   }
 
@@ -887,11 +864,13 @@ public class MaintenanceTicket
   /**
    * Behrad
    */
-  // line 147 "../../../../../../AssetPlusStates.ump"
-   private void rejectComplete(String status){
+  // line 140 "../../../../../../AssetPlusStates.ump"
+   private String rejectComplete(String status){
     if(status.contains("complete") || status.contains("resolved")){
-        throw new RuntimeException("The maintenance ticket is already "+status);
+        //return "The maintenance ticket is already "+status+".";
+        throw new RuntimeExcetion("The maintenance ticket is already "+status);
       }
+      //return "Cannot complete a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot complete a maintenance ticket which is "+status+".");
   }
 
@@ -899,12 +878,14 @@ public class MaintenanceTicket
   /**
    * Behrad
    */
-  // line 154 "../../../../../../AssetPlusStates.ump"
-   private void rejectAssign(String status){
+  // line 149 "../../../../../../AssetPlusStates.ump"
+   private String rejectAssign(String status){
     //Case where ticket cannot be assigned due to its status
       if (status.contains("assigned")){
+        //return "The maintenance ticket is already assigned.";
         throw new RuntimeException("The maintenance ticket is already assigned.");
      }
+     //return "Cannot assign a ticket which is "+status+".";
       throw new RuntimeException("Cannot assign a ticket which is "+status+".");
   }
 
@@ -913,11 +894,13 @@ public class MaintenanceTicket
    * HAVE TO DISCUSS THE FOLLOWING TWO WITH TEAM
    * Behrad & Marc-Antoine
    */
-  // line 164 "../../../../../../AssetPlusStates.ump"
-   private void rejectApprove(String status){
+  // line 161 "../../../../../../AssetPlusStates.ump"
+   private String rejectApprove(String status){
     if (status.contains("closed")){
+        //return "The maintenance ticket is already closed.";
         throw new RuntimeException("The maintenance ticket is already closed.");
       }
+      //return "Cannot approve a maintenance ticket which is "+status+".";
       throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
   }
 
@@ -925,9 +908,10 @@ public class MaintenanceTicket
   /**
    * Behrad & Marc-Antoine
    */
-  // line 171 "../../../../../../AssetPlusStates.ump"
-   private void rejectDisapprove(String status){
-    throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".")
+  // line 170 "../../../../../../AssetPlusStates.ump"
+   private String rejectDisapprove(String status){
+    //return "Cannot approve a maintenance ticket which is "+status+".";
+      throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
   }
 
 

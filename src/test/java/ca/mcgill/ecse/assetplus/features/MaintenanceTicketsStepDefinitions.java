@@ -19,17 +19,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import ca.mcgill.ecse.assetplus.controller.TicketMaintenanceController;
-
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TicketStatus;
 public class MaintenanceTicketsStepDefinitions {
   private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
   private String error = "";
-  
-  
   private void callController(String result) {
     if (!result.isEmpty()) {
       error += result;
     }
   }
+
 
   @Given("the following employees exist in the system")
   public void the_following_employees_exist_in_the_system_p11(io.cucumber.datatable.DataTable dataTable) {
@@ -114,7 +113,7 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as_with_requires_approval(String ticketId, String initialState, String requiresApproval) {
     int ticketID = Integer.parseInt(ticketId);
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-    //ticket.setTicketStatus(initialState); //why can't i do this? 
+    //ticket.setTicketStatus(TicketStatus.valueOf(initialState)); //why can't i do this? 
     if(Boolean.parseBoolean(requiresApproval)){ //Not sure about this!
       ticket.setFixApprover(assetPlus.getManager());
     }
@@ -173,11 +172,13 @@ public class MaintenanceTicketsStepDefinitions {
       String date, String reason) {
         callController(TicketMaintenanceController.disapproveTicketWork(ticketID,date,reason));
   }
-  
+  /**
+   * @author Behrad Rezaie
+   */
   @Then("the ticket {string} shall be marked as {string}")
-  public void the_ticket_shall_be_marked_as(String string, String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_ticket_shall_be_marked_as(String ticketID, String ticketStatus) {
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(ticketID));
+    Assertions.assertEquals(ticketStatus, ticket.getTicketStatusFullName());
   }
   /**
    * @author Behrad Rezaie
