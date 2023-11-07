@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
+import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.Manager;
@@ -22,7 +23,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import javafx.application.Application;
 import ca.mcgill.ecse.assetplus.controller.TicketMaintenanceController;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TicketStatus;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 public class MaintenanceTicketsStepDefinitions {
   private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
   private String error = "";
@@ -107,11 +110,22 @@ public class MaintenanceTicketsStepDefinitions {
       else {
         assetNumber = Integer.parseInt(ticket.get("assetNumber"));
       }
-      TicketStatus ticketStatus = TicketStatus.valueOf(ticket.get("status"));
-
       MaintenanceTicket maintenanceTicket = new MaintenanceTicket(id, raisedOnDate, description, assetPlus, ticketRaiser);
+      /* 
+      TicketStatus ticketStatus = TicketStatus.valueOf(ticket.get("status"));
+      HotelStaff fixedByEmail = (HotelStaff) User.getWithEmail(ticket.get("fixedByEmail"));
+      Boolean approvalRequired = Boolean.parseBoolean(ticket.get("approvalRequired"));
+      PriorityLevel priorityLevel = PriorityLevel.valueOf(ticket.get("priority"));
+      TimeEstimate timeToResolve = TimeEstimate.valueOf(ticket.get("timeToResolve"));
+      
       maintenanceTicket.setAsset(SpecificAsset.getWithAssetNumber(assetNumber));
       maintenanceTicket.setTicketStatus(ticketStatus);
+      maintenanceTicket.setTicketFixer(fixedByEmail);
+      maintenanceTicket.setPriority(priorityLevel);
+      maintenanceTicket.setTimeToResolve(timeToResolve);
+      if(approvalRequired){
+        maintenanceTicket.setFixApprover(assetPlus.getManager()); 
+      }*/
     }
   }
 
