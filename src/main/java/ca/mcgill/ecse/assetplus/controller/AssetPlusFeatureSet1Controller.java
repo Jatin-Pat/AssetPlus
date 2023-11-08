@@ -4,6 +4,7 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.User;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
   * The controller for the Update Manager Password & Add and Update Employee/Guest
@@ -42,7 +43,12 @@ public class AssetPlusFeatureSet1Controller {
     //Call Model
     Manager manager = assetplus.getManager();
     manager.setPassword(password);
-    return error; 
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+    return error;
   }
   /**
    * Add employee or guest to the assetplus system and performs input validations
@@ -97,6 +103,12 @@ public class AssetPlusFeatureSet1Controller {
         error = "Email already linked to a guest account";
       }
     }
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+
   return error;
  }
  
@@ -131,6 +143,12 @@ public class AssetPlusFeatureSet1Controller {
     specificUser.setPassword(newPassword);
     specificUser.setName(newName);
     specificUser.setPhoneNumber(newPhoneNumber);
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+    
    return error;
   }
 }

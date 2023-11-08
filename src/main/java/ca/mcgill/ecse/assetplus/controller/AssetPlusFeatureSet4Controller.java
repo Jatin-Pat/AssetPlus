@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 import ca.mcgill.ecse.assetplus.model.*;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 
 /**
@@ -122,6 +123,12 @@ public class AssetPlusFeatureSet4Controller {
       errorMessage.append("Ticket added successfully \n");
     }
     System.out.println(errorMessage);
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+
     return errorMessage.toString();
   }
 
@@ -168,6 +175,11 @@ public class AssetPlusFeatureSet4Controller {
       errorMessage.append("Ticket modified successfully \n");
     }
     System.out.println(errorMessage);
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
     return errorMessage.toString();
   }
 
@@ -191,6 +203,11 @@ public class AssetPlusFeatureSet4Controller {
     }
     catch (RuntimeException e) {
       System.out.println(e.getMessage());
+    }
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
     }
   }
 }

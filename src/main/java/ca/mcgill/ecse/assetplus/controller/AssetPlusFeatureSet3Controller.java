@@ -4,6 +4,7 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import java.sql.Date;
 
 public class AssetPlusFeatureSet3Controller {
@@ -82,6 +83,10 @@ public class AssetPlusFeatureSet3Controller {
     if (!added) {
       return "The asset was not added.";
     }
+    try {
+          AssetPlusPersistence.save();
+        } catch (RuntimeException e){
+        }
     return "";
   }
 
@@ -122,6 +127,12 @@ public class AssetPlusFeatureSet3Controller {
     if (!(floorNumberSet && roomNumberSet && purchaseDateSet && assetTypeSet)) {
       return "Asset update failed.";
     }
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+    
     return "";
   }
 
@@ -137,6 +148,12 @@ public class AssetPlusFeatureSet3Controller {
       SpecificAsset assetToDelete = SpecificAsset.getWithAssetNumber(assetNumber);
       assetToDelete.delete();
     } catch (RuntimeException e) {}
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+    
   }
 
 }

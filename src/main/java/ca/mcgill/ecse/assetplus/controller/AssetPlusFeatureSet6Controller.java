@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.*;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 
   /**
@@ -27,7 +28,12 @@ public class AssetPlusFeatureSet6Controller {
     User queriedUser = User.getWithEmail(email);
     if(queriedUser instanceof Guest || queriedUser instanceof Employee){
       queriedUser.delete();
-    }    
+    } 
+    
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
   }
 
   /**<h2> getTickets() </h2>

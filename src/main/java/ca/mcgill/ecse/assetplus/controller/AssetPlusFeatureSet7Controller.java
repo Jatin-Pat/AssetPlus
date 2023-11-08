@@ -6,6 +6,7 @@ import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
@@ -82,6 +83,11 @@ public class AssetPlusFeatureSet7Controller {
         }
         
         String result = error.toString();
+
+        try {
+            AssetPlusPersistence.save();
+          } catch (RuntimeException e){
+        }
         return result;
     }
 
@@ -166,6 +172,11 @@ public class AssetPlusFeatureSet7Controller {
         }
         
         String result = error.toString();
+
+        try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
         return result;
     }
 
@@ -195,5 +206,10 @@ public class AssetPlusFeatureSet7Controller {
             ticket.removeTicketNote(deletedMaintenanceNote);
         } catch (RuntimeException e) {
     }
+
+    try {
+        AssetPlusPersistence.save();
+      } catch (RuntimeException e){
+      }
     }
 }

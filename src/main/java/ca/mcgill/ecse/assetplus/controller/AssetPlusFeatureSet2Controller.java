@@ -3,6 +3,7 @@ package ca.mcgill.ecse.assetplus.controller;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 public class AssetPlusFeatureSet2Controller {
 
@@ -68,6 +69,12 @@ public class AssetPlusFeatureSet2Controller {
         errorMessage.append("The asset plus does not exist");
       }
     }
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+
     return errorMessage.toString();
   }
 
@@ -105,6 +112,11 @@ public class AssetPlusFeatureSet2Controller {
         
     }
 
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+
     return errorMessage.toString();
   }
 
@@ -118,6 +130,11 @@ public class AssetPlusFeatureSet2Controller {
         AssetType assetTypeToDelete = AssetType.getWithName(name.toLowerCase());
         assetTypeToDelete.delete();
     } catch (RuntimeException e) {
+    }
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
     }
   }
 }

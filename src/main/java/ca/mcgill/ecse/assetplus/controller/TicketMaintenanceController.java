@@ -1,7 +1,6 @@
 package ca.mcgill.ecse.assetplus.controller;
 import ca.mcgill.ecse.assetplus.model.*;
-
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 public class TicketMaintenanceController {
 
@@ -22,6 +21,10 @@ public class TicketMaintenanceController {
     }catch(Exception e){
       return e.getMessage();
     }
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
     return "";
   }
 
@@ -38,7 +41,13 @@ public class TicketMaintenanceController {
     } catch (Exception e) {
       errorMsg += e.getMessage();
     }
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
     return errorMsg;
+    
   }
 
   public static String completeTicketWork(String ticketID) {
@@ -53,6 +62,12 @@ public class TicketMaintenanceController {
     } catch (Exception e) {
       return e.getMessage();
     }
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+    
     return "";
   }
   public static String approveTicketWork(String ticketID){
@@ -66,6 +81,12 @@ public class TicketMaintenanceController {
     } catch (Exception e) {
       return e.getMessage();
     }
+
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
+    }
+
     return "";
   }
   public static String disapproveTicketWork(String ticketID, String date, String reason){
@@ -77,6 +98,10 @@ public class TicketMaintenanceController {
     try{ ticket.disapprove(ticketID, date, reason);
     }catch(Exception e){
       return e.getMessage();
+    }
+    try {
+      AssetPlusPersistence.save();
+    } catch (RuntimeException e){
     }
     return "";
   }
