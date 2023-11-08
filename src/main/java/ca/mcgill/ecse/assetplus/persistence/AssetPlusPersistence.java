@@ -29,9 +29,9 @@ public class AssetPlusPersistence {
       assetPlus = new AssetPlus();
 
     }
-    // else {
-    //   assetPlus.reinitialize();
-    // }
+    else {
+      assetPlus.reinitialize();
+    }
 
     return assetPlus;
   }

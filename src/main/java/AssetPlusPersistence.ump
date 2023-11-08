@@ -1,29 +1,61 @@
 class AssetPlus{
-
+    public void reinitialize(){
+        MaintenanceTicket.reinitializeMaintenanceticketsById(getMaintenanceTickets());
+        AssetType.reinitializeAssettypesByName(getAssetTypes());
+        SpecificAsset.reinitializeSpecificassetsByAssetNumber(getSpecificAssets());
+        User.reinitializeUsersByEmail(getEmployees(), getGuests(), getManager());
+    }
 
 
 }
 
 class MaintenanceTicket{
+    public static void reinitializeMaintenanceticketsById(List<MaintenanceTicket> maintenanceTickets) {
+        maintenanceticketsById.clear();
+        for (MaintenanceTicket maintenanceTicket : maintenanceTickets) {
+            maintenanceticketsById.put(maintenanceTicket.getId(), maintenanceTicket);
+        }
+    }
+
 
 
 
 }
 
 class AssetType {
-
+    public static void reinitializeAssettypesByName(List<AssetType> assetTypes) {
+        assettypesByName.clear();
+        for (AssetType assetType : assetTypes) {
+            assettypesByName.put(assetType.getName() , assetType);
+        }
+    }
 
 
 }
 
 class SpecificAsset {
-
+    public static void reinitializeSpecificassetsByAssetNumber(List<SpecificAsset> specificAssets) {
+        specificassetsByAssetNumber.clear();
+        for (SpecificAsset specificAsset : specificAssets) {
+            specificassetsByAssetNumber.put(specificAsset.getAssetNumber(), specificAsset);
+        }
+    }
 
 
 }
 
 class User {
+    public static void reinitializeUsersByEmail(List<Employee> employees, List<Guest> guests, Manager manager) {
+        usersByEmail.clear();
+        for (User employee : employees) {
+            usersByEmail.put(user.getEmail(), user);
+        }
 
+        for (User guest : guests) {
+            usersByEmail.put(user.getEmail(), user);
+        }
 
-    
+        usersByEmail.put(manager.getEmail(), manager);
+    };
+
 }
