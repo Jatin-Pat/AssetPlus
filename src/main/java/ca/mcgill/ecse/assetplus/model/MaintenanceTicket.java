@@ -6,7 +6,8 @@ import java.util.*;
 import java.sql.Date;
 
 // line 1 "../../../../../../AssetPlusStates.ump"
-// line 45 "../../../../../../AssetPlus.ump"
+// line 12 "../../../../../../AssetPlusPersistence.ump"
+// line 46 "../../../../../../AssetPlus.ump"
 public class MaintenanceTicket
 {
 
@@ -791,15 +792,9 @@ public class MaintenanceTicket
     }
   }
 
-
-  /**
-   * Verify with team if this is correct
-   * Blame Ana if not Good
-   */
-  // line 78 "../../../../../../AssetPlusStates.ump"
+  // line 76 "../../../../../../AssetPlusStates.ump"
    private void doAssign(String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
-    //Implement this
-      MaintenanceTicket ticket = this;
+    MaintenanceTicket ticket = this;
         
       ticket.setTicketFixer((HotelStaff) User.getWithEmail(email));
       ticket.setPriority(level);
@@ -809,31 +804,27 @@ public class MaintenanceTicket
       }
   }
 
-  // line 90 "../../../../../../AssetPlusStates.ump"
+  // line 87 "../../../../../../AssetPlusStates.ump"
    private void doApprove(String id){
-    //MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
-    //  if (ticket == null){
-    //    throw new RuntimeException("Maintenance ticket does not exist.");
-    //  }
+    
   }
 
-  // line 98 "../../../../../../AssetPlusStates.ump"
+  // line 91 "../../../../../../AssetPlusStates.ump"
    private void doDisapprove(String id, String date, String description){
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
       ticket.addTicketNote(Date.valueOf(date), description, ticket.getAssetPlus().getManager());
   }
 
-  // line 103 "../../../../../../AssetPlusStates.ump"
+  // line 96 "../../../../../../AssetPlusStates.ump"
    private void doBeginWork(){
-    //Implement this
+    
   }
 
 
   /**
-   * ALL REJECT METHODS DUE TO WRONG STATE
    * Behrad
    */
-  // line 109 "../../../../../../AssetPlusStates.ump"
+  // line 100 "../../../../../../AssetPlusStates.ump"
    private String rejectBegin(String status){
     if(status.contains("progress")){
         throw new RuntimeException("The maintenance ticket is already in progress.");
@@ -845,7 +836,7 @@ public class MaintenanceTicket
   /**
    * Behrad
    */
-  // line 116 "../../../../../../AssetPlusStates.ump"
+  // line 107 "../../../../../../AssetPlusStates.ump"
    private String rejectComplete(String status){
     if(status.contains("closed") || status.contains("resolved")){
         throw new RuntimeException("The maintenance ticket is already "+status+".");
@@ -857,7 +848,7 @@ public class MaintenanceTicket
   /**
    * Behrad
    */
-  // line 123 "../../../../../../AssetPlusStates.ump"
+  // line 114 "../../../../../../AssetPlusStates.ump"
    private String rejectAssign(String status){
     if (status.contains("assigned")){
         throw new RuntimeException("The maintenance ticket is already assigned.");
@@ -867,10 +858,9 @@ public class MaintenanceTicket
 
 
   /**
-   * HAVE TO DISCUSS THE FOLLOWING TWO WITH TEAM
    * Behrad & Marc-Antoine
    */
-  // line 132 "../../../../../../AssetPlusStates.ump"
+  // line 122 "../../../../../../AssetPlusStates.ump"
    private String rejectApprove(String status){
     if (status.contains("closed")){
         throw new RuntimeException("The maintenance ticket is already closed.");
@@ -882,9 +872,17 @@ public class MaintenanceTicket
   /**
    * Behrad & Marc-Antoine
    */
-  // line 139 "../../../../../../AssetPlusStates.ump"
+  // line 129 "../../../../../../AssetPlusStates.ump"
    private String rejectDisapprove(String status){
     throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+status+".");
+  }
+
+  // line 14 "../../../../../../AssetPlusPersistence.ump"
+   public static  void reinitializeMaintenanceticketsById(List<MaintenanceTicket> maintenanceTickets){
+    maintenanceticketsById.clear();
+        for (MaintenanceTicket maintenanceTicket : maintenanceTickets) {
+            maintenanceticketsById.put(maintenanceTicket.getId(), maintenanceTicket);
+        }
   }
 
 

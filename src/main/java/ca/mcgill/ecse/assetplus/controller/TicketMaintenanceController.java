@@ -4,8 +4,6 @@ import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 public class TicketMaintenanceController {
 
-  // for each method, transform variables into proper form and use model to apply
-  // changes (validate inputs)
   public static String assignStaffToTicket(String ticketID, String staffEmail, String timeEstimate,
       String priorityLevel, String approvalRequired) {
     if(!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))){

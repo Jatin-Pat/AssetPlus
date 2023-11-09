@@ -26,6 +26,7 @@ import io.cucumber.java.en.When;
 import javafx.application.Application;
 import javafx.scene.layout.Priority;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
+import ca.mcgill.ecse.assetplus.controller.TOMaintenanceNote;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.controller.TicketMaintenanceController;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
@@ -341,8 +342,7 @@ public class MaintenanceTicketsStepDefinitions {
       if(ticketFound){
       Assertions.assertEquals(raiserEmail,actualTicket.getRaisedByEmail());
       Assertions.assertEquals(raisedDate, actualTicket.getRaisedOnDate().toString());
-      //TODO double check and fix below
-      //Assertions.assertEquals(description, actualTicket.getDescription());
+      Assertions.assertEquals(description, actualTicket.getDescription());
       Assertions.assertEquals(assetName, actualTicket.getAssetName());
       Assertions.assertEquals(lifeSpan, actualTicket.getExpectLifeSpanInDays());
       Assertions.assertEquals(purchaseDate, actualTicket.getPurchaseDate());
@@ -367,10 +367,20 @@ public class MaintenanceTicketsStepDefinitions {
       io.cucumber.datatable.DataTable dataTable) {
     
 
-      
+    
     int ticketID = Integer.parseInt(ticketIDString);
+    TOMaintenanceTicket targetTicket = null;  
+    List<TOMaintenanceTicket> TOtickets = AssetPlusFeatureSet6Controller.getTickets();
+      for (TOMaintenanceTicket toMaintenanceTicket : TOtickets) {
+        if(toMaintenanceTicket.getId() == ticketID){
+            targetTicket = toMaintenanceTicket;
+        }
+      }
+
+
+
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-    List<MaintenanceNote> activeNotes = ticket.getTicketNotes();
+    List<TOMaintenanceNote> activeNotes = targetTicket.getNotes();
     
     List<Map<String, String>> ticketNoteList = dataTable.asMaps();
     Assertions.assertEquals(ticketNoteList.size(), ticket.numberOfTicketNotes());
@@ -382,9 +392,9 @@ public class MaintenanceTicketsStepDefinitions {
       
       expectedNotes+= description+date+noteTaker;
     }
-    for(MaintenanceNote note : activeNotes){
+    for(TOMaintenanceNote note : activeNotes){
       Assertions.assertTrue(expectedNotes.contains(note.getDate().toString()));
-      Assertions.assertTrue(expectedNotes.contains(note.getNoteTaker().getEmail()));
+      Assertions.assertTrue(expectedNotes.contains(note.getNoteTakerEmail()));
       Assertions.assertTrue(expectedNotes.contains(note.getDescription()));
     }
 
