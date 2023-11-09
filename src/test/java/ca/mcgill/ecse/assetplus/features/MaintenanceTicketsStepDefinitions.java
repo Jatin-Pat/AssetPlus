@@ -1,30 +1,21 @@
 package ca.mcgill.ecse.assetplus.features;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.sql.Date;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
-import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
-import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
-import io.cucumber.java.bs.A.As;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import javafx.application.Application;
-import javafx.scene.layout.Priority;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceNote;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
@@ -32,7 +23,6 @@ import ca.mcgill.ecse.assetplus.controller.TicketMaintenanceController;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TicketStatus;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
-import cucumber.api.cli.Main;
 public class MaintenanceTicketsStepDefinitions {
   private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
   private String error = "";
