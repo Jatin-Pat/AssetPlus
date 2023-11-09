@@ -341,8 +341,8 @@ public class MaintenanceTicketsStepDefinitions {
       if(ticketFound){
       Assertions.assertEquals(raiserEmail,actualTicket.getRaisedByEmail());
       Assertions.assertEquals(raisedDate, actualTicket.getRaisedOnDate().toString());
-      //TODO double check and fix below
-      //Assertions.assertEquals(description, actualTicket.getDescription());
+      
+      Assertions.assertEquals(description, actualTicket.getDescription());
       Assertions.assertEquals(assetName, actualTicket.getAssetName());
       Assertions.assertEquals(lifeSpan, actualTicket.getExpectLifeSpanInDays());
       Assertions.assertEquals(purchaseDate, actualTicket.getPurchaseDate());
