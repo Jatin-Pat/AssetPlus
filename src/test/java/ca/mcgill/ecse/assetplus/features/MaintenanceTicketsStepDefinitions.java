@@ -54,9 +54,7 @@ public class MaintenanceTicketsStepDefinitions {
     List<Map<String, String>> managerToAdd = dataTable.asMaps();
     for (Map<String, String> manager : managerToAdd) {
       String email = manager.get("email");
-      //String name = manager.get("name");
       String password = manager.get("password");
-      //String phoneNumber = manager.get("phoneNumber");
       new Manager(email, "", password, "", assetPlus);
     }
   }
@@ -305,15 +303,15 @@ public class MaintenanceTicketsStepDefinitions {
       String raisedDate = ticket.get("raisedOnDate");
       String description = ticket.get("description");
       
-      String assetName = ticket.get("assetName");//
+      String assetName = ticket.get("assetName");
       String lifeSpanString = ticket.get("expectLifeSpan");
       int lifeSpan = -1;
       if(lifeSpanString!=null){
-         lifeSpan = Integer.parseInt(lifeSpanString);//
+         lifeSpan = Integer.parseInt(lifeSpanString);
       }
       Date purchaseDate = null; 
       if(ticket.get("purchaseDate") != null){
-        purchaseDate = Date.valueOf(ticket.get("purchaseDate"));//
+        purchaseDate = Date.valueOf(ticket.get("purchaseDate"));
       }
       int floorNumber = -1;
       if(ticket.get("floorNumber")!=null){
@@ -324,11 +322,11 @@ public class MaintenanceTicketsStepDefinitions {
         roomNumber =  Integer.parseInt(ticket.get("roomNumber"));
       }
       String status = ticket.get("status");
-      String fixedByEmail = ticket.get("fixedByEmail");//
-      String timeToResolve = ticket.get("timeToResolve");//
-      String priority = ticket.get("priority");//
-      boolean approvalRequired = Boolean.parseBoolean(ticket.get("approvalRequired"));//
-      
+      String fixedByEmail = ticket.get("fixedByEmail");
+      String timeToResolve = ticket.get("timeToResolve");
+      String priority = ticket.get("priority");
+      boolean approvalRequired = Boolean.parseBoolean(ticket.get("approvalRequired"));
+    
       if(ticketFound){
       Assertions.assertEquals(raiserEmail, actualTicket.getRaisedByEmail());
       Assertions.assertEquals(raisedDate, actualTicket.getRaisedOnDate().toString());
