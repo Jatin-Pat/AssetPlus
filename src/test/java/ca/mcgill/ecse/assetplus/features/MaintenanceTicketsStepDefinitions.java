@@ -350,7 +350,8 @@ public class MaintenanceTicketsStepDefinitions {
   }
 
   /**
-   * @author Laurence Perreault
+   * @author Laurence Perreault & Behrad Rezaie
+   *
    */
   @Then("the ticket with id {string} shall have the following notes")
   public void the_ticket_with_id_shall_have_the_following_notes(String ticketIDString,
