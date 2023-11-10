@@ -4,6 +4,9 @@ import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 public class TicketMaintenanceController {
 
+  /*
+   * @author Jatin Patel & Anastasiia Nemyrovska
+   */
   public static String assignStaffToTicket(String ticketID, String staffEmail, String timeEstimate,
       String priorityLevel, String approvalRequired) {
     if(!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))){

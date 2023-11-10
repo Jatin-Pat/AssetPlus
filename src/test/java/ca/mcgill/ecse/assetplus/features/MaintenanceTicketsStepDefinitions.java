@@ -401,8 +401,6 @@ public class MaintenanceTicketsStepDefinitions {
 
   /**
    * @author Jatin Patel
-   * @param ticketIDString id of ticket
-   * @param dataTable table of images to check existance
    */
   @Then("the ticket with id {string} shall have the following images")
   public void the_ticket_with_id_shall_have_the_following_images(String ticketIDString,
@@ -428,7 +426,7 @@ public class MaintenanceTicketsStepDefinitions {
 
   }
   /**
-   * @author Behrad Rezaie
+   * @author Jatin Patel
    */
   @Then("the ticket with id {string} shall have no images")
   public void the_ticket_with_id_shall_have_no_images(String ticketIDString) {
