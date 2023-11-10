@@ -77,9 +77,13 @@ public class TicketMaintenanceController {
 
     return "";
   }
-
-  public static String approveTicketWork(String ticketID) {
-    if (!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))) {
+  /**
+   * @author Behrad Rezaie & Marc-Antoine Nadeau
+   * @param ticketID String ID of ticket to approve
+   * @return String error if any are encountered
+   */
+  public static String approveTicketWork(String ticketID){
+    if(!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))){
       return "Maintenance ticket does not exist.";
     }
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(ticketID));
@@ -97,9 +101,15 @@ public class TicketMaintenanceController {
 
     return "";
   }
-
-  public static String disapproveTicketWork(String ticketID, String date, String reason) {
-    if (!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))) {
+  /**
+   * @author Behrad Rezaie & Marc-Antoine Nadeau
+   * @param ticketID String ID of ticket to disapprove
+   * @param date String date of disapproval
+   * @param reason String reason for disapproval
+   * @return String error if any are encountered
+   */
+  public static String disapproveTicketWork(String ticketID, String date, String reason){
+    if(!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))){
       return "Maintenance ticket does not exist.";
     }
 
