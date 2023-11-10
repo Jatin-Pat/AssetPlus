@@ -97,6 +97,9 @@ class MaintenanceTicket {
     //Behrad Rezaie
     private void doBeginWork(){
     }
+
+
+    //All Reject methods take a String status indicating ticket status prior to rejection
     //Behrad Rezaie
     private String rejectBegin(String status){
       if(status.contains("progress")){
@@ -127,7 +130,6 @@ class MaintenanceTicket {
       }
       throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
     }
-
 
     //Marc-Antoine Nadeau & Behrad Rezaie
     private String rejectDisapprove(String status){
