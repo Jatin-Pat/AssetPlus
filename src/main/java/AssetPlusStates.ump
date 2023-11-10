@@ -71,7 +71,7 @@ class MaintenanceTicket {
           }
     }
 
-
+    
     private void doAssign(String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
       MaintenanceTicket ticket = this;
         
@@ -83,9 +83,11 @@ class MaintenanceTicket {
       }
     }
 
+    //Marc-Antoine Nadeau & Behrad Rezaie
   	private void doApprove(String id){
     }
 
+    //Marc-Antoine Nadeau & Behrad Rezaie
     private void doDisapprove(String id, String date, String description){
       
       MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
@@ -116,7 +118,8 @@ class MaintenanceTicket {
       throw new RuntimeException("Cannot assign a maintenance ticket which is "+status+".");
     }
 
-
+    
+    //Marc-Antoine Nadeau & Behrad Rezaie
     private String rejectApprove(String status){
       if (status.contains("closed")){
         throw new RuntimeException("The maintenance ticket is already closed.");
@@ -124,6 +127,8 @@ class MaintenanceTicket {
       throw new RuntimeException("Cannot approve a maintenance ticket which is "+status+".");
     }
 
+
+    //Marc-Antoine Nadeau & Behrad Rezaie
     private String rejectDisapprove(String status){
       throw new RuntimeException("Cannot disapprove a maintenance ticket which is "+status+".");
     }
