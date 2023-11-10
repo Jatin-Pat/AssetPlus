@@ -97,7 +97,7 @@ class MaintenanceTicket {
     //Behrad Rezaie
     private void doBeginWork(){
     }
-
+    //Behrad Rezaie
     private String rejectBegin(String status){
       if(status.contains("progress")){
         throw new RuntimeException("The maintenance ticket is already in progress.");
