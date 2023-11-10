@@ -330,7 +330,7 @@ public class MaintenanceTicketsStepDefinitions {
       boolean approvalRequired = Boolean.parseBoolean(ticket.get("approvalRequired"));//
       
       if(ticketFound){
-      Assertions.assertEquals(raiserEmail,actualTicket.getRaisedByEmail());
+      Assertions.assertEquals(raiserEmail, actualTicket.getRaisedByEmail());
       Assertions.assertEquals(raisedDate, actualTicket.getRaisedOnDate().toString());
       Assertions.assertEquals(description, actualTicket.getDescription());
       Assertions.assertEquals(assetName, actualTicket.getAssetName());

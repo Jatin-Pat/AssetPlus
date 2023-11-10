@@ -20,6 +20,7 @@ public class AssetPlusFeatureSet1Controller {
    * @param password a string with at least one 3 character long containing at least one of #!$, both uppercase and lowercase letters. 
    * @return An empty string when the password has been succesfully updated, or a String with all the error messages combined in case of failure.
    * @since 1.0 
+   * @author Marc-Antoine Nadeau - Student ID: 261114549
    */
   public static String updateManager(String password) {  
     //Input Validation
@@ -59,6 +60,7 @@ public class AssetPlusFeatureSet1Controller {
    * @param isEmployee Boolean telling if it is an employee or a guest
    * @return An empty string when the employee or guest has been added, or a String with all the error messages combined in case of failure.
    * @since 1.0 
+   * @author Marc-Antoine Nadeau - Student ID: 261114549
    */
   public static String addEmployeeOrGuest(String email, String password, String name, String phoneNumber, boolean isEmployee) {
     // Input Validation
@@ -121,6 +123,7 @@ public class AssetPlusFeatureSet1Controller {
   * @param newPhoneNumber The new phone number of the following employee or guest
   * @return An empty string when the employee or guest has been updated, or a String with all the error messages combined in case of failure.
   * @since 1.0 
+  * @author Marc-Antoine Nadeau - Student ID: 261114549
   */
  public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
     var error = "";
