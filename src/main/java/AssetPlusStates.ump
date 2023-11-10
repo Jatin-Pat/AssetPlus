@@ -71,7 +71,7 @@ class MaintenanceTicket {
           }
     }
 
-    
+    //Jatin Patel & Anastasiia Nemyrovska
     private void doAssign(String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
       MaintenanceTicket ticket = this;
         
@@ -94,6 +94,7 @@ class MaintenanceTicket {
       ticket.addTicketNote(Date.valueOf(date), description, ticket.getAssetPlus().getManager());
     }
     
+    //Behrad Rezaie
     private void doBeginWork(){
     }
 
@@ -103,14 +104,14 @@ class MaintenanceTicket {
       }
       throw new RuntimeException("Cannot start a maintenance ticket which is "+status+".");
     }
-
+    //Behrad Rezaie
     private String rejectComplete(String status){
       if(status.contains("closed") || status.contains("resolved")){
         throw new RuntimeException("The maintenance ticket is already "+status+".");
       }
       throw new RuntimeException("Cannot complete a maintenance ticket which is "+status+".");
     }
-
+    //Behrad Rezaie
     private String rejectAssign(String status){
       if (status.contains("assigned")){
         throw new RuntimeException("The maintenance ticket is already assigned.");
