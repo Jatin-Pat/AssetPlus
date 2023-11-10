@@ -50,7 +50,9 @@ public class TicketMaintenanceController {
     return errorMsg;
     
   }
-
+  /*
+   * @author Dmytro Martyniuk
+   */
   public static String completeTicketWork(String ticketID) {
     int intTicketID = Integer.parseInt(ticketID);
     if(!MaintenanceTicket.hasWithId(intTicketID)){
