@@ -61,7 +61,7 @@ public class TicketMaintenanceController {
     
   }
   /**
-   * @author Pei Yan Geng & Laurence Perreault & Dmytro Martyniuk
+   * @author Dmytro Martyniuk & Pei Yan Geng & Laurence Perreault
    * @param ticketID String ID of target ticket
    * @return String errors if any are encountered
    */
