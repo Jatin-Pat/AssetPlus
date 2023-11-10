@@ -35,7 +35,7 @@ public class TicketMaintenanceController {
     return "";
   }
   /**
-   * @author Pei Yan Geng
+   * @author Pei Yan Geng & Laurence Perreault & Dmytro Martyniuk
    * @param ticketID String ID of the maintenance ticket
    * @return String error message if any are encountered
    */
@@ -61,9 +61,9 @@ public class TicketMaintenanceController {
     
   }
   /**
-   * @author Dmytro Martyniuk
-   * @param ticketID String ID of the maintenance ticket
-   * @return String error message if any are encountered
+   * @author Dmytro Martyniuk & Pei Yan Geng & Laurence Perreault
+   * @param ticketID String ID of target ticket
+   * @return String errors if any are encountered
    */
   public static String completeTicketWork(String ticketID) {
     int intTicketID = Integer.parseInt(ticketID);
