@@ -1,4 +1,5 @@
 class AssetPlus{
+    //Jatin Patel & Anastasiia Nemyrovska
     public void reinitialize(){
         MaintenanceTicket.reinitializeMaintenanceticketsById(getMaintenanceTickets());
         AssetType.reinitializeAssettypesByName(getAssetTypes());
@@ -8,7 +9,7 @@ class AssetPlus{
 
 
 }
-
+//Jatin Patel & Anastasiia Nemyrovska
 class MaintenanceTicket{
     public static void reinitializeMaintenanceticketsById(List<MaintenanceTicket> maintenanceTickets) {
         maintenanceticketsById.clear();
@@ -21,7 +22,7 @@ class MaintenanceTicket{
 
 
 }
-
+//Jatin Patel & Anastasiia Nemyrovska
 class AssetType {
     public static void reinitializeAssettypesByName(List<AssetType> assetTypes) {
         assettypesByName.clear();
@@ -32,7 +33,7 @@ class AssetType {
 
 
 }
-
+//Jatin Patel & Anastasiia Nemyrovska
 class SpecificAsset {
     public static void reinitializeSpecificassetsByAssetNumber(List<SpecificAsset> specificAssets) {
         specificassetsByAssetNumber.clear();
@@ -43,7 +44,7 @@ class SpecificAsset {
 
 
 }
-
+///Jatin Patel & Anastasiia Nemyrovska
 class User {
     public static void reinitializeUsersByEmail(List<Employee> employees, List<Guest> guests, Manager manager) {
         usersByEmail.clear();
