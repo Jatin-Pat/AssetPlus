@@ -115,5 +115,45 @@ public class AssetPlusFeatureSet6Controller {
       }
     return listOfTickets;
   }
+  public static List<TOMaintenanceTicket> filterTicketsByDate(String dateString) {
+    //TODO missing input validation: input format has to be YYYY-MM-DD
+    
+    List<TOMaintenanceTicket> filteredTickets = new ArrayList<TOMaintenanceTicket>();
+    List<TOMaintenanceTicket> allTickets = getTickets();
 
+    Date date = Date.valueOf(dateString);
+
+    for (TOMaintenanceTicket ticket : allTickets) {
+      if(ticket.getRaisedOnDate()==date){
+        filteredTickets.add(ticket);
+      }
+    }
+    return filteredTickets;
+  }
+  public static List<TOMaintenanceTicket> filterTicketsByEmployee(String employeeName) {
+    AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
+    List<TOMaintenanceTicket> filteredTickets = new ArrayList<TOMaintenanceTicket>();
+    List<TOMaintenanceTicket> allTickets = getTickets();
+
+    //Find employee's email based on input
+    String employeeEmail = null;
+    List<Employee> employees = assetPlus.getEmployees();
+    for (Employee employee : employees) {
+      if(employee.getName().contains(employeeName)){
+        employeeEmail = employee.getEmail();
+        break;
+      }
+    }
+    //Null check in case employee name not found
+    if(employeeEmail == null){
+      return filteredTickets;
+    }
+    //Loop through tickets for tickets fixed by employee
+    for (TOMaintenanceTicket ticket : allTickets) {
+      if(ticket.getFixedByEmail() == employeeEmail){
+        filteredTickets.add(ticket);
+      }
+    }
+    return filteredTickets;
+  }
 }
