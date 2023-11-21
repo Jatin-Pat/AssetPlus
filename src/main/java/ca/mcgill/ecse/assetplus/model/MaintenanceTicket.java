@@ -792,6 +792,8 @@ public class MaintenanceTicket
     }
   }
 
+
+  //Jatin Patel & Anastasiia Nemyrovska
   // line 76 "../../../../../../AssetPlusStates.ump"
    private void doAssign(String email, PriorityLevel level, TimeEstimate estimate, boolean approval){
     MaintenanceTicket ticket = this;
@@ -809,11 +811,18 @@ public class MaintenanceTicket
     
   }
 
+  /**
+  * Marc-Antoine Nadeau & Behrad Rezaie  
+  */
   // line 91 "../../../../../../AssetPlusStates.ump"
    private void doDisapprove(String id, String date, String description){
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(id));
       ticket.addTicketNote(Date.valueOf(date), description, ticket.getAssetPlus().getManager());
   }
+
+  /**
+  * Behrad Rezaie  
+  */
 
   // line 96 "../../../../../../AssetPlusStates.ump"
    private void doBeginWork(){
@@ -822,7 +831,7 @@ public class MaintenanceTicket
 
 
   /**
-   * Behrad
+   * Behrad Rezaie 
    */
   // line 100 "../../../../../../AssetPlusStates.ump"
    private String rejectBegin(String status){
@@ -834,7 +843,7 @@ public class MaintenanceTicket
 
 
   /**
-   * Behrad
+   * Behrad Rezaie 
    */
   // line 107 "../../../../../../AssetPlusStates.ump"
    private String rejectComplete(String status){
@@ -846,7 +855,7 @@ public class MaintenanceTicket
 
 
   /**
-   * Behrad
+   * Behrad Rezaie
    */
   // line 114 "../../../../../../AssetPlusStates.ump"
    private String rejectAssign(String status){
@@ -858,7 +867,7 @@ public class MaintenanceTicket
 
 
   /**
-   * Behrad & Marc-Antoine
+   * Behrad Rezaie & Marc-Antoine Nadeau
    */
   // line 122 "../../../../../../AssetPlusStates.ump"
    private String rejectApprove(String status){
