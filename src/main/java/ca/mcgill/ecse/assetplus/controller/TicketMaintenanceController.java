@@ -5,8 +5,14 @@ import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 public class TicketMaintenanceController {
 
-  /*
+  /**
    * @author Jatin Patel & Anastasiia Nemyrovska
+   * @param ticketID String ID of ticket to assign
+   * @param staffEmail String email of staff to assign to
+   * @param timeEstimate String estimated time of completion
+   * @param priorityLevel String priority level of ticket's completion
+   * @param approvalRequired String boolean indicating if closing required manager approval
+   * @return String errors if any are encountered
    */
   public static String assignStaffToTicket(String ticketID, String staffEmail, String timeEstimate,
       String priorityLevel, String approvalRequired) {
@@ -30,7 +36,11 @@ public class TicketMaintenanceController {
     }
     return "";
   }
-
+  /**
+   * @author Pei Yan Geng & Laurence Perreault & Dmytro Martyniuk
+   * @param ticketID String ID of the ticket
+   * @return String errors if any are encountered
+   */
   public static String beginTicketWork(String ticketID) {
     String errorMsg = "";
     int intTicketID = Integer.parseInt(ticketID);
@@ -52,10 +62,10 @@ public class TicketMaintenanceController {
     return errorMsg;
 
   }
-
-
-  /*
-   * @author Dmytro Martyniuk
+  /**
+   * @author Dmytro Martyniuk & Pei Yan Geng & Laurence Perreault
+   * @param ticketID String ID of target ticket
+   * @return String errors if any are encountered
    */
   public static String completeTicketWork(String ticketID) {
     int intTicketID = Integer.parseInt(ticketID);
