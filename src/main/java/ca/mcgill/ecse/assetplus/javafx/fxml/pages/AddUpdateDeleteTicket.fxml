@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<!-- Probably need different fxml files for update and delete ticket -->
 <AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);">
     <VBox spacing="20" layoutX="20" layoutY="-1"> <!-- Adjusted layoutY to move the entire VBox and its contents higher -->
