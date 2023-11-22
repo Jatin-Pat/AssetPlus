@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+<AnchorPane prefHeight="465.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
             style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);">
-    <VBox spacing="20" layoutX="20" layoutY="-1"> <!-- Adjusted layoutY to move the entire VBox and its contents higher -->
-        <Label text="AssetPlus" textFill="WHITE" style="-fx-font-size: 24px;"/>
-        <VBox spacing="10">
-            <Label text="Hello, username!" AnchorPane.leftAnchor="5.0" textFill="WHITE"/>
+    <VBox spacing="15" layoutX="20" layoutY="5" style="-fx-font-family: 'Comic Sans MS';"> <!-- Adjusted layoutY to move the entire VBox and its contents higher -->
+        <Label text="AssetPlus" textFill="WHITE" style="-fx-font-size: 24px; -fx-font-family: 'Comic Sans MS';"/>
+        <VBox spacing="2" >
+            <Label text="Hello, username!" AnchorPane.leftAnchor="5.0" textFill="WHITE" style="-fx-font-family: 'Comic Sans MS';"/>
             <Button text="Logout" AnchorPane.rightAnchor="5.0" />
         </VBox>
-        <Label text="Add Images" />
-        <TextField promptText="Title" />
-        <TextField promptText="Description" />
-        <VBox spacing="10">
-            <Label text="Add:" />
+        <Label text="Add Images" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
+        <TextField promptText="Title" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
+        <TextField promptText="Description" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
+        <VBox spacing="10" style="-fx-background-radius: 10;">
+            <Label text="Add:" style="-fx-font-family: 'Comic Sans MS';"/>
             <TextField promptText="Url or Drop From PC" />
         </VBox>
-        <Button text="Cancel" />
-        <Button text="Add" />
-        <Button text="SUBMIT" /> <!-- No need to adjust layoutY for the button now -->
+        <Button text="Cancel" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
+        <Button text="Add" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
+        <Button text="SUBMIT" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
     </VBox>
 </AnchorPane>
