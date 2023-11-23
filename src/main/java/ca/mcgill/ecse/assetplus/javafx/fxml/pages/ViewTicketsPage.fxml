@@ -31,7 +31,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <DatePicker fx:id="dateFilter" prefHeight="26.0" prefWidth="151.0" promptText="MM/DD/YYYY" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+      <DatePicker fx:id="dateFilter" prefHeight="19.0" prefWidth="146.0" promptText="MM/DD/YYYY" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP" />
       <Label prefHeight="18.0" prefWidth="113.0" text="Enter Date Raised:" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <font>
             <Font name="Roboto Bold" size="12.0" />
@@ -43,10 +43,13 @@
          </font>
       </Label>
       <Separator prefWidth="200.0" valignment="TOP" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-      <TextField fx:id="employeeFilter" alignment="BASELINE_CENTER" promptText="Employee Name" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <TextField fx:id="employeeFilter" alignment="BASELINE_CENTER" prefHeight="10.0" prefWidth="100.0" promptText="Employee Name" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <font>
             <Font size="10.0" />
          </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
       </TextField>
       <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
@@ -57,18 +60,21 @@
             <Blend />
          </effect>
       </Button>
-      <Label alignment="TOP_CENTER" prefHeight="79.0" prefWidth="195.0" text="Filter Tickets" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+      <Label alignment="TOP_CENTER" prefHeight="79.0" prefWidth="195.0" text="Filter Tickets" textAlignment="CENTER" underline="true" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
          <font>
             <Font name="Roboto" size="24.0" />
          </font>
       </Label>
-      <Label alignment="BOTTOM_CENTER" contentDisplay="TOP" prefHeight="129.0" prefWidth="468.0" text="View Maintenance Tickets" textAlignment="RIGHT" textFill="#e8e8e8" GridPane.columnSpan="4">
+      <Label alignment="BOTTOM_LEFT" contentDisplay="TOP" prefHeight="129.0" prefWidth="730.0" text="View Maintenance Tickets" textAlignment="RIGHT" textFill="#e8e8e8" GridPane.columnSpan="6">
          <font>
             <Font name="Arial Black" size="30.0" />
          </font>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin>
       </Label>
       <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="4">
         <columns>
@@ -80,5 +86,6 @@
             <TableColumn prefWidth="81.0" text="Status" />
         </columns>
       </TableView>
+      <Separator prefHeight="0.0" prefWidth="135.0" valignment="TOP" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="TOP" />
    </children>
 </GridPane>
