@@ -39,30 +39,30 @@
          </GridPane.margin>
       </Label>
       <Label text="Name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <TextField fx:id="name" prefHeight="43.0" prefWidth="330.0" promptText="Insert Name " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <TextField fx:id="userNameTextField" prefHeight="43.0" prefWidth="330.0" promptText="Insert Name " GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <Label text="Account Name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin></Label>
-      <TextField fx:id="accountName" prefHeight="43.0" prefWidth="330.0" promptText="Insert Email" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+      <TextField fx:id="userEmailTextField" prefHeight="43.0" prefWidth="330.0" promptText="Insert Email" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
       <Label text="Phone Number" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin></Label>
-      <TextField fx:id="phoneNumber" prefHeight="43.0" prefWidth="330.0" promptText="Insert Phone Number" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <TextField fx:id="userPhoneNumberTextField" prefHeight="43.0" prefWidth="330.0" promptText="Insert Phone Number" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label text="Password" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="40.0" />
          </GridPane.margin>
       </Label>
-      <PasswordField fx:id="password" prefHeight="39.0" prefWidth="324.0" promptText="Insert Password" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <PasswordField fx:id="userPasswordTextField" prefHeight="39.0" prefWidth="324.0" promptText="Insert Password" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="40.0" />
          </GridPane.margin>
       </PasswordField>
-      <Button fx:id="addUser" mnemonicParsing="false" prefHeight="46.0" prefWidth="100.0" text="Add" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-      <Button fx:id="modifyUser" mnemonicParsing="false" prefHeight="46.0" prefWidth="100.0" text="Modify" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-      <Button fx:id="deleteUser" mnemonicParsing="false" prefHeight="46.0" prefWidth="100.0" text="Delete" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+      <Button fx:id="addUser" mnemonicParsing="false" onAction="addEmployeeOrGuestClicked" prefHeight="46.0" prefWidth="100.0" text="Add" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+      <Button fx:id="modifyUser" mnemonicParsing="false" onAction="#modifyManagerEmployeeOrGuestClicked" prefHeight="46.0" prefWidth="100.0" text="Modify" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+      <Button fx:id="deleteUser" mnemonicParsing="false" onAction="#deleteEmployeeOrGuestClicked" prefHeight="46.0" prefWidth="100.0" text="Delete" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
