@@ -6,11 +6,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import ca.mcgill.ecse.assetplus.controller.*;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+
 
 public class addUpdateDeleteUser {
 
     @FXML
-    private Button addUser;
+    private MenuItem addEmployeeClicked;
+
+    @FXML
+    private MenuItem addGuestClicked;
+
+    @FXML
+    private MenuButton addUser;
 
     @FXML
     private Button deleteUser;
@@ -31,19 +40,83 @@ public class addUpdateDeleteUser {
     private TextField userPhoneNumberTextField;
 
     @FXML
-    void addEmployeeOrGuestClicked(ActionEvent event) {
-      
+    void addEmployeeClicked(ActionEvent event) {
+      String name = userNameTextField.getText();
+      String email = userEmailTextField.getText();
+      String phoneNumber = userPhoneNumberTextField.getText();
+      String password = userPasswordTextField.getText();
+
+      if (ViewUtils.successful(AssetPlusFeatureSet1Controller.addEmployeeOrGuest(email,password, name, phoneNumber, true))){
+        userNameTextField.setText("");
+        userEmailTextField.setText("");
+        userPhoneNumberTextField.setText("");
+        userPasswordTextField.setText("");
+      }
+
+    }
+
+    @FXML
+    void addGuestClicked(ActionEvent event) {
+      String name = userNameTextField.getText();
+      String email = userEmailTextField.getText();
+      String phoneNumber = userPhoneNumberTextField.getText();
+      String password = userPasswordTextField.getText();
+
+      if (ViewUtils.successful(AssetPlusFeatureSet1Controller.addEmployeeOrGuest(email,password, name, phoneNumber, false))){
+        userNameTextField.setText("");
+        userEmailTextField.setText("");
+        userPhoneNumberTextField.setText("");
+        userPasswordTextField.setText("");
+      }
 
     }
 
     @FXML
     void deleteEmployeeOrGuestClicked(ActionEvent event) {
+      //TODO ERROR MESSAGE?? 
+      String name = userNameTextField.getText();
+      String email = userEmailTextField.getText();
+      String phoneNumber = userPhoneNumberTextField.getText();
+      String password = userPasswordTextField.getText();
+
+  
+      AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(email);
+      userNameTextField.setText("");
+      userEmailTextField.setText("");
+      userPhoneNumberTextField.setText("");
+      userPasswordTextField.setText("");
+
+
+    }
+
+
+    @FXML
+    void updateEmployeeOrGuestClicked(ActionEvent event) {
+      String name = userNameTextField.getText();
+      String email = userEmailTextField.getText();
+      String phoneNumber = userPhoneNumberTextField.getText();
+      String password = userPasswordTextField.getText();
+      if (ViewUtils.successful(AssetPlusFeatureSet1Controller.updateEmployeeOrGuest(email,password,name,phoneNumber))){
+        userNameTextField.setText("");
+        userEmailTextField.setText("");
+        userPhoneNumberTextField.setText("");
+        userPasswordTextField.setText("");
+      }
 
     }
 
     @FXML
-    void modifyManagerEmployeeOrGuestClicked(ActionEvent event) {
+    void updateManagerClicked(ActionEvent event) {
+      String name = userNameTextField.getText();
+      String email = userEmailTextField.getText();
+      String phoneNumber = userPhoneNumberTextField.getText();
+      String password = userPasswordTextField.getText();
 
-    }
+      if (ViewUtils.successful(AssetPlusFeatureSet1Controller.updateManager(password))){
+        userNameTextField.setText("");
+        userEmailTextField.setText("");
+        userPhoneNumberTextField.setText("");
+        userPasswordTextField.setText("");
+      }
+    }}
 
-}
