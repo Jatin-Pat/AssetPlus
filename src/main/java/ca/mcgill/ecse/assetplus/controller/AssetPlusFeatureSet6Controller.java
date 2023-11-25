@@ -115,13 +115,11 @@ public class AssetPlusFeatureSet6Controller {
       }
     return listOfTickets;
   }
-  public static List<TOMaintenanceTicket> filterTicketsByDate(String dateString) {
-    //TODO missing input validation: input format has to be YYYY-MM-DD
+  public static List<TOMaintenanceTicket> filterTicketsByDate(Date date) {
     
     List<TOMaintenanceTicket> filteredTickets = new ArrayList<TOMaintenanceTicket>();
     List<TOMaintenanceTicket> allTickets = getTickets();
 
-    Date date = Date.valueOf(dateString);
 
     for (TOMaintenanceTicket ticket : allTickets) {
       if(ticket.getRaisedOnDate()==date){
@@ -156,4 +154,36 @@ public class AssetPlusFeatureSet6Controller {
     }
     return filteredTickets;
   }
+
+  public static List<TOMaintenanceTicket> filterByBoth(Date dateFilter, String employeeName){
+    List<TOMaintenanceTicket> filteredTickets = new ArrayList<TOMaintenanceTicket>();
+    List<TOMaintenanceTicket> allTickets = getTickets();
+    AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
+
+
+    String employeeEmail = null;
+    List<Employee> employees = assetPlus.getEmployees();
+    for (Employee employee : employees) {
+      if(employee.getName().contains(employeeName)){
+        employeeEmail = employee.getEmail();
+        break;
+      }
+    }
+    
+    //Null check in case employee name not found
+    if(employeeEmail == null){
+      return filteredTickets;
+    }
+    for (TOMaintenanceTicket ticket : allTickets) {
+      if(ticket.getFixedByEmail() == employeeEmail && ticket.getRaisedOnDate() == dateFilter){
+        filteredTickets.add(ticket);
+      }
+    }
+    return filteredTickets;
+
+
+  }
+
+
+
 }

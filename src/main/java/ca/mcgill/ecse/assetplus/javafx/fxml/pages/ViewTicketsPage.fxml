@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewTickets">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -76,7 +76,7 @@
             <Insets left="50.0" />
          </GridPane.margin>
       </Label>
-      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="4">
+      <TableView fx:id="TicketsView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="4">
         <columns>
           <TableColumn prefWidth="96.0" text="Ticket ID" />
           <TableColumn prefWidth="89.0" text="Date" />
