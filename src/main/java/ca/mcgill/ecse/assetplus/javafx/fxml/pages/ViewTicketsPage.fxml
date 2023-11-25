@@ -54,11 +54,7 @@
       <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
       <Separator prefHeight="0.0" prefWidth="135.0" valignment="TOP" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP" />
       <Separator prefHeight="0.0" prefWidth="135.0" valignment="TOP" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-      <Button fx:id="refreshTickets" mnemonicParsing="false" mouseTransparent="true" onAction="#testButton" onMouseClicked="#testButton" text="Refresh" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
-         <effect>
-            <Blend />
-         </effect>
-      </Button>
+      <Button fx:id="refreshTickets" mnemonicParsing="false" onAction="#testButton" text="Refresh" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP"></Button>
       <Label alignment="TOP_CENTER" prefHeight="79.0" prefWidth="195.0" text="Filter Tickets" textAlignment="CENTER" underline="true" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
          <font>
             <Font name="Roboto" size="24.0" />

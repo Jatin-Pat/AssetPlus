@@ -36,7 +36,7 @@ public class ViewTickets {
     private TableView<TOMaintenanceTicket> TicketsView;
 
     @FXML
-    public void testButton(){
+    public void testButton(ActionEvent event){
       System.out.println("button clciked");
       refreshTickets.setStyle("-fx-background-color: #FF00FF; ");
     }
@@ -96,7 +96,7 @@ public class ViewTickets {
     }
 
     @FXML
-    public void refreshTickets(){
+    void refreshTickets(ActionEvent event){
       AssetPlusFxmlView.getInstance().refresh();
     }
 
