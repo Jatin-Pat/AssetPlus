@@ -80,13 +80,13 @@ public class addUpdateDeleteUser {
       String password = userPasswordTextField.getText();
 
   
-      AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(email);
-      userNameTextField.setText("");
-      userEmailTextField.setText("");
-      userPhoneNumberTextField.setText("");
-      userPasswordTextField.setText("");
-
-
+      if ( !email.equals("manager@ap.com")) {
+        AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(email);
+        userNameTextField.setText("");
+        userEmailTextField.setText("");
+        userPhoneNumberTextField.setText("");
+        userPasswordTextField.setText("");
+      }
     }
 
 
