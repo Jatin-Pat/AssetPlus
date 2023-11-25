@@ -18,7 +18,7 @@ import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.Action;
+import javax.annotation.Syntax;
 
 
 public class ViewTickets {
@@ -35,14 +35,26 @@ public class ViewTickets {
     @FXML
     private TableView<TOMaintenanceTicket> TicketsView;
 
+    @FXML
+    public void testButton(){
+      System.out.println("button clciked");
+      refreshTickets.setStyle("-fx-background-color: #FF00FF; ");
+    }
 
+   
     public void initialize(){
-      
-      refreshTickets.setOnAction(new EventHandler<ActionEvent>(){
-        @Override public void handle(ActionEvent e){
-          TicketsView.setItems(getMaintenanceTickets());
-        }
-      });
+      System.out.println("initialized");
+      getMaintenanceTickets();
+
+      /* 
+      refreshTickets.setStyle("-fx-background-color: #0000FF; ");
+      refreshTickets.setOnAction(new EventHandler<ActionEvent>() {
+        @Override 
+        public void handle(ActionEvent e) {
+                System.out.println("got to play");
+                refreshTickets.setStyle("-fx-background-color: #FF00FF; ");
+            }
+            });*/
 
 
       TableColumn<TOMaintenanceTicket, Integer> ticketIDColumn = new TableColumn<TOMaintenanceTicket, Integer>("Ticket ID");
@@ -83,22 +95,33 @@ public class ViewTickets {
 
     }
 
+    @FXML
+    public void refreshTickets(){
+      AssetPlusFxmlView.getInstance().refresh();
+    }
+
     public ObservableList<TOMaintenanceTicket> getMaintenanceTickets(){
       LocalDate selectedDate = dateFilter.getValue();
       String employeeName = employeeFilter.getText();
+      
+      System.out.println(selectedDate + "1");
+      System.out.println(employeeName + "2");
 
+      System.out.println("GETTING TICKETS AGAIN");
       List<TOMaintenanceTicket> tickets = null;
       
-      if(selectedDate == null && employeeName == null){
+      if(selectedDate == null && employeeName == ""){
+              System.out.println("BOTH NULL");
+
         tickets = AssetPlusFeatureSet6Controller.getTickets();
       }
-      else if(selectedDate != null && employeeName != null){
+      else if(selectedDate != null && employeeName != ""){
         AssetPlusFeatureSet6Controller.filterByBoth(Date.valueOf(selectedDate), employeeName);
       }
       else if(selectedDate != null){
         tickets = AssetPlusFeatureSet6Controller.filterTicketsByDate(Date.valueOf(selectedDate));
       }
-      else if(employeeName != null){
+      else if(employeeName != ""){
         tickets = AssetPlusFeatureSet6Controller.filterTicketsByEmployee(employeeName);
       }
       

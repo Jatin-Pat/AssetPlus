@@ -54,7 +54,7 @@
       <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
       <Separator prefHeight="0.0" prefWidth="135.0" valignment="TOP" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP" />
       <Separator prefHeight="0.0" prefWidth="135.0" valignment="TOP" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-      <Button fx:id="refreshTickets" mnemonicParsing="false" mouseTransparent="true" text="Refresh" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <Button fx:id="refreshTickets" mnemonicParsing="false" mouseTransparent="true" onAction="#testButton" onMouseClicked="#testButton" text="Refresh" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <effect>
             <Blend />
          </effect>
