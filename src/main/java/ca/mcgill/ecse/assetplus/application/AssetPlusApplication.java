@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.application;
 
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import javafx.application.Application;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
@@ -12,6 +13,8 @@ public class AssetPlusApplication {
 
   public static void main(String[] args) {
       Application.launch(AssetPlusFxmlView.class, args);
+      Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
+      assetPlus.setManager(manager);
     // TODO Start the application user interface here
   }
 
