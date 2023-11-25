@@ -36,15 +36,15 @@ public class ViewTickets {
     private TableView<TOMaintenanceTicket> TicketsView;
 
     @FXML
-    public void testButton(ActionEvent event){
-      System.out.println("button clciked");
-      refreshTickets.setStyle("-fx-background-color: #FF00FF; ");
+    void refreshTickets(ActionEvent event){
+      System.out.println("buttonClicked");
+      TicketsView.setItems(getMaintenanceTickets());
+      AssetPlusFxmlView.getInstance().refresh();
     }
 
    
     public void initialize(){
       System.out.println("initialized");
-      getMaintenanceTickets();
 
       /* 
       refreshTickets.setStyle("-fx-background-color: #0000FF; ");
@@ -95,33 +95,34 @@ public class ViewTickets {
 
     }
 
-    @FXML
-    void refreshTickets(ActionEvent event){
-      AssetPlusFxmlView.getInstance().refresh();
-    }
+    
 
     public ObservableList<TOMaintenanceTicket> getMaintenanceTickets(){
       LocalDate selectedDate = dateFilter.getValue();
       String employeeName = employeeFilter.getText();
       
-      System.out.println(selectedDate + "1");
-      System.out.println(employeeName + "2");
+      System.out.println(selectedDate + " 1");
+      System.out.println(employeeName + " 2");
 
       System.out.println("GETTING TICKETS AGAIN");
       List<TOMaintenanceTicket> tickets = null;
       
       if(selectedDate == null && employeeName == ""){
               System.out.println("BOTH NULL");
+              
 
         tickets = AssetPlusFeatureSet6Controller.getTickets();
       }
       else if(selectedDate != null && employeeName != ""){
+        System.out.println("Filter by both");
         AssetPlusFeatureSet6Controller.filterByBoth(Date.valueOf(selectedDate), employeeName);
       }
       else if(selectedDate != null){
+        System.out.println("Getting Tickets by Date only");
         tickets = AssetPlusFeatureSet6Controller.filterTicketsByDate(Date.valueOf(selectedDate));
       }
       else if(employeeName != ""){
+        System.out.println("Filter by employee");
         tickets = AssetPlusFeatureSet6Controller.filterTicketsByEmployee(employeeName);
       }
       

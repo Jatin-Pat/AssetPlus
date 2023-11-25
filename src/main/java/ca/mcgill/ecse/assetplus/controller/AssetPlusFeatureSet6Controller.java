@@ -108,11 +108,12 @@ public class AssetPlusFeatureSet6Controller {
           allNotes[i] = MaintenanceNote;
           i++;
         }
-        //Constructing TO of current Ticket
         
+        //Constructing TO of current Ticket
         TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, emailRaiser, status,ticketFixer,timeEstimate,priorityLevel,approvalRequired, assetName,lifeSpan,purchaseDate,aFloorNumber,aRoomNumber,imageURLS,allNotes);
         listOfTickets.add(TOTicket);
       }
+
     return listOfTickets;
   }
   public static List<TOMaintenanceTicket> filterTicketsByDate(Date date) {
@@ -120,9 +121,10 @@ public class AssetPlusFeatureSet6Controller {
     List<TOMaintenanceTicket> filteredTickets = new ArrayList<TOMaintenanceTicket>();
     List<TOMaintenanceTicket> allTickets = getTickets();
 
-
     for (TOMaintenanceTicket ticket : allTickets) {
-      if(ticket.getRaisedOnDate()==date){
+      System.out.println(date+" vs "+ticket.getRaisedOnDate());
+
+      if(ticket.getRaisedOnDate().equals(date)){
         filteredTickets.add(ticket);
       }
     }
@@ -148,7 +150,7 @@ public class AssetPlusFeatureSet6Controller {
     }
     //Loop through tickets for tickets fixed by employee
     for (TOMaintenanceTicket ticket : allTickets) {
-      if(ticket.getFixedByEmail() == employeeEmail){
+      if(ticket.getFixedByEmail().equals(employeeEmail)){
         filteredTickets.add(ticket);
       }
     }
@@ -175,7 +177,7 @@ public class AssetPlusFeatureSet6Controller {
       return filteredTickets;
     }
     for (TOMaintenanceTicket ticket : allTickets) {
-      if(ticket.getFixedByEmail() == employeeEmail && ticket.getRaisedOnDate() == dateFilter){
+      if(ticket.getFixedByEmail().equals(employeeEmail) && ticket.getRaisedOnDate().equals(dateFilter)){
         filteredTickets.add(ticket);
       }
     }
