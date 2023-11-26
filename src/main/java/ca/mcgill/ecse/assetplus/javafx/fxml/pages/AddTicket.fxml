@@ -6,10 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<!-- Probably need different fxml files for update and delete ticket -->
-<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);">
-    <VBox spacing="20" layoutX="20" layoutY="-1"> <!-- Adjusted layoutY to move the entire VBox and its contents higher -->
+    <VBox spacing="20" layoutX="20" layoutY="10"> <!-- Adjusted layoutY to move the entire VBox and its contents higher -->
         <Label text="AssetPlus" textFill="WHITE" style="-fx-font-size: 24px;"/>
         <VBox spacing="10">
             <Label text="Hello, username!" AnchorPane.leftAnchor="5.0" textFill="WHITE"/>
@@ -21,7 +20,6 @@
         <TextField promptText="Location (floor-room)" />
         <TextField promptText="Description" />
         <Button text="Add" />
-        <Button text="SUBMIT" /> <!-- No need to adjust layoutY for the button now -->
     </VBox>
 </AnchorPane>
 
