@@ -17,9 +17,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class addTicket {
-    @FXML private TextField ticketIdTextField;
+    @FXML private TextField ticketIdTextField; //how do I get the next available int in the list?
 
-    @FXML private TextField usernameTextField;
+    @FXML private TextField usernameTextField; //how do I get these?
 
     @FXML private Button logoutButton;
 
