@@ -50,7 +50,10 @@
             </Tab>
             <Tab text="Manage Assets">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <fx:include source="pages/ManageAsset.fxml" />
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="Hotel Management">
