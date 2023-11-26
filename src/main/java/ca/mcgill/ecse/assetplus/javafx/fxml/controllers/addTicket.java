@@ -51,7 +51,7 @@ public class addTicket {
     }
     public void openAddImagePage(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddImagePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addDeleteImage.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
