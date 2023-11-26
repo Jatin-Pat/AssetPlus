@@ -24,9 +24,27 @@ public class AddImage {
       }
       else if(ID < 0){
         ViewUtils.showError("Please input a valid ticketID");
-      } else{
+      } else if (ViewUtils.successful(AssetPlusFeatureSet5Controller.addImageToMaintenanceTicket(imageUrl, ID))){
         // adds the image to the ticket
-        AssetPlusFeatureSet5Controller.addImageToMaintenanceTicket(imageUrl, ID);
+          URL.setText("");
+          ticketID.setText("");
       }
     }
+
+    @FXML
+    public void deleteImages(ActionEvent event) {
+        String imageUrl = URL.getText();
+        String ticketId = ticketID.getText();
+        int ID = Integer.parseInt(ticketId);
+        if (imageUrl == null || imageUrl.trim().isEmpty()) {
+            ViewUtils.showError("Please input a valid image URL");
+        } else if (ID < 0) {
+            ViewUtils.showError("Please input a valid ticketID");
+        } else {
+            // Removes the image from the ticket
+            AssetPlusFeatureSet5Controller.deleteImageFromMaintenanceTicket(imageUrl, ID);
+        }
+    } 
+
+
 }
