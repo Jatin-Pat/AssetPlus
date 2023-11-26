@@ -43,8 +43,6 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="230.0" prefWidth="851.0" >
                       <children>
                           <fx:include source="pages/AddTicket.fxml" />
-                          <fx:include source="pages/AddImagePage.fxml" />
-                          <fx:include source="pages/deleteImage.fxml" />
                       </children></AnchorPane>
                </content>
             </Tab>
