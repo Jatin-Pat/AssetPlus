@@ -30,7 +30,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label prefHeight="25.0" prefWidth="71.0" text="Asset Type" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <Label fx:id="assetTypeLabel" prefHeight="25.0" prefWidth="71.0" text="Asset Type" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <font>
             <Font size="14.0" />
          </font>
@@ -38,7 +38,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <Label prefHeight="25.0" prefWidth="110.0" text="Modified Life Span" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <Label fx:id="NewExpectedLifespanLabel" prefHeight="25.0" prefWidth="110.0" text="Modified Lifespan" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
@@ -46,7 +46,7 @@
             <Insets left="10.0" top="25.0" />
          </GridPane.margin>
       </Label>
-      <TextField alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert Asset Type Name" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <TextField fx:id="AssetTypeTextField" alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert Asset Type Name" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <font>
             <Font size="10.0" />
          </font>
@@ -86,25 +86,25 @@
             <Insets left="75.0" />
          </GridPane.margin>
       </Line>
-      <SplitMenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Add" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <SplitMenuButton fx:id="addMenuButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Add" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
         <items>
-          <MenuItem mnemonicParsing="false" text="Add Asset" />
-          <MenuItem mnemonicParsing="false" text="Add Asset Type" />
+          <MenuItem fx:id="addAssetClicked" mnemonicParsing="false" text="Add Asset" />
+          <MenuItem fx:id="addAssetTypeClicked" mnemonicParsing="false" text="Add Asset Type" />
         </items>
       </SplitMenuButton>
-      <SplitMenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Modify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <SplitMenuButton fx:id="modifyMenuButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Modify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
         <items>
-          <MenuItem mnemonicParsing="false" text="Modify Asset" />
-          <MenuItem mnemonicParsing="false" text="Modify Asset Type" />
+          <MenuItem fx:id="modifyAssetClicked" mnemonicParsing="false" text="Modify Asset" />
+          <MenuItem fx:id="modifyAssetTypeClicked" mnemonicParsing="false" text="Modify Asset Type" />
         </items>
       </SplitMenuButton>
-      <SplitMenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Delete" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <SplitMenuButton fx:id="deleteMenuButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Delete" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4">
         <items>
-          <MenuItem mnemonicParsing="false" text="Delete Asset" />
-          <MenuItem mnemonicParsing="false" text="Delete Asset Type" />
+          <MenuItem fx:id="deleteAssetClicked" mnemonicParsing="false" text="Delete Asset" />
+          <MenuItem fx:id="deleteAssetTypeClicked" mnemonicParsing="false" text="Delete Asset Type" />
         </items>
       </SplitMenuButton>
-      <Label prefHeight="25.0" prefWidth="116.0" text="Expected Life Span" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Label fx:id="ExpectedLifespanLabel" prefHeight="25.0" prefWidth="116.0" text="Expected Lifespan" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
@@ -112,7 +112,7 @@
             <Insets top="25.0" />
          </GridPane.margin>
       </Label>
-      <Label prefHeight="25.0" prefWidth="101.0" text="TypeA -&gt; TypeB" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <Label fx:id="NewAssetTypeLabel" prefHeight="25.0" prefWidth="101.0" text="TypeA -&gt; TypeB" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <font>
             <Font size="14.0" />
          </font>
@@ -120,7 +120,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <TextField alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert Expected Life Span" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <TextField fx:id="ExpectedLifespanTextField" alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert Expected Lifespan" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <font>
             <Font size="10.0" />
          </font>
@@ -128,7 +128,7 @@
             <Insets right="5.0" top="25.0" />
          </GridPane.margin>
       </TextField>
-      <TextField alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert New Type Name" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <TextField fx:id="newAssetTypeTextField" alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert New Type Name" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <font>
             <Font size="10.0" />
          </font>
@@ -136,7 +136,7 @@
             <Insets right="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert Modified Life Span" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <TextField fx:id="newExpectedLifespanTextField" alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert Modified Lifespan" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <font>
             <Font size="10.0" />
          </font>
@@ -144,7 +144,7 @@
             <Insets right="5.0" top="25.0" />
          </GridPane.margin>
       </TextField>
-      <Label layoutX="466.0" layoutY="238.0" prefHeight="25.0" prefWidth="91.0" text="Floor Number" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Label fx:id="floorNumberLabel" layoutX="466.0" layoutY="238.0" prefHeight="25.0" prefWidth="91.0" text="Floor Number" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
@@ -152,7 +152,7 @@
             <Insets top="25.0" />
          </GridPane.margin>
       </Label>
-      <Label layoutX="448.0" layoutY="385.0" prefHeight="25.0" prefWidth="91.0" text="Room Number" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <Label fx:id="roomNumberLabel" layoutX="448.0" layoutY="385.0" prefHeight="25.0" prefWidth="91.0" text="Room Number" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <font>
             <Font size="14.0" />
          </font>
@@ -160,7 +160,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <TextField alignment="BASELINE_CENTER" layoutX="565.0" layoutY="238.0" prefHeight="25.0" prefWidth="203.0" promptText="Insert Floor Number" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <TextField fx:id="floorNumberTextField" alignment="BASELINE_CENTER" layoutX="565.0" layoutY="238.0" prefHeight="25.0" prefWidth="203.0" promptText="Insert Floor Number" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <font>
             <Font size="10.0" />
          </font>
@@ -168,7 +168,7 @@
             <Insets left="10.0" top="25.0" />
          </GridPane.margin>
       </TextField>
-      <Label layoutX="444.0" layoutY="287.0" prefHeight="25.0" prefWidth="86.0" text="Asset Number" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <Label fx:id="AssetNumberLabel" layoutX="444.0" layoutY="287.0" prefHeight="25.0" prefWidth="86.0" text="Asset Number" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <font>
             <Font size="14.0" />
          </font>
@@ -176,7 +176,7 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <Label layoutX="451.0" layoutY="341.0" prefHeight="25.0" prefWidth="91.0" text="Purchase Date" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <Label fx:id="purchaseDateLabel" layoutX="451.0" layoutY="341.0" prefHeight="25.0" prefWidth="91.0" text="Purchase Date" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
@@ -184,7 +184,7 @@
             <Insets top="25.0" />
          </GridPane.margin>
       </Label>
-      <TextField alignment="BASELINE_CENTER" layoutX="565.0" layoutY="287.0" prefHeight="25.0" prefWidth="164.0" promptText="Insert Asset Number" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <TextField fx:id="AssetNumberTextField" alignment="BASELINE_CENTER" layoutX="565.0" layoutY="287.0" prefHeight="25.0" prefWidth="164.0" promptText="Insert Asset Number" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <font>
             <Font size="10.0" />
          </font>
@@ -192,7 +192,7 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <TextField alignment="BASELINE_CENTER" layoutX="565.0" layoutY="336.0" prefHeight="25.0" prefWidth="164.0" promptText="Insert Room Number" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <TextField fx:id="roomNumberTextField" alignment="BASELINE_CENTER" layoutX="565.0" layoutY="336.0" prefHeight="25.0" prefWidth="164.0" promptText="Insert Room Number" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <font>
             <Font size="10.0" />
          </font>
@@ -200,7 +200,7 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </TextField>
-      <DatePicker promptText="yyyy-MM-dd" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+      <DatePicker fx:id="purchaseDateDatePicker" promptText="yyyy-MM-dd" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="10.0" top="25.0" />
          </GridPane.margin>
