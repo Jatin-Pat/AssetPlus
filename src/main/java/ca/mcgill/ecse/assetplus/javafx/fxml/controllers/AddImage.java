@@ -25,7 +25,7 @@ public class AddImage {
       else if(ID < 0){
         ViewUtils.showError("Please input a valid ticketID");
       } else{
-        // adds the imahe to the ticket 
+        // adds the image to the ticket
         AssetPlusFeatureSet5Controller.addImageToMaintenanceTicket(imageUrl, ID);
       }
     }

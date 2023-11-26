@@ -20,7 +20,7 @@
         <TextField promptText="TicketId" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
         <VBox spacing="10" style="-fx-background-radius: 10;">
             <Label text="Add:" style="-fx-font-family: 'Comic Sans MS';"/>
-            <TextField promptText="Url of the iamge" />
+            <TextField promptText="Url of the image" />
         </VBox>
         <Button text="Cancel" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
         <Button text="Add" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
