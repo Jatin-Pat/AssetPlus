@@ -54,7 +54,7 @@
       </Button>
       <ImageView fitHeight="90.0" fitWidth="130.0" layoutX="333.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../../../Desktop/prntscr/2023-11-26%2000_57_32-hunion%20-%20Logo.png" />
+            <Image url="@../images/Logo.png" />
          </image>
       </ImageView>
    </children>

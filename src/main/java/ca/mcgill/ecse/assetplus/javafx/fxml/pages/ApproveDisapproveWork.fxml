@@ -38,7 +38,7 @@
          </font></Label>
       <ImageView fitHeight="91.0" fitWidth="129.0" layoutX="317.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../../../Desktop/prntscr/2023-11-26%2000_57_32-hunion%20-%20Logo.png" />
+            <Image url="@../images/Logo.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="25.0" layoutX="1.0" layoutY="118.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="730.0" />
