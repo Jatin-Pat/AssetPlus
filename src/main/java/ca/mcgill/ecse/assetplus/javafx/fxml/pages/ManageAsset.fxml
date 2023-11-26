@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="140.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="140.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="140.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="99.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="97.46182250976562" minHeight="10.0" prefHeight="96.03817749023438" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="97.46182250976562" minHeight="10.0" prefHeight="97.46182250976562" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label prefHeight="25.0" prefWidth="71.0" text="Asset Type" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="25.0" prefWidth="110.0" text="Modified Life Span" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="10.0" top="25.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert Asset Type Name" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label alignment="TOP_CENTER" prefHeight="121.0" prefWidth="286.0" text="Category" textAlignment="CENTER" underline="true" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+         <GridPane.margin>
+            <Insets top="15.0" />
+         </GridPane.margin>
+      </Label>
+      <Label alignment="BOTTOM_LEFT" contentDisplay="TOP" prefHeight="129.0" prefWidth="730.0" text="Assets &amp; Categories" textAlignment="RIGHT" textFill="#e8e8e8" GridPane.columnSpan="6">
+         <font>
+            <Font name="Arial Black" size="30.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin>
+      </Label>
+      <Label alignment="TOP_CENTER" prefHeight="110.0" prefWidth="297.0" text="Assets" textAlignment="CENTER" underline="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <font>
+            <Font name="Roboto" size="24.0" />
+         </font>
+         <GridPane.margin>
+            <Insets top="15.0" />
+         </GridPane.margin>
+      </Label>
+      <Line endX="-101.24264526367188" endY="170.2928924560547" startX="-101.24336242675781" startY="-110.70216369628906" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
+         <GridPane.margin>
+            <Insets left="75.0" />
+         </GridPane.margin>
+      </Line>
+      <SplitMenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Add" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Add Asset" />
+          <MenuItem mnemonicParsing="false" text="Add Asset Type" />
+        </items>
+      </SplitMenuButton>
+      <SplitMenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Modify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Modify Asset" />
+          <MenuItem mnemonicParsing="false" text="Modify Asset Type" />
+        </items>
+      </SplitMenuButton>
+      <SplitMenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Delete" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Delete Asset" />
+          <MenuItem mnemonicParsing="false" text="Delete Asset Type" />
+        </items>
+      </SplitMenuButton>
+      <Label prefHeight="25.0" prefWidth="116.0" text="Expected Life Span" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets top="25.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="25.0" prefWidth="101.0" text="TypeA -&gt; TypeB" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <TextField alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert Expected Life Span" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="5.0" top="25.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert New Type Name" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField alignment="BASELINE_CENTER" prefHeight="25.0" prefWidth="164.0" promptText="Insert Modified Life Span" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="5.0" top="25.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label layoutX="466.0" layoutY="238.0" prefHeight="25.0" prefWidth="91.0" text="Floor Number" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets top="25.0" />
+         </GridPane.margin>
+      </Label>
+      <Label layoutX="448.0" layoutY="385.0" prefHeight="25.0" prefWidth="91.0" text="Room Number" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <TextField alignment="BASELINE_CENTER" layoutX="565.0" layoutY="238.0" prefHeight="25.0" prefWidth="203.0" promptText="Insert Floor Number" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="10.0" top="25.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label layoutX="444.0" layoutY="287.0" prefHeight="25.0" prefWidth="86.0" text="Asset Number" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <Label layoutX="451.0" layoutY="341.0" prefHeight="25.0" prefWidth="91.0" text="Purchase Date" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets top="25.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField alignment="BASELINE_CENTER" layoutX="565.0" layoutY="287.0" prefHeight="25.0" prefWidth="164.0" promptText="Insert Asset Number" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField alignment="BASELINE_CENTER" layoutX="565.0" layoutY="336.0" prefHeight="25.0" prefWidth="164.0" promptText="Insert Room Number" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <DatePicker promptText="yyyy-MM-dd" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" top="25.0" />
+         </GridPane.margin>
+      </DatePicker>
+   </children>
+</GridPane>

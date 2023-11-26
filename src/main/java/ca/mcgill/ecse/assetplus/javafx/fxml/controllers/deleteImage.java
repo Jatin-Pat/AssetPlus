@@ -28,7 +28,7 @@ public class deleteImage {
         } else if (ID < 0) {
             ViewUtils.showError("Please input a valid ticketID");
         } else {
-            // adds the imahe to the ticket
+            // Removes the image from the ticket
             AssetPlusFeatureSet5Controller.deleteImageFromMaintenanceTicket(imageUrl, ID);
         }
     }
