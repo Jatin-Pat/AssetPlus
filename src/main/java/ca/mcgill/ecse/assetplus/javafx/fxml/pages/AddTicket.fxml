@@ -1,25 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);">
-    <VBox spacing="20" layoutX="20" layoutY="10"> <!-- Adjusted layoutY to move the entire VBox and its contents higher -->
-        <Label text="AssetPlus" textFill="WHITE" style="-fx-font-size: 24px;"/>
-        <VBox spacing="10">
-            <Label text="Hello, username!" AnchorPane.leftAnchor="5.0" textFill="WHITE"/>
-            <Button text="Logout" AnchorPane.rightAnchor="5.0" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox layoutX="22.0" prefHeight="130.0" prefWidth="295.0" spacing="20"> <!-- Adjusted layoutY to move the entire VBox and its contents higher -->
+        <Label prefHeight="58.0" prefWidth="146.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="AssetPlus" textFill="WHITE" />
+        <VBox prefHeight="52.0" prefWidth="295.0" spacing="25">
+         <children>
+              <Label prefHeight="59.0" prefWidth="295.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="New Maintenance Ticket" textFill="WHITE">
+            </Label>
+         </children>
         </VBox>
-        <Label text="New Maintenance Ticket" />
-        <TextField promptText="Asset Type" />
-        <TextField promptText="Asset ID (optional)" />
-        <TextField promptText="Location (floor-room)" />
-        <TextField promptText="Description" />
-        <Button text="Add" />
     </VBox>
-</AnchorPane>
+    <HBox alignment="CENTER" layoutX="506.0" layoutY="78.0" prefHeight="52.0" prefWidth="210.0" spacing="20">
+        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="24.0" prefWidth="112.0" style="-fx-font-size: 12px;" text="Hello, username!" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Button alignment="CENTER" contentDisplay="CENTER" prefHeight="14.0" prefWidth="85.0" text="Logout" AnchorPane.rightAnchor="5.0" /> <!-- Adjusted layoutY to move the entire VBox and its contents higher -->
 
+    </HBox>
+    <GridPane hgap="15" layoutX="22.0" layoutY="130.0" prefHeight="271.0" prefWidth="500.0" vgap="20">
+
+        <Label text="Asset Type:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField prefHeight="25.0" prefWidth="211.0" promptText="Bed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="Asset ID (optional):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField promptText="000000" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Location (floor-room):" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField promptText="4-20" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+        <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <TextField promptText="Please describe the issue" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+        <Label text="Add image:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <Button prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+
+        <Button prefHeight="0.0" prefWidth="54.0" text="Submit" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="7">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                <children>
+                    <fx:include source="AddImagePage.fxml" />
+                </children></AnchorPane>
+        </Button>
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+
+    </GridPane>
+</AnchorPane>
