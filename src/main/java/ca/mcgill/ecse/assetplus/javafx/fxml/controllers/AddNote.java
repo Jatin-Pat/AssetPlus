@@ -24,11 +24,13 @@ public class AddNote {
       int ID = Integer.parseInt(ticket);
       if ( text == null || text == "") {
         ViewUtils.showError("Please input a valid description");
-      }
-      else if(ID < 0){
+      } else if(ID < 0){
         ViewUtils.showError("Please input a valid ticketID");
-      } else{
-        AssetPlusFeatureSet7Controller.addMaintenance(date, text, ticketID, user);
+      } else if (!User.hasWithEmail(user)) {
+          ViewUtils.showError("Please input a valid email")
+      }
+      else{
+        AssetPlusFeatureSet7Controller.addMaintenance(date, text, ID, user);
       }
     }
 }
