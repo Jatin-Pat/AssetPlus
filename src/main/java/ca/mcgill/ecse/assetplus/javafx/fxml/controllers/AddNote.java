@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class AddImage {
+public class AddNote {
     @FXML private TextField description;
     @FXML private TextField ticketID;
     @FXML private Textfield date;
