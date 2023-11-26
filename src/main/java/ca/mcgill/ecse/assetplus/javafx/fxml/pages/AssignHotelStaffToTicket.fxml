@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#422079" height="520.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="730.0" />
+      <Label layoutX="35.0" layoutY="322.0" prefHeight="25.0" prefWidth="126.0" text="Enter staff email:" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="538.0" layoutY="259.0" prefHeight="17.0" prefWidth="140.0" text="Select priority level:" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="345.0" layoutY="259.0" text="Select time estimate:" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <CheckBox fx:id="approval" layoutX="36.0" layoutY="408.0" mnemonicParsing="false" text="Approval Required" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></CheckBox>
+      <ChoiceBox fx:id="time" layoutX="538.0" layoutY="284.0" prefHeight="25.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="priority" layoutX="345.0" layoutY="284.0" prefWidth="150.0" AnchorPane.bottomAnchor="210.66666666666669" />
+      <TextField fx:id="email" layoutX="36.0" layoutY="284.0" prefHeight="25.0" prefWidth="101.0" />
+      <Button fx:id="submit" layoutX="35.0" layoutY="453.0" mnemonicParsing="false" text="Submit">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <TextField fx:id="id" layoutX="35.0" layoutY="348.0" prefHeight="25.0" prefWidth="240.0" />
+      <Label layoutX="36.0" layoutY="259.0" text="Enter ticket id:" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="35.0" layoutY="171.0" text="Ticket Assignment" textFill="WHITE">
+         <font>
+            <Font name="Gill Sans MT" size="48.0" />
+         </font></Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="25.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="730.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="730.0" />
+      <Button fx:id="logout" layoutX="644.0" layoutY="14.0" mnemonicParsing="false" text="Logout">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <effect>
+            <ColorAdjust contrast="1.0" />
+         </effect>
+      </Button>
+      <ImageView fitHeight="90.0" fitWidth="130.0" layoutX="333.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../../../Desktop/prntscr/2023-11-26%2000_57_32-hunion%20-%20Logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
