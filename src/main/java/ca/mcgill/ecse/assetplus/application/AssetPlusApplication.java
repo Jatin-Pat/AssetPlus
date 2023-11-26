@@ -14,12 +14,14 @@ public class AssetPlusApplication {
   public static void main(String[] args) {
 
       AssetPlus assetPlus = getAssetPlus();
-      Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
-      assetPlus.setManager(manager);
+
+      
 
       Application.launch(AssetPlusFxmlView.class, args);
+      Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
+      assetPlus.setManager(manager);
       
-    // TODO Start the application user interface here
+      // TODO Start the application user interface here
   }
 
   public static AssetPlus getAssetPlus() {
