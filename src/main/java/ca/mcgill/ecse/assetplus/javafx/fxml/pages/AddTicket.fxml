@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.addTicket">
     <VBox layoutX="22.0" prefHeight="130.0" prefWidth="295.0" spacing="20"> <!-- Adjusted layoutY to move the entire VBox and its contents higher -->
         <Label prefHeight="58.0" prefWidth="146.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="AssetPlus" textFill="WHITE" />
         <VBox prefHeight="52.0" prefWidth="295.0" spacing="25">
