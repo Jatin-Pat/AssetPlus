@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import ca.mcgill.ecse.assetplus.controller.*;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.Guest;
+import ca.mcgill.ecse.assetplus.model.User;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
@@ -74,19 +77,33 @@ public class addUpdateDeleteUser {
     @FXML
     void deleteEmployeeOrGuestClicked(ActionEvent event) {
       //TODO ERROR MESSAGE?? 
-      String name = userNameTextField.getText();
+      //String name = userNameTextField.getText();
       String email = userEmailTextField.getText();
-      String phoneNumber = userPhoneNumberTextField.getText();
-      String password = userPasswordTextField.getText();
+      //String phoneNumber = userPhoneNumberTextField.getText();
+      //String password = userPasswordTextField.getText();
+    
 
-  
-      if ( !email.equals("manager@ap.com")) {
-        AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(email);
-        userNameTextField.setText("");
-        userEmailTextField.setText("");
-        userPhoneNumberTextField.setText("");
-        userPasswordTextField.setText("");
+      //! Can I call the model??
+      User specificUser = User.getWithEmail(email);  
+      
+      if (specificUser == null){
+        ViewUtils.showError("User doesn't exist");
+        return;
       }
+
+      if ( ! (specificUser instanceof Employee || specificUser instanceof Guest)) {
+        ViewUtils.showError("Cannot delete the manager");
+        return;
+      }
+      
+      AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(email);
+      userNameTextField.setText("");
+      userEmailTextField.setText("");
+      userPhoneNumberTextField.setText("");
+      userPasswordTextField.setText("");
+      ViewUtils.showError("Success");
+      
+
     }
 
 
