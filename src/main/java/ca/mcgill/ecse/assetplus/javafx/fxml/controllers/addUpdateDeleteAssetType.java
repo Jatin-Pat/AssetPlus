@@ -36,12 +36,12 @@ public class addUpdateDeleteAssetType {
 
     @FXML
     void addAssetTypeClicked(ActionEvent event) {
-      String assetTypeName = newAssetTypeNameTextField.getText();
-      int expectedLifespan = Integer.parseInt(newExpectedLifespanTextField.getText());
+      String assetTypeName = assetTypeNameTextField.getText();
+      int expectedLifespan = Integer.parseInt(expectedLifespanTextField.getText());
 
       if (ViewUtils.successful(AssetPlusFeatureSet2Controller.addAssetType(assetTypeName, expectedLifespan))){
-        newAssetTypeNameTextField.setText("");
-        newExpectedLifespanTextField.setText("");
+        assetTypeNameTextField.setText("");
+        expectedLifespanTextField.setText("");
       }
     }
 
@@ -61,6 +61,7 @@ public class addUpdateDeleteAssetType {
 
       if (ViewUtils.successful(AssetPlusFeatureSet2Controller.updateAssetType(assetTypeName, newAssetType, newExpectedLifespan))){
         assetTypeNameTextField.setText("");
+        expectedLifespanTextField.setText("");
         newAssetTypeNameTextField.setText("");
       }
     }
