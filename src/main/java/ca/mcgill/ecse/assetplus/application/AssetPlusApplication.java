@@ -4,6 +4,7 @@ import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import javafx.application.Application;
 import java.sql.Date;
@@ -15,13 +16,16 @@ public class AssetPlusApplication {
   private static AssetPlus assetPlus;
 
   public static void main(String[] args) {
-    AssetPlus assetPlus = getAssetPlus();
 
-    Employee testEmployee = new Employee("email", "name", "password", "number", assetPlus);
-    MaintenanceTicket testTicket = new MaintenanceTicket(34, Date.valueOf("2002-03-03"), "shits broken", assetPlus, testEmployee);
+      AssetPlus assetPlus = getAssetPlus();
 
-    Application.launch(AssetPlusFxmlView.class, args);
-    // TODO Start the application user interface here
+      
+
+      Application.launch(AssetPlusFxmlView.class, args);
+      Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
+      assetPlus.setManager(manager);
+      
+      // TODO Start the application user interface here
   }
 
   public static AssetPlus getAssetPlus() {

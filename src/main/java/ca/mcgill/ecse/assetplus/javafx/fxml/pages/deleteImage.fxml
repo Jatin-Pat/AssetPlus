@@ -15,15 +15,15 @@
             <Label text="Hello, username!" AnchorPane.leftAnchor="5.0" textFill="WHITE" style="-fx-font-family: 'Comic Sans MS';"/>
             <Button text="Logout" AnchorPane.rightAnchor="5.0" />
         </VBox>
-        <Label text="Add Images" style="-fx-font-family: 'Comic Sans MS'; -fx-font-size: 18px; -fx-background-radius: 10;"/>
+        <Label text="Delete Images" style="-fx-font-family: 'Comic Sans MS'; -fx-font-size: 18px; -fx-background-radius: 10;"/>
         <Label text="Pleases Enter the ticketID " style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
         <TextField promptText="TicketId" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
         <VBox spacing="10" style="-fx-background-radius: 10;">
-            <Label text="Add:" style="-fx-font-family: 'Comic Sans MS';"/>
-            <TextField promptText="Url of the image" />
+            <Label text="Remove:" style="-fx-font-family: 'Comic Sans MS';"/>
+            <TextField promptText="Url of the iamge" />
         </VBox>
         <Button text="Cancel" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
-        <Button text="Add" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
+        <Button text="Remove" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
         <Button text="SUBMIT" style="-fx-font-family: 'Comic Sans MS'; -fx-background-radius: 10;"/>
     </VBox>
 </AnchorPane>
