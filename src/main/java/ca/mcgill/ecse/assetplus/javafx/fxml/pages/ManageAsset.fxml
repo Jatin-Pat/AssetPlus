@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="520.0" maxWidth="730.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #FFFFFF 25%, #FFFFFF);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ManageAsset">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
@@ -24,10 +24,10 @@
   </columnConstraints>
   <rowConstraints>
       <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="94.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="177.0" minHeight="10.0" prefHeight="94.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="96.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="177.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="142.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label fx:id="assetTypeLabel" prefHeight="25.0" prefWidth="71.0" text="Asset Type" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
@@ -51,7 +51,7 @@
             <Font size="10.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" />
+            <Insets bottom="70.0" left="20.0" right="20.0" />
          </GridPane.margin>
       </TextField>
       <Label alignment="TOP_CENTER" prefHeight="121.0" prefWidth="286.0" text="Category" textAlignment="CENTER" underline="true" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -87,7 +87,7 @@
           <MenuItem fx:id="addAssetTypeClicked" mnemonicParsing="false" text="Add Asset Type" />
         </items>
          <GridPane.margin>
-            <Insets bottom="5.0" />
+            <Insets bottom="40.0" />
          </GridPane.margin>
       </SplitMenuButton>
       <SplitMenuButton fx:id="modifyMenuButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Modify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
@@ -96,7 +96,7 @@
           <MenuItem fx:id="modifyAssetTypeClicked" mnemonicParsing="false" text="Modify Asset Type" />
         </items>
          <GridPane.margin>
-            <Insets bottom="5.0" />
+            <Insets bottom="40.0" />
          </GridPane.margin>
       </SplitMenuButton>
       <SplitMenuButton fx:id="deleteMenuButton" mnemonicParsing="false" prefHeight="37.0" prefWidth="98.0" text="Delete" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
@@ -105,7 +105,7 @@
           <MenuItem fx:id="deleteAssetTypeClicked" mnemonicParsing="false" text="Delete Asset Type" />
         </items>
          <GridPane.margin>
-            <Insets bottom="5.0" />
+            <Insets bottom="40.0" />
          </GridPane.margin>
       </SplitMenuButton>
       <Label fx:id="ExpectedLifespanLabel" prefHeight="25.0" prefWidth="116.0" text="Expected Lifespan" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
