@@ -17,9 +17,10 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="172.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="141.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="95.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="122.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="131.19229125976562" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="104.14422607421875" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.03363037109375" minWidth="10.0" prefWidth="123.35577392578125" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
@@ -29,6 +30,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="389.0" prefWidth="270.0" style="-fx-background-color: #FFFFFF;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="4" GridPane.vgrow="ALWAYS" />
       <Label alignment="BOTTOM_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="129.0" prefWidth="758.0" style="-fx-background-color: linear-gradient(to bottom, #800080, #800080 25%, #800080 25%, #800080);" text="View Maintenance Tickets" textAlignment="RIGHT" textFill="#e8e8e8" GridPane.columnSpan="7" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <font>
             <Font name="Arial Black" size="30.0" />
@@ -73,7 +75,7 @@
             <Font name="Roboto" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="TicketsView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="4" GridPane.vgrow="ALWAYS" />
+      <TableView fx:id="TicketsView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="4" GridPane.vgrow="ALWAYS" />
       <Separator prefHeight="0.0" prefWidth="135.0" valignment="TOP" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
    </children>
 </GridPane>
