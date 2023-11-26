@@ -24,7 +24,7 @@ public class addDeleteImage {
   @FXML
   private Button logout;
 
-  // Event Listener on Button[#Add].onAction
+  // Event Listener on Button[#add_selected].onAction
   @FXML
   public void add_selected(ActionEvent event) {
     String url = imageURL.getText();
@@ -42,6 +42,7 @@ public class addDeleteImage {
     }
   }
 
+  // Event Listener on Button[#remove_selected].onAction
   @FXML
   public void remove_selected(ActionEvent event) {
     String url = imageURL.getText();
