@@ -46,11 +46,11 @@
                       </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Manage Assets">
+            <Tab text="Manage Asset Types">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <fx:include source="pages/ManageAsset.fxml" />
+                        <fx:include source="pages/addUpdateDeleteAssetType.fxml" />
                      </children></AnchorPane>
                </content>
             </Tab>
