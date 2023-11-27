@@ -53,12 +53,14 @@ public class addTicket {
     @FXML
     void openAddImagePage(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("addDeleteImage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addDeleteImage.fxml")); //unable to load this page
+            loader.setController(new ca.mcgill.ecse.assetplus.javafx.fxml.controllers.addDeleteImage());
+
             Parent root = loader.load();
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Add Image Page");
+            stage.setTitle("Add/Delete Image Page");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
