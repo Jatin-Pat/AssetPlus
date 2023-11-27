@@ -16,7 +16,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
         import java.time.LocalDate;
 
 public class addTicket {
-    private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
+    private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
 
     @FXML
     private TextField assetIdTextField;
