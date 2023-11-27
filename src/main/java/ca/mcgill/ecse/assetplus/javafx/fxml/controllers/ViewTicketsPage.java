@@ -7,10 +7,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
@@ -21,7 +23,7 @@ import java.util.List;
 import javax.annotation.Syntax;
 
 
-public class ViewTickets {
+public class ViewTicketsPage {
 
     @FXML
     private DatePicker dateFilter;
@@ -42,23 +44,15 @@ public class ViewTickets {
       AssetPlusFxmlView.getInstance().refresh();
     }
     @FXML
-    void clearText(ActionEvent event){
-      System.out.println("clearing text");
-      dateFilter.getEditor().clear();
+    void clearDate(MouseEvent event){
+      dateFilter.setValue(null);
     }
    
     public void initialize(){
       System.out.println("initialized");
-      //dateFilter.setEditable(false);
-      /* 
-      refreshTickets.setStyle("-fx-background-color: #0000FF; ");
-      refreshTickets.setOnAction(new EventHandler<ActionEvent>() {
-        @Override 
-        public void handle(ActionEvent e) {
-                System.out.println("got to play");
-                refreshTickets.setStyle("-fx-background-color: #FF00FF; ");
-            }
-            });*/
+      dateFilter.setEditable(false);
+      
+      TicketsView.setPlaceholder(new Label("No tickets found"));
 
 
       TableColumn<TOMaintenanceTicket, Integer> ticketIDColumn = new TableColumn<TOMaintenanceTicket, Integer>("Ticket ID");
@@ -98,8 +92,6 @@ public class ViewTickets {
       TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getMaintenanceTickets()));
 
     }
-
-    
 
     public ObservableList<TOMaintenanceTicket> getMaintenanceTickets(){
       LocalDate selectedDate = dateFilter.getValue();
