@@ -73,13 +73,13 @@ public class AssetPlusFeatureSet4Controller {
       errorMessage.append("Invalid ID \n");
     }
     if (description.isEmpty()) {
-      errorMessage.append("Ticket description cannot be empty");
+      errorMessage.append("Ticket description cannot be empty\n");
     }
     if (!isValidEmail(email)) {
-      errorMessage.append("The ticket raiser does not exist");
+      errorMessage.append("The ticket raiser does not exist\n");
     }
     if (!isValidAssetNumber(assetNumber)) {
-      errorMessage.append("The asset does not exist");
+      errorMessage.append("The asset does not exist\n");
     }
     return errorMessage;
   }
@@ -115,8 +115,8 @@ public class AssetPlusFeatureSet4Controller {
     }
     catch (Exception e) {
       String eString = e.getMessage();
-      if (eString.startsWith("Cannot create due to duplicate id.")) {
-        errorMessage.append("Ticket id already exists");
+      if (eString.startsWith("Cannot create due to duplicate id\n")) {
+        errorMessage.append("Ticket id already exists\n");
       }
     }
     if (errorMessage.length() == 0) {
@@ -165,7 +165,7 @@ public class AssetPlusFeatureSet4Controller {
         }
       }
       else {
-        errorMessage.append("Ticket not found");
+        errorMessage.append("Ticket not found\n");
       }
     }
     catch (Exception e) {
