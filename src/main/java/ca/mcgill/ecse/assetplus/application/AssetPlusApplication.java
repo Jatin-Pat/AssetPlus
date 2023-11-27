@@ -19,7 +19,10 @@ public class AssetPlusApplication {
 
       AssetPlus assetPlus = getAssetPlus();
 
-      
+      if (!assetPlus.hasManager()){
+        Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
+        assetPlus.setManager(manager);
+    }
 
       Application.launch(AssetPlusFxmlView.class, args);
       Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
