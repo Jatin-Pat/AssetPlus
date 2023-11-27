@@ -59,10 +59,12 @@ public class addTicket {
             Parent root = loader.load();
 
             Stage stage = new Stage();
+            stage.setResizable(true);
             stage.setScene(new Scene(root));
             stage.setTitle("Add/Delete Image Page");
             stage.show();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             ViewUtils.showError("Error opening image upload page\n");
         }

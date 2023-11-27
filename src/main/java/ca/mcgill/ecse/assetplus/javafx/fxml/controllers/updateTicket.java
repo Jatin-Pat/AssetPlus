@@ -57,6 +57,7 @@ public class updateTicket {
             Parent root = loader.load();
 
             Stage stage = new Stage();
+            stage.setResizable(true);
             stage.setScene(new Scene(root));
             stage.setTitle("Add Image Page");
             stage.show();
