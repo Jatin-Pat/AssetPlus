@@ -15,7 +15,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
         import java.sql.Date;
         import java.time.LocalDate;
 
-public class addTicket {
+public class addUpdateDeleteTicket {
     private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
 
     @FXML
@@ -29,6 +29,9 @@ public class addTicket {
 
     @FXML
     private TextField locationTextField;
+
+    @FXML
+    private TextField ticketIdTextField;
 
     @FXML
     void addTicket(ActionEvent event) {
@@ -48,6 +51,33 @@ public class addTicket {
             descriptionTextField.setText("");
             locationTextField.setText("");
         }
+    }
+
+    @FXML
+    void updateTicket(ActionEvent event) {
+        int ticketId = assetPlus.numberOfMaintenanceTickets();
+        Date raisedOn = Date.valueOf(LocalDate.now());
+        String description = descriptionTextField.getText();
+        String email = emailTextField.getText();
+        int assetId = -1;
+        String assetIdString = assetIdTextField.getText();
+        if (!assetIdString.isEmpty()) {
+            assetId = Integer.parseInt(assetIdString);
+            if (assetId < 0) ViewUtils.showError("Please enter a valid asset ID\n");
+        }
+        if (ViewUtils.successful(AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketId, raisedOn, description, email, assetId))){
+            assetIdTextField.setText("");
+            emailTextField.setText("");
+            descriptionTextField.setText("");
+            locationTextField.setText("");
+        }
+    }
+
+    @FXML
+    void deleteTicket(ActionEvent actionEvent) {
+        int ticketId = Integer.parseInt(ticketIdTextField.getText());
+        AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(ticketId);
+        ticketIdTextField.setText("");
     }
 
     @FXML
