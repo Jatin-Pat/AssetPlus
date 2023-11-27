@@ -2,8 +2,6 @@
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.controller;
-import java.util.*;
-import java.sql.Date;
 
 // line 47 "../../../../../../AssetPlusPersistence.ump"
 // line 16 "../../../../../../AssetPlus.ump"
@@ -14,8 +12,6 @@ public abstract class TOUser
   // STATIC VARIABLES
   //------------------------
 
-  private static Map<String, User> usersByEmail = new HashMap<String, User>();
-
   //------------------------
   // MEMBER VARIABLES
   //------------------------
@@ -25,24 +21,21 @@ public abstract class TOUser
   private String name;
   private String password;
   private String phoneNumber;
+  private String userType;
 
-  //User Associations
-  private List<TOMaintenanceTicket> raisedTickets;
+  //User Associations;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOUser(String aEmail, String aName, String aPassword, String aPhoneNumber)
+  public TOUser(String aEmail, String aName, String aPassword, String aPhoneNumber, String aUserType)
   {
     name = aName;
     password = aPassword;
     phoneNumber = aPhoneNumber;
-    if (!setEmail(aEmail))
-    {
-      throw new RuntimeException("Cannot create due to duplicate email. See http://manual.umple.org?RE003ViolationofUniqueness.html");
-    }
-    raisedTickets = new ArrayList<TOMaintenanceTicket>();
+    email = aEmail;
+    userType = aUserType;
   }
 
   //------------------------
@@ -56,19 +49,18 @@ public abstract class TOUser
     return email;
   }
   /* Code from template attribute_GetUnique */
-  public static TOUser getWithEmail(String aEmail)
-  {
-    return usersByEmail.get(aEmail);
-  }
+  
   /* Code from template attribute_HasUnique */
-  public static boolean hasWithEmail(String aEmail)
-  {
-    return getWithEmail(aEmail) != null;
-  }
+  
 
   public String getName()
   {
     return name;
+  }
+
+  public String getType()
+  {
+    return userType;
   }
 
   public String getPassword()
@@ -84,9 +76,11 @@ public abstract class TOUser
   public String toString()
   {
     return super.toString() + "["+
+            "type" + ":" + getType()+ "," +
             "email" + ":" + getEmail()+ "," +
             "name" + ":" + getName()+ "," +
             "password" + ":" + getPassword()+ "," +
             "phoneNumber" + ":" + getPhoneNumber()+ "]";
   }
 }
+
