@@ -51,11 +51,11 @@
             <Insets top="20.0" />
          </GridPane.margin>
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font></Label>
       <TextField fx:id="assetTypeNameTextField" prefHeight="43.0" prefWidth="330.0" promptText="Insert Asset Type Name" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font>
          <GridPane.margin>
             <Insets top="8.0" />
@@ -65,32 +65,32 @@
             <Insets bottom="25.0" />
          </GridPane.margin>
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font></Label>
       <TextField fx:id="expectedLifespanTextField" prefHeight="43.0" prefWidth="330.0" promptText="Insert Asset Type Expc. Lifespan" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="15.0" />
          </GridPane.margin>
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font></TextField>
       <Label text="Modified Asset Type" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="15.0" />
          </GridPane.margin>
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font></Label>
       <TextField fx:id="newAssetTypeNameTextField" prefHeight="43.0" prefWidth="330.0" promptText="Insert Phone Number" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font></TextField>
       <Label text="Modified Lifespan" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin>
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font>
       </Label>
       <Button fx:id="deleteAssetType" mnemonicParsing="false" onAction="#deleteAssetTypeClicked" prefHeight="46.0" prefWidth="100.0" text="Delete" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
@@ -98,7 +98,7 @@
             <Insets top="10.0" />
          </GridPane.margin>
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font>
       </Button>
       <Button fx:id="updateAssetType" mnemonicParsing="false" onAction="#updateAssetTypeClicked" prefHeight="46.0" prefWidth="100.0" text="Update" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
@@ -106,7 +106,7 @@
             <Insets top="10.0" />
          </GridPane.margin>
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font>
       </Button>
       <Button fx:id="addAssetType" mnemonicParsing="false" onAction="#addAssetTypeClicked" prefHeight="46.0" prefWidth="100.0" text="Add" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
@@ -114,12 +114,12 @@
             <Insets top="10.0" />
          </GridPane.margin>
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font>
       </Button>
       <TextField fx:id="newExpectedLifespanTextField" prefHeight="43.0" prefWidth="330.0" promptText="Insert Modified Lifespan" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <font>
-            <Font name="Gill Sans" size="15.0" />
+            <Font name="Gill Sans" size="17.0" />
          </font>
       </TextField>
    </children>
