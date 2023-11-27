@@ -50,7 +50,6 @@
             <Insets left="50.0" />
          </GridPane.margin>
       </Label>
-      
       <Label text="Name" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="20.0" />
@@ -102,6 +101,6 @@
             <Insets top="10.0" />
          </GridPane.margin>
       </MenuButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GREY" height="15.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="10000.0" GridPane.columnSpan="6" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GREY" height="15.0" strokeType="INSIDE" strokeWidth="0.0" width="1000.0" GridPane.columnSpan="6" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>
