@@ -55,7 +55,7 @@ public class addUpdateDeleteTicket {
 
     @FXML
     void updateTicket(ActionEvent event) {
-        int ticketId = assetPlus.numberOfMaintenanceTickets();
+        int ticketId = Integer.parseInt(ticketIdTextField.getText());
         Date raisedOn = Date.valueOf(LocalDate.now());
         String description = descriptionTextField.getText();
         String email = emailTextField.getText();
