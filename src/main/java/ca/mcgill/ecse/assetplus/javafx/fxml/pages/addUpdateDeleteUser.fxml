@@ -14,6 +14,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Region?>
+
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="777.0" style="-fx-background-color: linear-gradient(to bottom,  #FFFFFF,  #FFFFFF 25%, #663399 25%, #663399);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.addUpdateDeleteUser">
   
@@ -50,7 +52,6 @@
             <Insets left="50.0" />
          </GridPane.margin>
       </Label>
-      
       <Label text="Name" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="20.0" />
@@ -102,6 +103,5 @@
             <Insets top="10.0" />
          </GridPane.margin>
       </MenuButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GREY" height="15.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="10000.0" GridPane.columnSpan="6" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>
