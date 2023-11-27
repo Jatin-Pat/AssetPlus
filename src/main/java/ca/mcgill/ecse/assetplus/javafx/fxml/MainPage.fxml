@@ -58,7 +58,7 @@
                <content>
                   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <fx:include source="pages/addUpdateDeleteUser.fxml" />
+                        <fx:include maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="pages/addUpdateDeleteUser.fxml" AnchorPane.bottomAnchor="-55.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>
                </content>
             </Tab>
