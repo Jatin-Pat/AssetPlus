@@ -41,11 +41,15 @@ public class ViewTickets {
       TicketsView.setItems(getMaintenanceTickets());
       AssetPlusFxmlView.getInstance().refresh();
     }
-
+    @FXML
+    void clearText(ActionEvent event){
+      System.out.println("clearing text");
+      dateFilter.getEditor().clear();
+    }
    
     public void initialize(){
       System.out.println("initialized");
-
+      //dateFilter.setEditable(false);
       /* 
       refreshTickets.setStyle("-fx-background-color: #0000FF; ");
       refreshTickets.setOnAction(new EventHandler<ActionEvent>() {
