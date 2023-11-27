@@ -31,7 +31,7 @@ public class updateTicket {
     private TextField locationTextField;
 
     @FXML
-    void addTicket(ActionEvent event) {
+    void updateTicket(ActionEvent event) {
         int ticketId = assetPlus.numberOfMaintenanceTickets();
         Date raisedOn = Date.valueOf(LocalDate.now());
         String description = descriptionTextField.getText();
