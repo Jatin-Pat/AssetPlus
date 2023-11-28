@@ -12,7 +12,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.MainPage;
 
 
 public class AddUser {
@@ -74,7 +73,6 @@ public class AddUser {
     @FXML
     void goBack(ActionEvent event) {
        try {
-          //TODO Fix the scene changer to goback to ../pages/ViewUser.fxml
           FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
           Parent root = loader.load();
 
