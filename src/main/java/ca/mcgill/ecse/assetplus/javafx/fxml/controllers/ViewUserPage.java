@@ -1,60 +1,54 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import java.sql.Date;
-import java.time.LocalDate;
+
 import ca.mcgill.ecse.assetplus.controller.ExtraFeaturesController;
 import ca.mcgill.ecse.assetplus.controller.TOUser;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Syntax;
+
 
 public class ViewUserPage {
 
     @FXML
-    private DatePicker dateFilter;
+    private Button refreshUser;
 
     @FXML
-    private TextField employeeFilter;
+    private CheckBox showEmployees;
 
     @FXML
-    private Button refreshTickets;
+    private CheckBox showManager;
 
     @FXML
-    private TableView<TOUser> TicketsView;
+    private CheckBox showUsers;
+
+    @FXML
+    private TableView<TOUser> UserView;
 
     @FXML
     void refreshUser(ActionEvent event){
       System.out.println("buttonClicked");
-      List<TOUser> users = ExtraFeaturesController.getUsers();
+      List<TOUser> users = getFilteredUsers();
       
-      TicketsView.setItems(FXCollections.observableList(users));
+      UserView.setItems(FXCollections.observableList(users));
 
       AssetPlusFxmlView.getInstance().refresh();
     }
-    @FXML
-    void clearDate(MouseEvent event){
-      dateFilter.setValue(null);
-    }
-   
+
     public void initialize(){
       System.out.println("initialized");
-      dateFilter.setEditable(false);
+
       
-      TicketsView.setPlaceholder(new Label("No users found"));
+      UserView.setPlaceholder(new Label("No users found"));
 
       TableColumn<TOUser, String> userRole = new TableColumn<TOUser, String>("Role");
       userRole.setCellValueFactory(new PropertyValueFactory<TOUser, String>("userType"));
@@ -73,16 +67,39 @@ public class ViewUserPage {
 
 
 
-      TicketsView.getColumns().add(userRole);
-      TicketsView.getColumns().add(userName);
-      TicketsView.getColumns().add(userEmail);
-      TicketsView.getColumns().add(userPhoneNumber);
-      TicketsView.getColumns().add(userPassword);
+      UserView.getColumns().add(userRole);
+      UserView.getColumns().add(userName);
+      UserView.getColumns().add(userEmail);
+      UserView.getColumns().add(userPhoneNumber);
+      UserView.getColumns().add(userPassword);
       
-      TicketsView.getItems().add(new TOUser("userEmail","userName","userPassword","userPassword","Guest"));
+      UserView.getItems().add(new TOUser("userEmail","userName","userPassword","userPassword","Guest"));
 
-      TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+      UserView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+    }
+
+
+    public List<TOUser> getFilteredUsers(){
+      List<TOUser> filteredUsers = new ArrayList<TOUser>();
+
+      boolean employees_shown = showEmployees.isSelected();
+      boolean users_shown = showUsers.isSelected();
+      boolean manager_shown = showManager.isSelected();
+
+      if((!employees_shown && !users_shown && !manager_shown)|| (employees_shown && users_shown && manager_shown)){
+        return ExtraFeaturesController.getUsers();
+      }
+      if(manager_shown){
+        filteredUsers.addAll(ExtraFeaturesController.getManager());
+      }
+      if(employees_shown){
+        filteredUsers.addAll(ExtraFeaturesController.getEmployees());
+      }
+      if(users_shown){
+        filteredUsers.addAll(ExtraFeaturesController.getGuests());
+      }
+      return filteredUsers;
     }
   }
 
