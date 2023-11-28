@@ -19,7 +19,7 @@ public class AssetPlusApplication {
   public static void main(String[] args) {
 
       AssetPlus assetPlus = getAssetPlus();
-      Guest newGuest = new Guest("null", "name", "pass", "phonenum", assetPlus);
+      //Guest newGuest = new Guest("null", "name", "pass", "phonenum", assetPlus);
       if (!assetPlus.hasManager()){
         Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
         assetPlus.setManager(manager);
