@@ -26,6 +26,7 @@ import ca.mcgill.ecse.assetplus.model.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import com.thoughtworks.xstream.mapper.Mapper.Null;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
@@ -190,12 +191,17 @@ public class ViewUserPage {
       if (currrentUser != null) {
         if (!currrentUser.equals("manager@ap.com")) {
             AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(currrentUser);
+            currrentUser = null;
+
             // Additional code after deletion if needed
         } else {
             // Handle the case where the user is the manager
             ViewUtils.showError("Cannot delete the manager");
         }
-    }
+    } else {
+            // Handle the case where the user is the manager
+            ViewUtils.showError("Select User to Delete");
+        }
   }
 
 }
