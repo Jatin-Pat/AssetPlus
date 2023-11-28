@@ -69,6 +69,7 @@ public class AssetPlusFeatureSet3Controller {
     SpecificAsset assetToAdd;
     try {
       assetToAdd = new SpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, assetPlus, assetType);
+      System.out.println("Worked1");
     } catch (RuntimeException e) {
       String error = e.getMessage();
       if (error.startsWith("Cannot create due to duplicate assetNumber.")) {
@@ -79,11 +80,13 @@ public class AssetPlusFeatureSet3Controller {
       }
       return error;
     }
-    boolean added = assetPlus.addSpecificAsset(assetToAdd);
-    if (!added) {
-      return "The asset was not added.";
-    }
+    //TODO FIX ME 
+    //boolean added = assetPlus.addSpecificAsset(assetToAdd);
+    //if (!added) {
+    //  return "The asset was not added.";
+    //}
     try {
+          System.out.println("Worked");
           AssetPlusPersistence.save();
         } catch (RuntimeException e){
         }
