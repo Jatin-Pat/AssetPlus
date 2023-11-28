@@ -11,6 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUserPage;
+
 
 public class UpdateUser {
 
@@ -28,6 +30,16 @@ public class UpdateUser {
 
     @FXML
     private TextField userPhoneNumberTextField;
+
+    @FXML
+    public void initialize() {
+    // Set the value of userEmailTextField from ViewUserPage.currentUser
+    if (ViewUserPage.currentUser != null) {
+        userEmailTextField.setText(ViewUserPage.currentUser);
+    } else {
+        userEmailTextField.setText(""); // Set a default value or handle it accordingly
+    }
+    }
 
     @FXML
     void GoBack(ActionEvent event) {

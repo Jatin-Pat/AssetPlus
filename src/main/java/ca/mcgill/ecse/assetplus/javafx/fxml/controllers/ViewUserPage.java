@@ -31,7 +31,7 @@ import javafx.scene.layout.BorderPane;
 
 public class ViewUserPage {
 
-    private String toDelete;
+    private static String currrentUser;
     
     @FXML
     private Button openAddUser;
@@ -177,8 +177,8 @@ public class ViewUserPage {
       if (event.getClickCount() == 1) {
         // Get the selected item
         TOUser selectedUser = UserView.getSelectionModel().getSelectedItem();
-        toDelete = selectedUser.getEmail();
-        if (selectedUser != null) {
+        currrentUser = selectedUser.getEmail();
+        if (currrentUser != null) {
             // Debugging output
             System.out.println("Selected User Email: " + selectedUser.getEmail());
         }
@@ -188,16 +188,19 @@ public class ViewUserPage {
     @FXML
     void deleteUser(ActionEvent event) {
       //TOUser selectedUser = UserView.getSelectionModel().getSelectedItem();
-      System.out.println("Selected User Email: " + toDelete);
-      if (toDelete != null) {
-        if (!toDelete.equals("manager@ap.com")) {
-            AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(toDelete);
+      System.out.println("Selected User Email: " + currrentUser);
+      if (currrentUser != null) {
+        if (!currrentUser.equals("manager@ap.com")) {
+            AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(currrentUser);
             // Additional code after deletion if needed
         } else {
             // Handle the case where the user is the manager
             ViewUtils.showError("Cannot delete the manager");
         }
     }
+    public  static String getUserEmail() {
+      return currentUser;
+  }
   }
 
 }
