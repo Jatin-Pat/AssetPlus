@@ -70,16 +70,16 @@ public class AssetPlusFeatureSet4Controller {
   private static StringBuilder errorGenerator(int id, Date raisedOnDate, String description, String email, int assetNumber) {
     StringBuilder errorMessage = new StringBuilder();
     if (id < 0) {
-      errorMessage.append("Invalid ID \n");
+      errorMessage.append("Invalid ID ");
     }
     if (description.isEmpty()) {
-      errorMessage.append("Ticket description cannot be empty\n");
+      errorMessage.append("Ticket description cannot be empty");
     }
     if (!isValidEmail(email)) {
-      errorMessage.append("The ticket raiser does not exist\n");
+      errorMessage.append("The ticket raiser does not exist");
     }
     if (!isValidAssetNumber(assetNumber)) {
-      errorMessage.append("The asset does not exist\n");
+      errorMessage.append("The asset does not exist");
     }
     return errorMessage;
   }
@@ -115,12 +115,12 @@ public class AssetPlusFeatureSet4Controller {
     }
     catch (Exception e) {
       String eString = e.getMessage();
-      if (eString.startsWith("Cannot create due to duplicate id\n")) {
-        errorMessage.append("Ticket id already exists\n");
+      if (eString.startsWith("Cannot create due to duplicate id")) {
+        errorMessage.append("Ticket id already exists");
       }
     }
     if (errorMessage.length() == 0) {
-      errorMessage.append("Ticket added successfully \n");
+      errorMessage.append("Ticket added successfully");
     }
     System.out.println(errorMessage);
 
@@ -165,14 +165,14 @@ public class AssetPlusFeatureSet4Controller {
         }
       }
       else {
-        errorMessage.append("Ticket not found\n");
+        errorMessage.append("Ticket not found");
       }
     }
     catch (Exception e) {
-      errorMessage.append(e.getMessage()).append("\n");
+      errorMessage.append(e.getMessage()).append("");
     }
     if (errorMessage.length() == 0) {
-      errorMessage.append("Ticket modified successfully \n");
+      errorMessage.append("Ticket modified successfully");
     }
     System.out.println(errorMessage);
 
@@ -195,10 +195,10 @@ public class AssetPlusFeatureSet4Controller {
       MaintenanceTicket ticketToDelete = maintenanceTickets.stream().filter(ticket -> ticket.getId() == id).findFirst().orElse(null);
       if (ticketToDelete != null) {
         ticketToDelete.delete();
-        System.out.println("Ticket deleted successfully \n");
+        System.out.println("Ticket deleted successfully");
       }
       else {
-        System.out.println("Ticket not found \n");
+        System.out.println("Ticket not found ");
       }
     }
     catch (RuntimeException e) {
