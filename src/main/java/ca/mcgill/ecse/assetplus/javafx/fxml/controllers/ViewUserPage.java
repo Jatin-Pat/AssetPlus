@@ -39,8 +39,8 @@ public class ViewUserPage {
     @FXML
     void refreshUser(ActionEvent event){
       System.out.println("buttonClicked");
-      //TODO - Way yo get employee
-      //TicketsView.setItems(getEmployees());
+      //TODO - Way to get employee
+      TicketsView.setItems(ge);
       AssetPlusFxmlView.getInstance().refresh();
     }
     @FXML
@@ -85,7 +85,7 @@ public class ViewUserPage {
 
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-      //TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getUser()));
+      TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getUser()));
 
     }
   }

@@ -7,6 +7,9 @@ import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
 import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.Manager;
+import ca.mcgill.ecse.assetplus.model.AssetPlus;
+
 import javafx.scene.control.TableColumn;
 
 // line 47 "../../../../../../AssetPlusPersistence.ump"
@@ -90,6 +93,7 @@ public class TOUser
     return newEmployees;
   }
 
+  
   
 
   public String toString()
