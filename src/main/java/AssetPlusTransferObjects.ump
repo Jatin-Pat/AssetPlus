@@ -32,3 +32,12 @@ class TOMaintenanceNote {
   String description;
   String noteTakerEmail;
 }
+
+class TOUser{
+  immutable;
+  String userType;
+  String name;
+  String phoneNumber;
+  String email;
+  String password;
+}

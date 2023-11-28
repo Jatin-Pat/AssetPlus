@@ -2,6 +2,7 @@ package ca.mcgill.ecse.assetplus.application;
 
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.Manager;
@@ -18,7 +19,7 @@ public class AssetPlusApplication {
   public static void main(String[] args) {
 
       AssetPlus assetPlus = getAssetPlus();
-
+      Guest newGuest = new Guest("null", "name", "pass", "phonenum", assetPlus);
       if (!assetPlus.hasManager()){
         Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
         assetPlus.setManager(manager);

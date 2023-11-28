@@ -3,83 +3,46 @@
 
 package ca.mcgill.ecse.assetplus.controller;
 
-import java.sql.Date;
-import java.util.Collections;
-import java.util.List;
-import ca.mcgill.ecse.assetplus.model.Employee;
-import ca.mcgill.ecse.assetplus.model.Manager;
-import ca.mcgill.ecse.assetplus.model.AssetPlus;
-
-import javafx.scene.control.TableColumn;
-
-// line 47 "../../../../../../AssetPlusPersistence.ump"
-// line 16 "../../../../../../AssetPlus.ump"
+// line 36 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOUser
 {
-
-  //------------------------
-  // STATIC VARIABLES
-  //------------------------
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
-  //User Attributes
-  private String email;
-  private String name;
-  private String password;
-  private String phoneNumber;
+  //TOUser Attributes
   private String userType;
-  private List<Employee> employees;
-
-  //User Associations;
+  private String name;
+  private String phoneNumber;
+  private String email;
+  private String password;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOUser(String aEmail, String aName, String aPassword, String aPhoneNumber, String aUserType)
+  public TOUser(String aUserType, String aName, String aPhoneNumber, String aEmail, String aPassword)
   {
+    userType = aUserType;
     name = aName;
-    password = aPassword;
     phoneNumber = aPhoneNumber;
     email = aEmail;
-    userType = aUserType;
+    password = aPassword;
   }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  
-
-  public TOUser(TableColumn<TOUser, String> userEmail, TableColumn<TOUser, Date> userName,
-      TableColumn<TOUser, String> userPassword, TableColumn<TOUser, String> userPassword2,
-      TableColumn<TOUser, Integer> userRole) {}
-
-  public String getEmail()
-  {
-    return email;
-  }
-  /* Code from template attribute_GetUnique */
-  
-  /* Code from template attribute_HasUnique */
-  
-
-  public String getName()
-  {
-    return name;
-  }
-
-  public String getType()
+  public String getUserType()
   {
     return userType;
   }
 
-  public String getPassword()
+  public String getName()
   {
-    return password;
+    return name;
   }
 
   public String getPhoneNumber()
@@ -87,23 +50,27 @@ public class TOUser
     return phoneNumber;
   }
 
-  public List<Employee> getEmployees()
+  public String getEmail()
   {
-    List<Employee> newEmployees = Collections.unmodifiableList(employees);
-    return newEmployees;
+    return email;
   }
 
-  
-  
+  public String getPassword()
+  {
+    return password;
+  }
+
+  public void delete()
+  {}
+
 
   public String toString()
   {
     return super.toString() + "["+
-            "type" + ":" + getType()+ "," +
-            "email" + ":" + getEmail()+ "," +
+            "userType" + ":" + getUserType()+ "," +
             "name" + ":" + getName()+ "," +
-            "password" + ":" + getPassword()+ "," +
-            "phoneNumber" + ":" + getPhoneNumber()+ "]";
+            "phoneNumber" + ":" + getPhoneNumber()+ "," +
+            "email" + ":" + getEmail()+ "," +
+            "password" + ":" + getPassword()+ "]";
   }
 }
-

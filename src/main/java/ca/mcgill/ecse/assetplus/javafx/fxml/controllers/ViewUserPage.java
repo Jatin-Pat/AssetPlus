@@ -15,7 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import java.sql.Date;
 import java.time.LocalDate;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
+import ca.mcgill.ecse.assetplus.controller.ExtraFeaturesController;
 import ca.mcgill.ecse.assetplus.controller.TOUser;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
 import java.util.ArrayList;
@@ -39,8 +39,10 @@ public class ViewUserPage {
     @FXML
     void refreshUser(ActionEvent event){
       System.out.println("buttonClicked");
-      //TODO - Way to get employee
-      //TicketsView.setItems(ge);
+      List<TOUser> users = ExtraFeaturesController.getUsers();
+      
+      TicketsView.setItems(FXCollections.observableList(users));
+
       AssetPlusFxmlView.getInstance().refresh();
     }
     @FXML
@@ -52,40 +54,34 @@ public class ViewUserPage {
       System.out.println("initialized");
       dateFilter.setEditable(false);
       
-      TicketsView.setPlaceholder(new Label("No tickets found"));
+      TicketsView.setPlaceholder(new Label("No users found"));
 
-      TableColumn<TOUser, Integer> userRole = new TableColumn<TOUser, Integer>("Role");
-      userRole.setCellValueFactory(new PropertyValueFactory<TOUser, Integer>("type"));
+      TableColumn<TOUser, String> userRole = new TableColumn<TOUser, String>("Role");
+      userRole.setCellValueFactory(new PropertyValueFactory<TOUser, String>("userType"));
       
-      TableColumn<TOUser, Date> userName = new TableColumn<TOUser, Date>("Name");
-      userName.setCellValueFactory(new PropertyValueFactory<TOUser, Date>("name"));
+      TableColumn<TOUser, String> userName = new TableColumn<TOUser, String>("Name");
+      userName.setCellValueFactory(new PropertyValueFactory<TOUser, String>("name"));
 
       TableColumn<TOUser, String> userEmail = new TableColumn<TOUser, String>("Email");
       userEmail.setCellValueFactory(new PropertyValueFactory<TOUser, String>("email"));
 
       TableColumn<TOUser, String> userPhoneNumber = new TableColumn<TOUser, String>("Phone Number");
-      userPhoneNumber.setCellValueFactory(new PropertyValueFactory<TOUser, String>("phone"));
+      userPhoneNumber.setCellValueFactory(new PropertyValueFactory<TOUser, String>("phoneNumber"));
 
       TableColumn<TOUser, String> userPassword = new TableColumn<TOUser, String>("Password");
       userPassword.setCellValueFactory(new PropertyValueFactory<TOUser, String>("password"));
 
-      
-      //TableColumn<TOMaintenanceTicket, String> statusColumn = new TableColumn<TOMaintenanceTicket, String>("Status");
-      //statusColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("status"));
+
 
       TicketsView.getColumns().add(userRole);
       TicketsView.getColumns().add(userName);
       TicketsView.getColumns().add(userEmail);
       TicketsView.getColumns().add(userPhoneNumber);
       TicketsView.getColumns().add(userPassword);
-      //TicketsView.getColumns().add(statusColumn);
-
       
-      TicketsView.getItems().add(new TOUser(userEmail,userName,userPassword,userPassword,userRole));
+      TicketsView.getItems().add(new TOUser("userEmail","userName","userPassword","userPassword","Guest"));
 
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-      //TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getUser()));
 
     }
   }
