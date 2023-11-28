@@ -69,7 +69,7 @@
             <Image url="@../images/Logo.png" />
          </image>
       </ImageView>
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Delete User" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+      <Button fx:id="deleteUser" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="123.0" text="Delete User" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
       <Button fx:id="openAddUser" mnemonicParsing="false" onAction="#openAddUser" prefHeight="25.0" prefWidth="123.0" text="Add New User" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
       <Button fx:id="openUpdateUser" mnemonicParsing="false" onAction="#openUpdateUser" prefHeight="25.0" prefWidth="123.0" text="Modify Existing User" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <CheckBox fx:id="showUsers" mnemonicParsing="false" prefHeight="17.0" prefWidth="117.0" text="Show Guests" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="TOP" />
@@ -77,4 +77,3 @@
       <CheckBox fx:id="showManager" layoutX="512.0" layoutY="451.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="139.0" text="Show Manager" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>
-

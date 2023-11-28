@@ -9,14 +9,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.ExtraFeaturesController;
 import ca.mcgill.ecse.assetplus.controller.TOUser;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.Guest;
+import ca.mcgill.ecse.assetplus.model.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +30,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 public class ViewUserPage {
+
+    private String toDelete;
     
     @FXML
     private Button openAddUser;
@@ -48,6 +56,7 @@ public class ViewUserPage {
 
     @FXML
     private TableView<TOUser> UserView;
+
 
     @FXML
     void refreshUser(ActionEvent event){
@@ -118,11 +127,7 @@ public class ViewUserPage {
     }
 
 
-    @FXML
-    void selectUser(MouseEvent event) {
-
-
-    }
+  
 
     @FXML
     void openUpdateUser(ActionEvent event) {
@@ -164,12 +169,35 @@ public class ViewUserPage {
             ViewUtils.showError("Error opening Add User page");
         }
 
-        
+
     }
 
     @FXML
-    void deleteUser(ActionEvent event) {
-
+    void selectUser(MouseEvent event) {
+      if (event.getClickCount() == 1) {
+        // Get the selected item
+        TOUser selectedUser = UserView.getSelectionModel().getSelectedItem();
+        toDelete = selectedUser.getEmail();
+        if (selectedUser != null) {
+            // Debugging output
+            System.out.println("Selected User Email: " + selectedUser.getEmail());
+        }
     }
+  }
+
+    @FXML
+    void deleteUser(ActionEvent event) {
+      //TOUser selectedUser = UserView.getSelectionModel().getSelectedItem();
+      System.out.println("Selected User Email: " + toDelete);
+      if (toDelete != null) {
+        if (!toDelete.equals("manager@ap.com")) {
+            AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(toDelete);
+            // Additional code after deletion if needed
+        } else {
+            // Handle the case where the user is the manager
+            ViewUtils.showError("Cannot delete the manager");
+        }
+    }
+  }
 
 }
