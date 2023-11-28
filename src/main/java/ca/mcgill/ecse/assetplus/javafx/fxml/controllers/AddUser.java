@@ -68,7 +68,7 @@ public class AddUser {
       }
 
     }
-    //TODO
+  
     @FXML
     void goBack(ActionEvent event) {
        try {
@@ -83,10 +83,10 @@ public class AddUser {
       
     } catch (IOException e) {
       e.printStackTrace();
-      ViewUtils.showError("Error opening image upload page\n");
+      ViewUtils.showError("Error Changing Page\n");
     }
 
     }
-    
+
 
 }

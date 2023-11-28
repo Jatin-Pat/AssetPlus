@@ -42,10 +42,10 @@ public class UpdateUser {
         stage.getScene().setRoot(root);
       } catch (IOException e) {
        e.printStackTrace();
-        ViewUtils.showError("Error opening image upload page\n");
-     }
+        ViewUtils.showError("Error Changing Page\n");
+      }
     
-     
+
     }
 
     @FXML
@@ -62,9 +62,19 @@ public class UpdateUser {
       }
 
     }
-    //TODO
+
     @FXML
     void updateManagerClicked(ActionEvent event) {
+      String name = userNameTextField.getText();
+      String email = userEmailTextField.getText();
+      String phoneNumber = userPhoneNumberTextField.getText();
+      String password = userPasswordTextField.getText();
+      if (ViewUtils.successful(AssetPlusFeatureSet1Controller.updateManager(password))){
+        userNameTextField.setText("");
+        userEmailTextField.setText("");
+        userPhoneNumberTextField.setText("");
+        userPasswordTextField.setText("");
+      }
       
     }
 
