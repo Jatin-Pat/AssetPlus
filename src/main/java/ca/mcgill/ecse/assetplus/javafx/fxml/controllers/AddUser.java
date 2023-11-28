@@ -72,21 +72,19 @@ public class AddUser {
     @FXML
     void goBack(ActionEvent event) {
        try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
-      Parent root = loader.load();
+          //TODO Fix the scene changer to goback to ../pages/ViewUser.fxml
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
+          Parent root = loader.load();
 
-      // Get the current Stage
-      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+          // Get the current Stage
+          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-      // Set the new root for the current Scene
-      stage.getScene().setRoot(root);
+          // Set the new root for the current Scene
+          stage.getScene().setRoot(root);
       
-    } catch (IOException e) {
-      e.printStackTrace();
-      ViewUtils.showError("Error Changing Page\n");
+        } catch (IOException e) {
+          e.printStackTrace();
+          ViewUtils.showError("Error Changing Page\n");
+        }
+      }
     }
-
-    }
-
-
-}

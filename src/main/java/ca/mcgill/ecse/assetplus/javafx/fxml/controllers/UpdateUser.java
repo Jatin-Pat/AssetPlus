@@ -17,7 +17,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUserPage;
 public class UpdateUser {
 
     @FXML
-    private Button Cancle;
+    private Button cancle;
 
     @FXML
     private TextField userEmailTextField;
@@ -42,8 +42,9 @@ public class UpdateUser {
     }
 
     @FXML
-    void GoBack(ActionEvent event) {
+    void goBack(ActionEvent event) {
       try {
+        //TODO Fix the scene changer to goback to ../pages/ViewUser.fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
         Parent root = loader.load();
 
@@ -53,7 +54,7 @@ public class UpdateUser {
       // Set the new root for the current Scene
         stage.getScene().setRoot(root);
       } catch (IOException e) {
-       e.printStackTrace();
+        e.printStackTrace();
         ViewUtils.showError("Error Changing Page\n");
       }
     
