@@ -38,6 +38,15 @@
                   </AnchorPane>
             </content>
           </Tab>
+          <Tab text="View Users">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="230.0" prefWidth="851.0">
+                     <children>
+                        <fx:include maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="pages/ViewUserPage.fxml" AnchorPane.bottomAnchor="-55.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
             <Tab text="Manage Tickets">
                <content>
                   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="230.0" prefWidth="851.0">

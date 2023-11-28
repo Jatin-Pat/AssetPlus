@@ -37,10 +37,10 @@ public class ViewUserPage {
     private TableView<TOUser> TicketsView;
 
     @FXML
-    void refreshTickets(ActionEvent event){
+    void refreshUser(ActionEvent event){
       System.out.println("buttonClicked");
-      //TODO
-      TicketsView.setItems(getUsers());
+      //TODO - Way yo get employee
+      //TicketsView.setItems(getEmployees());
       AssetPlusFxmlView.getInstance().refresh();
     }
     @FXML
@@ -54,38 +54,38 @@ public class ViewUserPage {
       
       TicketsView.setPlaceholder(new Label("No tickets found"));
 
-      TableColumn<TOUser, Integer> ticketIDColumn = new TableColumn<TOUser, Integer>("Role");
-      ticketIDColumn.setCellValueFactory(new PropertyValueFactory<TOUser, Integer>("type"));
+      TableColumn<TOUser, Integer> userRole = new TableColumn<TOUser, Integer>("Role");
+      userRole.setCellValueFactory(new PropertyValueFactory<TOUser, Integer>("type"));
       
-      TableColumn<TOUser, Date> dateColumn = new TableColumn<TOUser, Date>("Name");
-      dateColumn.setCellValueFactory(new PropertyValueFactory<TOUser, Date>("name"));
+      TableColumn<TOUser, Date> userName = new TableColumn<TOUser, Date>("Name");
+      userName.setCellValueFactory(new PropertyValueFactory<TOUser, Date>("name"));
 
-      TableColumn<TOUser, String> assignedToColumn = new TableColumn<TOUser, String>("Email");
-      assignedToColumn.setCellValueFactory(new PropertyValueFactory<TOUser, String>("email"));
+      TableColumn<TOUser, String> userEmail = new TableColumn<TOUser, String>("Email");
+      userEmail.setCellValueFactory(new PropertyValueFactory<TOUser, String>("email"));
 
-      TableColumn<TOUser, String> timeToResolveColumn = new TableColumn<TOUser, String>("Phone Number");
-      timeToResolveColumn.setCellValueFactory(new PropertyValueFactory<TOUser, String>("phone"));
+      TableColumn<TOUser, String> userPhoneNumber = new TableColumn<TOUser, String>("Phone Number");
+      userPhoneNumber.setCellValueFactory(new PropertyValueFactory<TOUser, String>("phone"));
 
-      TableColumn<TOUser, String> priorityColumn = new TableColumn<TOUser, String>("Password");
-      priorityColumn.setCellValueFactory(new PropertyValueFactory<TOUser, String>("password"));
+      TableColumn<TOUser, String> userPassword = new TableColumn<TOUser, String>("Password");
+      userPassword.setCellValueFactory(new PropertyValueFactory<TOUser, String>("password"));
 
       
       //TableColumn<TOMaintenanceTicket, String> statusColumn = new TableColumn<TOMaintenanceTicket, String>("Status");
       //statusColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("status"));
 
-      TicketsView.getColumns().add(ticketIDColumn);
-      TicketsView.getColumns().add(dateColumn);
-      TicketsView.getColumns().add(assignedToColumn);
-      TicketsView.getColumns().add(timeToResolveColumn);
-      TicketsView.getColumns().add(priorityColumn);
+      TicketsView.getColumns().add(userRole);
+      TicketsView.getColumns().add(userName);
+      TicketsView.getColumns().add(userEmail);
+      TicketsView.getColumns().add(userPhoneNumber);
+      TicketsView.getColumns().add(userPassword);
       //TicketsView.getColumns().add(statusColumn);
 
-      List<String> imageULRS = new ArrayList<String>();
-      TicketsView.getItems().add(new TOUser(1, Date.valueOf("2020-02-02"), "null", "null", "null", "null", "null", "null", false, "null", 0, Date.valueOf("2020-03-03"), 0, 0, imageULRS ));
+      
+      TicketsView.getItems().add(new TOUser(userEmail,userName,userPassword,userPassword,userRole));
 
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-      TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getUser()));
+      //TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getUser()));
 
     }
   }

@@ -3,9 +3,15 @@
 
 package ca.mcgill.ecse.assetplus.controller;
 
+import java.sql.Date;
+import java.util.Collections;
+import java.util.List;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import javafx.scene.control.TableColumn;
+
 // line 47 "../../../../../../AssetPlusPersistence.ump"
 // line 16 "../../../../../../AssetPlus.ump"
-public abstract class TOUser
+public class TOUser
 {
 
   //------------------------
@@ -22,6 +28,7 @@ public abstract class TOUser
   private String password;
   private String phoneNumber;
   private String userType;
+  private List<Employee> employees;
 
   //User Associations;
 
@@ -43,6 +50,10 @@ public abstract class TOUser
   //------------------------
 
   
+
+  public TOUser(TableColumn<TOUser, String> userEmail, TableColumn<TOUser, Date> userName,
+      TableColumn<TOUser, String> userPassword, TableColumn<TOUser, String> userPassword2,
+      TableColumn<TOUser, Integer> userRole) {}
 
   public String getEmail()
   {
@@ -72,6 +83,14 @@ public abstract class TOUser
   {
     return phoneNumber;
   }
+
+  public List<Employee> getEmployees()
+  {
+    List<Employee> newEmployees = Collections.unmodifiableList(employees);
+    return newEmployees;
+  }
+
+  
 
   public String toString()
   {
