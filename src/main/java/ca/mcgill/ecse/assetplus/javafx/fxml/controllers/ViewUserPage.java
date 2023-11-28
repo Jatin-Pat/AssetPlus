@@ -3,30 +3,33 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import javafx.scene.Node;
+import javafx.stage.Stage;
 import ca.mcgill.ecse.assetplus.controller.ExtraFeaturesController;
 import ca.mcgill.ecse.assetplus.controller.TOUser;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.Syntax;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 
 public class ViewUserPage {
     
     @FXML
-    private Button addUser;
+    private Button openAddUser;
+
+    @FXML
+    private Button openUpdateUser;
 
     @FXML
     private Button deleteUser;
@@ -123,11 +126,43 @@ public class ViewUserPage {
 
     @FXML
     void openUpdateUser(ActionEvent event) {
+      try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/updateUser.fxml"));
+      Parent root = loader.load();
+
+      // Get the current Stage
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      // Set the new root for the current Scene
+      stage.getScene().setRoot(root);
+    } catch (IOException e) {
+      e.printStackTrace();
+      ViewUtils.showError("Error opening image upload page\n");
+    }
 
 
     }
     @FXML
     void openAddUser(ActionEvent event) {
+      try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addUser.fxml"));
+            Parent addUserRoot = loader.load();
+
+            // Get the current Stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Create a new BorderPane for the main scene
+            BorderPane mainPane = new BorderPane();
+            
+            mainPane.setCenter(addUserRoot);
+
+            // Set the new root for the current Scene
+            stage.setScene(new Scene(mainPane));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error opening Add User page");
+        }
 
     }
 

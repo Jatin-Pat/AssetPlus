@@ -62,7 +62,7 @@
             <Font name="Roboto" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="UserView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="4" GridPane.vgrow="ALWAYS" />
+      <TableView fx:id="UserView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#selectUser" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="4" GridPane.vgrow="ALWAYS" />
       <Separator prefHeight="0.0" prefWidth="135.0" valignment="TOP" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
       <ImageView fitHeight="132.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
          <image>
@@ -70,25 +70,10 @@
          </image>
       </ImageView>
       <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Delete User" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Add New User" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Modify Existing User" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Button fx:id="openAddUser" mnemonicParsing="false" onAction="#openAddUser" prefHeight="25.0" prefWidth="123.0" text="Add New User" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <Button fx:id="openUpdateUser" mnemonicParsing="false" onAction="#openUpdateUser" prefHeight="25.0" prefWidth="123.0" text="Modify Existing User" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <CheckBox fx:id="showUsers" mnemonicParsing="false" prefHeight="17.0" prefWidth="117.0" text="Show Guests" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="TOP" />
       <CheckBox fx:id="showEmployees" layoutX="512.0" layoutY="414.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="142.0" text="Show Employees" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" />
       <CheckBox fx:id="showManager" layoutX="512.0" layoutY="451.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="139.0" text="Show Manager" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
-      <Button mnemonicParsing="false" onAction="#openUpdateUser" text="Update" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Button>
-      <Button fx:id="deleteUser" mnemonicParsing="false" onAction="#deleteUser" text="Delete" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Button>
-      <Button fx:id="addUser" mnemonicParsing="false" onAction="#openAddUser" text="Add" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Button>
    </children>
 </GridPane>
