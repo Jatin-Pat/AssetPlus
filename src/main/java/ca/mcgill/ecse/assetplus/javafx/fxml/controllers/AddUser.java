@@ -12,9 +12,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.MainPage;
 
 
 public class AddUser {
+    private MainPage mainPage;
 
     @FXML
     private MenuItem addEmployeeClicked;
@@ -81,6 +83,10 @@ public class AddUser {
 
           // Set the new root for the current Scene
           stage.getScene().setRoot(root);
+          mainPage = loader.getController();
+
+          mainPage.selectTab(2);
+          
       
         } catch (IOException e) {
           e.printStackTrace();
