@@ -136,15 +136,15 @@ public class ViewUserPage {
     @FXML
     void openUpdateUser(ActionEvent event) {
       try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/updateUser.fxml"));
-      Parent root = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/updateUser.fxml"));
+        Parent root = loader.load();
 
-      // Get the current Stage
-      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Get the current Stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-      // Set the new root for the current Scene
-      stage.getScene().setRoot(root);
-    } catch (IOException e) {
+        // Set the new root for the current Scene
+        stage.getScene().setRoot(root);
+      } catch (IOException e) {
       e.printStackTrace();
       ViewUtils.showError("Error opening image upload page\n");
     }
@@ -154,20 +154,14 @@ public class ViewUserPage {
     @FXML
     void openAddUser(ActionEvent event) {
       try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addUser.fxml"));
-            Parent addUserRoot = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/updateUser.fxml"));
+        Parent root = loader.load();
 
-            // Get the current Stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Get the current Stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            // Create a new BorderPane for the main scene
-            BorderPane mainPane = new BorderPane();
-            
-            mainPane.setCenter(addUserRoot);
-
-            // Set the new root for the current Scene
-            stage.setScene(new Scene(mainPane));
-
+        // Set the new root for the current Scene
+        stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
             ViewUtils.showError("Error opening Add User page");
