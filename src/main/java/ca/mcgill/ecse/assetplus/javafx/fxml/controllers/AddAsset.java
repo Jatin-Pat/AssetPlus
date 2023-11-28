@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
+import java.sql.Date;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import javafx.scene.control.DatePicker;
 import javafx.event.ActionEvent;
@@ -8,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -40,6 +40,19 @@ public class AddAsset {
 
     @FXML
     void addAsset(ActionEvent event) {
+      int assetNumber = Integer.parseInt(assetNumberTextField.getText());
+      int floorNumber = Integer.parseInt(floorNumberTextField.getText());
+      int roomNumber = Integer.parseInt(roomNumberTextField.getText());
+      Date purchaseDate = Date.valueOf(purchaseDateDatePicker.getValue());
+      String assetTypeName = assetTypeTextField.getText();
+
+      if (ViewUtils.successful(AssetPlusFeatureSet3Controller.addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, assetTypeName))){
+        assetNumberTextField.setText("");
+        floorNumberTextField.setText("");
+        roomNumberTextField.setText("");
+        purchaseDateDatePicker.setValue(null);
+        assetTypeTextField.setText("");
+      }
 
     }
 
