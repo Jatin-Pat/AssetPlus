@@ -99,7 +99,7 @@ public class addDeleteImage {
       stage.getScene().setRoot(root);
       mainPage = loader.getController();
 
-      mainPage.selectTab(3);
+      mainPage.selectTab(4);
       
   
     } catch (IOException e) {
