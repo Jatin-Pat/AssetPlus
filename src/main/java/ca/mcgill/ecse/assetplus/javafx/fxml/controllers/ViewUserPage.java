@@ -57,6 +57,10 @@ public class ViewUserPage {
     @FXML
     private TableView<TOUser> UserView;
 
+    public static String getUserEmail(){
+        return currrentUser;
+    }
+
 
     @FXML
     void refreshUser(ActionEvent event){
@@ -198,9 +202,6 @@ public class ViewUserPage {
             ViewUtils.showError("Cannot delete the manager");
         }
     }
-    public  static String getUserEmail() {
-      return currentUser;
-  }
   }
 
 }

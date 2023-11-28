@@ -34,8 +34,8 @@ public class UpdateUser {
     @FXML
     public void initialize() {
     // Set the value of userEmailTextField from ViewUserPage.currentUser
-    if (ViewUserPage.currentUser != null) {
-        userEmailTextField.setText(ViewUserPage.currentUser);
+    if (ViewUserPage.getUserEmail() != null) {
+        userEmailTextField.setText(ViewUserPage.getUserEmail());
     } else {
         userEmailTextField.setText(""); // Set a default value or handle it accordingly
     }
