@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class AddAsset {
 
-  private MainPage mainPage;
+    private MainPage mainPage;
 
     @FXML
     private Button addAsset;

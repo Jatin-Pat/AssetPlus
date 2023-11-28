@@ -15,6 +15,8 @@ import java.io.IOException;
 
 public class UpdateAsset {
 
+    private MainPage mainPage;
+
     @FXML
     private TextField assetNumberTextField;
 
@@ -38,12 +40,41 @@ public class UpdateAsset {
 
     @FXML
     void goBack(ActionEvent event) {
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
+        Parent root = loader.load();
 
+        // Get the current Stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set the new root for the current Scene
+        stage.getScene().setRoot(root);
+        mainPage = loader.getController();
+
+        mainPage.selectTab(2);
+        
+    
+      } catch (IOException e) {
+        e.printStackTrace();
+        ViewUtils.showError("Error Changing Page\n");
+      }
     }
 
     @FXML
     void updateAsset(ActionEvent event) {
+      int assetNumber = Integer.parseInt(assetNumberTextField.getText());
+      int newFloorNumber = Integer.parseInt(floorNumberTextField.getText());
+      int newRoomNumber = Integer.parseInt(roomNumberTextField.getText());
+      Date newPurchaseDate = Date.valueOf(purchaseDateDatePicker.getValue());
+      String newAssetType = assetTypeTextField.getText();
 
+      if (ViewUtils.successful(AssetPlusFeatureSet3Controller.updateSpecificAsset(assetNumber, newFloorNumber, newRoomNumber, newPurchaseDate, newAssetType))){
+        assetNumberTextField.setText("");
+        floorNumberTextField.setText("");
+        roomNumberTextField.setText("");
+        purchaseDateDatePicker.setValue(null);
+        assetTypeTextField.setText("");
+      }
     }
 
 }
