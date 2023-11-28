@@ -11,10 +11,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUserPage;
 
 
 public class UpdateUser {
+
+    private MainPage mainPage;
 
     @FXML
     private Button cancel;
@@ -51,13 +52,17 @@ public class UpdateUser {
         // Get the current Stage
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-      // Set the new root for the current Scene
+        // Set the new root for the current Scene
         stage.getScene().setRoot(root);
+        mainPage = loader.getController();
+
+        mainPage.selectTab(2);
+        
+    
       } catch (IOException e) {
         e.printStackTrace();
         ViewUtils.showError("Error Changing Page\n");
       }
-    
 
     }
 
