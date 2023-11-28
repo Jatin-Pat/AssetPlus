@@ -61,7 +61,7 @@ public class ViewUserPage {
     public static String getUserEmail(){
         return currrentUser;
     }
-    private static void setToNull() {
+    private static void setCurrentUserToNull() {
         currrentUser = null;
     }
 
@@ -83,7 +83,7 @@ public class ViewUserPage {
       UserView.setPlaceholder(new Label("No users found"));
 
       refreshUser(new ActionEvent());
-      setToNull();
+      setCurrentUserToNull();
       TableColumn<TOUser, String> userRole = new TableColumn<TOUser, String>("Role");
       userRole.setCellValueFactory(new PropertyValueFactory<TOUser, String>("userType"));
       
