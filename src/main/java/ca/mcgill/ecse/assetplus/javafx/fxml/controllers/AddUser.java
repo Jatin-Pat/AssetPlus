@@ -15,6 +15,7 @@ import java.io.IOException;
 
 
 public class AddUser {
+    
     private MainPage mainPage;
 
     @FXML

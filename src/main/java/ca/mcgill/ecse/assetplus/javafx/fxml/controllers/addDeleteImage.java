@@ -20,6 +20,8 @@ import javafx.stage.Stage;
  */
 
 public class addDeleteImage {
+
+  private MainPage mainPage;
   @FXML
   private TextField imageURL;
   @FXML
@@ -87,7 +89,7 @@ public class addDeleteImage {
   @FXML
   public void cancel(ActionEvent event) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addTicket.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
       Parent root = loader.load();
 
       // Get the current Stage
@@ -95,9 +97,14 @@ public class addDeleteImage {
 
       // Set the new root for the current Scene
       stage.getScene().setRoot(root);
+      mainPage = loader.getController();
+
+      mainPage.selectTab(4);
+      
+  
     } catch (IOException e) {
       e.printStackTrace();
-      ViewUtils.showError("Error opening image upload page\n");
+      ViewUtils.showError("Error Changing Page\n");
     }
   }
 }
