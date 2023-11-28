@@ -80,6 +80,7 @@ public class AssetPlusFeatureSet3Controller {
       }
       return error;
     }
+    //TODO FIX ME 
     //boolean added = assetPlus.addSpecificAsset(assetToAdd);
     //if (!added) {
     //  return "The asset was not added.";
