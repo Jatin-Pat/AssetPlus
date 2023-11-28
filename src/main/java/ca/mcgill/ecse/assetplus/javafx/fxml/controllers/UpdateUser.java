@@ -45,7 +45,6 @@ public class UpdateUser {
     @FXML
     void goBack(ActionEvent event) {
       try {
-        //TODO Fix the scene changer to goback to ../pages/ViewUser.fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
         Parent root = loader.load();
 
