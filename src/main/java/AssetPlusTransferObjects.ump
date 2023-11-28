@@ -41,3 +41,11 @@ class TOUser{
   String email;
   String password;
 }
+class TOAsset{
+  immutable;
+  int assetNumber;
+  int floorNumber;
+  int roomNumber;
+  Date purchaseDate;
+  String type;
+}

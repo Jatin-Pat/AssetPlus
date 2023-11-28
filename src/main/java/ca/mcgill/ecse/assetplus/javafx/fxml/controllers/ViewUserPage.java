@@ -79,6 +79,7 @@ public class ViewUserPage {
       
       UserView.setPlaceholder(new Label("No users found"));
 
+      refreshUser(new ActionEvent());
       TableColumn<TOUser, String> userRole = new TableColumn<TOUser, String>("Role");
       userRole.setCellValueFactory(new PropertyValueFactory<TOUser, String>("userType"));
       
@@ -191,6 +192,7 @@ public class ViewUserPage {
       if (currrentUser != null) {
         if (!currrentUser.equals("manager@ap.com")) {
             AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(currrentUser);
+            refreshUser(new ActionEvent());
             currrentUser = null;
 
             // Additional code after deletion if needed

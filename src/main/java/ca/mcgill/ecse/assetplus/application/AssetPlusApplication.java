@@ -1,11 +1,13 @@
 package ca.mcgill.ecse.assetplus.application;
 
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.Manager;
+import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import javafx.application.Application;
 import java.sql.Date;
@@ -20,6 +22,8 @@ public class AssetPlusApplication {
 
       AssetPlus assetPlus = getAssetPlus();
       //Guest newGuest = new Guest("null", "name", "pass", "phonenum", assetPlus);
+      //AssetType newType = new AssetType("NewType", 33, assetPlus);
+      //SpecificAsset newAsset = new SpecificAsset(0, 0, 0, Date.valueOf("2020-02-02"), assetPlus, newType);
       if (!assetPlus.hasManager()){
         Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
         assetPlus.setManager(manager);

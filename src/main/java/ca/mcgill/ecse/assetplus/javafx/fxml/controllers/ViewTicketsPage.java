@@ -52,8 +52,10 @@ public class ViewTicketsPage {
       System.out.println("initialized");
       dateFilter.setEditable(false);
       
+      
       TicketsView.setPlaceholder(new Label("No tickets found"));
-
+      
+      refreshTickets(new ActionEvent());
 
       TableColumn<TOMaintenanceTicket, Integer> ticketIDColumn = new TableColumn<TOMaintenanceTicket, Integer>("Ticket ID");
       ticketIDColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, Integer>("id"));
@@ -69,7 +71,6 @@ public class ViewTicketsPage {
 
       TableColumn<TOMaintenanceTicket, String> priorityColumn = new TableColumn<TOMaintenanceTicket, String>("Priority");
       priorityColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("priority"));
-
       
       TableColumn<TOMaintenanceTicket, String> statusColumn = new TableColumn<TOMaintenanceTicket, String>("Status");
       statusColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("status"));
@@ -83,12 +84,8 @@ public class ViewTicketsPage {
 
 
       List<String> imageULRS = new ArrayList<String>();
-      TicketsView.getItems().add(new TOMaintenanceTicket(1, Date.valueOf("2020-02-02"), "null", "null", "null", "null", "null", "null", false, "null", 0, Date.valueOf("2020-03-03"), 0, 0, imageULRS ));
-
 
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-
       TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getMaintenanceTickets()));
 
     }
@@ -104,9 +101,7 @@ public class ViewTicketsPage {
       List<TOMaintenanceTicket> tickets = null;
       
       if(selectedDate == null && employeeName == ""){
-              System.out.println("BOTH NULL");
-              
-
+        System.out.println("BOTH NULL");
         tickets = AssetPlusFeatureSet6Controller.getTickets();
       }
       else if(selectedDate != null && employeeName != ""){
