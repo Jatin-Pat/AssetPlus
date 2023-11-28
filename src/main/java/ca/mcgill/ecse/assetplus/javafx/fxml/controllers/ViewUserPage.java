@@ -102,7 +102,7 @@ public class ViewUserPage {
       UserView.getColumns().add(userPhoneNumber);
       UserView.getColumns().add(userPassword);
       
-      UserView.getItems().add(new TOUser("userEmail","userName","userPassword","userPassword","Guest"));
+      //UserView.getItems().add(new TOUser("userEmail","userName","userPassword","userPassword","Guest"));
 
       UserView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
