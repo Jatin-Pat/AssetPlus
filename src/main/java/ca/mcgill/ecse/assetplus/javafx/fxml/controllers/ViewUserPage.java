@@ -164,6 +164,7 @@ public class ViewUserPage {
             ViewUtils.showError("Error opening Add User page");
         }
 
+        
     }
 
     @FXML

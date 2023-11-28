@@ -45,6 +45,7 @@ public class UpdateUser {
         ViewUtils.showError("Error opening image upload page\n");
      }
     
+     
     }
 
     @FXML
