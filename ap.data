@@ -1,0 +1,81 @@
+{
+  "AssetPlus": {
+    "employees": [
+      ""
+    ],
+    "guests": [
+      ""
+    ],
+    "manager": {
+      "email": "manager@ap.com",
+      "password": "manager",
+      "raisedTickets": [
+        ""
+      ],
+      "maintenanceNotes": [
+        ""
+      ],
+      "maintenanceTasks": [
+        ""
+      ],
+      "assetPlus": {
+        "@reference": "../.."
+      },
+      "ticketsForApproval": [
+        ""
+      ]
+    },
+    "maintenanceTickets": [
+      ""
+    ],
+    "assetTypes": [
+      {
+        "AssetType": [
+          {
+            "name": "newtype",
+            "expectedLifeSpan": 2,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              ""
+            ]
+          },
+          {
+            "name": "NewType",
+            "expectedLifeSpan": 33,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              {
+                "SpecificAsset": {
+                  "assetNumber": 0,
+                  "floorNumber": 0,
+                  "roomNumber": 0,
+                  "purchaseDate": "2020-02-02",
+                  "assetPlus": {
+                    "@reference": "../../../../.."
+                  },
+                  "maintenanceTickets": [
+                    ""
+                  ],
+                  "assetType": {
+                    "@reference": "../../.."
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "specificAssets": [
+      {
+        "SpecificAsset": {
+          "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
+        }
+      }
+    ]
+  }
+}

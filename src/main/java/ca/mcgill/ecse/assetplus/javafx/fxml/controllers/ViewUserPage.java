@@ -58,8 +58,11 @@ public class ViewUserPage {
     @FXML
     private TableView<TOUser> UserView;
 
-    public static String getUserEmail(){
+    protected static String getUserEmail(){
         return currrentUser;
+    }
+    private static void setCurrentUserToNull() {
+        currrentUser = null;
     }
 
 
@@ -79,6 +82,8 @@ public class ViewUserPage {
       
       UserView.setPlaceholder(new Label("No users found"));
 
+      refreshUser(new ActionEvent());
+      setCurrentUserToNull();
       TableColumn<TOUser, String> userRole = new TableColumn<TOUser, String>("Role");
       userRole.setCellValueFactory(new PropertyValueFactory<TOUser, String>("userType"));
       
@@ -191,6 +196,7 @@ public class ViewUserPage {
       if (currrentUser != null) {
         if (!currrentUser.equals("manager@ap.com")) {
             AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(currrentUser);
+            refreshUser(new ActionEvent());
             currrentUser = null;
 
             // Additional code after deletion if needed
@@ -203,5 +209,6 @@ public class ViewUserPage {
             ViewUtils.showError("Select User to Delete");
         }
   }
+
 
 }
