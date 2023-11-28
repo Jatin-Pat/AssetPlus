@@ -17,7 +17,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUserPage;
 public class UpdateUser {
 
     @FXML
-    private Button cancle;
+    private Button cancel;
 
     @FXML
     private TextField userEmailTextField;
