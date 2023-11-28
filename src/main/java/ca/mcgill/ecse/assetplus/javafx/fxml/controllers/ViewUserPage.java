@@ -61,6 +61,9 @@ public class ViewUserPage {
     public static String getUserEmail(){
         return currrentUser;
     }
+    private static void setToNull() {
+        currrentUser = null;
+    }
 
 
     @FXML
@@ -80,6 +83,7 @@ public class ViewUserPage {
       UserView.setPlaceholder(new Label("No users found"));
 
       refreshUser(new ActionEvent());
+      setToNull();
       TableColumn<TOUser, String> userRole = new TableColumn<TOUser, String>("Role");
       userRole.setCellValueFactory(new PropertyValueFactory<TOUser, String>("userType"));
       
@@ -205,5 +209,6 @@ public class ViewUserPage {
             ViewUtils.showError("Select User to Delete");
         }
   }
+
 
 }

@@ -17,6 +17,8 @@ public class UpdateUser {
 
     private MainPage mainPage;
 
+
+
     @FXML
     private Button cancel;
 
@@ -38,13 +40,14 @@ public class UpdateUser {
     if (ViewUserPage.getUserEmail() != null) {
         userEmailTextField.setText(ViewUserPage.getUserEmail());
     } else {
-        userEmailTextField.setText(""); // Set a default value or handle it accordingly
+        userEmailTextField.setText("");
     }
     }
-
+    
     @FXML
     void goBack(ActionEvent event) {
       try {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
         Parent root = loader.load();
 
@@ -56,6 +59,7 @@ public class UpdateUser {
         mainPage = loader.getController();
 
         mainPage.selectTab(2);
+
         
     
       } catch (IOException e) {
