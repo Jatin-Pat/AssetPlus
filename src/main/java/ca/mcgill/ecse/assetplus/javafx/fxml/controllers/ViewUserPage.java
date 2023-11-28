@@ -137,7 +137,7 @@ public class ViewUserPage {
     @FXML
     void openUpdateUser(ActionEvent event) {
       try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/updateUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateUser.fxml"));
         Parent root = loader.load();
 
         // Get the current Stage
@@ -155,7 +155,7 @@ public class ViewUserPage {
     @FXML
     void openAddUser(ActionEvent event) {
       try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/updateUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AddUser.fxml"));
         Parent root = loader.load();
 
         // Get the current Stage
