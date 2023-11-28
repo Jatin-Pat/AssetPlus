@@ -15,6 +15,7 @@ import java.io.IOException;
 
 
 public class AddUser {
+    private MainPage mainPage;
 
     @FXML
     private MenuItem addEmployeeClicked;
@@ -72,7 +73,6 @@ public class AddUser {
     @FXML
     void goBack(ActionEvent event) {
        try {
-          //TODO Fix the scene changer to goback to ../pages/ViewUser.fxml
           FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
           Parent root = loader.load();
 
@@ -81,6 +81,10 @@ public class AddUser {
 
           // Set the new root for the current Scene
           stage.getScene().setRoot(root);
+          mainPage = loader.getController();
+
+          mainPage.selectTab(2);
+          
       
         } catch (IOException e) {
           e.printStackTrace();
