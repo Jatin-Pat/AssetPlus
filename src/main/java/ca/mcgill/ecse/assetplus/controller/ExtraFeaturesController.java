@@ -33,7 +33,7 @@ public class ExtraFeaturesController {
         String phoneNum = guest.getPhoneNumber();
         String password = guest.getPassword();
         String userType = "Guest";
-        users.add(new TOUser(email, name, password, phoneNum, userType));
+        users.add(new TOUser(userType, name, phoneNum, email, password));
       }
       return users;
     }
@@ -48,7 +48,7 @@ public class ExtraFeaturesController {
         String phoneNum = employee.getPhoneNumber();
         String password = employee.getPassword();
         String userType = "Employee";
-        users.add(new TOUser(email, name, password, phoneNum, userType));
+        users.add(new TOUser(userType, name, phoneNum, email, password));
     
       }
       return users;
@@ -57,7 +57,7 @@ public class ExtraFeaturesController {
     public static List<TOUser> getManager(){
       List<TOUser> users = new ArrayList<TOUser>();
       Manager manager = AssetPlusApplication.getAssetPlus().getManager();
-      users.add(new TOUser(manager.getEmail(), manager.getName(), manager.getPassword(), manager.getPhoneNumber(), "Manager"));
+      users.add(new TOUser("Manager", manager.getName(), manager.getPhoneNumber(), manager.getEmail(), manager.getPassword()));
 
       return users;
     }
