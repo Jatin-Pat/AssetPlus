@@ -21,8 +21,19 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Syntax;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 
 public class ViewUserPage {
+    
+    @FXML
+    private Button addUser;
+
+    @FXML
+    private Button deleteUser;
 
     @FXML
     private DatePicker dateFilter;
@@ -84,5 +95,26 @@ public class ViewUserPage {
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
     }
-  }
 
+    @FXML
+    void selectUser(MouseEvent event) {
+
+
+    }
+
+    @FXML
+    void openUpdateUser(ActionEvent event) {
+
+
+    }
+    @FXML
+    void openAddUser(ActionEvent event) {
+
+    }
+
+    @FXML
+    void deleteUser(ActionEvent event) {
+
+    }
+
+}
