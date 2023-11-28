@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
 
 public class ViewAssetsPage {
 
-    private static String currentAsset;
+    private static int currentAsset;
 
     @FXML
     private TableView<TOAsset> AssetView;
@@ -66,12 +66,13 @@ public class ViewAssetsPage {
 
     @FXML
     void selectAsset(MouseEvent event) {
-
+    TOAsset selectedAsset = AssetView.getSelectionModel().getSelectedItem();
+    currentAsset = selectedAsset.getAssetNumber();
     }
 
 
 
-    public static String getAssetID(){
+    public static int getAssetID(){
         return currentAsset;
     }
 
@@ -118,9 +119,7 @@ public class ViewAssetsPage {
 
     public List<TOAsset> getFilteredAssets(){
       List<TOAsset> allAssets = ExtraFeaturesController.getAllAssets();
-      for (TOAsset toAsset : allAssets) {
-        System.out.println(toAsset.toString());
-      }
+      
       
       Integer filterID = null;
       Integer filterFloor = null;
@@ -152,12 +151,17 @@ public class ViewAssetsPage {
 
       if(filterID!=null){
         filteredByID = ExtraFeaturesController.getAssetByNumber(filterID);
+
         if(filteredByID.isEmpty()){
+          System.out.println("NO ASSETS TO LOAD");
+
           return filteredByID;
         }else{
           if(filterFloor != null && filteredByID.get(0).getFloorNumber()!=filterFloor){
+            System.out.println("WRONG FLOOR");
             return new ArrayList<TOAsset>();}
-          if(assetType != null && filteredByID.get(0).getType()!= assetType){
+          if(assetType != "" && filteredByID.get(0).getType()!= assetType){
+            System.out.println("WRONG TYPE");
             return new ArrayList<TOAsset>();
           }
           return filteredByID;
@@ -184,14 +188,17 @@ public class ViewAssetsPage {
     }
 
 
-  @FXML
-  void openAddUser(ActionEvent event){}
-  @FXML
-  void openUpdateUser(ActionEvent event){}
-  @FXML
-  void selectUser(MouseEvent event){}
-  @FXML
-  void deleteUser(ActionEvent event){}
+  //@FXML
+  //void openAddUser(ActionEvent event){}
+  //@FXML
+  //void openUpdateUser(ActionEvent event){}
+  /*@FXML
+  void selectUser(MouseEvent event){
+    TOAsset selectedAsset = AssetView.getSelectionModel().getSelectedItem();
+    currentAsset = selectedAsset.getAssetNumber();
+  }*/
+  //@FXML
+  //void deleteUser(ActionEvent event){}
     /* 
     @FXML
     void openUpdateUser(ActionEvent event) {
