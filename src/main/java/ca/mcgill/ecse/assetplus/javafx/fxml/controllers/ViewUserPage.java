@@ -58,7 +58,7 @@ public class ViewUserPage {
     @FXML
     private TableView<TOUser> UserView;
 
-    public static String getUserEmail(){
+    protected static String getUserEmail(){
         return currrentUser;
     }
     private static void setCurrentUserToNull() {
