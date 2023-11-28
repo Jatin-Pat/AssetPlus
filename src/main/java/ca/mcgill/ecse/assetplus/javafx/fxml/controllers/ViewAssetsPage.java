@@ -3,12 +3,17 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import java.io.IOException;
+import javafx.scene.Node;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.ExtraFeaturesController;
 import ca.mcgill.ecse.assetplus.controller.TOAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
@@ -16,6 +21,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
 
@@ -50,17 +56,52 @@ public class ViewAssetsPage {
 
     @FXML
     void deleteAsset(ActionEvent event) {
-      //TODO
+      System.out.println("Selected User Email: " + currentAsset);
+      if (currentAsset != 0) {
+
+        AssetPlusFeatureSet3Controller.deleteSpecificAsset(currentAsset);
+        refreshAsset(new ActionEvent());
+        currentAsset = 0;
+        
+      } else {
+            ViewUtils.showError("Select Asset to Delete");
+      }
+
     }
+      
 
     @FXML
     void openAddAsset(ActionEvent event) {
-      //TODO
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AddAsset.fxml"));
+        Parent root = loader.load();
+
+        // Get the current Stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set the new root for the current Scene
+        stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error opening Add Asset page");
+        }
     }
 
     @FXML
     void openUpdateAsset(ActionEvent event) {
-      //TODO
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateUser.fxml"));
+        Parent root = loader.load();
+
+        // Get the current Stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set the new root for the current Scene
+        stage.getScene().setRoot(root);
+      } catch (IOException e) {
+      e.printStackTrace();
+      ViewUtils.showError("Error opening Update Asset page\n");
+    }
     }
 
 

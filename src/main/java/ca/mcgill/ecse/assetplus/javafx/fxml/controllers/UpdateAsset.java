@@ -51,7 +51,7 @@ public class UpdateAsset {
         stage.getScene().setRoot(root);
         mainPage = loader.getController();
 
-        mainPage.selectTab(2);
+        mainPage.selectTab(3);
         
     
       } catch (IOException e) {
