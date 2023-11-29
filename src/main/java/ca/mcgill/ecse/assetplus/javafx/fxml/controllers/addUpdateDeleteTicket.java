@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,15 +69,15 @@ public class addUpdateDeleteTicket {
             ViewUtils.showError("Enter a description");
         }
         String email = emailTextField.getText();
-        if(email==""){
-            ViewUtils.showError("Enter your email");
+        if(!User.hasWithEmail(email) || email=="") {
+            ViewUtils.showError("Enter a valid email");
         }
         int assetId = -1;
         String assetIdString = assetIdTextField.getText();
         if (!assetIdString.isEmpty()) {
             assetId = Integer.parseInt(assetIdString);
             if (assetId < 0)
-                ViewUtils.showError("Please enter a valid asset ID\n");
+                ViewUtils.showError("Please enter a valid asset ID");
         }
         String result = AssetPlusFeatureSet4Controller.addMaintenanceTicket(ticketId, raisedOn, description, email, assetId);
         if (result.contains("Ticket added successfully")){
