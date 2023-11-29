@@ -57,6 +57,10 @@ public class ViewTicketsPage {
     @FXML
     private TableView<TOMaintenanceTicket> TicketsView;
 
+    public static int getTicektID(){
+      return currentTicket;
+    }
+
     @FXML
     void selectTicket(MouseEvent event) {
         TOMaintenanceTicket selectedTicket = TicketsView.getSelectionModel().getSelectedItem();
