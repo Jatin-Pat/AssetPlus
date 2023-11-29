@@ -153,7 +153,7 @@ public class ViewTicketsPage {
             currentTicket = 0;
 
         } else {
-            ViewUtils.showError("Select Asset to Delete");
+            ViewUtils.showError("Select Ticket to Delete");
         }
 
     }
