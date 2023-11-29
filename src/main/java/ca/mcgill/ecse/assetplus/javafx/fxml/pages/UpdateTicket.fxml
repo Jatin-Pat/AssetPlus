@@ -20,17 +20,15 @@
         <RowConstraints maxHeight="1.7976931348623157E308" minHeight="300.0" prefHeight="300.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="129.0" prefWidth="758.0" style="-fx-background-color: #FFFFFF;" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-        <ImageView fitHeight="132.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3"
-                   GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"
-                   GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
-            <Image url="@../images/Logo.png"/>
+        <ImageView fitHeight="132.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+            <Image url="@../images/Logo.png" />
         </ImageView>
     </HBox>
 
 
 
-    <GridPane hgap="15" layoutX="22.0" layoutY="130.0" prefHeight="300.0" prefWidth="387.0" vgap="13" GridPane.rowIndex="1">
-        <Label alignment="BOTTOM_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="469.0" text="Update Maintenance Ticket" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="1">
+    <GridPane hgap="11" layoutX="22.0" layoutY="130.0" prefHeight="300.0" prefWidth="387.0" vgap="11" GridPane.rowIndex="1">
+        <Label alignment="BOTTOM_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="531.0" text="Update Maintenance Ticket" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="1">
             <font>
                 <Font name="Gill Sans" size="30.0" />
             </font>
@@ -39,7 +37,7 @@
             </style>
         </Label>
 
-        <Label text="Ticket ID:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <Label text="Ticket ID *" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
             <font>
                 <Font name="Gill Sans" size="17.0" />
             </font>
@@ -52,7 +50,8 @@
                 -fx-font-size: 17.0;
             </style>
         </TextField>
-        <Label text="Asset ID (optional):" GridPane.columnIndex="2" GridPane.rowIndex="3">
+
+        <Label text="Email *" GridPane.columnIndex="2" GridPane.rowIndex="3">
             <font>
                 <Font name="Gill Sans" size="17.0" />
             </font>
@@ -60,13 +59,26 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-        <TextField fx:id="assetIdTextField" prefHeight="43.0" prefWidth="330.0" promptText="000000" GridPane.columnIndex="3" GridPane.rowIndex="3">
+        <TextField fx:id="emailTextField" prefHeight="43.0" prefWidth="330.0" promptText="johnsmith@ap.com" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <style>
+                -fx-font-size: 17.0;
+            </style>
+        </TextField>
+        <Label text="Asset ID" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <font>
+                <Font name="Gill Sans" size="17.0" />
+            </font>
+            <style>
+                -fx-text-fill: white;
+            </style>
+        </Label>
+        <TextField fx:id="assetIdTextField" prefHeight="43.0" prefWidth="330.0" promptText="000000" GridPane.columnIndex="3" GridPane.rowIndex="4">
             <style>
                 -fx-font-size: 17.0;
             </style>
         </TextField>
 
-        <Label text="Email:" GridPane.columnIndex="2" GridPane.rowIndex="4">
+        <Label text="Description *" GridPane.columnIndex="2" GridPane.rowIndex="5">
             <font>
                 <Font name="Gill Sans" size="17.0" />
             </font>
@@ -74,13 +86,13 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-        <TextField fx:id="emailTextField" prefHeight="43.0" prefWidth="330.0" promptText="4-20" GridPane.columnIndex="3" GridPane.rowIndex="4">
+        <TextField fx:id="descriptionTextField" prefHeight="43.0" prefWidth="330.0" promptText="Please describe the issue" GridPane.columnIndex="3" GridPane.rowIndex="5">
             <style>
                 -fx-font-size: 17.0;
             </style>
         </TextField>
 
-        <Label text="Description:" GridPane.columnIndex="2" GridPane.rowIndex="5">
+        <Label text="Ticket Date *" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6">
             <font>
                 <Font name="Gill Sans" size="17.0" />
             </font>
@@ -88,12 +100,24 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-        <TextField fx:id="descriptionTextField" prefHeight="43.0" prefWidth="330.0" promptText="Please describe the issue" GridPane.columnIndex="3" GridPane.rowIndex="5"><style>
-            -fx-font-size: 17.0;
-        </style>
-        </TextField>
+        <DatePicker fx:id="ticketDateDatePicker" prefHeight="43.0" prefWidth="350.0" promptText="yy-MM-dd" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+            <style>
+                -fx-font-size: 17.0;
+            </style>
+        </DatePicker>
 
-        <Label text="Add image (optional):" GridPane.columnIndex="2" GridPane.rowIndex="6">
+        <Button alignment="CENTER" onAction="#openAddImagePage" prefHeight="38.0" prefWidth="109.0" text="Add Image" GridPane.columnIndex="3" GridPane.rowIndex="7">
+            <font>
+                <Font name="Gill Sans" size="17.0" />
+            </font>
+        </Button>
+
+        <Button onAction="#updateTicket" prefHeight="31.0" prefWidth="109.0" text="Submit" GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Button>
+        <Label text="* Required field" GridPane.columnIndex="5" GridPane.rowIndex="2">
             <font>
                 <Font name="Gill Sans" size="17.0" />
             </font>
@@ -101,23 +125,13 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-        <Button alignment="CENTER" onAction="#openAddImagePage" prefHeight="25.0" prefWidth="28.0" text="+" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="6">
-            <font>
-                <Font name="Gill Sans" size="15.0" />
-            </font>
-        </Button>
-
-        <Button onAction="#updateTicket" prefHeight="31.0" prefWidth="74.0" text="Submit" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="7">
-            <font>
-                <Font name="Gill Sans" size="17.0" />
-            </font>
-        </Button>
         <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints maxWidth="400.0" minWidth="300.0" prefWidth="300.0" />
+            <ColumnConstraints prefWidth="125.0" />
+            <ColumnConstraints maxWidth="400.0" minWidth="300.0" prefWidth="350.0" />
             <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints maxWidth="0.0" minWidth="150.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints />

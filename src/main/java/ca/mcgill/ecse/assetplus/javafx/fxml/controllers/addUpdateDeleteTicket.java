@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import ca.mcgill.ecse.assetplus.controller.*;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
@@ -29,7 +30,7 @@ public class addUpdateDeleteTicket {
     private TextField descriptionTextField;
 
     @FXML
-    private TextField locationTextField;
+    private DatePicker ticketDateDatePicker;
 
     @FXML
     private TextField ticketIdTextField;
@@ -37,7 +38,7 @@ public class addUpdateDeleteTicket {
     @FXML
     void addTicket(ActionEvent event) {
         int ticketId = assetPlus.numberOfMaintenanceTickets();
-        Date raisedOn = Date.valueOf(LocalDate.now());
+        Date raisedOn =  Date.valueOf(ticketDateDatePicker.getValue());
         String description = descriptionTextField.getText();
         String email = emailTextField.getText();
         int assetId = -1;
@@ -52,14 +53,14 @@ public class addUpdateDeleteTicket {
             assetIdTextField.setText("");
             emailTextField.setText("");
             descriptionTextField.setText("");
-            locationTextField.setText("");
+            ticketDateDatePicker.setValue(null);
         }
     }
 
     @FXML
     void updateTicket(ActionEvent event) {
         int ticketId = Integer.parseInt(ticketIdTextField.getText());
-        Date raisedOn = Date.valueOf(LocalDate.now());
+        Date raisedOn =  Date.valueOf(ticketDateDatePicker.getValue());
         String description = descriptionTextField.getText();
         String email = emailTextField.getText();
         int assetId = -1;
@@ -67,14 +68,14 @@ public class addUpdateDeleteTicket {
         if (!assetIdString.isEmpty()) {
             assetId = Integer.parseInt(assetIdString);
             if (assetId < 0)
-                ViewUtils.showError("Please enter a valid asset ID\n");
+                ViewUtils.showError("Please enter a valid asset ID");
         }
         if (ViewUtils.successful(AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketId, raisedOn, description,
                 email, assetId))) {
             assetIdTextField.setText("");
             emailTextField.setText("");
             descriptionTextField.setText("");
-            locationTextField.setText("");
+            ticketDateDatePicker.setValue(null);
         }
     }
 
