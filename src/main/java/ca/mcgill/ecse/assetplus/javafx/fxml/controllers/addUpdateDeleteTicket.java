@@ -12,6 +12,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import ca.mcgill.ecse.assetplus.controller.*;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,6 +43,16 @@ public class addUpdateDeleteTicket {
     private TextField ticketIdTextField;
 
     @FXML
+    public void initialize() {
+    // Set the value of userEmailTextField from ViewUserPage.currentUser
+    if (ViewTicketsPage.getTicketID() != 0) {
+        assetIdTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
+    } else {
+        assetIdTextField.setText("");
+    }
+    }
+
+    @FXML
     void addTicket(ActionEvent event) {
         int ticketId = assetPlus.numberOfMaintenanceTickets();
         Date raisedOn =  Date.valueOf(ticketDateDatePicker.getValue());
@@ -61,6 +72,10 @@ public class addUpdateDeleteTicket {
             descriptionTextField.setText("");
             ticketDateDatePicker.setValue(null);
         }
+        for (MaintenanceTicket ticket : AssetPlusApplication.getAssetPlus().getMaintenanceTickets()) {
+            System.out.println(ticket);
+        }
+        
     }
 
     @FXML

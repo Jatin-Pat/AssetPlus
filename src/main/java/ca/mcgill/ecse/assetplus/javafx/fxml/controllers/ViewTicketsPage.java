@@ -64,7 +64,7 @@ public class ViewTicketsPage {
     private TableView<TOMaintenanceTicket> TicketsView;
 
   
-    public static int getTicektID(){
+    public static int getTicketID(){
       return currentTicket;
     }
     private static void setCurrentIDToNull() {
@@ -74,10 +74,17 @@ public class ViewTicketsPage {
 
     @FXML
     void selectTicket(MouseEvent event) {
+      System.out.println("clicked");
+      if (event.getClickCount() == 1) {
+        // Get the selected item
         TOMaintenanceTicket selectedTicket = TicketsView.getSelectionModel().getSelectedItem();
         currentTicket = selectedTicket.getId();
+        if (currentTicket != -1) {
+            // Debugging output
+            System.out.println("Selected Ticket ID: " + selectedTicket.getId());
+        }
     }
-
+  }
     @FXML
     void refreshTickets(ActionEvent event){
       System.out.println("buttonClicked");
@@ -164,12 +171,12 @@ public class ViewTicketsPage {
     }
     @FXML
     void deleteTicket(ActionEvent event) {
-        System.out.println("Selected User Email: " + currentTicket);
-        if (currentTicket != 0) {
+        System.out.println("Selected Ticket ID: " + currentTicket);
+        if (currentTicket != -1) {
 
             AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(currentTicket);
             refreshTickets(new ActionEvent());
-            currentTicket = 0;
+            currentTicket = -1;
 
         } else {
             ViewUtils.showError("Select Ticket to Delete");
