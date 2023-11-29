@@ -25,6 +25,17 @@ public class startCompleteWorkTicket {
   @FXML
   private Button cancel;
 
+  @FXML
+  public void initialize() {
+    int ticketId = ViewTicketsPage.getTicketID();
+    if (ticketId != -1) {
+        ticketID.setText(String.valueOf(ViewTicketsPage.getTicketID()));
+    } else {
+        ticketID.setText("");
+    }
+  }
+
+
   // Even listner when Start Work button is pressed
   @FXML
   public void startWork(ActionEvent event) {

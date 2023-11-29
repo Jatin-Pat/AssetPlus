@@ -64,7 +64,7 @@ public class ViewTicketsPage {
     private TableView<TOMaintenanceTicket> TicketsView;
 
   
-    public static int getTicektID(){
+    public static int getTicketID(){
       return currentTicket;
     }
     private static void setCurrentIDToNull() {
