@@ -111,6 +111,11 @@
                 <Font name="Gill Sans" size="17.0" />
             </font>
         </Button>
+        <Button fx:id="goBack" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="109.0" text="Cancel" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+            <font>
+                <Font name="Gill Sans" size="17.0" />
+            </font>
+        </Button>
 
         <Button onAction="#updateTicket" prefHeight="31.0" prefWidth="109.0" text="Submit" GridPane.columnIndex="2" GridPane.rowIndex="7">
             <font>

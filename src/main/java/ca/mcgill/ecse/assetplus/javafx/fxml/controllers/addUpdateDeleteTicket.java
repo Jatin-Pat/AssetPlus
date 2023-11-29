@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import ca.mcgill.ecse.assetplus.controller.*;
@@ -19,6 +20,11 @@ import java.time.LocalDate;
 
 public class addUpdateDeleteTicket {
     private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
+
+    private MainPage mainPage;
+
+    @FXML
+    public Button goBack;
 
     @FXML
     private TextField assetIdTextField;
@@ -80,7 +86,7 @@ public class addUpdateDeleteTicket {
     }
 
     @FXML
-    void deleteTicket(ActionEvent actionEvent) {
+    void deleteTicket(ActionEvent actionEvent) { //useless (see ViewTicketsPage controller)
         int ticketId = Integer.parseInt(ticketIdTextField.getText());
         AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(ticketId);
         ticketIdTextField.setText("");
@@ -101,6 +107,28 @@ public class addUpdateDeleteTicket {
             System.err.println(e);
             e.printStackTrace();
             ViewUtils.showError("Error opening image upload page\n");
+        }
+    }
+
+    @FXML
+    void goBack(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
+            Parent root = loader.load();
+
+            // Get the current Stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new root for the current Scene
+            stage.getScene().setRoot(root);
+            mainPage = loader.getController();
+
+            mainPage.selectTab(1);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error Changing Page\n");
         }
     }
 }

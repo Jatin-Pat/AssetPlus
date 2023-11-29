@@ -1,10 +1,14 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
+import ca.mcgill.ecse.assetplus.controller.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -13,17 +17,30 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
-import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
+
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Syntax;
 
 
 public class ViewTicketsPage {
+    private static int currentTicket;
+
+    @FXML
+    public Button deleteTicket;
+
+    @FXML
+    public Button openAddTicket;
+
+    @FXML
+    public Button openUpdateTicket;
 
     @FXML
     private DatePicker dateFilter;
@@ -36,6 +53,12 @@ public class ViewTicketsPage {
 
     @FXML
     private TableView<TOMaintenanceTicket> TicketsView;
+
+    @FXML
+    void selectTicket(MouseEvent event) {
+        TOMaintenanceTicket selectedTicket = TicketsView.getSelectionModel().getSelectedItem();
+        currentTicket = selectedTicket.getId();
+    }
 
     @FXML
     void refreshTickets(ActionEvent event){
@@ -119,5 +142,54 @@ public class ViewTicketsPage {
       
       return FXCollections.observableList(tickets);
       
+    }
+    @FXML
+    void deleteTicket(ActionEvent event) {
+        System.out.println("Selected User Email: " + currentTicket);
+        if (currentTicket != 0) {
+
+            AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(currentTicket);
+            refreshTickets(new ActionEvent());
+            currentTicket = 0;
+
+        } else {
+            ViewUtils.showError("Select Asset to Delete");
+        }
+
+    }
+
+
+    @FXML
+    void openAddTicket(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AddTicket.fxml"));
+            Parent root = loader.load();
+
+            // Get the current Stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new root for the current Scene
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error opening Add Ticket page");
+        }
+    }
+
+    @FXML
+    void openUpdateTicket(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateTicket.fxml"));
+            Parent root = loader.load();
+
+            // Get the current Stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new root for the current Scene
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error opening Update Ticket page\n");
+        }
     }
 }
