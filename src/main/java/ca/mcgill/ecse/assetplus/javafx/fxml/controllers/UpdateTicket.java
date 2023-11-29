@@ -42,24 +42,12 @@ public class UpdateTicket {
     private TextField ticketIdTextField;
 
     @FXML
-    void addTicket(ActionEvent event) {
-        int ticketId = assetPlus.numberOfMaintenanceTickets();
-        Date raisedOn =  Date.valueOf(ticketDateDatePicker.getValue());
-        String description = descriptionTextField.getText();
-        String email = emailTextField.getText();
-        int assetId = -1;
-        String assetIdString = assetIdTextField.getText();
-        if (!assetIdString.isEmpty()) {
-            assetId = Integer.parseInt(assetIdString);
-            if (assetId < 0)
-                ViewUtils.showError("Please enter a valid asset ID\n");
-        }
-        if (ViewUtils.successful(
-                AssetPlusFeatureSet4Controller.addMaintenanceTicket(ticketId, raisedOn, description, email, assetId))) {
-            assetIdTextField.setText("");
-            emailTextField.setText("");
-            descriptionTextField.setText("");
-            ticketDateDatePicker.setValue(null);
+    public void initialize() {
+        Integer ticketId = ViewTicketsPage.getTicketID();
+        if (ticketId != -1) {
+            ticketIdTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
+        } else {
+            ticketIdTextField.setText("");
         }
     }
 
