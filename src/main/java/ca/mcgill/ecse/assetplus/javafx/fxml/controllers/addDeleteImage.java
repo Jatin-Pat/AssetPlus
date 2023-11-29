@@ -3,6 +3,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import java.io.IOException;
 
 import ca.mcgill.ecse.assetplus.controller.*;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +22,6 @@ import javafx.stage.Stage;
 
 public class addDeleteImage {
 
-  private MainPage mainPage;
   @FXML
   private TextField imageURL;
   @FXML
@@ -37,7 +37,16 @@ public class addDeleteImage {
   @FXML
   private Button cancel;
 
-
+  @FXML
+  public void initialize() {
+  // Set the value of userEmailTextField from ViewUserPage.currentUser
+  if(id!=null){
+  if (ViewTicketsPage.getTicketID() != -1) {
+      id.setText(String.valueOf(ViewTicketsPage.getTicketID()));
+  } else {
+      id.setText("");
+  }}
+  }
   
   // Event Listener on Button[#add_selected].onAction
   @FXML
@@ -89,7 +98,7 @@ public class addDeleteImage {
   @FXML
   public void cancel(ActionEvent event) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AddTicket.fxml"));
       Parent root = loader.load();
 
       // Get the current Stage
@@ -97,14 +106,9 @@ public class addDeleteImage {
 
       // Set the new root for the current Scene
       stage.getScene().setRoot(root);
-      mainPage = loader.getController();
-
-      mainPage.selectTab(4);
-      
-  
-    } catch (IOException e) {
-      e.printStackTrace();
-      ViewUtils.showError("Error Changing Page\n");
-    }
+      } catch (IOException e) {
+          e.printStackTrace();
+          ViewUtils.showError("Error opening Add User page");
+      }
   }
 }

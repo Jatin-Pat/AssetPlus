@@ -92,7 +92,7 @@ public class addUpdateDeleteTicket {
             ViewUtils.showError("Successfully created new maintenance ticket");
         }
 
-        if (addImage.isSelected()){
+        if (addImage.isSelected() && MaintenanceTicket.hasWithId(ticketId)){
             try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addDeleteImage.fxml"));
             Parent root = loader.load();
