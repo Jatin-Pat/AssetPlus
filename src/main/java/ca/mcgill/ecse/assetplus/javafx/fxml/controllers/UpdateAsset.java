@@ -39,6 +39,17 @@ public class UpdateAsset {
     private Button updateAsset;
 
     @FXML
+    public void initialize() {
+      Integer assetID = ViewAssetsPage.getAssetID();
+      if (assetID != -1) {
+          assetNumberTextField.setText(String.valueOf(ViewAssetsPage.getAssetID()));
+      } else {
+          assetNumberTextField.setText("");
+      }
+    }
+  
+
+    @FXML
     void goBack(ActionEvent event) {
       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));

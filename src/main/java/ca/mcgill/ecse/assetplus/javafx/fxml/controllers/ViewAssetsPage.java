@@ -91,7 +91,7 @@ public class ViewAssetsPage {
     @FXML
     void openUpdateAsset(ActionEvent event) {
       try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateAsset.fxml"));
         Parent root = loader.load();
 
         // Get the current Stage
@@ -117,6 +117,10 @@ public class ViewAssetsPage {
     public static int getAssetID(){
         return currentAsset;
     }
+    private static void setCurrentIDToNull() {
+      //setting it to -1
+      currentAsset = -1;
+  }
 
 
     @FXML
@@ -132,6 +136,7 @@ public class ViewAssetsPage {
       System.out.println("initialized");
 
       refreshAsset(new ActionEvent());
+      setCurrentIDToNull();
       
       AssetView.setPlaceholder(new Label("No assets found"));
 
@@ -147,12 +152,12 @@ public class ViewAssetsPage {
       TableColumn<TOAsset, Date> purchaseDate = new TableColumn<TOAsset, Date>("Date Purchased");
       purchaseDate.setCellValueFactory(new PropertyValueFactory<TOAsset, Date>("purchaseDate"));
 
-      TableColumn<TOAsset, String> assetType = new TableColumn<TOAsset, String>("Type");
+      TableColumn<TOAsset, String> assetType = new TableColumn<TOAsset, String>("Asset Type");
       assetType.setCellValueFactory(new PropertyValueFactory<TOAsset, String>("type"));
 
-
-
+      
       AssetView.getColumns().add(assetNumber);
+      AssetView.getColumns().add(assetType);
       AssetView.getColumns().add(floorNumber);
       AssetView.getColumns().add(roomNumber);
       AssetView.getColumns().add(purchaseDate);
