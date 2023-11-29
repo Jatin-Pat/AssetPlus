@@ -152,6 +152,10 @@ public class ViewAssetsPage {
       TableColumn<TOAsset, Date> purchaseDate = new TableColumn<TOAsset, Date>("Date Purchased");
       purchaseDate.setCellValueFactory(new PropertyValueFactory<TOAsset, Date>("purchaseDate"));
 
+      TableColumn<TOAsset, String> assetType = new TableColumn<TOAsset, String>("Asset Type");
+      assetType.setCellValueFactory(new PropertyValueFactory<TOAsset, String>("type"));
+
+      AssetView.getColumns().add(assetType);
       AssetView.getColumns().add(assetNumber);
       AssetView.getColumns().add(floorNumber);
       AssetView.getColumns().add(roomNumber);
