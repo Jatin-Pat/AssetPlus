@@ -1,12 +1,12 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class UpdateTicket {
     private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
@@ -53,6 +52,7 @@ public class UpdateTicket {
 
     @FXML
     void updateTicket(ActionEvent event) {
+
         int ticketId = Integer.parseInt(ticketIdTextField.getText());
         Date raisedOn =  Date.valueOf(ticketDateDatePicker.getValue());
         String description = descriptionTextField.getText();
@@ -63,6 +63,9 @@ public class UpdateTicket {
             assetId = Integer.parseInt(assetIdString);
             if (assetId < 0)
                 ViewUtils.showError("Please enter a valid asset ID");
+        }
+        if (MaintenanceTicket.getWithId(ticketId).getTicketStatus() == MaintenanceTicket.TicketStatus.Closed) {
+            ViewUtils.showError("Cannot update a closed ticket");
         }
         if (ViewUtils.successful(AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketId, raisedOn, description,
                 email, assetId))) {
