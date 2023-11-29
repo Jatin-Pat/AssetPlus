@@ -34,6 +34,12 @@ public class ViewTicketsPage {
     private static int currentTicket;
 
     @FXML
+    private Button openAssignTicket;
+
+    @FXML
+    private Button openApproveTicket;
+
+    @FXML
     public Button deleteTicket;
     
     @FXML
@@ -224,4 +230,31 @@ public class ViewTicketsPage {
             ViewUtils.showError("Error opening Update Ticket page\n");
         }
     }
+
+    @FXML
+    void openAssignTicket(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AssignHotelStaffToTicket.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error opening Assign Ticket page\n");
+        }
+    }
+
+    @FXML
+    void openApproveTicket(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/ApproveDisapproveWork.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error opening Approve Ticket page\n");
+        }
+    }
+
 }
