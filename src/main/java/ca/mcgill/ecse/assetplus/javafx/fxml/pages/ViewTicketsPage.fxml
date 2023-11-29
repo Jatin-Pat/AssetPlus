@@ -112,7 +112,7 @@
             <Font name="Roboto" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="TicketsView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.vgrow="ALWAYS" />
+      <TableView fx:id="TicketsView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#selectTicket" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.vgrow="ALWAYS" />
       <Separator prefHeight="0.0" prefWidth="135.0" valignment="TOP" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
       <ImageView fitHeight="132.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
          <image>
