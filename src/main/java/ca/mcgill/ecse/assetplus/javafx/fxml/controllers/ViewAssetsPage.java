@@ -117,6 +117,10 @@ public class ViewAssetsPage {
     public static int getAssetID(){
         return currentAsset;
     }
+    private static void setCurrentIDToNull() {
+      //setting it to -1
+      currentAsset = -1;
+  }
 
 
     @FXML
@@ -132,6 +136,7 @@ public class ViewAssetsPage {
       System.out.println("initialized");
 
       refreshAsset(new ActionEvent());
+      setCurrentIDToNull();
       
       AssetView.setPlaceholder(new Label("No assets found"));
 

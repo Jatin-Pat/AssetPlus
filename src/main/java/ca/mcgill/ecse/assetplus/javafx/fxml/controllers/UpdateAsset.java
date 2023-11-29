@@ -41,7 +41,7 @@ public class UpdateAsset {
     @FXML
     public void initialize() {
       Integer assetID = ViewAssetsPage.getAssetID();
-      if (assetID != null) {
+      if (assetID != -1) {
           assetNumberTextField.setText(String.valueOf(ViewAssetsPage.getAssetID()));
       } else {
           assetNumberTextField.setText("");

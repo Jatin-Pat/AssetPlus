@@ -57,8 +57,13 @@ public class ViewTicketsPage {
     @FXML
     private TableView<TOMaintenanceTicket> TicketsView;
 
+  
     public static int getTicektID(){
       return currentTicket;
+    }
+    private static void setCurrentIDToNull() {
+        //setting it to -1
+        currentTicket = -1;
     }
 
     @FXML
@@ -86,6 +91,7 @@ public class ViewTicketsPage {
       TicketsView.setPlaceholder(new Label("No tickets found"));
       
       refreshTickets(new ActionEvent());
+      setCurrentIDToNull();
 
       TableColumn<TOMaintenanceTicket, Integer> ticketIDColumn = new TableColumn<TOMaintenanceTicket, Integer>("Ticket ID");
       ticketIDColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, Integer>("id"));
