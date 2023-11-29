@@ -88,11 +88,13 @@ public class AssignHotelStaffToTicket implements Initializable {
         }
     }
 
-    @Override
+    @FXML
     public void initialize(URL location, ResourceBundle resources) {
         priority.getItems().addAll(priorityChoice);
         time.getItems().addAll(timeChoice);
-    }
+
+        if(ViewTicketsPage.getTicketID() != -1){
+            id.setText(String.valueOf(ViewTicketsPage.getTicketID()));}    }
 
     public void goBack(ActionEvent event) {
         try {

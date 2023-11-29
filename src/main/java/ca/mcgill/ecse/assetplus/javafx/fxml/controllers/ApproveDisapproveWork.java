@@ -78,6 +78,8 @@ public class ApproveDisapproveWork implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         approval.getItems().addAll(status);
+        if(ViewTicketsPage.getTicketID() != -1){
+        id.setText(String.valueOf(ViewTicketsPage.getTicketID()));}
     }
 
     public void goBack(ActionEvent event) {

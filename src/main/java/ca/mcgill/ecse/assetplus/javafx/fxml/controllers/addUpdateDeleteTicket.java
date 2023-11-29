@@ -45,7 +45,7 @@ public class addUpdateDeleteTicket {
     @FXML
     public void initialize() {
     // Set the value of userEmailTextField from ViewUserPage.currentUser
-    if (ViewTicketsPage.getTicketID() != 0) {
+    if (ViewTicketsPage.getTicketID() != -1) {
         assetIdTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
     } else {
         assetIdTextField.setText("");
