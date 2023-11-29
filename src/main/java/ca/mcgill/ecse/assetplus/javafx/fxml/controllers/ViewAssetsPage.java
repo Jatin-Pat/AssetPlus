@@ -112,11 +112,10 @@ public class ViewAssetsPage {
     currentAsset = selectedAsset.getAssetNumber();
     }
 
-
-
     public static int getAssetID(){
         return currentAsset;
     }
+
     private static void setCurrentIDToNull() {
       //setting it to -1
       currentAsset = -1;
@@ -162,8 +161,6 @@ public class ViewAssetsPage {
       AssetView.getColumns().add(roomNumber);
       AssetView.getColumns().add(purchaseDate);
       
-      //AssetView.getItems().add(new TOAsset("roomNumber","floorNumber","userPassword","userPassword","Guest"));
-
       AssetView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
     }
