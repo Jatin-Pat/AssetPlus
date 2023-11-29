@@ -23,6 +23,9 @@ import javafx.stage.Stage;
 public class addDeleteImage {
 
   @FXML
+  public Button cancel;
+  private MainPage mainPage;
+  @FXML
   private TextField imageURL;
   @FXML
   private TextField id;
@@ -34,8 +37,6 @@ public class addDeleteImage {
   private Button logout;
   @FXML
   private Button submit;
-  @FXML
-  private Button cancel;
 
   @FXML
   public void initialize() {

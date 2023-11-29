@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.controller.*;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -224,6 +225,10 @@ public class ViewTicketsPage {
     @FXML
     void openUpdateTicket(ActionEvent event) {
         try {
+            if (MaintenanceTicket.getWithId(getTicketID()).getTicketStatus() == MaintenanceTicket.TicketStatus.Closed) {
+                ViewUtils.showError("Cannot update a closed ticket");
+                return;
+            }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateTicket.fxml"));
             Parent root = loader.load();
 
