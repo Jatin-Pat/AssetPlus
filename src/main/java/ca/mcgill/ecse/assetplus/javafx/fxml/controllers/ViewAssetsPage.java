@@ -112,11 +112,10 @@ public class ViewAssetsPage {
     currentAsset = selectedAsset.getAssetNumber();
     }
 
-
-
     public static int getAssetID(){
         return currentAsset;
     }
+
     private static void setCurrentIDToNull() {
       //setting it to -1
       currentAsset = -1;
