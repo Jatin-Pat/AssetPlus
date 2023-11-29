@@ -45,6 +45,7 @@ public class addUpdateDeleteTicket {
     @FXML
     public void initialize() {
     // Set the value of userEmailTextField from ViewUserPage.currentUser
+    ticketDateDatePicker.setEditable(false);
     if (ViewTicketsPage.getTicketID() != -1) {
         assetIdTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
     } else {
@@ -54,10 +55,21 @@ public class addUpdateDeleteTicket {
 
     @FXML
     void addTicket(ActionEvent event) {
-        int ticketId = assetPlus.numberOfMaintenanceTickets();
-        Date raisedOn =  Date.valueOf(ticketDateDatePicker.getValue());
+        int ticketId = assetPlus.numberOfMaintenanceTickets()+1;
+        LocalDate localRaisedOn =  ticketDateDatePicker.getValue();
+
+        if(localRaisedOn==null){
+            ViewUtils.showError("Enter a date");
+        }
+        Date raisedOn = Date.valueOf(localRaisedOn);        
         String description = descriptionTextField.getText();
+        if(description==""){
+            ViewUtils.showError("Enter a description");
+        }
         String email = emailTextField.getText();
+        if(email==""){
+            ViewUtils.showError("Enter your email");
+        }
         int assetId = -1;
         String assetIdString = assetIdTextField.getText();
         if (!assetIdString.isEmpty()) {
@@ -65,16 +77,17 @@ public class addUpdateDeleteTicket {
             if (assetId < 0)
                 ViewUtils.showError("Please enter a valid asset ID\n");
         }
-        if (ViewUtils.successful(
-                AssetPlusFeatureSet4Controller.addMaintenanceTicket(ticketId, raisedOn, description, email, assetId))) {
+        String result = AssetPlusFeatureSet4Controller.addMaintenanceTicket(ticketId, raisedOn, description, email, assetId);
+
+        if (result.isEmpty()){
             assetIdTextField.setText("");
             emailTextField.setText("");
             descriptionTextField.setText("");
             ticketDateDatePicker.setValue(null);
+            ViewUtils.showError("Successfully created new maintenance ticket");
         }
         for (MaintenanceTicket ticket : AssetPlusApplication.getAssetPlus().getMaintenanceTickets()) {
-            System.out.println(ticket);
-        }
+            System.out.println(ticket);}
         
     }
 

@@ -132,7 +132,6 @@ public class ViewTicketsPage {
       TicketsView.getColumns().add(statusColumn);
 
 
-      List<String> imageULRS = new ArrayList<String>();
 
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
       TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getMaintenanceTickets()));
@@ -147,7 +146,7 @@ public class ViewTicketsPage {
       System.out.println(employeeName + " 2");
 
       System.out.println("GETTING TICKETS AGAIN");
-      List<TOMaintenanceTicket> tickets = null;
+      List<TOMaintenanceTicket> tickets = new ArrayList<TOMaintenanceTicket>();
       
       if(selectedDate == null && employeeName == ""){
         System.out.println("BOTH NULL");
@@ -166,6 +165,7 @@ public class ViewTicketsPage {
         tickets = AssetPlusFeatureSet6Controller.filterTicketsByEmployee(employeeName);
       }
       
+
       return FXCollections.observableList(tickets);
       
     }
