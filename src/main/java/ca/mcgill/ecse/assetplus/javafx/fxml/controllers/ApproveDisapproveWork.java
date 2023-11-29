@@ -61,11 +61,15 @@ public class ApproveDisapproveWork implements Initializable {
                 ViewUtils.showError("Please enter the rejection reason and rejection date.");
             } else {
                 rejectionDate = date.getValue().toString();
-                if (ViewUtils.successful(TicketMaintenanceController.disapproveTicketWork(ticketID, rejectionDate, rejectionReason))){
+                String result = TicketMaintenanceController.disapproveTicketWork(ticketID, rejectionDate, rejectionReason);
+                if (result.equals("")){
                     approval.setValue(null);
                     id.setText("");
                     reason.setText("");
                     date.setValue(null);
+                }
+                else {
+                    ViewUtils.showError(result);
                 }
             }
         }

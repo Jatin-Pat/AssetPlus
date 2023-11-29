@@ -74,12 +74,16 @@ public class AssignHotelStaffToTicket implements Initializable {
         if (ticketID.isEmpty() || staffEmail.isEmpty() || timeEstimate == null || priorityLevel == null || approvalRequired.isEmpty()) {
             ViewUtils.showError("Please fill in the listed fields.");
         } else {
-            if (ViewUtils.successful(TicketMaintenanceController.assignStaffToTicket(ticketID, staffEmail, timeEstimate, priorityLevel, approvalRequired))){
+            String result = TicketMaintenanceController.assignStaffToTicket(ticketID, staffEmail, timeEstimate, priorityLevel, approvalRequired);
+            if (result.equals("")) {
                 id.setText("");
                 email.setText("");
                 time.setValue(null);
                 priority.setValue(null);
                 approval.setSelected(false);
+            }
+            else {
+                ViewUtils.showError(result);
             }
         }
     }
