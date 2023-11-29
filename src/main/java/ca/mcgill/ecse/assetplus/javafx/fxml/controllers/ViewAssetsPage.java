@@ -20,6 +20,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFxmlView;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sound.midi.SysexMessage;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
@@ -201,7 +202,9 @@ public class ViewAssetsPage {
           if(filterFloor != null && filteredByID.get(0).getFloorNumber()!=filterFloor){
             System.out.println("WRONG FLOOR");
             return new ArrayList<TOAsset>();}
-          if(assetType != "" && filteredByID.get(0).getType()!= assetType){
+          if(assetType != "" && !(filteredByID.get(0).getType().equals(assetType))){
+            System.out.println(assetType);
+            System.out.println(filteredByID.get(0).getType());
             System.out.println("WRONG TYPE");
             return new ArrayList<TOAsset>();
           }
@@ -211,17 +214,34 @@ public class ViewAssetsPage {
 
       if(filterFloor != null){
         filteredByFloor = ExtraFeaturesController.getAssetsByFloor(filterFloor);
+        System.out.println("filtering by floor");
+        for (TOAsset asset : filteredByFloor) {
+          System.out.println(asset);
+        }
       }
       if(assetType!=""){
         filteredByType = ExtraFeaturesController.getAssetsByType(assetType);
+        System.out.println("filteeed by type");
+        for (TOAsset toAsset : filteredByType) {
+          System.out.println(toAsset);
+        }
       }
 
 
 
       List<TOAsset> filteredAssets = new ArrayList<TOAsset>();
       for (TOAsset floorAsset : filteredByFloor) {
-        if(filteredByType.contains(floorAsset)){
-          filteredAssets.add(floorAsset);
+        System.out.println("LOOP");
+
+        for (TOAsset typeAsset : filteredByType) {
+          System.out.println(typeAsset);
+          if (typeAsset.getAssetNumber()==floorAsset.getAssetNumber()
+              && typeAsset.getFloorNumber()==floorAsset.getFloorNumber()
+              && typeAsset.getType().equals(floorAsset.getType())
+              && typeAsset.getRoomNumber() ==floorAsset.getRoomNumber()
+              && typeAsset.getPurchaseDate().equals(floorAsset.getPurchaseDate())){
+            filteredAssets.add(typeAsset);
+          }
         }
       }
 

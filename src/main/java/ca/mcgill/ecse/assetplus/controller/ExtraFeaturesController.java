@@ -107,7 +107,7 @@ public class ExtraFeaturesController {
         int roomNumber = specificAsset.getRoomNumber();
         int id = specificAsset.getAssetNumber();
         Date purchaseDate = specificAsset.getPurchaseDate();
-        String type = specificAsset.getAssetType().toString();
+        String type = specificAsset.getAssetType().getName();
 
         convertedList.add(new TOAsset(id, floorNumber, roomNumber, purchaseDate,type));
       }
