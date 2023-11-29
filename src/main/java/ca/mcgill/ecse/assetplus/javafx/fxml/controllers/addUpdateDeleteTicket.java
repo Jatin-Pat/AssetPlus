@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import ca.mcgill.ecse.assetplus.controller.*;
@@ -42,6 +43,9 @@ public class addUpdateDeleteTicket {
 
     @FXML
     private TextField ticketIdTextField;
+    
+    @FXML
+    private CheckBox addImage;
 
     @FXML
     public void initialize() {
@@ -86,6 +90,24 @@ public class addUpdateDeleteTicket {
             descriptionTextField.setText("");
             ticketDateDatePicker.setValue(null);
             ViewUtils.showError("Successfully created new maintenance ticket");
+        }
+
+        if (addImage.isSelected()){
+            try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addDeleteImage.fxml"));
+            Parent root = loader.load();
+
+            // Get the current Stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new root for the current Scene
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.err.println(e);
+            e.printStackTrace();
+            ViewUtils.showError("Error opening image upload page\n");
+        }
+
         }
         
         

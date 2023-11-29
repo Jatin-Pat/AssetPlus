@@ -118,7 +118,7 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-      <CheckBox mnemonicParsing="false" text="Add Image" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
+      <CheckBox fx:id="addImage" mnemonicParsing="false" text="Add Image" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
          <font>
             <Font size="14.0" />
          </font>
