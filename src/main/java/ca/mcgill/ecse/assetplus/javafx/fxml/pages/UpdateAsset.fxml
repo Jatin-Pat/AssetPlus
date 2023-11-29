@@ -102,7 +102,7 @@
             <Font name="Gill Sans" size="17.0" />
          </font>
       </Button>
-      <DatePicker fx:id="purchaseDateDatePicker" prefHeight="43.0" prefWidth="330.0" promptText="yy-MM-dd" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <DatePicker fx:id="purchaseDateDatePicker" prefHeight="43.0" prefWidth="330.0" promptText="YYYY-MM-DD" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets bottom="5.0" top="10.0" />
          </GridPane.margin>

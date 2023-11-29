@@ -80,6 +80,7 @@ public class ApproveDisapproveWork implements Initializable {
         approval.getItems().addAll(status);
         if(ViewTicketsPage.getTicketID() != -1){
         id.setText(String.valueOf(ViewTicketsPage.getTicketID()));}
+        date.setEditable(false);
     }
 
     public void goBack(ActionEvent event) {

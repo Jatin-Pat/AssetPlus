@@ -46,11 +46,12 @@ public class addUpdateDeleteTicket {
     public void initialize() {
     // Set the value of userEmailTextField from ViewUserPage.currentUser
     ticketDateDatePicker.setEditable(false);
+    if(ticketIdTextField!=null){
     if (ViewTicketsPage.getTicketID() != -1) {
-        assetIdTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
+        ticketIdTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
     } else {
-        assetIdTextField.setText("");
-    }
+        ticketIdTextField.setText("");
+    }}
     }
 
     @FXML
@@ -78,16 +79,14 @@ public class addUpdateDeleteTicket {
                 ViewUtils.showError("Please enter a valid asset ID\n");
         }
         String result = AssetPlusFeatureSet4Controller.addMaintenanceTicket(ticketId, raisedOn, description, email, assetId);
-
-        if (result.isEmpty()){
+        if (result.contains("Ticket added successfully")){
             assetIdTextField.setText("");
             emailTextField.setText("");
             descriptionTextField.setText("");
             ticketDateDatePicker.setValue(null);
             ViewUtils.showError("Successfully created new maintenance ticket");
         }
-        for (MaintenanceTicket ticket : AssetPlusApplication.getAssetPlus().getMaintenanceTickets()) {
-            System.out.println(ticket);}
+        
         
     }
 
