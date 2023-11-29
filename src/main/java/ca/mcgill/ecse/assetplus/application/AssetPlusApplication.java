@@ -20,14 +20,15 @@ public class AssetPlusApplication {
 
   public static void main(String[] args) {
 
-      AssetPlus assetPlus = getAssetPlus();
-      //Guest newGuest = new Guest("null", "name", "pass", "phonenum", assetPlus);
-      //AssetType newType = new AssetType("NewType", 33, assetPlus);
-      //SpecificAsset newAsset = new SpecificAsset(0, 0, 0, Date.valueOf("2020-02-02"), assetPlus, newType);
+      AssetPlus assetPlus = getAssetPlus();      
+      
       if (!assetPlus.hasManager()){
         Manager manager = new Manager("manager@ap.com", null, "manager", null, assetPlus);
         assetPlus.setManager(manager);
-    }
+      }
+      if(assetPlus.getMaintenanceTickets().isEmpty()){
+        assetPlus.addMaintenanceTicket(new MaintenanceTicket(0, Date.valueOf("2023-11-11"),"Dummy ticket", assetPlus,assetPlus.getManager() ));
+      }
 
       Application.launch(AssetPlusFxmlView.class, args);
       
