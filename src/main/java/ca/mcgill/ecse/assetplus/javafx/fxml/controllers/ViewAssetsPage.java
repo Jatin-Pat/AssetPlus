@@ -91,7 +91,7 @@ public class ViewAssetsPage {
     @FXML
     void openUpdateAsset(ActionEvent event) {
       try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateAsset.fxml"));
         Parent root = loader.load();
 
         // Get the current Stage
