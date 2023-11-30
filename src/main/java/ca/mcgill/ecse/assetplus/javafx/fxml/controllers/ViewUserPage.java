@@ -191,21 +191,16 @@ public class ViewUserPage {
 
     @FXML
     void deleteUser(ActionEvent event) {
-      //TOUser selectedUser = UserView.getSelectionModel().getSelectedItem();
       System.out.println("Selected User Email: " + currrentUser);
       if (currrentUser != null) {
         if (!currrentUser.equals("manager@ap.com")) {
             AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(currrentUser);
             refreshUser(new ActionEvent());
             currrentUser = null;
-
-            // Additional code after deletion if needed
         } else {
-            // Handle the case where the user is the manager
             ViewUtils.showError("Cannot delete the manager");
         }
     } else {
-            // Handle the case where the user is the manager
             ViewUtils.showError("Select User to Delete");
         }
   }
