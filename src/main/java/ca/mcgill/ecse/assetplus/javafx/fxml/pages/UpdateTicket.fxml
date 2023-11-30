@@ -113,7 +113,7 @@
             </style>
         </DatePicker>
 
-        <Button alignment="CENTER" onAction="#openAddImagePage" prefHeight="38.0" prefWidth="109.0" text="Add Image" GridPane.columnIndex="3" GridPane.rowIndex="7">
+        <Button alignment="CENTER" onAction="#openAddImagePage" prefHeight="38.0" prefWidth="200.0" text="Add/Remove Image" GridPane.columnIndex="3" GridPane.rowIndex="7">
             <font>
                 <Font name="Gill Sans" size="17.0" />
             </font>

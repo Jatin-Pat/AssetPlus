@@ -93,7 +93,7 @@ public class addUpdateDeleteTicket {
 
         if (addImage.isSelected() && MaintenanceTicket.hasWithId(ticketId)){
             try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addDeleteImage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addImage.fxml"));
             Parent root = loader.load();
 
             // Get the current Stage

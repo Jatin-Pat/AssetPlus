@@ -1,8 +1,9 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.io.IOException;
-
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.*;
+import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,11 +21,9 @@ import javafx.stage.Stage;
  * Adds or deletes image to a maitencnace ticket
  */
 
-public class addDeleteImage {
+public class addImage {
 
-  @FXML
-  public Button cancel;
-
+  private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
   @FXML
   private TextField imageURL;
   @FXML
@@ -37,16 +36,16 @@ public class addDeleteImage {
   private Button logout;
   @FXML
   private Button submit;
+  @FXML
+  private Button cancel;
 
   @FXML
   public void initialize() {
   // Set the value of userEmailTextField from ViewUserPage.currentUser
-  if(id!=null){
-  if (ViewTicketsPage.getTicketID() != -1) {
-      id.setText(String.valueOf(ViewTicketsPage.getTicketID()));
-  } else {
-      id.setText("");
-  }}
+    int ticketId = assetPlus.numberOfMaintenanceTickets();
+    String number = ""+ticketId;
+    id.setText(number);
+
   }
   
   // Event Listener on Button[#add_selected].onAction
@@ -99,7 +98,7 @@ public class addDeleteImage {
   @FXML
   public void cancel(ActionEvent event) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateTicket.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AddTicket.fxml"));
       Parent root = loader.load();
 
       // Get the current Stage
