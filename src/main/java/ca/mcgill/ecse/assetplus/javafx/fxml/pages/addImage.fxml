@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="731.0" style="-fx-background-color: #663399;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.addDeleteImage">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="731.0" style="-fx-background-color: #663399;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.addImage">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="500.0" prefWidth="100.0" />
         <ColumnConstraints />
@@ -58,7 +58,7 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-        <TextField fx:id="imageURL" prefHeight="43.0" prefWidth="330.0" promptText="https://imageurl.com/000" GridPane.columnIndex="3" GridPane.rowIndex="3">
+        <TextField fx:id="imageURL" prefHeight="43.0" prefWidth="330.0" promptText="imageurl.com/000" GridPane.columnIndex="3" GridPane.rowIndex="3">
             <style>
                 -fx-font-size: 17.0;
             </style>

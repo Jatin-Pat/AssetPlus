@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
 import ca.mcgill.ecse.assetplus.controller.TicketMaintenanceController;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +43,11 @@ public class startCompleteWorkTicket {
 
     if (ticketId == null || ticketId.trim().isEmpty()) {
       ViewUtils.showError("Please input a valid ticketID");
-    } else if (ViewUtils.successful(TicketMaintenanceController.beginTicketWork(ticketId))) {
+    }
+    else if (MaintenanceTicket.getWithId(Integer.parseInt(ticketId)).getTicketStatus() == MaintenanceTicket.TicketStatus.Open) {
+      ViewUtils.showError("Please assign an user to this ticket first"); //this error message replaces "Cannot start a maintenance ticket which is open"
+    }
+    else if (ViewUtils.successful(TicketMaintenanceController.beginTicketWork(ticketId))) {
 
       ticketID.setText("");
     }
@@ -55,7 +60,11 @@ public class startCompleteWorkTicket {
 
     if (ticketId == null || ticketId.trim().isEmpty()) {
       ViewUtils.showError("Please input a valid ticketID");
-    } else if (ViewUtils.successful(TicketMaintenanceController.completeTicketWork(ticketId))) {
+    }
+    else if (MaintenanceTicket.getWithId(Integer.parseInt(ticketId)).getTicketStatus() == MaintenanceTicket.TicketStatus.Assigned) {
+      ViewUtils.showError("Please start this work first"); //this error message replaces "Cannot start a maintenance ticket which is assigned"
+    }
+    else if (ViewUtils.successful(TicketMaintenanceController.completeTicketWork(ticketId))) {
 
       ticketID.setText("");
     }
