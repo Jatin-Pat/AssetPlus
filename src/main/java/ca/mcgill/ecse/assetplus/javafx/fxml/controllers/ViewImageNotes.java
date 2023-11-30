@@ -2,6 +2,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet7Controller;
@@ -124,9 +125,19 @@ public class ViewImageNotes {
 
     @FXML
     void deleteNote(ActionEvent event) {
-      
+      int noteIndex=-1;
       if(selectedNote!=null){
-        AssetPlusFeatureSet7Controller.deleteMaintenanceNote(selectedTicket,getTicket().getNotes().indexOf(selectedNote));
+        List<TOMaintenanceNote> allNotes = getTicket().getNotes();
+        for (TOMaintenanceNote note : allNotes) {
+          if(note.getDescription().equals(selectedNote.getDescription())&&
+              note.getNoteTakerEmail().equals(selectedNote.getNoteTakerEmail())&&
+              note.getDate().equals(selectedNote.getDate())){
+                noteIndex = allNotes.indexOf(note);
+              }
+        }
+        AssetPlusFeatureSet7Controller.deleteMaintenanceNote(selectedTicket,noteIndex);
+      
+      
       }
       else{
         ViewUtils.showError("Select a note first");
