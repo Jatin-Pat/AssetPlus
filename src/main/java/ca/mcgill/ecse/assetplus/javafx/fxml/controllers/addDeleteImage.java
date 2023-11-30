@@ -24,7 +24,7 @@ public class addDeleteImage {
 
   @FXML
   public Button cancel;
-  private MainPage mainPage;
+
   @FXML
   private TextField imageURL;
   @FXML
@@ -99,7 +99,7 @@ public class addDeleteImage {
   @FXML
   public void cancel(ActionEvent event) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AddTicket.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateTicket.fxml"));
       Parent root = loader.load();
 
       // Get the current Stage
