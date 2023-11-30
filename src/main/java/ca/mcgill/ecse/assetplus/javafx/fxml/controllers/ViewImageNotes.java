@@ -119,6 +119,7 @@ public class ViewImageNotes {
       else{
         ViewUtils.showError("Select a URL first");
       }
+      setImageNotes();
     }
 
     @FXML
@@ -130,6 +131,7 @@ public class ViewImageNotes {
       else{
         ViewUtils.showError("Select a note first");
       }
+      setImageNotes();
     }
 
     
