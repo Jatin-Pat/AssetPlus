@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -92,6 +93,12 @@ public class ViewTicketsPage {
     @FXML
     void refreshTickets(ActionEvent event){
       System.out.println("buttonClicked");
+      TicketsView.setItems(getMaintenanceTickets());
+      AssetPlusFxmlView.getInstance().refresh();
+    }
+    
+    @FXML
+    void refreshEmployees(KeyEvent event) {
       TicketsView.setItems(getMaintenanceTickets());
       AssetPlusFxmlView.getInstance().refresh();
     }

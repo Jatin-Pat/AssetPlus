@@ -138,10 +138,11 @@ public class AssetPlusFeatureSet6Controller {
     //Find employee's email based on input
     String employeeEmail = null;
     List<Employee> employees = assetPlus.getEmployees();
+    List<Employee> filteredEmployees = new ArrayList<Employee>();
     for (Employee employee : employees) {
       if(employee.getName().contains(employeeName)){
         employeeEmail = employee.getEmail();
-        break;
+        filteredEmployees.add(employee);
       }
     }
     //Null check in case employee name not found
@@ -149,11 +150,14 @@ public class AssetPlusFeatureSet6Controller {
       return filteredTickets;
     }
     //Loop through tickets for tickets fixed by employee
-    for (TOMaintenanceTicket ticket : allTickets) {
-      if(ticket.getFixedByEmail().equals(employeeEmail)){
-        filteredTickets.add(ticket);
+    for (Employee employee : filteredEmployees) {
+      for (TOMaintenanceTicket ticket : allTickets) {
+        if(ticket.getFixedByEmail()!=null && ticket.getFixedByEmail().equals(employee.getEmail())){
+          filteredTickets.add(ticket);
+        }
       }
     }
+
     return filteredTickets;
   }
 

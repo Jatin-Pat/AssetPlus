@@ -21,6 +21,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sound.midi.SysexMessage;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
@@ -146,6 +147,13 @@ public class ViewAssetsPage {
       AssetView.setItems(FXCollections.observableList(assets));
 
       AssetPlusFxmlView.getInstance().refresh();
+    }
+
+    @FXML
+    void refreshAssets(KeyEvent event){
+      AssetView.setItems(FXCollections.observableList(getFilteredAssets()));
+      AssetPlusFxmlView.getInstance().refresh();
+
     }
 
     public void initialize(){

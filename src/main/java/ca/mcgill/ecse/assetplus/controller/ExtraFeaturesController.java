@@ -85,13 +85,12 @@ public class ExtraFeaturesController {
       List<SpecificAsset> allAssets = AssetPlusApplication.getAssetPlus().getSpecificAssets();
       List<SpecificAsset> filteredAsset = new ArrayList<SpecificAsset>();
       
-      if(AssetType.hasWithName(assetType)){
-        for (SpecificAsset asset : allAssets) {
-          if(asset.getAssetType() == AssetType.getWithName(assetType)){
-            filteredAsset.add(asset);
-          }
+      for (SpecificAsset asset : allAssets) {
+        if(asset.getAssetType().toString().contains(assetType)){
+          filteredAsset.add(asset);
         }
       }
+
 
       return convertToTransferObject(filteredAsset);
     }
