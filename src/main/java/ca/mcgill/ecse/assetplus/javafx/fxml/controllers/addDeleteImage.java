@@ -99,7 +99,7 @@ public class addDeleteImage {
   @FXML
   public void cancel(ActionEvent event) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateTicket.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/ViewImageNotes.fxml"));
       Parent root = loader.load();
 
       // Get the current Stage

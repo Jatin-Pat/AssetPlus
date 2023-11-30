@@ -58,7 +58,7 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-        <TextField fx:id="imageURL" prefHeight="43.0" prefWidth="330.0" promptText="imageurl.com/000" GridPane.columnIndex="3" GridPane.rowIndex="3">
+        <TextField fx:id="imageURL" prefHeight="43.0" prefWidth="330.0" promptText="https://imageurl.com/000" GridPane.columnIndex="3" GridPane.rowIndex="3">
             <style>
                 -fx-font-size: 17.0;
             </style>
