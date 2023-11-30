@@ -31,12 +31,12 @@
     <RowConstraints maxHeight="97.46182250976562" minHeight="10.0" prefHeight="96.03817749023438" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="97.46182250976562" minHeight="30.0" prefHeight="10.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="50.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="6.0" prefHeight="11.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label maxWidth="1.7976931348623157E308" prefHeight="172.0" prefWidth="732.0" style="-fx-background-color: #FFFFFF;" GridPane.columnSpan="6" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="272.0" prefWidth="227.0" style="-fx-background-color: #FFFFFF;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.vgrow="ALWAYS" />
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="296.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.vgrow="ALWAYS" />
       <Label contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="129.0" prefWidth="758.0" style="-fx-background-color: linear-gradient(to bottom, #663399, #663399 25%, #663399 25%, #663399);" text="View Maintenance Tickets" textAlignment="RIGHT" textFill="#e8e8e8" GridPane.columnSpan="7" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <font>
             <Font name="Arial Black" size="30.0" />
@@ -65,18 +65,18 @@
       <font>
           <Font name="Gill Sans" size="15.0" />
       </font></Button>
-       <Button fx:id="deleteTicket" mnemonicParsing="false" onAction="#deleteTicket" prefHeight="15.0" prefWidth="123.0" text="Delete Ticket" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+       <Button fx:id="deleteTicket" mnemonicParsing="false" onAction="#deleteTicket" prefHeight="32.0" prefWidth="123.0" text="Delete Ticket" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
            <font>
                <Font name="Gill Sans" size="15.0" />
            </font></Button>
-       <Button fx:id="openAddTicket" mnemonicParsing="false" onAction="#openAddTicket" prefHeight="32.0" prefWidth="102.0" text="Add Ticket" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+       <Button fx:id="openAddTicket" mnemonicParsing="false" onAction="#openAddTicket" prefHeight="32.0" prefWidth="103.0" text="Add Ticket" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
            <font>
                <Font name="Gill Sans" size="15.0" />
            </font>
            <GridPane.margin>
                <Insets bottom="5.0" />
            </GridPane.margin></Button>
-       <Button fx:id="openUpdateTicket" mnemonicParsing="false" onAction="#openUpdateTicket" prefHeight="32.0" prefWidth="102.0" text="Update" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+       <Button fx:id="openUpdateTicket" mnemonicParsing="false" onAction="#openUpdateTicket" prefHeight="32.0" prefWidth="103.0" text="Update" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
            <font>
                <Font name="Gill Sans" size="15.0" />
            </font>
@@ -112,14 +112,14 @@
             <Font name="Roboto" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="TicketsView" onMouseClicked="#selectTicket" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.vgrow="ALWAYS" />
+      <TableView fx:id="TicketsView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#selectTicket" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.vgrow="ALWAYS" />
       <Separator prefHeight="0.0" prefWidth="135.0" valignment="TOP" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
       <ImageView fitHeight="132.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
          <image>
             <Image url="@../images/Logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="openAssignTicket" mnemonicParsing="false" onAction="#openAssignTicket" prefHeight="32.0" prefWidth="101.0" text="Assign" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+      <Button fx:id="openAssignTicket" mnemonicParsing="false" onAction="#openAssignTicket" prefHeight="32.0" prefWidth="103.0" text="Assign" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <font>
             <Font size="15.0" />
          </font>
@@ -129,5 +129,6 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Button fx:id="viewImageNote" mnemonicParsing="false" onAction="#viewImageNote" text="Expand Ticket Info" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>

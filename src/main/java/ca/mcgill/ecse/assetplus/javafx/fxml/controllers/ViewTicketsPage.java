@@ -64,7 +64,10 @@ public class ViewTicketsPage {
     @FXML
     private TableView<TOMaintenanceTicket> TicketsView;
 
-  
+    @FXML
+    private Button viewImageNote;
+
+
     public static int getTicketID(){
       return currentTicket;
     }
@@ -267,6 +270,24 @@ public class ViewTicketsPage {
             e.printStackTrace();
             ViewUtils.showError("Error opening Approve Ticket page\n");
         }
+    }
+    
+    @FXML
+    void viewImageNote(ActionEvent event) {
+      if(currentTicket==-1){
+        ViewUtils.showError("Select a ticket first");
+      }
+      else{
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/ViewImageNotes.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error opening images and notes\n");
+        }
+      }
     }
 
 }
