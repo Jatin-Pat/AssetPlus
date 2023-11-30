@@ -17,8 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /*
- * @author: Dmytro Martyuniuk
- * Adds or deletes image to a maitencnace ticket
+ * @author: Dmytro Martyniuk
+ * Adds or deletes image to a maintenance ticket
  */
 
 public class addImage {
@@ -98,7 +98,7 @@ public class addImage {
   @FXML
   public void cancel(ActionEvent event) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AddTicket.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/ViewTicketsPage.fxml"));
       Parent root = loader.load();
 
       // Get the current Stage
