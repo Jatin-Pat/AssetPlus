@@ -1,39 +1,88 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
+import java.io.IOException;
 import java.sql.Date;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet7Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class AddNote {
 
     @FXML
-    private TextField ticketIdTextField;
+    private Button cancel;
 
     @FXML
-    private TextField emailTextField;
+    private TextField id;
 
     @FXML
-    private TextField descriptionTextField;
+    private DatePicker noteDate;
 
     @FXML
-    private DatePicker datePicker;
+    private TextField noteDescription;
 
     @FXML
-    void addNote(ActionEvent event) {
-      int id = Integer.parseInt(ticketIdTextField.getText());
-      String email = emailTextField.getText();
-      Date date = Date.valueOf(datePicker.getValue());
-      String description = descriptionTextField.getText();
+    private TextField noteTaker;
 
-      if (ViewUtils.successful(AssetPlusFeatureSet7Controller.addMaintenanceNote(date, description, id, email))){
-        descriptionTextField.setText("");
-        emailTextField.setText("");
-        datePicker.setValue(null);
-        ticketIdTextField.setText("");
+    @FXML
+    public void initialize(){
+      if(ViewTicketsPage.getTicketID()!=-1){
+        id.setText(String.valueOf(ViewTicketsPage.getTicketID()));
       }
     }
+    @FXML
+    void submit(ActionEvent event) {
+      String ticketID = id.getText();
+      if(ticketID=="" || Integer.parseInt(ticketID)<1){
+        ViewUtils.showError("Enter a valid ID (larger than 0)");
+      }
+      int ticketId = Integer.parseInt(id.getText());
 
+      String email = noteTaker.getText();
+      if(email=="null"){
+        ViewUtils.showError("Enter a valid email");
+      }
+
+      if(noteDate.getValue()==null){
+        ViewUtils.showError("Pick a date");
+      }
+      Date date = Date.valueOf(noteDate.getValue());
+
+      String description = noteDescription.getText();
+      if(description==""){
+        ViewUtils.showError("Enter a description");
+      }
+      String result = AssetPlusFeatureSet7Controller.addMaintenanceNote(date, description, ticketId, email);
+      if(result.isEmpty()){
+        noteDescription.setText("");
+        noteTaker.setText("");
+        noteDate.setValue(null);
+        id.setText("");
+      }else{
+        ViewUtils.showError("Error: "+result);
+      }
+    }
+  
+    @FXML
+    public void cancel(ActionEvent event) {
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/ViewImageNotes.fxml"));
+        Parent root = loader.load();
+
+        // Get the current Stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set the new root for the current Scene
+        stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error opening Add User page");
+        }
+      }
 }

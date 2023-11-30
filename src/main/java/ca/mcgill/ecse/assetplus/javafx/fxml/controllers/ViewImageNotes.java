@@ -123,7 +123,20 @@ public class ViewImageNotes {
 
     @FXML
     void addNote(ActionEvent event) {
-      //Open add note page
+      try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addNote.fxml"));
+            Parent root = loader.load();
+
+            // Get the current Stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new root for the current Scene
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.err.println(e);
+            e.printStackTrace();
+            ViewUtils.showError("Error: Could not add note page\n");
+        }
     }
 
     @FXML
