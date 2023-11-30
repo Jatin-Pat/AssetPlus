@@ -21,7 +21,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class addUpdateDeleteTicket {
-    private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
+    private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
 
     private MainPage mainPage;
 

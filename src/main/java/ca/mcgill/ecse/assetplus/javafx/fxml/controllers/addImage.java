@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 
 public class addImage {
 
-  private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
+  private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
   @FXML
   private TextField imageURL;
   @FXML
