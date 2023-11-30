@@ -58,7 +58,8 @@ public class ViewImageNotes {
     public static int selectedTicket = ViewTicketsPage.getTicketID();
 
     public void initialize(){
-      title.setText(title.getText()+": Ticket ID#"+selectedTicket);
+        selectedTicket = ViewTicketsPage.getTicketID();
+      title.setText(title.getText()+": Ticket ID #" + selectedTicket);
 
       imagesView.setPlaceholder(new Label("No Image URLs Found"));
       notesView.setPlaceholder(new Label("No notes found"));
@@ -104,7 +105,20 @@ public class ViewImageNotes {
 
     @FXML
     void addImage(ActionEvent event) {
-      //Open add image page
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addDeleteImage.fxml"));
+            Parent root = loader.load();
+
+            // Get the current Stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new root for the current Scene
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.err.println(e);
+            e.printStackTrace();
+            ViewUtils.showError("Error opening image upload page\n");
+        }
     }
 
     @FXML
@@ -160,7 +174,7 @@ public class ViewImageNotes {
         mainPage = loader.getController();
 
         mainPage.selectTab(1);
-        
+
     
       } catch (IOException e) {
         e.printStackTrace();
