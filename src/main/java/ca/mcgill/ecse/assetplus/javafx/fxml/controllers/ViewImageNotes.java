@@ -106,7 +106,7 @@ public class ViewImageNotes {
     @FXML
     void addImage(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addDeleteImage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addImage.fxml"));
             Parent root = loader.load();
 
             // Get the current Stage
