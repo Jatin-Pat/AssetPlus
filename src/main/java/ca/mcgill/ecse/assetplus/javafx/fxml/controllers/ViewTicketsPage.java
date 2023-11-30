@@ -225,13 +225,25 @@ public class ViewTicketsPage {
         }
     }
 
+    TOMaintenanceTicket getTicket(){
+      List<TOMaintenanceTicket> allTickets = AssetPlusFeatureSet6Controller.getTickets();
+      for (TOMaintenanceTicket ticket : allTickets) {
+        if(ticket.getId()==getTicketID()){
+          return ticket;
+        }
+      }
+      return null;
+    } 
+    
     @FXML
     void openUpdateTicket(ActionEvent event) {
         try {
-            if (MaintenanceTicket.getWithId(getTicketID()).getTicketStatus() == MaintenanceTicket.TicketStatus.Closed) {
+          if(getTicketID()!=-1){
+            if (getTicket().getStatus().equals("Closed")) {
                 ViewUtils.showError("Cannot update a closed ticket");
                 return;
             }
+          }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateTicket.fxml"));
             Parent root = loader.load();
 
