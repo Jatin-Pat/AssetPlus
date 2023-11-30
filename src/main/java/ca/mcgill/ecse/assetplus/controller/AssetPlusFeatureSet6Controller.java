@@ -160,13 +160,41 @@ public class AssetPlusFeatureSet6Controller {
 
     return filteredTickets;
   }
-
+  public static boolean ticketsAreEqual(TOMaintenanceTicket firstTick, TOMaintenanceTicket secondTick){
+    //System.out.println(firstTick.toString());
+    int index = firstTick.toString().indexOf('[');
+    String subString = String.valueOf(firstTick.toString().subSequence(index+1, firstTick.toString().length()-1));
+    String subString2 = String.valueOf(secondTick.toString().subSequence(index+1, secondTick.toString().length()-1));
+    System.out.println(subString);
+    
+    System.out.println("\n");
+    //System.out.println(secondTick.toString());
+    return (subString.contains(subString2) || subString2.contains(subString));
+  
+  }
   public static List<TOMaintenanceTicket> filterByBoth(Date dateFilter, String employeeName){
     List<TOMaintenanceTicket> filteredTickets = new ArrayList<TOMaintenanceTicket>();
     List<TOMaintenanceTicket> allTickets = getTickets();
     AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
 
+    List<TOMaintenanceTicket> employeeTickets = filterTicketsByEmployee(employeeName);
+    List<TOMaintenanceTicket> dateTickets = filterTicketsByDate(dateFilter);
 
+    for (TOMaintenanceTicket employeeTicket : employeeTickets) {
+      for (TOMaintenanceTicket dateTicket : dateTickets) {
+        if(ticketsAreEqual(dateTicket, employeeTicket)){
+          filteredTickets.add(employeeTicket);
+          System.out.println("equals");
+        }
+        else{
+          System.out.println("not equals");
+        }
+      }
+    }
+    return filteredTickets;
+
+
+    /* 
     String employeeEmail = null;
     List<Employee> employees = assetPlus.getEmployees();
     for (Employee employee : employees) {
@@ -184,8 +212,7 @@ public class AssetPlusFeatureSet6Controller {
       if(ticket.getFixedByEmail().equals(employeeEmail) && ticket.getRaisedOnDate().equals(dateFilter)){
         filteredTickets.add(ticket);
       }
-    }
-    return filteredTickets;
+    }*/
 
 
   }

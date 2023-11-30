@@ -165,7 +165,7 @@ public class ViewTicketsPage {
       }
       else if(selectedDate != null && employeeName != ""){
         System.out.println("Filter by both");
-        AssetPlusFeatureSet6Controller.filterByBoth(Date.valueOf(selectedDate), employeeName);
+        tickets = AssetPlusFeatureSet6Controller.filterByBoth(Date.valueOf(selectedDate), employeeName);
       }
       else if(selectedDate != null){
         System.out.println("Getting Tickets by Date only");
