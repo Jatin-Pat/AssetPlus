@@ -49,7 +49,9 @@ public class addUpdateDeleteTicket {
     @FXML
     public void initialize() {
     // Set the value of userEmailTextField from ViewUserPage.currentUser
+    ticketDateDatePicker.setValue(LocalDate.now());
     ticketDateDatePicker.setEditable(false);
+    
     if(ticketIdTextField!=null){
     if (ViewTicketsPage.getTicketID() != -1) {
         ticketIdTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));

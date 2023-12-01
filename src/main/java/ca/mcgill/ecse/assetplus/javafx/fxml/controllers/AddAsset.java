@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import javafx.scene.control.DatePicker;
 import javafx.event.ActionEvent;
@@ -38,6 +39,12 @@ public class AddAsset {
     @FXML
     private TextField roomNumberTextField;
 
+
+    @FXML
+    public void initialize(){
+      purchaseDateDatePicker.setValue(LocalDate.now());
+
+    }
     @FXML
     void addAsset(ActionEvent event) {
       int assetNumber = Integer.parseInt(assetNumberTextField.getText());

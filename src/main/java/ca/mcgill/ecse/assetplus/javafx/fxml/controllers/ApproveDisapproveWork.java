@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ApproveDisapproveWork implements Initializable {
@@ -77,6 +78,8 @@ public class ApproveDisapproveWork implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        date.setValue(LocalDate.now());
+
         approval.getItems().addAll(status);
         if(ViewTicketsPage.getTicketID() != -1){
         id.setText(String.valueOf(ViewTicketsPage.getTicketID()));}

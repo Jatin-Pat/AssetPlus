@@ -57,7 +57,7 @@
             <RowConstraints />
          </rowConstraints>
          <children>
-            <Label alignment="BOTTOM_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="531.0" style="&#10;                -fx-text-fill: white;&#10;            " text="Add Image" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="1">
+            <Label alignment="BOTTOM_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="531.0" style="&#10;                -fx-text-fill: white;&#10;            " text="Add Note" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="1">
                <font>
                   <Font name="Gill Sans" size="30.0" />
                </font>

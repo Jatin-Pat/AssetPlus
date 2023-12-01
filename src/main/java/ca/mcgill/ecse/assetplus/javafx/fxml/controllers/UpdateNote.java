@@ -1,43 +1,98 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
+import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet7Controller;
+import ca.mcgill.ecse.assetplus.controller.TOMaintenanceNote;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class UpdateNote {
 
+    
     @FXML
-    private TextField ticketIdTextField;
+    private Button cancel;
 
     @FXML
-    private TextField emailTextField;
+    private DatePicker noteDate;
 
     @FXML
-    private TextField descriptionTextField;
+    private TextField noteDescription;
 
     @FXML
-    private TextField indexTextField;
+    private TextField noteTaker;
 
     @FXML
-    private DatePicker datePicker;
+    private Label title;
+
+    private static TOMaintenanceNote selectedNote = ViewImageNotes.selectedNote;
 
     @FXML
-    void updateNote(ActionEvent event) {
-      int id = Integer.parseInt(ticketIdTextField.getText());
-      int ind = Integer.parseInt(indexTextField.getText());
-      String email = emailTextField.getText();
-      Date date = Date.valueOf(datePicker.getValue());
-      String description = descriptionTextField.getText();
+    public void initialize(){
+      title.setText(title.getText()+" #"+ViewImageNotes.selectedNoteIndex);
+      
+      noteDate.setValue(LocalDate.now());
+      
+      if(ViewImageNotes.getSelectedNote() !=null){
+        TOMaintenanceNote thisNote = ViewImageNotes.getSelectedNote();
+        noteDescription.setText(thisNote.getDescription());
+        noteTaker.setText(thisNote.getNoteTakerEmail());
+        System.out.println("changing fields");
+      }
+    }
+    @FXML
+    public void cancel(ActionEvent event) {
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/ViewImageNotes.fxml"));
+        Parent root = loader.load();
 
-      if (ViewUtils.successful(AssetPlusFeatureSet7Controller.updateMaintenanceNote(id, ind, date, description, email))){
-        indexTextField.setText("");
-        descriptionTextField.setText("");
-        emailTextField.setText("");
-        datePicker.setValue(null);
-        ticketIdTextField.setText("");
+        // Get the current Stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set the new root for the current Scene
+        stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ViewUtils.showError("Error viewing images and notes");
+        }
+      }
+
+    public boolean isNumeric(String input){
+      try{
+        Integer.parseInt(input);
+        return true;
+      }catch(NumberFormatException e){
+        return false;
+      }
+    }
+    @FXML
+    void submit(ActionEvent event) {
+      
+      if(noteDescription.getText()==""){
+        ViewUtils.showError("A description must be provided");
+      }
+      else if(noteDate.getValue()==null){
+        ViewUtils.showError("A date must be provided");
+      }
+      else if(noteTaker.getText().equals("")){
+        ViewUtils.showError("A note taker must be provided");
+      }
+      
+      Date newDate = Date.valueOf(noteDate.getValue());
+      String newDescription = noteDescription.getText();
+      String newTaker = noteTaker.getText();
+      String result = AssetPlusFeatureSet7Controller.updateMaintenanceNote(ViewImageNotes.selectedTicket,ViewImageNotes.selectedNoteIndex , newDate, newDescription, newTaker);
+      if(!result.isBlank()){
+        ViewUtils.showError(result);
       }
     }
 

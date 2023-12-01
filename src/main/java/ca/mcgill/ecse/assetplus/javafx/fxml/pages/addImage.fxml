@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -89,6 +90,11 @@
                 -fx-text-fill: white;
             </style>
         </Label>
+      <ImageView fx:id="image" fitHeight="129.0" fitWidth="249.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </ImageView>
         <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />
@@ -105,6 +111,7 @@
             <RowConstraints />
             <RowConstraints />
             <RowConstraints />
+         <RowConstraints />
         </rowConstraints>
 
     </GridPane>

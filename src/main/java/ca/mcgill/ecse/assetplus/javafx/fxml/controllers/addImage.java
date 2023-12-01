@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /*
@@ -27,6 +29,8 @@ public class addImage {
   private TextField id;
   @FXML
   private Button submit;
+  @FXML
+  private ImageView image;
 
   @FXML
   public void initialize() {
@@ -59,8 +63,8 @@ public class addImage {
     } else if (ViewUtils.successful(AssetPlusFeatureSet5Controller.addImageToMaintenanceTicket(url, ID))) {
         // Adds the image to the ticket
         // Resets the fields
-        imageURL.setText("");
-        id.setText("");
+        image.setImage(new Image(imageURL.getText()));
+        imageURL.setText("");        
     }
   }
 

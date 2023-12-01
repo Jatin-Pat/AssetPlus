@@ -19,6 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -55,10 +57,12 @@ public class ViewImageNotes {
 
     public static String selectedURL = null;
     public static TOMaintenanceNote selectedNote = null;
+    public static int selectedNoteIndex = -1;
+
     public static int selectedTicket = ViewTicketsPage.getTicketID();
 
     public void initialize(){
-        selectedTicket = ViewTicketsPage.getTicketID();
+      selectedTicket = ViewTicketsPage.getTicketID();
       title.setText(title.getText()+": Ticket ID #" + selectedTicket);
 
       imagesView.setPlaceholder(new Label("No Image URLs Found"));
@@ -150,21 +154,24 @@ public class ViewImageNotes {
       setImageNotes();
     }
 
-    @FXML
-    void deleteNote(ActionEvent event) {
-      int noteIndex=-1;
-      if(selectedNote!=null){
-        List<TOMaintenanceNote> allNotes = getTicket().getNotes();
+    public int findIndex(TOMaintenanceNote selectedNote){
+      List<TOMaintenanceNote> allNotes = getTicket().getNotes();
         for (TOMaintenanceNote note : allNotes) {
           if(note.getDescription().equals(selectedNote.getDescription())&&
               note.getNoteTakerEmail().equals(selectedNote.getNoteTakerEmail())&&
               note.getDate().equals(selectedNote.getDate())){
-                noteIndex = allNotes.indexOf(note);
+                return allNotes.indexOf(note);
               }
         }
+        return -1;
+    }
+
+    @FXML
+    void deleteNote(ActionEvent event) {
+      int noteIndex=-1;
+      if(selectedNote!=null){
+        noteIndex=findIndex(selectedNote);
         AssetPlusFeatureSet7Controller.deleteMaintenanceNote(selectedTicket,noteIndex);
-      
-      
       }
       else{
         ViewUtils.showError("Select a note first");
@@ -204,6 +211,8 @@ public class ViewImageNotes {
       if(attemptedSelNote!=null){
         System.out.println("Selected note");
         selectedNote = attemptedSelNote;
+        selectedNoteIndex = findIndex(attemptedSelNote);
+        selectedNote = getTicket().getNote(selectedNoteIndex);
       }
       if(attemptedSelURL!=null){
         System.out.println("Selected url");
@@ -213,7 +222,27 @@ public class ViewImageNotes {
 
     @FXML
     void updateNote(ActionEvent event) {
-      //Open update Note page
-    }
+      if(selectedNoteIndex==-1){
+        ViewUtils.showError("Select a note from the list to update first");
+        return;
+      }
 
+      try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateNote.fxml"));
+            Parent root = loader.load();
+
+            // Get the current Stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new root for the current Scene
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.err.println(e);
+            e.printStackTrace();
+            ViewUtils.showError("Error: Could not load update note page");
+        }
+    }
+    public static TOMaintenanceNote getSelectedNote(){
+      return selectedNote;
+    }
 }

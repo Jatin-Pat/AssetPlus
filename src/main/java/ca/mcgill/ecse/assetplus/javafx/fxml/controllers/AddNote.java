@@ -2,6 +2,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet7Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +33,8 @@ public class AddNote {
 
     @FXML
     public void initialize(){
+      noteDate.setValue(LocalDate.now());
+      
       if(ViewTicketsPage.getTicketID()!=-1){
         id.setText(String.valueOf(ViewTicketsPage.getTicketID()));
       }
@@ -82,7 +85,7 @@ public class AddNote {
         stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
-            ViewUtils.showError("Error opening Add User page");
+            ViewUtils.showError("Error viewing images and notes.");
         }
       }
 }

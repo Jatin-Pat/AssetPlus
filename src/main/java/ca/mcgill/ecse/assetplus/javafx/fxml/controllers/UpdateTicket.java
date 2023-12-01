@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class UpdateTicket {
     private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
@@ -42,6 +43,8 @@ public class UpdateTicket {
 
     @FXML
     public void initialize() {
+        ticketDateDatePicker.setValue(LocalDate.now());
+        
         Integer ticketId = ViewTicketsPage.getTicketID();
         if (ticketId != -1) {
             ticketIdTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
