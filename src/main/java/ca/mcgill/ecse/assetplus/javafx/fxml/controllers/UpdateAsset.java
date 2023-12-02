@@ -82,12 +82,14 @@ public class UpdateAsset {
     void updateAsset(ActionEvent event) {
       int assetNumber;
       int newFloorNumber;
-      int newRoomNumber;
+      int newRoomNumber=-1;
       Date newPurchaseDate;
       try{
        assetNumber = Integer.parseInt(assetNumberTextField.getText());
        newFloorNumber = Integer.parseInt(floorNumberTextField.getText());
-       newRoomNumber = Integer.parseInt(roomNumberTextField.getText());
+       if(roomNumberTextField.getText()!=""){
+          newRoomNumber = Integer.parseInt(roomNumberTextField.getText());
+       }
        newPurchaseDate = Date.valueOf(purchaseDateDatePicker.getValue());}
       catch(NumberFormatException e){
         ViewUtils.showError("Please enter an integer for the asset number, floor number, and room number");

@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-
+import javafx.scene.text.Text;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -58,7 +58,10 @@ public class ViewTicketsPage {
     private DatePicker dateFilter;
 
     @FXML
-    private TextField employeeFilter;
+    private TextField nameFilter;
+
+    @FXML
+    private TextField emailFilter;
 
     @FXML
     private Button refreshTickets;
@@ -96,7 +99,8 @@ public class ViewTicketsPage {
         }
     }
   }
-    @FXML
+    
+  @FXML
     void refreshTickets(ActionEvent event){
       System.out.println("buttonClicked");
       TicketsView.setItems(getMaintenanceTickets());
@@ -143,6 +147,9 @@ public class ViewTicketsPage {
 
       TableColumn<TOMaintenanceTicket, String> descriptionColumn = new TableColumn<TOMaintenanceTicket, String>("Description");
       descriptionColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("description"));
+      
+      TableColumn<TOMaintenanceTicket, String> raiserColumn = new TableColumn<TOMaintenanceTicket, String>("Raised by");
+      raiserColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("raisedByEmail"));
 
       TableColumn<TOMaintenanceTicket, String> assetName = new TableColumn<TOMaintenanceTicket, String>("Specific Name");
       assetName.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("assetName"));
@@ -152,24 +159,27 @@ public class ViewTicketsPage {
 
       
       TicketsView.getColumns().add(ticketIDColumn);
+      TicketsView.getColumns().add(dateColumn);
+      TicketsView.getColumns().add(raiserColumn);
+      TicketsView.getColumns().add(descriptionColumn);
       TicketsView.getColumns().add(assetName);
       TicketsView.getColumns().add(assetNumber);
-      TicketsView.getColumns().add(dateColumn);
       TicketsView.getColumns().add(assignedToColumn);
       TicketsView.getColumns().add(timeToResolveColumn);
       TicketsView.getColumns().add(priorityColumn);
       TicketsView.getColumns().add(statusColumn);
-      TicketsView.getColumns().add(descriptionColumn);
 
 
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
       TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getMaintenanceTickets()));
 
+      AssetPlusFxmlView.getInstance().registerRefreshEvent(TicketsView);
     }
 
     public ObservableList<TOMaintenanceTicket> getMaintenanceTickets(){
       LocalDate selectedDate = dateFilter.getValue();
-      String employeeName = employeeFilter.getText();
+      String employeeName = nameFilter.getText();
+      String employeeEmail = emailFilter.getText();
       
       System.out.println(selectedDate + " 1");
       System.out.println(employeeName + " 2");
@@ -194,7 +204,15 @@ public class ViewTicketsPage {
         tickets = AssetPlusFeatureSet6Controller.filterTicketsByEmployee(employeeName);
       }
       
-
+      List<TOMaintenanceTicket> emailFilteredTickets = new ArrayList<TOMaintenanceTicket>();
+      if(employeeEmail!=""){
+        for (TOMaintenanceTicket ticket : tickets) {
+          if(ticket.getRaisedByEmail()!=null && ticket.getRaisedByEmail().contains(employeeEmail)){
+            emailFilteredTickets.add(ticket);
+          }
+        }
+        return FXCollections.observableList(emailFilteredTickets);
+      }
       return FXCollections.observableList(tickets);
       
     }

@@ -31,8 +31,8 @@
       <RowConstraints maxHeight="99.0" minHeight="30.0" prefHeight="10.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="97.46182250976562" minHeight="10.0" prefHeight="96.03817749023438" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="97.46182250976562" minHeight="30.0" prefHeight="10.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="50.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="64.0" minHeight="30.0" prefHeight="64.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="6.0" prefHeight="11.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
@@ -84,18 +84,18 @@
            <GridPane.margin>
                <Insets />
            </GridPane.margin></Button>
-      <Label prefHeight="18.0" prefWidth="113.0" text="Enter Date Raised:" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+      <Label prefHeight="18.0" prefWidth="113.0" text="By Date Raised:" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
          <font>
             <Font name="Roboto Bold" size="12.0" />
          </font>
       </Label>
-      <Label prefHeight="18.0" prefWidth="113.0" text="By Assigned Staff:" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+      <Label prefHeight="18.0" prefWidth="113.0" text="By Staff Name:" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <font>
             <Font name="Roboto Bold" size="12.0" />
          </font>
       </Label>
       <Separator prefWidth="200.0" valignment="TOP" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
-      <TextField fx:id="employeeFilter" alignment="BASELINE_CENTER" onAction="#refreshTickets" onKeyTyped="#refreshEmployees" prefHeight="10.0" prefWidth="100.0" promptText="Employee Name" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+      <TextField fx:id="nameFilter" alignment="BASELINE_CENTER" onAction="#refreshTickets" onKeyTyped="#refreshEmployees" prefHeight="10.0" prefWidth="100.0" promptText="Employee Name" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <font>
             <Font size="10.0" />
          </font>
@@ -138,5 +138,15 @@
             </TableView>
          </children>
       </StackPane>
+      <Label prefHeight="18.0" prefWidth="113.0" text="By Raiser:" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+         <font>
+            <Font name="Roboto Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="emailFilter" alignment="BASELINE_CENTER" onAction="#refreshTickets" onKeyTyped="#refreshEmployees" prefHeight="10.0" prefWidth="100.0" promptText="Raiser Email" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </TextField>
    </children>
 </GridPane>

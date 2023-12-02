@@ -83,6 +83,11 @@ public class addUpdateDeleteAssetType {
         ViewUtils.showError("Select an asset to delete from the drop down menu");
         return;
       }
+      for (TOMaintenanceTicket ticket : AssetPlusFeatureSet6Controller.getTickets()) {
+        if(ticket.getAssetName()!=null && ticket.getAssetName().equals(assetTypeName)){
+          AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(ticket.getId());
+        }
+      }
 
       AssetPlusFeatureSet2Controller.deleteAssetType(assetTypeName);
       assetTypeNameTextField.setText("");
