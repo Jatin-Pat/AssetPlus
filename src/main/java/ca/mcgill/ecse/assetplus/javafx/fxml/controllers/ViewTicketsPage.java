@@ -148,15 +148,18 @@ public class ViewTicketsPage {
       TableColumn<TOMaintenanceTicket, String> raiserColumn = new TableColumn<TOMaintenanceTicket, String>("Raised by");
       raiserColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("raisedByEmail"));
 
+      TableColumn<TOMaintenanceTicket, String> assetColumn = new TableColumn<TOMaintenanceTicket, String>("Asset");
+      assetColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("assetName"));
 
       TicketsView.getColumns().add(ticketIDColumn);
       TicketsView.getColumns().add(dateColumn);
       TicketsView.getColumns().add(raiserColumn);
+      TicketsView.getColumns().add(descriptionColumn);
+      TicketsView.getColumns().add(assetColumn);
       TicketsView.getColumns().add(assignedToColumn);
       TicketsView.getColumns().add(timeToResolveColumn);
       TicketsView.getColumns().add(priorityColumn);
       TicketsView.getColumns().add(statusColumn);
-      TicketsView.getColumns().add(descriptionColumn);
 
 
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
