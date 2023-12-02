@@ -59,8 +59,9 @@ public class addUpdateDeleteAsset {
       assetNumberTextField.setText("");
     }
 
-    @FXML
+    /*@FXML
     void updateAssetClicked(ActionEvent event) {
+
       int assetNumber = Integer.parseInt(assetNumberTextField.getText());
       int newFloorNumber = Integer.parseInt(floorNumberTextField.getText());
       int newRoomNumber = Integer.parseInt(roomNumberTextField.getText());
@@ -74,5 +75,5 @@ public class addUpdateDeleteAsset {
         purchaseDateDatePicker.setValue(null);
         assetTypeTextField.setText("");
       }
-    }
+    }*/
 }
