@@ -197,12 +197,14 @@ public class ViewUserPage {
             AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(currrentUser);
             refreshUser(new ActionEvent());
             currrentUser = null;
+            AssetPlusFxmlView.getInstance().refresh();
         } else {
             ViewUtils.showError("Cannot delete the manager");
         }
     } else {
             ViewUtils.showError("Select User to Delete");
         }
+
   }
 
 

@@ -97,7 +97,8 @@ public class ViewTicketsPage {
         }
     }
   }
-    @FXML
+    
+  @FXML
     void refreshTickets(ActionEvent event){
       System.out.println("buttonClicked");
       TicketsView.setItems(getMaintenanceTickets());
@@ -165,6 +166,7 @@ public class ViewTicketsPage {
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
       TicketsView.addEventHandler(AssetPlusFxmlView.REFRESH_EVENT, e -> TicketsView.setItems(getMaintenanceTickets()));
 
+      AssetPlusFxmlView.getInstance().registerRefreshEvent(TicketsView);
     }
 
     public ObservableList<TOMaintenanceTicket> getMaintenanceTickets(){
