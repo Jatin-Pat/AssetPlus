@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-
+import javafx.scene.text.Text;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -58,7 +58,10 @@ public class ViewTicketsPage {
     private DatePicker dateFilter;
 
     @FXML
-    private TextField employeeFilter;
+    private TextField nameFilter;
+
+    @FXML
+    private TextField emailFilter;
 
     @FXML
     private Button refreshTickets;
@@ -159,7 +162,8 @@ public class ViewTicketsPage {
 
     public ObservableList<TOMaintenanceTicket> getMaintenanceTickets(){
       LocalDate selectedDate = dateFilter.getValue();
-      String employeeName = employeeFilter.getText();
+      String employeeName = nameFilter.getText();
+      String employeeEmail = emailFilter.getText();
       
       System.out.println(selectedDate + " 1");
       System.out.println(employeeName + " 2");
@@ -184,7 +188,15 @@ public class ViewTicketsPage {
         tickets = AssetPlusFeatureSet6Controller.filterTicketsByEmployee(employeeName);
       }
       
-
+      List<TOMaintenanceTicket> emailFilteredTickets = new ArrayList<TOMaintenanceTicket>();
+      if(employeeEmail!=""){
+        for (TOMaintenanceTicket ticket : tickets) {
+          if(ticket.getFixedByEmail()!=null && ticket.getFixedByEmail().contains(employeeEmail)){
+            emailFilteredTickets.add(ticket);
+          }
+        }
+        return FXCollections.observableList(emailFilteredTickets);
+      }
       return FXCollections.observableList(tickets);
       
     }
