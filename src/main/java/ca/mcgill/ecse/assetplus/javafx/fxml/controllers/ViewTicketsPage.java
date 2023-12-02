@@ -91,6 +91,8 @@ public class ViewTicketsPage {
         if (currentTicket != -1) {
             // Debugging output
             System.out.println("Selected Ticket ID: " + selectedTicket.getId());
+            System.out.println("Selected Asset Number: " + selectedTicket.getAssetNumber());
+
         }
     }
   }
@@ -142,8 +144,16 @@ public class ViewTicketsPage {
       TableColumn<TOMaintenanceTicket, String> descriptionColumn = new TableColumn<TOMaintenanceTicket, String>("Description");
       descriptionColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("description"));
 
+      TableColumn<TOMaintenanceTicket, String> assetName = new TableColumn<TOMaintenanceTicket, String>("Specific Name");
+      assetName.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("assetName"));
+      TableColumn<TOMaintenanceTicket, String> assetNumber = new TableColumn<TOMaintenanceTicket, String>("Specific Asset ID");
+      assetNumber.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("assetNumber"));
+      
 
+      
       TicketsView.getColumns().add(ticketIDColumn);
+      TicketsView.getColumns().add(assetName);
+      TicketsView.getColumns().add(assetNumber);
       TicketsView.getColumns().add(dateColumn);
       TicketsView.getColumns().add(assignedToColumn);
       TicketsView.getColumns().add(timeToResolveColumn);

@@ -5,6 +5,7 @@ package ca.mcgill.ecse.assetplus.controller;
 import java.sql.Date;
 import java.util.*;
 
+
 // line 3 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOMaintenanceTicket
 {
@@ -29,6 +30,7 @@ public class TOMaintenanceTicket
   private int floorNumber;
   private int roomNumber;
   private List<String> imageURLs;
+  private String assetNumber;
 
   //TOMaintenanceTicket Associations
   private List<TOMaintenanceNote> notes;
@@ -40,7 +42,7 @@ public class TOMaintenanceTicket
   // CONSTRUCTOR
   //------------------------
 
-  public TOMaintenanceTicket(int aId, Date aRaisedOnDate, String aDescription, String aRaisedByEmail, String aStatus, String aFixedByEmail, String aTimeToResolve, String aPriority, boolean aApprovalRequired, String aAssetName, int aExpectLifeSpanInDays, Date aPurchaseDate, int aFloorNumber, int aRoomNumber, List<String> aImageURLs, TOMaintenanceNote... allNotes)
+  public TOMaintenanceTicket(int aId, Date aRaisedOnDate, String aDescription, String aRaisedByEmail, String aStatus, String aFixedByEmail, String aTimeToResolve, String aPriority, boolean aApprovalRequired, String aAssetName, int aExpectLifeSpanInDays, Date aPurchaseDate, int aFloorNumber, int aRoomNumber, List<String> aImageURLs,String aAssetNumber,  TOMaintenanceNote... allNotes)
   {
     id = aId;
     raisedOnDate = aRaisedOnDate;
@@ -58,6 +60,7 @@ public class TOMaintenanceTicket
     roomNumber = aRoomNumber;
     imageURLs = aImageURLs;
     canSetNotes = true;
+    assetNumber = aAssetNumber;
     notes = new ArrayList<TOMaintenanceNote>();
     boolean didAddNotes = setNotes(allNotes);
     if (!didAddNotes)
@@ -102,7 +105,9 @@ public class TOMaintenanceTicket
   {
     return fixedByEmail;
   }
-
+  public String getAssetNumber(){
+    return assetNumber;
+  }
   public String getTimeToResolve()
   {
     return timeToResolve;
@@ -219,6 +224,8 @@ public class TOMaintenanceTicket
 
   public void delete()
   {}
+  
+
 
 
   public String toString()
@@ -228,6 +235,7 @@ public class TOMaintenanceTicket
             "description" + ":" + getDescription()+ "," +
             "raisedByEmail" + ":" + getRaisedByEmail()+ "," +
             "status" + ":" + getStatus()+ "," +
+            "assetName" + ":" + getAssetNumber()+ "," +
             "fixedByEmail" + ":" + getFixedByEmail()+ "," +
             "timeToResolve" + ":" + getTimeToResolve()+ "," +
             "priority" + ":" + getPriority()+ "," +

@@ -60,6 +60,10 @@ public class AssetPlusFeatureSet6Controller {
         String priorityLevel = null;
         String timeEstimate = null;
         String ticketFixer = null;
+        
+        
+        
+        
         MaintenanceTicket.PriorityLevel priority = ticket.getPriority();
         if(priority != null){
           priorityLevel = priority.name();
@@ -79,8 +83,11 @@ public class AssetPlusFeatureSet6Controller {
         Date purchaseDate = null;
         int aFloorNumber = -1;
         int aRoomNumber = -1;
+        String assetNumber = null;
         if (ticket.hasAsset()){
           SpecificAsset asset = ticket.getAsset();
+          assetNumber ="" + asset.getAssetNumber();
+          System.out.println("selected Asset ID:" + assetNumber);
           
            assetName = asset.getAssetType().getName();
            lifeSpan = asset.getAssetType().getExpectedLifeSpan();
@@ -109,8 +116,9 @@ public class AssetPlusFeatureSet6Controller {
           i++;
         }
         
+        
         //Constructing TO of current Ticket
-        TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, emailRaiser, status,ticketFixer,timeEstimate,priorityLevel,approvalRequired, assetName,lifeSpan,purchaseDate,aFloorNumber,aRoomNumber,imageURLS,allNotes);
+        TOMaintenanceTicket TOTicket = new TOMaintenanceTicket(aID, aRaisedOnDate, aDescription, emailRaiser, status,ticketFixer,timeEstimate,priorityLevel,approvalRequired, assetName,lifeSpan,purchaseDate,aFloorNumber,aRoomNumber,imageURLS, assetNumber, allNotes);
         listOfTickets.add(TOTicket);
       }
 
