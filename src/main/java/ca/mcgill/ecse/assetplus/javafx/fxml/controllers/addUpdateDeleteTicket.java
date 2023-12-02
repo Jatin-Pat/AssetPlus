@@ -107,7 +107,6 @@ public class addUpdateDeleteTicket {
             emailTextField.setText("");
             descriptionTextField.setText("");
             ticketDateDatePicker.setValue(null);
-            ViewUtils.showError("Successfully created new maintenance ticket");
         }
 
         if (addImage.isSelected() && MaintenanceTicket.hasWithId(ticketId)){
@@ -125,12 +124,10 @@ public class addUpdateDeleteTicket {
             e.printStackTrace();
             ViewUtils.showError("Error opening image upload page\n");
         }
-
         }
-        
-        
     }
 
+    
     @FXML
     void updateTicket(ActionEvent event) {
         int ticketId = Integer.parseInt(ticketIdTextField.getText());
@@ -144,21 +141,24 @@ public class addUpdateDeleteTicket {
             if (assetId < 0)
                 ViewUtils.showError("Please enter a valid asset ID");
         }
-        if (ViewUtils.successful(AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketId, raisedOn, description,
-                email, assetId))) {
+        String result = AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketId, raisedOn, description, email, assetId);
+        
+        if (result.contains("Ticket modified successfully")) {
             assetIdTextField.setText("");
             emailTextField.setText("");
             descriptionTextField.setText("");
             ticketDateDatePicker.setValue(null);
+        }else{
+            ViewUtils.showError(result);
         }
     }
 
-    @FXML
+    /*@FXML
     void deleteTicket(ActionEvent actionEvent) { //useless (see ViewTicketsPage controller)
         int ticketId = Integer.parseInt(ticketIdTextField.getText());
         AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(ticketId);
         ticketIdTextField.setText("");
-    }
+    }*/
 
     @FXML
     void openAddImagePage(ActionEvent event) {
