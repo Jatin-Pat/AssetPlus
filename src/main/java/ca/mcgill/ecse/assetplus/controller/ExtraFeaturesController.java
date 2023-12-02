@@ -1,9 +1,11 @@
 package ca.mcgill.ecse.assetplus.controller;
+import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
+import javafx.application.Application;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,6 +114,19 @@ public class ExtraFeaturesController {
       }
 
       return convertedList;
+
+    }
+  
+  
+    public static List<String> getAllAssetTypes(){
+      AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
+      List<AssetType> assetTypes = assetPlus.getAssetTypes();
+
+      List<String> allTypes = new ArrayList<String>();
+      for (AssetType type : assetTypes) {
+        allTypes.add(type.getName());
+      }
+      return allTypes;
 
     }
   }

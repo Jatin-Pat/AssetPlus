@@ -1,14 +1,18 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
+import ca.mcgill.ecse.assetplus.controller.ExtraFeaturesController;
 import javafx.scene.control.DatePicker;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -21,7 +25,7 @@ public class UpdateAsset {
     private TextField assetNumberTextField;
 
     @FXML
-    private TextField assetTypeTextField;
+    private ComboBox<String> assetTypeTextField;
 
     @FXML
     private TextField floorNumberTextField;
@@ -41,11 +45,14 @@ public class UpdateAsset {
     @FXML
     public void initialize() {
       Integer assetID = ViewAssetsPage.getAssetID();
+      purchaseDateDatePicker.setEditable(false);
+      purchaseDateDatePicker.setValue(LocalDate.now());
       if (assetID != -1) {
           assetNumberTextField.setText(String.valueOf(ViewAssetsPage.getAssetID()));
       } else {
           assetNumberTextField.setText("");
       }
+      assetTypeTextField.setItems(FXCollections.observableArrayList(ExtraFeaturesController.getAllAssetTypes()));
     }
   
 
@@ -73,18 +80,34 @@ public class UpdateAsset {
 
     @FXML
     void updateAsset(ActionEvent event) {
-      int assetNumber = Integer.parseInt(assetNumberTextField.getText());
-      int newFloorNumber = Integer.parseInt(floorNumberTextField.getText());
-      int newRoomNumber = Integer.parseInt(roomNumberTextField.getText());
-      Date newPurchaseDate = Date.valueOf(purchaseDateDatePicker.getValue());
-      String newAssetType = assetTypeTextField.getText();
+      int assetNumber;
+      int newFloorNumber;
+      int newRoomNumber;
+      Date newPurchaseDate;
+      try{
+       assetNumber = Integer.parseInt(assetNumberTextField.getText());
+       newFloorNumber = Integer.parseInt(floorNumberTextField.getText());
+       newRoomNumber = Integer.parseInt(roomNumberTextField.getText());
+       newPurchaseDate = Date.valueOf(purchaseDateDatePicker.getValue());}
+      catch(NumberFormatException e){
+        ViewUtils.showError("Please enter an integer for the asset number, floor number, and room number");
+        return;
+      }
+      String newAssetType = assetTypeTextField.getValue();
+      if(newAssetType==null){
+        ViewUtils.showError("Select an asset type");
+        return;
+      }
 
-      if (ViewUtils.successful(AssetPlusFeatureSet3Controller.updateSpecificAsset(assetNumber, newFloorNumber, newRoomNumber, newPurchaseDate, newAssetType))){
+      String result = AssetPlusFeatureSet3Controller.updateSpecificAsset(assetNumber, newFloorNumber, newRoomNumber, newPurchaseDate, newAssetType);
+      if (result.isBlank()){
         assetNumberTextField.setText("");
         floorNumberTextField.setText("");
         roomNumberTextField.setText("");
         purchaseDateDatePicker.setValue(null);
-        assetTypeTextField.setText("");
+        assetTypeTextField.setValue(null);
+      }else{
+        ViewUtils.showError(result);
       }
     }
 

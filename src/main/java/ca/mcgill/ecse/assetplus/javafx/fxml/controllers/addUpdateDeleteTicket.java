@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 public class addUpdateDeleteTicket {
     private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
@@ -62,27 +63,43 @@ public class addUpdateDeleteTicket {
 
     @FXML
     void addTicket(ActionEvent event) {
-        int ticketId = assetPlus.numberOfMaintenanceTickets()+1;
+        List<TOMaintenanceTicket> allTickets = AssetPlusFeatureSet6Controller.getTickets();
+        int newID=1;
+        for (TOMaintenanceTicket ticket : allTickets) {
+            if(ticket.getId()>=newID){
+                newID=ticket.getId()+1;
+            }
+        }
+
+        int ticketId = newID;
         LocalDate localRaisedOn =  ticketDateDatePicker.getValue();
 
         if(localRaisedOn==null){
             ViewUtils.showError("Enter a date");
+            return;
         }
         Date raisedOn = Date.valueOf(localRaisedOn);        
         String description = descriptionTextField.getText();
         if(description==""){
             ViewUtils.showError("Enter a description");
+            return;
         }
         String email = emailTextField.getText();
         if(!User.hasWithEmail(email) || email=="") {
             ViewUtils.showError("Enter a valid email");
+            return;
         }
         int assetId = -1;
         String assetIdString = assetIdTextField.getText();
         if (!assetIdString.isEmpty()) {
-            assetId = Integer.parseInt(assetIdString);
-            if (assetId < 0)
+            try{assetId = Integer.parseInt(assetIdString);
+            }catch(NumberFormatException e){
                 ViewUtils.showError("Please enter a valid asset ID");
+                return;
+            }
+            if (assetId < 0){
+                ViewUtils.showError("Please enter a valid asset ID");
+                return;}
         }
         String result = AssetPlusFeatureSet4Controller.addMaintenanceTicket(ticketId, raisedOn, description, email, assetId);
         if (result.contains("Ticket added successfully")){

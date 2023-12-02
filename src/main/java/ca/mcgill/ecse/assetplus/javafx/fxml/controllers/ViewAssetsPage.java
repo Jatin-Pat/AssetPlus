@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,7 +43,7 @@ public class ViewAssetsPage {
     private TextField assetIDField;
 
     @FXML
-    private TextField assetTypeField;
+    private ComboBox<String> assetTypeField;
 
     @FXML
     private Button deleteAsset;
@@ -109,7 +110,7 @@ public class ViewAssetsPage {
     @FXML
     void openAssetType(ActionEvent event) {
       try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AssetType.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addUpdateDeleteAssetType.fxml"));
         Parent root = loader.load();
 
         // Get the current Stage
@@ -153,7 +154,13 @@ public class ViewAssetsPage {
     void refreshAssets(KeyEvent event){
       AssetView.setItems(FXCollections.observableList(getFilteredAssets()));
       AssetPlusFxmlView.getInstance().refresh();
-
+    }
+    
+    
+    @FXML
+    void clearType(MouseEvent event) {
+      assetTypeField.setValue(null);
+      refreshAsset(new ActionEvent());
     }
 
     public void initialize(){
@@ -161,6 +168,10 @@ public class ViewAssetsPage {
 
       refreshAsset(new ActionEvent());
       setCurrentIDToNull();
+      
+      assetTypeField.setItems(FXCollections.observableArrayList(ExtraFeaturesController.getAllAssetTypes()));
+
+      
       
       AssetView.setPlaceholder(new Label("No assets found"));
 
@@ -213,7 +224,10 @@ public class ViewAssetsPage {
         }else{
          filterFloor = Integer.parseInt(assetFloorField.getText());
         }
-         assetType = assetTypeField.getText();
+         assetType = assetTypeField.getValue();
+         if(assetType==null){
+          assetType="";
+         }
       }catch(Exception e){
         ViewUtils.showError("Invalid input: "+e.getMessage());
         return ExtraFeaturesController.getAllAssets();

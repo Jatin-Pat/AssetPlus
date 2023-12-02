@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Syntax;
+import com.google.common.collect.Table;
 
 
 public class ViewTicketsPage {
@@ -83,6 +84,9 @@ public class ViewTicketsPage {
       if (event.getClickCount() == 1) {
         // Get the selected item
         TOMaintenanceTicket selectedTicket = TicketsView.getSelectionModel().getSelectedItem();
+        if(selectedTicket==null){
+          return;
+        }
         currentTicket = selectedTicket.getId();
         if (currentTicket != -1) {
             // Debugging output
@@ -135,13 +139,17 @@ public class ViewTicketsPage {
       TableColumn<TOMaintenanceTicket, String> statusColumn = new TableColumn<TOMaintenanceTicket, String>("Status");
       statusColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("status"));
 
+      TableColumn<TOMaintenanceTicket, String> descriptionColumn = new TableColumn<TOMaintenanceTicket, String>("Description");
+      descriptionColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("description"));
+
+
       TicketsView.getColumns().add(ticketIDColumn);
       TicketsView.getColumns().add(dateColumn);
       TicketsView.getColumns().add(assignedToColumn);
       TicketsView.getColumns().add(timeToResolveColumn);
       TicketsView.getColumns().add(priorityColumn);
       TicketsView.getColumns().add(statusColumn);
-
+      TicketsView.getColumns().add(descriptionColumn);
 
 
       TicketsView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

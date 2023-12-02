@@ -50,11 +50,16 @@ public class ApproveDisapproveWork implements Initializable {
             ViewUtils.showError("Please select the ticket ID and approval status.");
         }
         else if (status.equals("approved")) {
-            if (ViewUtils.successful(TicketMaintenanceController.approveTicketWork(ticketID))){
+            String result = TicketMaintenanceController.approveTicketWork(ticketID);
+            if (result.isBlank()){
                 approval.setValue(null);
                 id.setText("");
                 reason.setText("");
                 date.setValue(null);
+                return;
+            }else{
+                ViewUtils.showError(result);
+                return;
             }
         }
         else {
