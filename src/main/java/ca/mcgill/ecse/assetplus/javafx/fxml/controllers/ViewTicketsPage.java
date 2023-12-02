@@ -144,10 +144,14 @@ public class ViewTicketsPage {
 
       TableColumn<TOMaintenanceTicket, String> descriptionColumn = new TableColumn<TOMaintenanceTicket, String>("Description");
       descriptionColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("description"));
+      
+      TableColumn<TOMaintenanceTicket, String> raiserColumn = new TableColumn<TOMaintenanceTicket, String>("Raised by");
+      raiserColumn.setCellValueFactory(new PropertyValueFactory<TOMaintenanceTicket, String>("raisedByEmail"));
 
 
       TicketsView.getColumns().add(ticketIDColumn);
       TicketsView.getColumns().add(dateColumn);
+      TicketsView.getColumns().add(raiserColumn);
       TicketsView.getColumns().add(assignedToColumn);
       TicketsView.getColumns().add(timeToResolveColumn);
       TicketsView.getColumns().add(priorityColumn);
@@ -191,7 +195,7 @@ public class ViewTicketsPage {
       List<TOMaintenanceTicket> emailFilteredTickets = new ArrayList<TOMaintenanceTicket>();
       if(employeeEmail!=""){
         for (TOMaintenanceTicket ticket : tickets) {
-          if(ticket.getFixedByEmail()!=null && ticket.getFixedByEmail().contains(employeeEmail)){
+          if(ticket.getRaisedByEmail()!=null && ticket.getRaisedByEmail().contains(employeeEmail)){
             emailFilteredTickets.add(ticket);
           }
         }
