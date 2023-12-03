@@ -17,6 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * @author Jatin Patel
+ * The UpdateAsset view controller provides methods for the user to update an asset through
+ * the AssetPlus controller
+ */
 public class UpdateAsset {
 
     private MainPage mainPage;
@@ -42,6 +47,11 @@ public class UpdateAsset {
     @FXML
     private Button updateAsset;
 
+    /**
+     * @author Jatin Patel
+     * @return void
+     * Initializes the assetTypeTextField with all the asset types in the model
+     */
     @FXML
     public void initialize() {
       Integer assetID = ViewAssetsPage.getAssetID();
@@ -56,7 +66,10 @@ public class UpdateAsset {
     }
     
     
-
+    /** Changes the scene to the main page, and selects the asset tab 3 (ViewAssets.fxml)
+    * @author Jatin Patel
+    * @return void
+    */
     @FXML
     void goBack(ActionEvent event) {
       try {
@@ -79,6 +92,10 @@ public class UpdateAsset {
       }
     }
 
+    /** Calls the controller method updateSpecificAsset with the info input in the textfield, resets them when it works
+    * @author Jatin Patel
+    * @return void
+    */
     @FXML
     void updateAsset(ActionEvent event) {
       int assetNumber;

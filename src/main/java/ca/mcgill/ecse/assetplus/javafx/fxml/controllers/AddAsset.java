@@ -17,6 +17,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+
+/**
+ * @author Jatin Patel
+ * The AddAsset view controller provides methods for the user to add a new asset to the model through
+ * the AssetPlus controller
+ */
+
 public class AddAsset {
 
     private MainPage mainPage;
@@ -42,13 +49,22 @@ public class AddAsset {
     @FXML
     private TextField roomNumberTextField;
 
-
+    /**
+     * @author Jatin Patel
+     * @return void
+     * Initializes the assetTypeTextField with all the asset types in the model
+     */
     @FXML
     public void initialize(){
       assetTypeTextField.setItems(FXCollections.observableArrayList(ExtraFeaturesController.getAllAssetTypes()));
       purchaseDateDatePicker.setValue(LocalDate.now());
 
     }
+
+    /** Calls the controller method addSpecificAsset with the info input in the textfield, resets them when it works
+    * @author Jatin Patel
+    * @return void
+    */
     @FXML
     void addAsset(ActionEvent event) {
       int assetNumber = Integer.parseInt(assetNumberTextField.getText());
@@ -72,6 +88,10 @@ public class AddAsset {
 
     }
 
+    /** Changes the scene to the main page, and selects the asset tab 3 (ViewAssets.fxml)
+    * @author Jatin Patel
+    * @return void
+    */
     @FXML
     void goBack(ActionEvent event) {
       try {
