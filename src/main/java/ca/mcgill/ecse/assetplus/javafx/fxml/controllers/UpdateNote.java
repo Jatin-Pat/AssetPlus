@@ -38,7 +38,7 @@ public class UpdateNote {
 
     @FXML
     public void initialize(){
-      title.setText(title.getText()+" #"+ViewImageNotes.selectedNoteIndex);
+      title.setText(title.getText()+" #"+String.valueOf(ViewImageNotes.selectedNoteIndex+1));
       
       noteDate.setValue(LocalDate.now());
       

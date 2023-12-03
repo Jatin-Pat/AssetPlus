@@ -124,7 +124,7 @@ public class addUpdateDeleteTicket {
             ticketDateDatePicker.setValue(null);
         }
 
-        if (addImage.isSelected() && MaintenanceTicket.hasWithId(ticketId)){
+        /*if (addImage.isSelected() && MaintenanceTicket.hasWithId(ticketId)){
             try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addImage.fxml"));
             Parent root = loader.load();
@@ -139,7 +139,7 @@ public class addUpdateDeleteTicket {
             e.printStackTrace();
             ViewUtils.showError("Error opening image upload page\n");
         }
-        }
+        }*/
     }
     /**
      * Returns to the main page when the corresponding button is clicked.
