@@ -17,34 +17,48 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for approving or disapproving work on a ticket in the application.
+ * This class handles the user interface and interacts with the TicketMaintenanceController.
+ *
+ * @author Anastasiia Nemyrovska
+ */
+
 public class ApproveDisapproveWork implements Initializable {
 
     private MainPage mainPage;
 
     @FXML
-    private Button cancel;
+    private Button backButton;
 
     @FXML
-    private ChoiceBox<String> approval;
+    private ChoiceBox<String> approvalChoiceBox;
 
     private String status[] = {"approved", "rejected"};
 
     @FXML
-    private TextField id;
+    private TextField idTextField;
 
     @FXML
-    private DatePicker date;
+    private DatePicker dateDatePicker;
 
     @FXML
-    private TextField reason;
+    private TextField reasonTextField;
 
     @FXML
-    private Button submit;
+    private Button submitButton;
+
+    /**
+     * Sets the approval status of the ticket based on user input.
+     *
+     * @param event The ActionEvent triggered by the submit button.
+     * @author Anastasiia Nemyrovska
+     */
 
     public void setApprovalStatus(ActionEvent event) {
-        String status = approval.getValue();
-        String ticketID = id.getText();
-        String rejectionReason = reason.getText();
+        String status = approvalChoiceBox.getValue();
+        String ticketID = idTextField.getText();
+        String rejectionReason = reasonTextField.getText();
         String rejectionDate;
         if (ticketID.isEmpty() || status == null) {
             ViewUtils.showError("Please select the ticket ID and approval status.");
@@ -52,10 +66,10 @@ public class ApproveDisapproveWork implements Initializable {
         else if (status.equals("approved")) {
             String result = TicketMaintenanceController.approveTicketWork(ticketID);
             if (result.isBlank()){
-                approval.setValue(null);
-                id.setText("");
-                reason.setText("");
-                date.setValue(null);
+                approvalChoiceBox.setValue(null);
+                idTextField.setText("");
+                reasonTextField.setText("");
+                dateDatePicker.setValue(null);
                 return;
             }else{
                 ViewUtils.showError(result);
@@ -63,16 +77,16 @@ public class ApproveDisapproveWork implements Initializable {
             }
         }
         else {
-            if (date.getValue() == null || rejectionReason.isEmpty()) {
+            if (dateDatePicker.getValue() == null || rejectionReason.isEmpty()) {
                 ViewUtils.showError("Please enter the rejection reason and rejection date.");
             } else {
-                rejectionDate = date.getValue().toString();
+                rejectionDate = dateDatePicker.getValue().toString();
                 String result = TicketMaintenanceController.disapproveTicketWork(ticketID, rejectionDate, rejectionReason);
                 if (result.equals("")){
-                    approval.setValue(null);
-                    id.setText("");
-                    reason.setText("");
-                    date.setValue(null);
+                    approvalChoiceBox.setValue(null);
+                    idTextField.setText("");
+                    reasonTextField.setText("");
+                    dateDatePicker.setValue(null);
                 }
                 else {
                     ViewUtils.showError(result);
@@ -81,15 +95,30 @@ public class ApproveDisapproveWork implements Initializable {
         }
     }
 
+    /**
+     * Initializes the controller with the necessary components and sets default values.
+     *
+     * @param location   The location used to resolve relative paths for the root object.
+     * @param resources  The resources used to localize the root object, or null if the root object was not localized.
+     * @author Anastasiia Nemyrovska
+     */
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        date.setValue(LocalDate.now());
+        dateDatePicker.setValue(LocalDate.now());
 
-        approval.getItems().addAll(status);
+        approvalChoiceBox.getItems().addAll(status);
         if(ViewTicketsPage.getTicketID() != -1){
-        id.setText(String.valueOf(ViewTicketsPage.getTicketID()));}
-        date.setEditable(false);
+        idTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));}
+        dateDatePicker.setEditable(false);
     }
+
+    /**
+     * Navigates back to the main page when the back button is clicked.
+     *
+     * @param event The ActionEvent triggered by the back button.
+     * @author Anastasiia Nemyrovska
+     */
 
     public void goBack(ActionEvent event) {
         try {
