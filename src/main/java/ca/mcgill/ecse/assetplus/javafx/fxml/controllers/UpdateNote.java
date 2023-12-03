@@ -90,9 +90,11 @@ public class UpdateNote {
       Date newDate = Date.valueOf(noteDate.getValue());
       String newDescription = noteDescription.getText();
       String newTaker = noteTaker.getText();
-      String result = AssetPlusFeatureSet7Controller.updateMaintenanceNote(ViewImageNotes.selectedTicket,ViewImageNotes.selectedNoteIndex , newDate, newDescription, newTaker);
-      if(!result.isBlank()){
-        ViewUtils.showError(result);
+      //String result = AssetPlusFeatureSet7Controller.updateMaintenanceNote(ViewImageNotes.selectedTicket,ViewImageNotes.selectedNoteIndex , newDate, newDescription, newTaker);
+      if(ViewUtils.successful(AssetPlusFeatureSet7Controller.updateMaintenanceNote(ViewImageNotes.selectedTicket,ViewImageNotes.selectedNoteIndex , newDate, newDescription, newTaker))){
+        noteDescription.setText("");
+        noteTaker.setText("");
+        noteDate.setValue(null);
       }
     }
 
