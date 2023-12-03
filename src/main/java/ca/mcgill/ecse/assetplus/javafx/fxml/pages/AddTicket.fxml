@@ -99,7 +99,7 @@
                 -fx-font-size: 17.0;
             </style>
         </DatePicker>
-        <Button fx:id="goBack" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="109.0" text="Cancel" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+        <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="109.0" text="Back" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
             <font>
                 <Font name="Gill Sans" size="17.0" />
             </font>

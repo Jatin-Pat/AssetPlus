@@ -402,7 +402,7 @@ public class MaintenanceTicket
     return wasEventProcessed;
   }
 
-  private void setTicketStatus(TicketStatus aTicketStatus)
+  public void setTicketStatus(TicketStatus aTicketStatus)
   {
     ticketStatus = aTicketStatus;
   }
