@@ -46,7 +46,7 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-        <TextField fx:id="id" prefHeight="43.0" prefWidth="330.0" promptText="000000" GridPane.columnIndex="3" GridPane.rowIndex="2">
+        <TextField fx:id="idTextField" prefHeight="43.0" prefWidth="330.0" promptText="000000" GridPane.columnIndex="3" GridPane.rowIndex="2">
             <style>
                 -fx-font-size: 17.0;
             </style>
@@ -59,19 +59,19 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-        <TextField fx:id="imageURL" prefHeight="43.0" prefWidth="330.0" promptText="https://imageurl.com/000" GridPane.columnIndex="3" GridPane.rowIndex="3">
+        <TextField fx:id="imageURLTextField" prefHeight="43.0" prefWidth="330.0" promptText="https://imageurl.com/000" GridPane.columnIndex="3" GridPane.rowIndex="3">
             <style>
                 -fx-font-size: 17.0;
             </style>
         </TextField>
 
-        <Button fx:id="cancel" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#cancel" prefHeight="38.0" prefWidth="70.0" text="Back" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+        <Button fx:id="cancelButton" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" prefHeight="38.0" prefWidth="70.0" text="Back" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
             <font>
                 <Font name="Gill Sans" size="17.0" />
             </font>
         </Button>
 
-        <Button defaultButton="true" onAction="#submit" prefHeight="31.0" prefWidth="109.0" text="Submit" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="6">
+        <Button defaultButton="true" onAction="#submitButtonClicked" prefHeight="31.0" prefWidth="109.0" text="Submit" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="6">
             <font>
                 <Font name="System Bold" size="17.0" />
             </font>

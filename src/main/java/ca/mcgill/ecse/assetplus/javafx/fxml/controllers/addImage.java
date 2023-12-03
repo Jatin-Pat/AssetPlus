@@ -16,39 +16,47 @@ import javafx.stage.Stage;
 
 /*
  * @author: Dmytro Martyuniuk
- * Adds image to a maitencnace ticket
+ * Adds image to a maitencnace ticket with the correct TicketID
  */
 
 public class addImage {
 
   @FXML
-  public Button cancel;
+  public Button cancelButton;
   @FXML
-  private TextField imageURL;
+  private TextField imageURLTextField;
   @FXML
-  private TextField id;
+  private TextField idTextField;
   @FXML
-  private Button submit;
+  private Button submitButton;
   @FXML
   private ImageView image;
 
+  /**
+  * Initializes the controller, setting default values for the ticket id
+  */ 
   @FXML
   public void initialize() {
   // Set the value of userEmailTextField from ViewUserPage.currentUser
-  if(id!=null){
+  if(idTextField!=null){
   if (ViewTicketsPage.getTicketID() != -1) {
-      id.setText(String.valueOf(ViewTicketsPage.getTicketID()));
+      idTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
   } else {
-      id.setText("");
+      idTextField.setText("");
   }}
   }
   
-  // Event Listener on Button[#add_selected].onAction
+    /**
+     * Handles the addition of a new ticket image to the corresponding ticket id.
+     * Validates user input and displays error messages if needed.
+     *
+     * @param event The event triggering the add image action.
+     */
   @FXML
-  public void submit(ActionEvent event) {
+  public void submitButtonClicked(ActionEvent event) {
 
-    String url = imageURL.getText();
-    String ticketId = id.getText();
+    String url = imageURLTextField.getText();
+    String ticketId = idTextField.getText();
     int ID;
 
     if (!(ticketId == null || ticketId == "")) {
@@ -63,14 +71,18 @@ public class addImage {
     } else if (ViewUtils.successful(AssetPlusFeatureSet5Controller.addImageToMaintenanceTicket(url, ID))) {
         // Adds the image to the ticket
         // Resets the fields
-        image.setImage(new Image(imageURL.getText()));
-        imageURL.setText("");        
+        image.setImage(new Image(imageURLTextField.getText()));
+        imageURLTextField.setText("");        
     }
   }
 
-  // Event Listener on Button[#remove_selected].onAction
+      /**
+     * Returns to the view page page when the corresponding button is clicked.
+     * Acts as a cancel and go back button.
+     * @param event The event triggering the cancel action.
+     */
   @FXML
-  public void cancel(ActionEvent event) {
+  public void cancelButtonClicked(ActionEvent event) {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/ViewImageNotes.fxml"));
       Parent root = loader.load();

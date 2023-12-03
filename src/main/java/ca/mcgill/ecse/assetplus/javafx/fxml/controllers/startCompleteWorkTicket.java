@@ -15,31 +15,47 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class startCompleteWorkTicket {
-  private MainPage mainPage;
-  @FXML
-  private TextField ticketID;
-  @FXML
-  private Button startWork;
-  @FXML
-  private Button completeWork;
-  @FXML
-  private Button cancel;
+/*
+ * @author: Dmytro Martyuniuk
+ * Sets the progress of the opened ticket to
+ * in progress when start work pressed or
+ * closed when complete work is preseed 
+ */
 
+public class startCompleteWorkTicket {
+  
+  private MainPage mainPage;
+  
+  @FXML
+  private TextField ticketIDTextField;
+  @FXML
+  private Button startWorkButton;
+  @FXML
+  private Button completeWorkButton;
+  @FXML
+  private Button backButton;
+
+    /**
+  * Initializes the controller, setting default values for the ticket id
+  */ 
   @FXML
   public void initialize() {
     int ticketId = ViewTicketsPage.getTicketID();
     if (ticketId != -1) {
-        ticketID.setText(String.valueOf(ViewTicketsPage.getTicketID()));
+        ticketIDTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
     }
   }
   
 
-
-  // Even listner when Start Work button is pressed
+    /**
+     * Handles the start work of a maintenance ticket.
+     * Validates user input and displays error messages if needed.
+     *
+     * @param event The event triggering the start work action.
+     */
   @FXML
-  public void startWork(ActionEvent event) {
-    String ticketId = ticketID.getText();
+  public void startWorkButtonClicked(ActionEvent event) {
+    String ticketId = ticketIDTextField.getText();
 
     if (ticketId == null || ticketId.trim().isEmpty()) {
       ViewUtils.showError("Please input a valid ticketID");
@@ -49,14 +65,19 @@ public class startCompleteWorkTicket {
     }
     else if (ViewUtils.successful(TicketMaintenanceController.beginTicketWork(ticketId))) {
 
-      ticketID.setText("");
+      ticketIDTextField.setText("");
     }
   }
 
-  // Even listner when Complete Work button is pressed
+    /**
+     * Handles the completion of a maintenance ticket.
+     * Validates user input and displays error messages if needed.
+     *
+     * @param event The event triggering the complete work action.
+     */
   @FXML
-  public void completeWork(ActionEvent event) {
-    String ticketId = ticketID.getText();
+  public void completeWorkButtonClicked(ActionEvent event) {
+    String ticketId = ticketIDTextField.getText();
 
     if (ticketId == null || ticketId.trim().isEmpty()) {
       ViewUtils.showError("Please input a valid ticketID");
@@ -66,12 +87,16 @@ public class startCompleteWorkTicket {
     }
     else if (ViewUtils.successful(TicketMaintenanceController.completeTicketWork(ticketId))) {
 
-      ticketID.setText("");
+      ticketIDTextField.setText("");
     }
   }
-
+      /**
+     * Returns to the view tickets page page when the corresponding button is clicked.
+     * Acts as a cancel and go back button.
+     * @param event The event triggering the cancel action.
+     */
   @FXML
-  public void cancel(ActionEvent event) {
+  public void backButtonClicked(ActionEvent event) {
     try {
 
       FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
