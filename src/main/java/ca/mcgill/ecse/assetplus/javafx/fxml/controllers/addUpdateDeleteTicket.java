@@ -53,6 +53,7 @@ public class addUpdateDeleteTicket {
     private CheckBox addImage;
 
     /**
+     * @author Pei Yan Geng
      * Initializes the controller, setting default values for the ticket date, making it non-editable,
      * and updating the ticket ID field if available.
      */
@@ -71,6 +72,7 @@ public class addUpdateDeleteTicket {
     }
 
     /**
+     * @author Pei Yan Geng
      * Handles the addition of a new maintenance ticket when the corresponding button is clicked.
      * Validates user input and displays error messages if needed.
      *
@@ -142,12 +144,13 @@ public class addUpdateDeleteTicket {
         }*/
     }
     /**
+     * @author Pei Yan Geng
      * Returns to the main page when the corresponding button is clicked.
      *
      * @param event The event triggering the go back action.
      */
     @FXML
-    void goBack(ActionEvent event) {
+    void goBackClicked(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
             Parent root = loader.load();

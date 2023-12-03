@@ -45,7 +45,7 @@
                 -fx-text-fill: white;
             </style>
         </Label>
-        <TextField fx:id="ticketIdTextField" prefHeight="43.0" prefWidth="330.0" promptText="johnsmith@ap.com" GridPane.columnIndex="3" GridPane.rowIndex="2">
+        <TextField fx:id="ticketIdTextField" prefHeight="43.0" prefWidth="330.0" promptText="000000" GridPane.columnIndex="3" GridPane.rowIndex="2">
             <style>
                 -fx-font-size: 17.0;
             </style>
@@ -106,7 +106,7 @@
             </style>
         </DatePicker>
 
-        <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="70.0" text="Back" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+        <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#goBackClicked" prefHeight="38.0" prefWidth="70.0" text="Back" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
             <font>
                 <Font name="Gill Sans" size="17.0" />
             </font>

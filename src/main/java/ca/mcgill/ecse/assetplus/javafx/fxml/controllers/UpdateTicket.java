@@ -47,6 +47,7 @@ public class UpdateTicket {
     private TextField ticketIdTextField;
 
     /**
+     * @author Pei Yan Geng
      * Initializes the controller, setting default values for the ticket date and ticket ID fields.
      */
     @FXML
@@ -62,6 +63,7 @@ public class UpdateTicket {
     }
 
     /**
+     * @author Pei Yan Geng
      * Handles the update ticket action when the corresponding button is clicked.
      *
      * @param event The event triggering the update ticket action.
@@ -93,6 +95,7 @@ public class UpdateTicket {
     }
 
     /**
+     * @author Pei Yan Geng
      * Opens the add/delete image page when the corresponding button is clicked.
      *
      * @param event The event triggering the open add image page action.
@@ -116,12 +119,13 @@ public class UpdateTicket {
     }
 
     /**
+     * @author Pei Yan Geng
      * Returns to the main page when the corresponding button is clicked.
      *
      * @param event The event triggering the go back action.
      */
     @FXML
-    void goBack(ActionEvent event) {
+    void goBackClicked(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
             Parent root = loader.load();
