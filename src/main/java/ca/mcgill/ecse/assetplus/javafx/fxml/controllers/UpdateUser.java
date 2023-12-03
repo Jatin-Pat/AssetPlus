@@ -20,7 +20,7 @@ public class UpdateUser {
 
 
     @FXML
-    private Button cancel;
+    private Button cancelButton;
 
     @FXML
     private TextField userEmailTextField;
@@ -34,6 +34,8 @@ public class UpdateUser {
     @FXML
     private TextField userPhoneNumberTextField;
 
+    
+
     @FXML
     public void initialize() {
       if (ViewUserPage.getUserEmail() != null) {
@@ -44,7 +46,7 @@ public class UpdateUser {
     }
     
     @FXML
-    void goBack(ActionEvent event) {
+    void goBackClicked(ActionEvent event) {
       try {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
