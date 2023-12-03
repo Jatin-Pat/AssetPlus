@@ -36,6 +36,7 @@ public class startCompleteWorkTicket {
   private Button backButton;
 
     /**
+   * @author: Dmytro Martyuniuk
   * Initializes the controller, setting default values for the ticket id
   */ 
   @FXML
@@ -48,6 +49,7 @@ public class startCompleteWorkTicket {
   
 
     /**
+     * @author: Dmytro Martyuniuk
      * Handles the start work of a maintenance ticket.
      * Validates user input and displays error messages if needed.
      *
@@ -70,6 +72,7 @@ public class startCompleteWorkTicket {
   }
 
     /**
+     * @author: Dmytro Martyuniuk
      * Handles the completion of a maintenance ticket.
      * Validates user input and displays error messages if needed.
      *
@@ -91,6 +94,7 @@ public class startCompleteWorkTicket {
     }
   }
       /**
+     * @author: Dmytro Martyuniuk
      * Returns to the view tickets page page when the corresponding button is clicked.
      * Acts as a cancel and go back button.
      * @param event The event triggering the cancel action.

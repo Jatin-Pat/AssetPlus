@@ -33,6 +33,7 @@ public class addImage {
   private ImageView image;
 
   /**
+  * @author: Dmytro Martyuniuk
   * Initializes the controller, setting default values for the ticket id
   */ 
   @FXML
@@ -47,6 +48,7 @@ public class addImage {
   }
   
     /**
+     * @author: Dmytro Martyuniuk
      * Handles the addition of a new ticket image to the corresponding ticket id.
      * Validates user input and displays error messages if needed.
      *
@@ -77,6 +79,7 @@ public class addImage {
   }
 
       /**
+     * @author: Dmytro Martyuniuk
      * Returns to the view page page when the corresponding button is clicked.
      * Acts as a cancel and go back button.
      * @param event The event triggering the cancel action.
