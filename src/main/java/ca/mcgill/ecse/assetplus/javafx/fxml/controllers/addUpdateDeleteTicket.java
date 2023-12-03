@@ -27,7 +27,7 @@ public class addUpdateDeleteTicket {
     private MainPage mainPage;
 
     @FXML
-    public Button goBack;
+    public Button backButton;
 
     @FXML
     private TextField assetIdTextField;
