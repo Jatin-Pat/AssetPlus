@@ -25,7 +25,7 @@ public class AddUser {
     private MenuItem addGuestClicked;
 
     @FXML
-    private Button goBack;
+    private Button goBackButton;
 
     @FXML
     private TextField userEmailTextField;
@@ -72,7 +72,7 @@ public class AddUser {
     }
   
     @FXML
-    void goBack(ActionEvent event) {
+    void goBackClicked(ActionEvent event) {
        try {
           FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainPage.fxml"));
           Parent root = loader.load();
