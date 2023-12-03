@@ -13,6 +13,11 @@ public class DeleteNote {
     @FXML
     private TextField indexTextField;
 
+     /** Calls the controller method deleteMaintenanceNote with the info input in the textfield and deletes the note.
+     Resets the fields when the method works.
+    * @author Laurence Perreault
+    * @return void
+    */
     @FXML
     void deleteNote(ActionEvent event) {
       int id = Integer.parseInt(ticketIdTextField.getText());
