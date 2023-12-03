@@ -61,14 +61,12 @@ public class AddNote {
       if(description==""){
         ViewUtils.showError("Enter a description");
       }
-      String result = AssetPlusFeatureSet7Controller.addMaintenanceNote(date, description, ticketId, email);
-      if(result.isEmpty()){
+      //String result = AssetPlusFeatureSet7Controller.addMaintenanceNote(date, description, ticketId, email);
+      if(ViewUtils.successful(AssetPlusFeatureSet7Controller.addMaintenanceNote(date, description, ticketId, email))){
         noteDescription.setText("");
         noteTaker.setText("");
         noteDate.setValue(null);
         id.setText("");
-      }else{
-        ViewUtils.showError("Error: "+result);
       }
     }
   
