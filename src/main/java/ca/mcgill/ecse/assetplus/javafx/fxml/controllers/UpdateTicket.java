@@ -20,11 +20,10 @@ import java.time.LocalDate;
 
 public class UpdateTicket {
     private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
+    @FXML
+    public Button backButton;
 
     private MainPage mainPage;
-
-    @FXML
-    public Button goBack;
 
     @FXML
     private TextField assetIdTextField;
