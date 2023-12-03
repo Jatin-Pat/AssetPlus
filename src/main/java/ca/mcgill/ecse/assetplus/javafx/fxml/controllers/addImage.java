@@ -37,7 +37,7 @@ public class addImage {
   // Set the value of userEmailTextField from ViewUserPage.currentUser
   if(id!=null){
   if (ViewTicketsPage.getTicketID() != -1) {
-      id.setText(String.valueOf(ViewTicketsPage.getTicketID()));
+      id.setText(String.valueOf(ViewTicketsPage.getTicketID() + 1));
   } else {
       id.setText("");
   }}

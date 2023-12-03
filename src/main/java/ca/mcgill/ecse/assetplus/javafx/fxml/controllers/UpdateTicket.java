@@ -18,6 +18,12 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 
+/**
+ * @author Pei Yan Geng
+ * The UpdateTicket controller provides methods for the user to interact with the model through
+ * the AssetPlus controller and navigate through the pages.
+ */
+
 public class UpdateTicket {
     private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
     @FXML
@@ -40,6 +46,9 @@ public class UpdateTicket {
     @FXML
     private TextField ticketIdTextField;
 
+    /**
+     * Initializes the controller, setting default values for the ticket date and ticket ID fields.
+     */
     @FXML
     public void initialize() {
         ticketDateDatePicker.setValue(LocalDate.now());
@@ -52,6 +61,11 @@ public class UpdateTicket {
         }
     }
 
+    /**
+     * Handles the update ticket action when the corresponding button is clicked.
+     *
+     * @param event The event triggering the update ticket action.
+     */
     @FXML
     void updateTicket(ActionEvent event) {
 
@@ -78,13 +92,11 @@ public class UpdateTicket {
         }
     }
 
-    @FXML
-    void deleteTicket(ActionEvent actionEvent) { //useless (see ViewTicketsPage controller)
-        int ticketId = Integer.parseInt(ticketIdTextField.getText());
-        AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(ticketId);
-        ticketIdTextField.setText("");
-    }
-
+    /**
+     * Opens the add/delete image page when the corresponding button is clicked.
+     *
+     * @param event The event triggering the open add image page action.
+     */
     @FXML
     void openAddImagePage(ActionEvent event) {
         try {
@@ -103,6 +115,11 @@ public class UpdateTicket {
         }
     }
 
+    /**
+     * Returns to the main page when the corresponding button is clicked.
+     *
+     * @param event The event triggering the go back action.
+     */
     @FXML
     void goBack(ActionEvent event) {
         try {
@@ -124,4 +141,12 @@ public class UpdateTicket {
             ViewUtils.showError("Error Changing Page\n");
         }
     }
+    /*
+    @FXML
+    void deleteTicket(ActionEvent actionEvent) { //useless (see ViewTicketsPage controller)
+        int ticketId = Integer.parseInt(ticketIdTextField.getText());
+        AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(ticketId);
+        ticketIdTextField.setText("");
+    }
+     */
 }

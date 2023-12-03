@@ -21,6 +21,11 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * @author Pei Yan Geng
+ * The addUpdateDeleteTicket controller provides methods for the user to interact with
+ * the model through the AssetPlus controller and navigate through the pages.
+ */
 public class addUpdateDeleteTicket {
     private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
 
@@ -47,6 +52,10 @@ public class addUpdateDeleteTicket {
     @FXML
     private CheckBox addImage;
 
+    /**
+     * Initializes the controller, setting default values for the ticket date, making it non-editable,
+     * and updating the ticket ID field if available.
+     */
     @FXML
     public void initialize() {
     // Set the value of userEmailTextField from ViewUserPage.currentUser
@@ -61,6 +70,12 @@ public class addUpdateDeleteTicket {
     }}
     }
 
+    /**
+     * Handles the addition of a new maintenance ticket when the corresponding button is clicked.
+     * Validates user input and displays error messages if needed.
+     *
+     * @param event The event triggering the add ticket action.
+     */
     @FXML
     void addTicket(ActionEvent event) {
         List<TOMaintenanceTicket> allTickets = AssetPlusFeatureSet6Controller.getTickets();
@@ -126,58 +141,11 @@ public class addUpdateDeleteTicket {
         }
         }
     }
-
-    
-    @FXML
-    void updateTicket(ActionEvent event) {
-        int ticketId = Integer.parseInt(ticketIdTextField.getText());
-        Date raisedOn =  Date.valueOf(ticketDateDatePicker.getValue());
-        String description = descriptionTextField.getText();
-        String email = emailTextField.getText();
-        int assetId = -1;
-        String assetIdString = assetIdTextField.getText();
-        if (!assetIdString.isEmpty()) {
-            assetId = Integer.parseInt(assetIdString);
-            if (assetId < 0)
-                ViewUtils.showError("Please enter a valid asset ID");
-        }
-        String result = AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketId, raisedOn, description, email, assetId);
-        
-        if (result.contains("Ticket modified successfully")) {
-            assetIdTextField.setText("");
-            emailTextField.setText("");
-            descriptionTextField.setText("");
-            ticketDateDatePicker.setValue(null);
-        }else{
-            ViewUtils.showError(result);
-        }
-    }
-
-    /*@FXML
-    void deleteTicket(ActionEvent actionEvent) { //useless (see ViewTicketsPage controller)
-        int ticketId = Integer.parseInt(ticketIdTextField.getText());
-        AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(ticketId);
-        ticketIdTextField.setText("");
-    }*/
-
-    @FXML
-    void openAddImagePage(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addDeleteImage.fxml"));
-            Parent root = loader.load();
-
-            // Get the current Stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Set the new root for the current Scene
-            stage.getScene().setRoot(root);
-        } catch (IOException e) {
-            System.err.println(e);
-            e.printStackTrace();
-            ViewUtils.showError("Error opening image upload page\n");
-        }
-    }
-
+    /**
+     * Returns to the main page when the corresponding button is clicked.
+     *
+     * @param event The event triggering the go back action.
+     */
     @FXML
     void goBack(ActionEvent event) {
         try {
@@ -199,4 +167,60 @@ public class addUpdateDeleteTicket {
             ViewUtils.showError("Error Changing Page\n");
         }
     }
+    /*
+    @FXML
+    void updateTicket(ActionEvent event) {
+        int ticketId = Integer.parseInt(ticketIdTextField.getText());
+        Date raisedOn =  Date.valueOf(ticketDateDatePicker.getValue());
+        String description = descriptionTextField.getText();
+        String email = emailTextField.getText();
+        int assetId = -1;
+        String assetIdString = assetIdTextField.getText();
+        if (!assetIdString.isEmpty()) {
+            assetId = Integer.parseInt(assetIdString);
+            if (assetId < 0)
+                ViewUtils.showError("Please enter a valid asset ID");
+        }
+        String result = AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketId, raisedOn, description, email, assetId);
+
+        if (result.contains("Ticket modified successfully")) {
+            assetIdTextField.setText("");
+            emailTextField.setText("");
+            descriptionTextField.setText("");
+            ticketDateDatePicker.setValue(null);
+        }else{
+            ViewUtils.showError(result);
+        }
+    }
+     */
+
+    /*
+    @FXML
+    void deleteTicket(ActionEvent actionEvent) { //useless (see ViewTicketsPage controller)
+        int ticketId = Integer.parseInt(ticketIdTextField.getText());
+        AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(ticketId);
+        ticketIdTextField.setText("");
+    }
+    */
+    /*
+    @FXML
+    void openAddImagePage(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/addDeleteImage.fxml"));
+            Parent root = loader.load();
+
+            // Get the current Stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new root for the current Scene
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.err.println(e);
+            e.printStackTrace();
+            ViewUtils.showError("Error opening image upload page\n");
+        }
+    }
+
+     */
+
 }
