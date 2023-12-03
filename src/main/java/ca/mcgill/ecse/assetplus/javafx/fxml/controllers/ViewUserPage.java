@@ -129,6 +129,11 @@ public class ViewUserPage {
 
     }
 
+    /** Filters the users present in the table
+    * @author Behrad Rezaie
+    * @return List<TOUser>
+    */
+
 
     public List<TOUser> getFilteredUsers(){
       List<TOUser> filteredUsers = new ArrayList<TOUser>();
