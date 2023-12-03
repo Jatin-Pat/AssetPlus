@@ -15,6 +15,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * @author Jatin Patel
+ * The addUpdateDeleteAssetType view controller provides methods for the user to add, update, and delete an asset type to/within/from the model through
+ * the AssetPlus controller
+ */
 public class addUpdateDeleteAssetType {
 
   private MainPage mainPage;
@@ -38,14 +43,29 @@ public class addUpdateDeleteAssetType {
   private Button updateAssetType;
 
 
+  /** 
+ * @author Jatin Patel
+ * @return void
+ * Initializes the existingAsset with all the asset types in the model.
+ */
   public void refreshTypes(){
     existingAsset.setItems(FXCollections.observableArrayList(ExtraFeaturesController.getAllAssetTypes()));
   }
+
+  /**
+     * @author Jatin Patel
+     * @return void
+     * Calls the refreshTypes method to update the existingAsset 
+     */
   @FXML
   public void initialize(){
     refreshTypes();
   }
 
+  /** Calls the controller method addAssetType with the info input in the textfield, resets them when it works
+    * @author Jatin Patel
+    * @return void
+    */
   @FXML
   void addAssetTypeClicked(ActionEvent event) {
     String assetTypeName = assetTypeNameTextField.getText();
@@ -76,6 +96,11 @@ public class addUpdateDeleteAssetType {
     refreshTypes();
   }
 
+    /** Calls the controller method deleteAssetType with the info input in the textfield, resets them when it works. 
+    * Also deletes all tickets associated with the asset type
+    * @author Jatin Patel
+    * @return void
+    */
     @FXML
     void deleteAssetTypeClicked(ActionEvent event) {
       String assetTypeName = existingAsset.getValue();
@@ -95,6 +120,10 @@ public class addUpdateDeleteAssetType {
       refreshTypes();
     }
 
+    /** Calls the controller method updateAssetType with the info input in the textfield, resets them when it works
+    * @author Jatin Patel
+    * @return void
+    */
     @FXML
     void updateAssetTypeClicked(ActionEvent event) {
       String assetToUpdate = existingAsset.getValue();
@@ -132,6 +161,10 @@ public class addUpdateDeleteAssetType {
       refreshTypes();
     }
 
+    /** Changes the scene to the main page, and selects the asset tab 3 (ViewAssets.fxml).
+    * @author Jatin Patel
+    * @return void
+    */
     @FXML
     void goBack(ActionEvent event) {
       try {

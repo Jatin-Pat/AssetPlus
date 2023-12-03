@@ -88,7 +88,7 @@ public class AddAsset {
 
     }
 
-    /** Changes the scene to the main page, and selects the asset tab 3 (ViewAssets.fxml)
+    /** Changes the scene to the main page, and selects the asset tab 3 (ViewAssets.fxml).
     * @author Jatin Patel
     * @return void
     */
