@@ -34,8 +34,10 @@ public class UpdateUser {
     @FXML
     private TextField userPhoneNumberTextField;
 
-    
-
+    /** Initilizes the filed userEmailTextField to the value of the email of the selected user
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     @FXML
     public void initialize() {
       if (ViewUserPage.getUserEmail() != null) {
@@ -44,7 +46,10 @@ public class UpdateUser {
         userEmailTextField.setText("");
       }
     }
-    
+    /** Returns to the MainPage.fxml page and move to the right tab (ViewUsers.fxml)
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     @FXML
     void goBackClicked(ActionEvent event) {
       try {
@@ -70,6 +75,11 @@ public class UpdateUser {
 
     }
 
+    /** Calls the controller update the employee or guest with the info input in the textfield, resets them when it works
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
+
     @FXML
     void updateEmployeeOrGuestClicked(ActionEvent event) {
       String name = userNameTextField.getText();
@@ -84,7 +94,10 @@ public class UpdateUser {
       }
 
     }
-
+     /** Calls the controller update password value of the manager. Ignore all the field except password and resets them all to null when it works
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     @FXML
     void updateManagerClicked(ActionEvent event) {
       String name = userNameTextField.getText();

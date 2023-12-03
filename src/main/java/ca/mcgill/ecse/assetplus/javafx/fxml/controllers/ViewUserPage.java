@@ -58,14 +58,26 @@ public class ViewUserPage {
     @FXML
     private TableView<TOUser> UserView;
 
+
+  /** Get the email of the current user
+   * @author Marc-Antoine Nadeau - Student ID: 261114549
+   * @return the email of the current currentUser.
+   */
     protected static String getUserEmail(){
         return currrentUser;
     }
+    /** Reset the email of the current user to null
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     private static void setCurrentUserToNull() {
         currrentUser = null;
     }
 
-
+    /** Refreshes the value in the table after an action has been perfomeed
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     @FXML
     void refreshUserClicked(ActionEvent event){
       System.out.println("buttonClicked");
@@ -76,6 +88,10 @@ public class ViewUserPage {
       AssetPlusFxmlView.getInstance().refresh();
     }
 
+    /** Initializes the value to be added in the table.
+    * @author Marc-Antoine Nadeau && Behrad Rezaie
+    * @return void
+    */
     public void initialize(){
       System.out.println("initialized");
 
@@ -113,6 +129,11 @@ public class ViewUserPage {
 
     }
 
+    /** Filters the users present in the table
+    * @author Behrad Rezaie
+    * @return List<TOUser>
+    */
+
 
     public List<TOUser> getFilteredUsers(){
       List<TOUser> filteredUsers = new ArrayList<TOUser>();
@@ -138,7 +159,10 @@ public class ViewUserPage {
 
 
   
-
+    /** Opens the scene UpdateUser.fxml to edit the information of a user
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     @FXML
     void openUpdateUserClicked(ActionEvent event) {
       try {
@@ -154,9 +178,11 @@ public class ViewUserPage {
       e.printStackTrace();
       ViewUtils.showError("Error opening image upload page\n");
     }
-
-
     }
+    /** Opens the scene AddUser.fxml to edit the information of a user
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     @FXML
     void openAddUserClicked(ActionEvent event) {
       try {
@@ -176,6 +202,10 @@ public class ViewUserPage {
 
     }
 
+    /** Sets the value of currentUser to the value selected by clicking in the table
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     @FXML
     void selectUser(MouseEvent event) {
       if (event.getClickCount() == 1) {
@@ -189,6 +219,10 @@ public class ViewUserPage {
     }
   }
 
+    /** Deletes the currentUser that was selected by clicking in the table
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     @FXML
     void deleteUserClicked(ActionEvent event) {
       System.out.println("Selected User Email: " + currrentUser);
@@ -206,6 +240,4 @@ public class ViewUserPage {
         }
 
   }
-
-
 }
