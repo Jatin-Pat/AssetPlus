@@ -35,25 +35,25 @@ public class ViewUserPage {
     private static String currrentUser;
     
     @FXML
-    private Button openAddUser;
+    private Button openAddUserButton;
 
     @FXML
-    private Button openUpdateUser;
+    private Button openUpdateUserButton;
 
     @FXML
-    private Button deleteUser;
+    private Button deleteUserButton;
 
     @FXML
-    private Button refreshUser;
+    private Button refreshUserButton;
 
     @FXML
-    private CheckBox showEmployees;
+    private CheckBox showEmployeesCheckBox;
 
     @FXML
-    private CheckBox showManager;
+    private CheckBox showManagerCheckBox;
 
     @FXML
-    private CheckBox showUsers;
+    private CheckBox showUsersCheckBox;
 
     @FXML
     private TableView<TOUser> UserView;
@@ -67,7 +67,7 @@ public class ViewUserPage {
 
 
     @FXML
-    void refreshUser(ActionEvent event){
+    void refreshUserClicked(ActionEvent event){
       System.out.println("buttonClicked");
       List<TOUser> users = getFilteredUsers();
       
@@ -82,7 +82,7 @@ public class ViewUserPage {
       
       UserView.setPlaceholder(new Label("No users found"));
 
-      refreshUser(new ActionEvent());
+      refreshUserClicked(new ActionEvent());
       setCurrentUserToNull();
       TableColumn<TOUser, String> userRole = new TableColumn<TOUser, String>("Role");
       userRole.setCellValueFactory(new PropertyValueFactory<TOUser, String>("userType"));
@@ -117,9 +117,9 @@ public class ViewUserPage {
     public List<TOUser> getFilteredUsers(){
       List<TOUser> filteredUsers = new ArrayList<TOUser>();
 
-      boolean employees_shown = showEmployees.isSelected();
-      boolean users_shown = showUsers.isSelected();
-      boolean manager_shown = showManager.isSelected();
+      boolean employees_shown = showEmployeesCheckBox.isSelected();
+      boolean users_shown = showUsersCheckBox.isSelected();
+      boolean manager_shown = showManagerCheckBox.isSelected();
 
       if((!employees_shown && !users_shown && !manager_shown)|| (employees_shown && users_shown && manager_shown)){
         return ExtraFeaturesController.getUsers();
@@ -140,7 +140,7 @@ public class ViewUserPage {
   
 
     @FXML
-    void openUpdateUser(ActionEvent event) {
+    void openUpdateUserClicked(ActionEvent event) {
       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateUser.fxml"));
         Parent root = loader.load();
@@ -158,7 +158,7 @@ public class ViewUserPage {
 
     }
     @FXML
-    void openAddUser(ActionEvent event) {
+    void openAddUserClicked(ActionEvent event) {
       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AddUser.fxml"));
         Parent root = loader.load();
@@ -190,12 +190,12 @@ public class ViewUserPage {
   }
 
     @FXML
-    void deleteUser(ActionEvent event) {
+    void deleteUserClicked(ActionEvent event) {
       System.out.println("Selected User Email: " + currrentUser);
       if (currrentUser != null) {
         if (!currrentUser.equals("manager@ap.com")) {
             AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(currrentUser);
-            refreshUser(new ActionEvent());
+            refreshUserClicked(new ActionEvent());
             currrentUser = null;
             AssetPlusFxmlView.getInstance().refresh();
         } else {
