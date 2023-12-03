@@ -54,7 +54,8 @@ public class UpdateAsset {
       }
       assetTypeTextField.setItems(FXCollections.observableArrayList(ExtraFeaturesController.getAllAssetTypes()));
     }
-  
+    
+    
 
     @FXML
     void goBack(ActionEvent event) {

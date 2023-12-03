@@ -39,6 +39,11 @@ public class AddUser {
     @FXML
     private TextField userPhoneNumberTextField;
 
+    /** Calls the controller create a new employee  with the info input in the textfield, resets them when it works
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
+
     @FXML
     void addEmployeeClicked(ActionEvent event) {
       String name = userNameTextField.getText();
@@ -54,7 +59,10 @@ public class AddUser {
       }
 
     }
-
+    /** Calls the controller create a new guest  with the info input in the textfield, resets them when it works
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
     @FXML
     void addGuestClicked(ActionEvent event) {
       String name = userNameTextField.getText();
@@ -70,6 +78,10 @@ public class AddUser {
       }
 
     }
+    /** Returns to the MainPage.fxml page and move to the right tab (viewUsers)
+    * @author Marc-Antoine Nadeau - Student ID: 261114549
+    * @return void
+    */
   
     @FXML
     void goBackClicked(ActionEvent event) {
