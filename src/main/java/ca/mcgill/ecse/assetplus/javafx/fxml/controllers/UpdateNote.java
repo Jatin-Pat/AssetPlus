@@ -59,7 +59,7 @@ public class UpdateNote {
     * @return void
     */
     @FXML
-    public void cancel(ActionEvent event) {
+    public void cancelClicked (ActionEvent event) {
       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/ViewImageNotes.fxml"));
         Parent root = loader.load();
@@ -94,7 +94,7 @@ public class UpdateNote {
     * @return void
     */
     @FXML
-    void submit(ActionEvent event) {
+    void submitClicked (ActionEvent event) {
       
       if(noteDescriptionTextField.getText()==""){
         ViewUtils.showError("A description must be provided");
