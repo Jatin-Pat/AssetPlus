@@ -93,6 +93,8 @@ public class UpdateTicket {
             descriptionTextField.setText("");
             ticketIdTextField.setText("");
             ticketDateDatePicker.setValue(null);
+        }else{
+            ViewUtils.showError(result);
         }
 
         /*

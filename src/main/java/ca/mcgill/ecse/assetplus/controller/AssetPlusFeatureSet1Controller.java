@@ -68,21 +68,21 @@ public class AssetPlusFeatureSet1Controller {
     if (email.equals("manager@ap.com")){
       error += "Email cannot be manager@ap.com";
     } if(!isEmployee && email.endsWith("@ap.com")){
-      error += "Email domain cannot be @ap.com";
+      error += " Email domain cannot be @ap.com";
     } if(isEmployee && ! email.endsWith("@ap.com")){
-      error += "Email domain must be @ap.com";
+      error += " Email domain must be @ap.com";
     } if (email.contains(" ")) {
-      error += "Email must not contain any spaces";
+      error += " Email must not contain any spaces";
     }if(email.isBlank()){
-      error += "Email cannot be empty";
+      error += " Email cannot be empty";
     } if ( ! email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")){
-      error += "Invalid email";
+      error += " Invalid email";
     } if (password == null || password.isBlank()){ 
-      error += "Password cannot be empty";
+      error += " Password cannot be empty";
     } if ( phoneNumber == null){ 
-      error += "Phone number cannot be empty";
+      error += " Phone number cannot be empty";
     } if(name == null){
-      error += "Name cannot be empty";
+      error += " Name cannot be empty";
     }
     
     if ( ! error.isEmpty()) { 

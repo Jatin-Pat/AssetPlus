@@ -95,6 +95,7 @@ public class AssignHotelStaffToTicket implements Initializable {
         String approvalRequired = String.valueOf(approvalCheckBox.isSelected());
         if (ticketID.isEmpty() || staffEmail.isEmpty() || timeEstimate == null || priorityLevel == null || approvalRequired.isEmpty()) {
             ViewUtils.showError("Please fill in the listed fields.");
+            return;
         } else {
             String result = TicketMaintenanceController.assignStaffToTicket(ticketID, staffEmail, timeEstimate, priorityLevel, approvalRequired);
             if (result.equals("")) {

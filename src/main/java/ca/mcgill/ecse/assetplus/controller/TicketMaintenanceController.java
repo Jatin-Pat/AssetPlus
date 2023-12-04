@@ -16,6 +16,9 @@ public class TicketMaintenanceController {
    */
   public static String assignStaffToTicket(String ticketID, String staffEmail, String timeEstimate,
       String priorityLevel, String approvalRequired) {
+    if(!staffEmail.endsWith("@ap.com")){
+      return "Can only assign ticket to hotel staff";
+    }
     if (!MaintenanceTicket.hasWithId(Integer.parseInt(ticketID))) {
       return "Maintenance ticket does not exist.";
     }

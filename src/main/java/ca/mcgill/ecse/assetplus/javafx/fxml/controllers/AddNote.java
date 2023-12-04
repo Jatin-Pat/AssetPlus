@@ -54,22 +54,26 @@ public class AddNote {
       String ticketID = idTextField.getText();
       if(ticketID=="" || Integer.parseInt(ticketID)<1){
         ViewUtils.showError("Enter a valid ID (larger than 0)");
+        return;
       }
       int ticketId = Integer.parseInt(idTextField.getText());
 
       String email = noteTakerTextField.getText();
       if(email=="null"){
         ViewUtils.showError("Enter a valid email");
+        return;
       }
 
       if(noteDateDatePicker.getValue()==null){
         ViewUtils.showError("Pick a date");
+        return;
       }
       Date date = Date.valueOf(noteDateDatePicker.getValue());
 
       String description = noteDescriptionTextField.getText();
       if(description==""){
         ViewUtils.showError("Enter a description");
+        return;
       }
       //String result = AssetPlusFeatureSet7Controller.addMaintenanceNote(date, description, ticketId, email);
       if(ViewUtils.successful(AssetPlusFeatureSet7Controller.addMaintenanceNote(date, description, ticketId, email))){
