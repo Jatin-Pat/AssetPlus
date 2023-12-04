@@ -16,6 +16,9 @@ public class TicketMaintenanceController {
    */
   public static String assignStaffToTicket(String ticketID, String staffEmail, String timeEstimate,
       String priorityLevel, String approvalRequired) {
+    if(ticketID.matches(".*\\D.*")){
+      return "Ticket ID should be a number.";
+    }
     if(!staffEmail.endsWith("@ap.com")){
       return "Can only assign ticket to hotel staff";
     }
