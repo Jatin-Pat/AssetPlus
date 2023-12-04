@@ -31,6 +31,10 @@ public class AddNote {
     @FXML
     private TextField noteTaker;
 
+    /** Initializes the controller and sets the date
+    * @author Laurence Perreault
+    * @return void
+    */
     @FXML
     public void initialize(){
       noteDate.setValue(LocalDate.now());
@@ -39,6 +43,12 @@ public class AddNote {
         id.setText(String.valueOf(ViewTicketsPage.getTicketID()));
       }
     }
+    
+    /** Calls the controller method addMaintenanceNote when all the parameters are valid.
+     Resets the fields when the method works.
+    * @author Laurence Perreault
+    * @return void
+    */
     @FXML
     void submit(ActionEvent event) {
       String ticketID = id.getText();
@@ -69,7 +79,11 @@ public class AddNote {
         id.setText("");
       }
     }
-  
+
+    /** Cancels the action.
+    * @author Laurence Perreault
+    * @return void
+    */
     @FXML
     public void cancel(ActionEvent event) {
       try {
