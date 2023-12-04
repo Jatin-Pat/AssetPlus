@@ -73,10 +73,10 @@ public class AddNote {
       }
       //String result = AssetPlusFeatureSet7Controller.addMaintenanceNote(date, description, ticketId, email);
       if(ViewUtils.successful(AssetPlusFeatureSet7Controller.addMaintenanceNote(date, description, ticketId, email))){
-        noteDescription.setText("");
-        noteTaker.setText("");
-        noteDate.setValue(null);
-        id.setText("");
+        noteDescriptionTextField.setText("");
+        noteTakerTextField.setText("");
+        noteDateDatePicker.setValue(null);
+        idTextField.setText("");
       }
     }
 
