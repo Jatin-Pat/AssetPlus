@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: #663399;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.UpdateUser">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: #4D316E;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.UpdateUser">
   <columnConstraints>
       <ColumnConstraints />
     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="135.0" />
@@ -32,7 +32,7 @@
       </ImageView>
       <Label alignment="BOTTOM_LEFT" contentDisplay="TOP" prefHeight="129.0" prefWidth="730.0" text="Hotel Management" textFill="#e8e8e8" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.rowIndex="1">
          <font>
-            <Font name="Gill Sans" size="30.0" />
+            <Font name="Dubai Light" size="30.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -41,7 +41,7 @@
             <Insets bottom="15.0" left="50.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Name" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <Label text="Name" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="20.0" />
          </GridPane.margin>
@@ -55,7 +55,7 @@
          <GridPane.margin>
             <Insets top="8.0" />
          </GridPane.margin></TextField>
-      <Label text="Account Name" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <Label text="Account Name" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="25.0" />
          </GridPane.margin>
@@ -69,7 +69,7 @@
          <font>
             <Font name="Gill Sans" size="17.0" />
          </font></TextField>
-      <Label text="Phone Number" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <Label text="Phone Number" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="15.0" />
          </GridPane.margin>
@@ -80,7 +80,7 @@
          <font>
             <Font name="Gill Sans" size="17.0" />
          </font></TextField>
-      <Label text="Password" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+      <Label text="Password" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin>

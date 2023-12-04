@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: #663399;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AddAsset">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="730.0" style="-fx-background-color: #4D316E;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AddAsset">
   <columnConstraints>
       <ColumnConstraints />
     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="135.0" />
@@ -32,7 +32,7 @@
       </ImageView>
       <Label alignment="BOTTOM_LEFT" contentDisplay="TOP" prefHeight="129.0" prefWidth="730.0" text="Asset Management" textFill="#e8e8e8" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.rowIndex="1">
          <font>
-            <Font name="Gill Sans" size="30.0" />
+            <Font name="Dubai Light" size="30.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -96,7 +96,7 @@
             <Font name="Gill Sans" size="17.0" />
          </font>
       </Button>
-      <DatePicker fx:id="purchaseDateDatePicker" prefHeight="43.0" prefWidth="330.0" promptText="yy-MM-dd" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <DatePicker fx:id="purchaseDateDatePicker" prefHeight="43.0" prefWidth="445.0" promptText="yy-MM-dd" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets bottom="5.0" top="10.0" />
          </GridPane.margin>
@@ -117,6 +117,6 @@
             <Insets top="10.0" />
          </GridPane.margin>
       </Button>
-      <ComboBox fx:id="assetTypeTextField" prefHeight="43.0" prefWidth="408.0" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+      <ComboBox fx:id="assetTypeTextField" prefHeight="43.0" prefWidth="445.0" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>
