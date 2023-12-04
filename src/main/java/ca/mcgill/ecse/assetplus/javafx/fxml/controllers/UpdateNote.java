@@ -20,16 +20,16 @@ public class UpdateNote {
 
     
     @FXML
-    private Button cancel;
+    private Button cancelButton;
 
     @FXML
-    private DatePicker noteDate;
+    private DatePicker noteDateDatePicker;
 
     @FXML
-    private TextField noteDescription;
+    private TextField noteDescriptionTextField;
 
     @FXML
-    private TextField noteTaker;
+    private TextField noteTakerTextField;
 
     @FXML
     private Label title;
@@ -44,12 +44,12 @@ public class UpdateNote {
     public void initialize(){
       title.setText(title.getText()+" #"+String.valueOf(ViewImageNotes.selectedNoteIndex+1));
       
-      noteDate.setValue(LocalDate.now());
+      noteDateDatePicker.setValue(LocalDate.now());
       
       if(ViewImageNotes.getSelectedNote() !=null){
         TOMaintenanceNote thisNote = ViewImageNotes.getSelectedNote();
-        noteDescription.setText(thisNote.getDescription());
-        noteTaker.setText(thisNote.getNoteTakerEmail());
+        noteDescriptionTextField.setText(thisNote.getDescription());
+        noteTakerTextField.setText(thisNote.getNoteTakerEmail());
         System.out.println("changing fields");
       }
     }
@@ -96,27 +96,27 @@ public class UpdateNote {
     @FXML
     void submit(ActionEvent event) {
       
-      if(noteDescription.getText()==""){
+      if(noteDescriptionTextField.getText()==""){
         ViewUtils.showError("A description must be provided");
         return;
       }
-      else if(noteDate.getValue()==null){
+      else if(noteDateDatePicker.getValue()==null){
         ViewUtils.showError("A date must be provided");
         return;
       }
-      else if(noteTaker.getText().equals("")){
+      else if(noteTakerTextField.getText().equals("")){
         ViewUtils.showError("A note taker must be provided");
         return;
       }
       
-      Date newDate = Date.valueOf(noteDate.getValue());
-      String newDescription = noteDescription.getText();
-      String newTaker = noteTaker.getText();
+      Date newDate = Date.valueOf(noteDateDatePicker.getValue());
+      String newDescription = noteDescriptionTextField.getText();
+      String newTaker = noteTakerTextField.getText();
       //String result = AssetPlusFeatureSet7Controller.updateMaintenanceNote(ViewImageNotes.selectedTicket,ViewImageNotes.selectedNoteIndex , newDate, newDescription, newTaker);
       if(ViewUtils.successful(AssetPlusFeatureSet7Controller.updateMaintenanceNote(ViewImageNotes.selectedTicket,ViewImageNotes.selectedNoteIndex , newDate, newDescription, newTaker))){
-        noteDescription.setText("");
-        noteTaker.setText("");
-        noteDate.setValue(null);
+        noteDescriptionTextField.setText("");
+        noteTakerTextField.setText("");
+        noteDateDatePicker.setValue(null);
       }
     }
 
