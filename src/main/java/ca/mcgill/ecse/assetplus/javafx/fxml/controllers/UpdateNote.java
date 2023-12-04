@@ -79,12 +79,15 @@ public class UpdateNote {
       
       if(noteDescription.getText()==""){
         ViewUtils.showError("A description must be provided");
+        return;
       }
       else if(noteDate.getValue()==null){
         ViewUtils.showError("A date must be provided");
+        return;
       }
       else if(noteTaker.getText().equals("")){
         ViewUtils.showError("A note taker must be provided");
+        return;
       }
       
       Date newDate = Date.valueOf(noteDate.getValue());
