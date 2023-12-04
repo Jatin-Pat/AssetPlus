@@ -24,6 +24,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the ViewImageNotes Page, where the user can view and manage notes and images for a 
+ * selected ticket.
+ * @author Behrad Rezaie
+ */
 public class ViewImageNotes {
 
     private MainPage mainPage;
@@ -61,6 +66,13 @@ public class ViewImageNotes {
 
     public static int selectedTicket = ViewTicketsPage.getTicketID();
 
+    /**
+     * Initialization of the ViewImageNotes page. Sets the title dynamically to show which 
+     * ticket is currently being viewed, as well as creates the appropriate columns for the 
+     * image and note tableViews. Sets their default placeholder texts as well in case of
+     * empty tables.
+     * @author Behrad Rezaie
+     */
     public void initialize(){
       selectedTicket = ViewTicketsPage.getTicketID();
       title.setText(title.getText()+": Ticket ID #" + selectedTicket);
@@ -90,6 +102,11 @@ public class ViewImageNotes {
       setImageNotes();
     }
 
+    /**
+     * Method that returns the ticket associated with the current ticket ID. 
+     * @author Behrad Rezaie
+     * @return TOMaintenanceTicket transfer object of the actual ticket
+     */
     TOMaintenanceTicket getTicket(){
       for (TOMaintenanceTicket ticket : AssetPlusFeatureSet6Controller.getTickets()) {
         if(ticket.getId()==selectedTicket){
@@ -101,12 +118,20 @@ public class ViewImageNotes {
 
     }
     
+    /**
+     * Method that sets the row items of the note and image tableViews upon being called.
+     * @author Behrad Rezaie
+     */
     void setImageNotes(){
       TOMaintenanceTicket ticket = getTicket();
       notesView.setItems(FXCollections.observableList(ticket.getNotes()));
       imagesView.setItems(FXCollections.observableList(ticket.getImageURLs()));
     }
 
+    /**
+     * Method that opens the addImage page. Method is called when the associated button is clicked.
+     * @author Behrad Rezaie
+     */
     @FXML
     void addImage(ActionEvent event) {
         try {
@@ -125,6 +150,10 @@ public class ViewImageNotes {
         }
     }
 
+    /**
+     * Method that opens the addNote page. Method is called when the associated button is clicked.
+     * @author Behrad Rezaie
+     */
     @FXML
     void addNote(ActionEvent event) {
       try {
@@ -142,7 +171,12 @@ public class ViewImageNotes {
             ViewUtils.showError("Error: Could not add note page\n");
         }
     }
-
+    /**
+     * Method that deletes a selected image based on the private field selectedURL. 
+     * Shows a popup error if no image is selected.
+     * Method is called when the associated button is clicked.
+     * @author Behrad Rezaie
+     */
     @FXML
     void deleteImage(ActionEvent event) {
       if(selectedURL!=null){
@@ -154,6 +188,12 @@ public class ViewImageNotes {
       setImageNotes();
     }
 
+    /**
+     * Method that finds the index of a given note within a Ticket's list of notes.
+     * @author Behrad Rezaie
+     * @param selectedNote
+     * @return integer index of the note in the ticket's list of notes
+     */
     public int findIndex(TOMaintenanceNote selectedNote){
       List<TOMaintenanceNote> allNotes = getTicket().getNotes();
         for (TOMaintenanceNote note : allNotes) {
@@ -165,7 +205,11 @@ public class ViewImageNotes {
         }
         return -1;
     }
-
+    /**
+     * Method that deletes a selected note based on the private field selectedNote.
+     * Shows a popup error if no note is selected yet.
+     * @author Behrad Rezaie
+     */
     @FXML
     void deleteNote(ActionEvent event) {
       int noteIndex=-1;
@@ -179,7 +223,10 @@ public class ViewImageNotes {
       setImageNotes();
     }
 
-    
+    /**
+     * Method that returns to the ViewTicketsPage upon being called by having the associated button clicked.
+     * @author Behrad Rezaie
+     */
     @FXML
     void goBack(ActionEvent event) {
       try {
@@ -202,7 +249,11 @@ public class ViewImageNotes {
       }
       
     }
-
+    /**
+     * Method that checks if a row in either the image or note tableView is selected, and sets the
+     * appropriate field to the selected values. Method is called every time a mouse is clicked.
+     * @author Behrad Rezaie
+     */
     @FXML
     void selectRow(MouseEvent event) {
       String attemptedSelURL = imagesView.getSelectionModel().getSelectedItem();
@@ -220,6 +271,11 @@ public class ViewImageNotes {
       }
     }
 
+    /**
+     * Method that opens the UpdateNote page upon being called by clicking the associated button.
+     * Shows a popup error if no note is selected upon being clicked.
+     * @author Behrad Rezaie
+     */
     @FXML
     void updateNote(ActionEvent event) {
       if(selectedNoteIndex==-1){
@@ -242,6 +298,13 @@ public class ViewImageNotes {
             ViewUtils.showError("Error: Could not load update note page");
         }
     }
+
+    /**
+     * Public method that returns the TOMaintenanceNote set in the private field. Allows for 
+     * other pages to call this method to initialize their own fields.
+     * @author Behrad Rezaie
+     * @return TOMaintenanceNote
+     */
     public static TOMaintenanceNote getSelectedNote(){
       return selectedNote;
     }

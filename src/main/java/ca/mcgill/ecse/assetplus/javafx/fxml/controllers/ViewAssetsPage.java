@@ -28,7 +28,11 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
 
-
+/**
+ * Controller for the ViewAssets Page, where the user can view, filter, and manage the assets in 
+ * the assetPlus system. 
+ * @author Behrad Rezaie
+ */
 public class ViewAssetsPage {
 
     private static int currentAsset;
@@ -57,6 +61,11 @@ public class ViewAssetsPage {
     @FXML
     private Button refreshAsset;
 
+    /**
+     * Method that takes the selected asset from the tableView, and deletes it from the system.
+     * Shows an error if no asset is selected.
+     * @author Behrad Rezaie
+     */
     @FXML
     void deleteAsset(ActionEvent event) {
       System.out.println("Selected User Email: " + currentAsset);
@@ -72,7 +81,11 @@ public class ViewAssetsPage {
 
     }
       
-
+    /**
+     * Method that opens the AddAsset page. 
+     * Method is called when the associated button is clicked.
+     * @author Behrad Rezaie
+     */
     @FXML
     void openAddAsset(ActionEvent event) {
       try {
@@ -89,7 +102,11 @@ public class ViewAssetsPage {
             ViewUtils.showError("Error opening Add Asset page");
         }
     }
-
+    /**
+     * Method that opens the update asset page. 
+     * Method is called when the associated button is clicked.
+     * @author Behrad Rezaie
+     */
     @FXML
     void openUpdateAsset(ActionEvent event) {
       try {
@@ -107,6 +124,11 @@ public class ViewAssetsPage {
     }
     }
 
+    /**
+     * Method that opens the assetType management page. 
+     * Method is called when the associated button is clicked.
+     * @author Behrad Rezaie
+     */
     @FXML
     void openAssetType(ActionEvent event) {
       try {
@@ -124,23 +146,40 @@ public class ViewAssetsPage {
     }
   }
 
-
+    /**
+     * Method checks if an asset row in the tableView is clicked, and sets the 
+     * private field accordingly.
+     * @author Behrad Rezaie
+     */
     @FXML
     void selectAsset(MouseEvent event) {
     TOAsset selectedAsset = AssetView.getSelectionModel().getSelectedItem();
     currentAsset = selectedAsset.getAssetNumber();
     }
 
+    /**
+     * Public method that returns the assetID of the selected asset. 
+     * Can be accessed by different pages to initialize their own values.
+     * @author Behrad Rezaie
+     * @return integer ID of the asset
+     */
     public static int getAssetID(){
         return currentAsset;
     }
-
+    /**
+     * Private method that resets the private field to -1. Serves to reset the selected asset 
+     * when required.
+     * @author Behrad Rezaie
+     */
     private static void setCurrentIDToNull() {
       //setting it to -1
       currentAsset = -1;
   }
 
-
+    /**
+     * Method that refreshes assets upon ActionEvents. Used for when an AssetType filter is selected.
+     * @author Behrad Rezaie
+     */
     @FXML
     void refreshAsset(ActionEvent event){
       List<TOAsset> assets = getFilteredAssets();
@@ -149,20 +188,33 @@ public class ViewAssetsPage {
 
       AssetPlusFxmlView.getInstance().refresh();
     }
-
+    /**
+     * Method that refreshes assets upon text input. Used for when the user is filtering 
+     * by ID or floor number
+     * @author Behrad Rezaie
+     */
     @FXML
     void refreshAssets(KeyEvent event){
       AssetView.setItems(FXCollections.observableList(getFilteredAssets()));
       AssetPlusFxmlView.getInstance().refresh();
     }
     
-    
+    /**
+     * Method that clears the selected AssetType filter upon the box being clicked on.
+     * @author Behrad Rezaie
+     */
     @FXML
     void clearType(MouseEvent event) {
       assetTypeField.setValue(null);
       refreshAsset(new ActionEvent());
     }
 
+    /** 
+     * Initilization of the ViewAssets Page. Sets the columns of the assets tableView to the 
+     * relevant fields of the TOAsset, as well as its default placeholder message when no assets
+     * are found.
+     * @author Behrad Rezaie
+     */
     public void initialize(){
       System.out.println("initialized");
 
@@ -201,7 +253,12 @@ public class ViewAssetsPage {
 
     }
 
-
+    /**
+     * Public method that returns a list of Asset Transfer Objects based on the active filters on the page.
+     * 
+     * @author Behrad Rezaie
+     * @return List<TOAsset> filtered assets based on active filters
+     */
     public List<TOAsset> getFilteredAssets(){
       List<TOAsset> allAssets = ExtraFeaturesController.getAllAssets();
       
@@ -293,89 +350,4 @@ public class ViewAssetsPage {
 
       return filteredAssets;
     }
-
-
-  //@FXML
-  //void openAddUser(ActionEvent event){}
-  //@FXML
-  //void openUpdateUser(ActionEvent event){}
-  /*@FXML
-  void selectUser(MouseEvent event){
-    TOAsset selectedAsset = AssetView.getSelectionModel().getSelectedItem();
-    currentAsset = selectedAsset.getAssetNumber();
-  }*/
-  //@FXML
-  //void deleteUser(ActionEvent event){}
-    /* 
-    @FXML
-    void openUpdateUser(ActionEvent event) {
-      try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/UpdateUser.fxml"));
-        Parent root = loader.load();
-
-        // Get the current Stage
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Set the new root for the current Scene
-        stage.getScene().setRoot(root);
-      } catch (IOException e) {
-      e.printStackTrace();
-      ViewUtils.showError("Error opening image upload page\n");
-    }
-
-
-    }
-    @FXML
-    void openAddUser(ActionEvent event) {
-      try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AddUser.fxml"));
-        Parent root = loader.load();
-
-        // Get the current Stage
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Set the new root for the current Scene
-        stage.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-            ViewUtils.showError("Error opening Add User page");
-        }
-
-
-    }
-
-    @FXML
-    void selectUser(MouseEvent event) {
-      if (event.getClickCount() == 1) {
-        // Get the selected item
-        TOAsset selectedUser = AssetView.getSelectionModel().getSelectedItem();
-        currentAsset = selectedUser.getEmail();
-        if (currentAsset != null) {
-            // Debugging output
-            System.out.println("Selected User Email: " + selectedUser.getEmail());
-        }
-    }
-  }
-
-    @FXML
-    void deleteUser(ActionEvent event) {
-      //TOAsset selectedUser = AssetView.getSelectionModel().getSelectedItem();
-      System.out.println("Selected User Email: " + currentAsset);
-      if (currentAsset != null) {
-        if (!currentAsset.equals("manager@ap.com")) {
-            AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(currentAsset);
-            currentAsset = null;
-
-            // Additional code after deletion if needed
-        } else {
-            // Handle the case where the user is the manager
-            ViewUtils.showError("Cannot delete the manager");
-        }
-    } else {
-            // Handle the case where the user is the manager
-            ViewUtils.showError("Select User to Delete");
-        }
-  
-
-}*/
 }

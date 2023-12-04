@@ -32,7 +32,14 @@ import java.util.List;
 import javax.annotation.Syntax;
 import com.google.common.collect.Table;
 
-
+/**
+ * Controller for the View Tickets Page. Displays all tickets in the system as well as relevant information.
+ * Provides the user several options such as adding a new ticket, updating a selected ticket,
+ * deleting a ticket, managing the status of a ticket, as well as different ways of filtering through them.
+ * @author Behrad Rezaie
+ *  
+ * 
+ */
 public class ViewTicketsPage {
     private static int currentTicket;
 
@@ -72,15 +79,26 @@ public class ViewTicketsPage {
     @FXML
     private Button viewImageNote;
 
-
+    /**
+     * Public method accessible by different pages to get the selected ticket's ID
+     * @author Behrad Rezaie
+     * @return integer of the selected ticket's ID
+     */
     public static int getTicketID(){
       return currentTicket;
     }
+
+
     private static void setCurrentIDToNull() {
-        //setting it to -1
         currentTicket = -1;
     }
 
+    /**
+     * Method that allows for the selection of a specific ticket from the tableView. Sets the 
+     * private field "currentTicket" to the ID of the selected ticket, which can then be accessed by different
+     * methods and pages through the getTicketId() method
+     * @author Behrad Rezaie
+     */
     @FXML
     void selectTicket(MouseEvent event) {
       System.out.println("clicked");
@@ -99,24 +117,48 @@ public class ViewTicketsPage {
         }
     }
   }
-    
-  @FXML
+  
+    /**
+     * Method that refreshes the displayed tickets on the tableView. Called when the date filter is set,
+     * or if the user presses enter after typing our their filters.
+     * @author Behrad Rezaie
+     */
+    @FXML
     void refreshTickets(ActionEvent event){
       System.out.println("buttonClicked");
       TicketsView.setItems(getMaintenanceTickets());
       AssetPlusFxmlView.getInstance().refresh();
     }
     
+    /**
+     * Method that refreshes the displayed tickets dynamically as the user types in values into 
+     * the text box filters.
+     * @author Behrad Rezaie
+     */
     @FXML
     void refreshEmployees(KeyEvent event) {
       TicketsView.setItems(getMaintenanceTickets());
       AssetPlusFxmlView.getInstance().refresh();
     }
+    /**
+     * Method that clears the set Date on the dateFilter when the user clicks on the date button.
+     * @author Behrad Rezaie
+     */
     @FXML
     void clearDate(MouseEvent event){
       dateFilter.setValue(null);
     }
    
+
+    /**
+     * Initialization code for the ViewTickets Page. Sets the date filter to not be editable, as well
+     * as the default placeholder message of the tableView when no tickets are found.
+     * Initializes the various columns of the tableView with regards to a TOMaintenanceTicket's fields,
+     * and fills them out automatically.
+     * Also sets to refresh the displayed tickets on every refresh of the application.
+     * @author Behrad Rezaie
+     * 
+     */
     public void initialize(){
       System.out.println("initialized");
       dateFilter.setEditable(false);
@@ -175,7 +217,12 @@ public class ViewTicketsPage {
 
       AssetPlusFxmlView.getInstance().registerRefreshEvent(TicketsView);
     }
-
+    /**
+     * Public method that gets all maintenance tickets based on the applied filters, and converts it
+     * into an observable list for the UI to display.
+     * @author Behrad Rezaie
+     * @return ObservableList<TOMaintenanceTicket> list that can be applied to the tableView's items
+     */
     public ObservableList<TOMaintenanceTicket> getMaintenanceTickets(){
       LocalDate selectedDate = dateFilter.getValue();
       String employeeName = nameFilter.getText();
@@ -216,6 +263,12 @@ public class ViewTicketsPage {
       return FXCollections.observableList(tickets);
       
     }
+
+    /**
+     * Method that takes the private field currentTicket and deletes the ticket. Shows a popup error
+     * in case no ticket is selected yet.
+     * @author Behrad Rezaie
+     */
     @FXML
     void deleteTicket(ActionEvent event) {
         System.out.println("Selected Ticket ID: " + currentTicket);
@@ -230,6 +283,11 @@ public class ViewTicketsPage {
         }
 
     }
+    /**
+     * Method that opens the startCompleteWorkTicket page upon being called. Method is associated to 
+     * a button on the UI.
+     * @author Behrad Rezaie
+     */
     @FXML
     void setProgress(ActionEvent event) {
         
@@ -250,7 +308,11 @@ public class ViewTicketsPage {
 
     }
 
-
+    /**
+     * Method that opens the AddTicket page upon being called. Method is associated to a button
+     * on the UI.
+     * @author Behrad Rezaie
+     */
     @FXML
     void openAddTicket(ActionEvent event) {
         try {
@@ -277,7 +339,11 @@ public class ViewTicketsPage {
       }
       return null;
     } 
-    
+    /**
+     * Method that opens the updateTicket page upon being called. Method is associated to a button
+     * on the UI. Shows a popup error if a selected ticket is in closed state.
+     * @author Behrad Rezaie
+     */
     @FXML
     void openUpdateTicket(ActionEvent event) {
         try {
@@ -301,6 +367,11 @@ public class ViewTicketsPage {
         }
     }
 
+    /**
+     * Method that opens the AssignHotelStaffToticket page upon being called.
+     * Method is associated to a button on the UI.
+     * @author Behrad Rezaie
+     */
     @FXML
     void openAssignTicket(ActionEvent event) {
         try {
@@ -313,7 +384,11 @@ public class ViewTicketsPage {
             ViewUtils.showError("Error opening Assign Ticket page\n");
         }
     }
-
+    /**
+     * Method that opens the ApproveDisapproveWork page upon being called.
+     * Method is associated to a button on the UI.
+     * @author Behrad Rezaie
+     */
     @FXML
     void openApproveTicket(ActionEvent event) {
         try {
@@ -326,7 +401,11 @@ public class ViewTicketsPage {
             ViewUtils.showError("Error opening Approve Ticket page\n");
         }
     }
-    
+    /**
+     * Method that opens the ViewImageNotes page upon being called.
+     * Method is associated to a button on the UI.
+     * @author Behrad Rezaie
+     */
     @FXML
     void viewImageNote(ActionEvent event) {
       if(currentTicket==-1){

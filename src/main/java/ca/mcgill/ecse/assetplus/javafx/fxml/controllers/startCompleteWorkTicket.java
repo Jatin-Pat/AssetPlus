@@ -15,7 +15,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/*
+/**
  * @author: Dmytro Martyuniuk
  * Sets the progress of the opened ticket to
  * in progress when start work pressed or
