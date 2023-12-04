@@ -36,6 +36,10 @@ public class UpdateNote {
 
     private static TOMaintenanceNote selectedNote = ViewImageNotes.selectedNote;
 
+    /** Initializes the controller and sets the date, the description, the index and the email.
+    * @author Laurence Perreault
+    * @return void
+    */
     @FXML
     public void initialize(){
       title.setText(title.getText()+" #"+String.valueOf(ViewImageNotes.selectedNoteIndex+1));
@@ -49,6 +53,11 @@ public class UpdateNote {
         System.out.println("changing fields");
       }
     }
+
+    /** Cancels the action
+    * @author Laurence Perreault
+    * @return void
+    */
     @FXML
     public void cancel(ActionEvent event) {
       try {
@@ -66,6 +75,10 @@ public class UpdateNote {
         }
       }
 
+    /** Verifies that the inputed string is a numeric value
+    * @author Laurence Perreault
+    * @return void
+    */
     public boolean isNumeric(String input){
       try{
         Integer.parseInt(input);
@@ -74,6 +87,12 @@ public class UpdateNote {
         return false;
       }
     }
+
+    /** Calls the controller method updateMaintenanceNote when all the parameters are valid.
+     Resets the fields when the method works.
+    * @author Laurence Perreault
+    * @return void
+    */
     @FXML
     void submit(ActionEvent event) {
       
