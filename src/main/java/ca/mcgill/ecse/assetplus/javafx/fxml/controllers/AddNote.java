@@ -17,19 +17,19 @@ import javafx.stage.Stage;
 public class AddNote {
 
     @FXML
-    private Button cancel;
+    private Button cancelButton;
 
     @FXML
-    private TextField id;
+    private TextField idTextField;
 
     @FXML
-    private DatePicker noteDate;
+    private DatePicker noteDateDatePicker;
 
     @FXML
-    private TextField noteDescription;
+    private TextField noteDescriptionTextField;
 
     @FXML
-    private TextField noteTaker;
+    private TextField noteTakerTextField;
 
     /** Initializes the controller and sets the date
     * @author Laurence Perreault
@@ -40,7 +40,7 @@ public class AddNote {
       noteDate.setValue(LocalDate.now());
       
       if(ViewTicketsPage.getTicketID()!=-1){
-        id.setText(String.valueOf(ViewTicketsPage.getTicketID()));
+        idTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));
       }
     }
     
@@ -50,24 +50,24 @@ public class AddNote {
     * @return void
     */
     @FXML
-    void submit(ActionEvent event) {
-      String ticketID = id.getText();
+    void submitClicked (ActionEvent event) {
+      String ticketID = idTextField.getText();
       if(ticketID=="" || Integer.parseInt(ticketID)<1){
         ViewUtils.showError("Enter a valid ID (larger than 0)");
       }
-      int ticketId = Integer.parseInt(id.getText());
+      int ticketId = Integer.parseInt(idTextField.getText());
 
-      String email = noteTaker.getText();
+      String email = noteTakerTextField.getText();
       if(email=="null"){
         ViewUtils.showError("Enter a valid email");
       }
 
-      if(noteDate.getValue()==null){
+      if(noteDateDatePicker.getValue()==null){
         ViewUtils.showError("Pick a date");
       }
-      Date date = Date.valueOf(noteDate.getValue());
+      Date date = Date.valueOf(noteDateDatePicker.getValue());
 
-      String description = noteDescription.getText();
+      String description = noteDescriptionTextField.getText();
       if(description==""){
         ViewUtils.showError("Enter a description");
       }
@@ -85,7 +85,7 @@ public class AddNote {
     * @return void
     */
     @FXML
-    public void cancel(ActionEvent event) {
+    public void cancelClicked (ActionEvent event) {
       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/ViewImageNotes.fxml"));
         Parent root = loader.load();
