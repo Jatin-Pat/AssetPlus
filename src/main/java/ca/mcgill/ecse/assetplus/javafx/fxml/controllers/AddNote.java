@@ -37,7 +37,7 @@ public class AddNote {
     */
     @FXML
     public void initialize(){
-      noteDate.setValue(LocalDate.now());
+        noteDateDatePicker.setValue(LocalDate.now());
       
       if(ViewTicketsPage.getTicketID()!=-1){
         idTextField.setText(String.valueOf(ViewTicketsPage.getTicketID()));

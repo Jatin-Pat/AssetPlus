@@ -24,7 +24,7 @@ public class DeleteNote {
       int index = Integer.parseInt(ticketIndexTextField.getText());
 
       AssetPlusFeatureSet7Controller.deleteMaintenanceNote(id, index);
-      ticketIdTextField.setText("");
-      indexTextField.setText("");
+        ticketIDTextField.setText("");
+        ticketIndexTextField.setText("");
     }
 }

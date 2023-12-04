@@ -85,6 +85,18 @@ public class UpdateTicket {
         if (MaintenanceTicket.getWithId(ticketId).getTicketStatus() == MaintenanceTicket.TicketStatus.Closed) {
             ViewUtils.showError("Cannot update a closed ticket");
         }
+
+        String result = AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketId, raisedOn, description, email, assetId);
+        if (result.contains("Ticket modified successfully")){
+            assetIdTextField.setText("");
+            emailTextField.setText("");
+            descriptionTextField.setText("");
+            ticketIdTextField.setText("");
+            ticketDateDatePicker.setValue(null);
+        }
+
+        /*
+
         if (ViewUtils.successful(AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketId, raisedOn, description,
                 email, assetId))) {
             assetIdTextField.setText("");
@@ -92,6 +104,8 @@ public class UpdateTicket {
             descriptionTextField.setText("");
             ticketDateDatePicker.setValue(null);
         }
+
+         */
     }
 
     /**
