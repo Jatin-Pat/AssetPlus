@@ -8,10 +8,10 @@ import javafx.scene.control.TextField;
 public class DeleteNote {
 
     @FXML
-    private TextField ticketID;
+    private TextField ticketIDTextField;
 
     @FXML
-    private TextField ticketIndex;
+    private TextField ticketIndexTextField;
 
      /** Calls the controller method deleteMaintenanceNote with the info input in the textfield and deletes the note.
      Resets the fields when the method works.
@@ -20,8 +20,8 @@ public class DeleteNote {
     */
     @FXML
     void deleteNote(ActionEvent event) {
-      int id = Integer.parseInt(ticketID.getText());
-      int index = Integer.parseInt(ticketIndex.getText());
+      int id = Integer.parseInt(ticketIDTextField.getText());
+      int index = Integer.parseInt(ticketIndexTextField.getText());
 
       AssetPlusFeatureSet7Controller.deleteMaintenanceNote(id, index);
       ticketIdTextField.setText("");
