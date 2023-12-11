@@ -1,7 +1,7 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
-import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+
+
 import ca.mcgill.ecse.assetplus.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import ca.mcgill.ecse.assetplus.controller.*;
-import ca.mcgill.ecse.assetplus.model.AssetPlus;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ import java.util.List;
  * the model through the AssetPlus controller and navigate through the pages.
  */
 public class addUpdateDeleteTicket {
-    private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
+    //private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus();
 
     private MainPage mainPage;
 

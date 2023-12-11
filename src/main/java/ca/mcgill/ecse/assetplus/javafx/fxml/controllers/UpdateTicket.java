@@ -1,6 +1,5 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
-import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import ca.mcgill.ecse.assetplus.controller.*;
-import ca.mcgill.ecse.assetplus.model.AssetPlus;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ import java.time.LocalDate;
  */
 
 public class UpdateTicket {
-    private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
+    //private static AssetPlus assetPlus = AssetPlusApplication.getAssetPlus(); // can I do this?
     @FXML
     public Button backButton;
 
